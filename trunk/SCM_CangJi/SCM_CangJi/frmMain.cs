@@ -17,6 +17,12 @@ namespace SCM_CangJi
         {
             InitializeComponent();
             InitSkin();
+            InitMenu();
+        }
+
+        private void InitMenu()
+        {
+
         }
         private void InitSkin()
         {
@@ -37,7 +43,7 @@ namespace SCM_CangJi
         }
         private void frmMain_Load(object sender, EventArgs e)
         {
-            //MDIManage.SetFixedForm(new StartPage());
+            MDIManage.SetFixedForm(new StartPage());
         }
 
         private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -47,7 +53,8 @@ namespace SCM_CangJi
 
         private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            this.ActiveMdiChild.Close();
+            if (this.ActiveMdiChild != null)
+                this.ActiveMdiChild.Close();
         }
 
         private void barButtonItem5_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -58,6 +65,11 @@ namespace SCM_CangJi
         private void showMenu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
            MainMenus.Show();
+        }
+
+        private void barButtonItem6_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            SCM_CangJi.Lib.Utils.OpenMasterWebPage();
         }
     }
 }

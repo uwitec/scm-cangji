@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SCM_CangJi.BLL
 {
-    public class Class1
+    public class BaseService
     {
     }
 }

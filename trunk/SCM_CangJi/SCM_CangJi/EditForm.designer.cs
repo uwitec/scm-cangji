@@ -1,6 +1,6 @@
 ﻿namespace SCM_CangJi
 {
-    partial class StartPage
+    partial class EditForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,20 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // StartPage
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+            this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 262);
-            this.Name = "StartPage";
-            this.Text = "欢迎进入仓吉存储管理系统";
-            this.ResumeLayout(false);
-
+            this.Text = "EditForm";
         }
 
         #endregion
     }
 }
-

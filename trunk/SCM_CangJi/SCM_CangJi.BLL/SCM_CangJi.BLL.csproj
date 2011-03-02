@@ -43,8 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="BaseService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\SecurityContext.cs" />
+    <Compile Include="Security\SecurityUser.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SCM_CangJi.DAL\SCM_CangJi.DAL.csproj">
@@ -55,6 +57,10 @@
       <Project>{DA9BC5C8-239D-422E-9AAA-8C0898E39E4D}</Project>
       <Name>SCM_CangJi.Lib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

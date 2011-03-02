@@ -89,7 +89,7 @@
             this.MainMenus.Location = new System.Drawing.Point(0, 54);
             this.MainMenus.Name = "MainMenus";
             this.MainMenus.OriginalSize = new System.Drawing.Size(200, 200);
-            this.MainMenus.Size = new System.Drawing.Size(200, 344);
+            this.MainMenus.Size = new System.Drawing.Size(200, 348);
             this.MainMenus.TabsScroll = true;
             this.MainMenus.Text = "导航";
             // 
@@ -97,7 +97,7 @@
             // 
             this.dockPanel1_Container.Location = new System.Drawing.Point(3, 25);
             this.dockPanel1_Container.Name = "dockPanel1_Container";
-            this.dockPanel1_Container.Size = new System.Drawing.Size(194, 316);
+            this.dockPanel1_Container.Size = new System.Drawing.Size(194, 320);
             this.dockPanel1_Container.TabIndex = 0;
             // 
             // barManager1
@@ -177,20 +177,20 @@
             // 
             // barButtonItem1
             // 
-            this.barButtonItem1.Caption = "注销";
+            this.barButtonItem1.Caption = "注销登陆";
             this.barButtonItem1.Id = 9;
             this.barButtonItem1.Name = "barButtonItem1";
             // 
             // barButtonItem2
             // 
-            this.barButtonItem2.Caption = "关闭";
+            this.barButtonItem2.Caption = "关闭窗口";
             this.barButtonItem2.Id = 10;
             this.barButtonItem2.Name = "barButtonItem2";
             this.barButtonItem2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem2_ItemClick);
             // 
             // barButtonItem3
             // 
-            this.barButtonItem3.Caption = "退出";
+            this.barButtonItem3.Caption = "退出系统";
             this.barButtonItem3.Id = 11;
             this.barButtonItem3.Name = "barButtonItem3";
             this.barButtonItem3.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem3_ItemClick);
@@ -231,6 +231,7 @@
             this.barButtonItem6.Caption = "主页";
             this.barButtonItem6.Id = 15;
             this.barButtonItem6.Name = "barButtonItem6";
+            this.barButtonItem6.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem6_ItemClick);
             // 
             // bar3
             // 
@@ -253,20 +254,20 @@
             // barDockControlBottom
             // 
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 398);
-            this.barDockControlBottom.Size = new System.Drawing.Size(601, 27);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 402);
+            this.barDockControlBottom.Size = new System.Drawing.Size(601, 23);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 54);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 344);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 348);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(601, 54);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 344);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 348);
             // 
             // barSubItem2
             // 
