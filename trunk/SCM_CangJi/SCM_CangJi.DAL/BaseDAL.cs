@@ -19,7 +19,7 @@ namespace SCM_CangJi.DAL
                 return _instance.Value;
             }
         }
-        public static string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings[""].ConnectionString;
+        public static string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["SCM_CangJiConnectionString"].ConnectionString;
         public void Using<T>(T context, Action<T> action)
        where T : DataContext
         {

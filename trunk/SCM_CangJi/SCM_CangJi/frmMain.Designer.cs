@@ -29,10 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.MDIManage = new SCM_CangJi.MyMDIManager(this.components);
-            this.dockManager = new DevExpress.XtraBars.Docking.DockManager(this.components);
-            this.MainMenus = new DevExpress.XtraBars.Docking.DockPanel();
-            this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.barskins = new DevExpress.XtraBars.Bar();
             this.barskin = new DevExpress.XtraBars.BarSubItem();
@@ -42,6 +40,8 @@
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
             this.barSubItem5 = new DevExpress.XtraBars.BarSubItem();
+            this.CloseWindow = new DevExpress.XtraBars.BarButtonItem();
+            this.showWindows = new DevExpress.XtraBars.BarSubItem();
             this.showMenu = new DevExpress.XtraBars.BarButtonItem();
             this.barSubItem10 = new DevExpress.XtraBars.BarSubItem();
             this.barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
@@ -58,47 +58,26 @@
             this.barSubItem8 = new DevExpress.XtraBars.BarSubItem();
             this.barSubItem7 = new DevExpress.XtraBars.BarSubItem();
             this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem7 = new DevExpress.XtraBars.BarButtonItem();
+            this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
+            this.UserManagerGroup = new DevExpress.XtraNavBar.NavBarGroup();
+            this.RolesManage = new DevExpress.XtraNavBar.NavBarItem();
+            this.UsersManage = new DevExpress.XtraNavBar.NavBarItem();
+            this.StorageManageGroup = new DevExpress.XtraNavBar.NavBarGroup();
+            this.Intowarehouse = new DevExpress.XtraNavBar.NavBarItem();
+            this.imageList2 = new System.Windows.Forms.ImageList(this.components);
+            this.splitterControl1 = new DevExpress.XtraEditors.SplitterControl();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.imageList3 = new System.Windows.Forms.ImageList(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.MDIManage)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dockManager)).BeginInit();
-            this.MainMenus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             this.SuspendLayout();
             // 
             // MDIManage
             // 
             this.MDIManage.FixedPage = null;
             this.MDIManage.MdiParent = this;
-            // 
-            // dockManager
-            // 
-            this.dockManager.Form = this;
-            this.dockManager.RootPanels.AddRange(new DevExpress.XtraBars.Docking.DockPanel[] {
-            this.MainMenus});
-            this.dockManager.TopZIndexControls.AddRange(new string[] {
-            "DevExpress.XtraBars.BarDockControl",
-            "DevExpress.XtraBars.StandaloneBarDockControl",
-            "System.Windows.Forms.StatusBar",
-            "DevExpress.XtraBars.Ribbon.RibbonStatusBar",
-            "DevExpress.XtraBars.Ribbon.RibbonControl"});
-            // 
-            // MainMenus
-            // 
-            this.MainMenus.Controls.Add(this.dockPanel1_Container);
-            this.MainMenus.Dock = DevExpress.XtraBars.Docking.DockingStyle.Left;
-            this.MainMenus.ID = new System.Guid("c0b665ce-7ec2-411f-abe2-b1349dceff77");
-            this.MainMenus.Location = new System.Drawing.Point(0, 54);
-            this.MainMenus.Name = "MainMenus";
-            this.MainMenus.OriginalSize = new System.Drawing.Size(200, 200);
-            this.MainMenus.Size = new System.Drawing.Size(200, 348);
-            this.MainMenus.TabsScroll = true;
-            this.MainMenus.Text = "导航";
-            // 
-            // dockPanel1_Container
-            // 
-            this.dockPanel1_Container.Location = new System.Drawing.Point(3, 25);
-            this.dockPanel1_Container.Name = "dockPanel1_Container";
-            this.dockPanel1_Container.Size = new System.Drawing.Size(194, 320);
-            this.dockPanel1_Container.TabIndex = 0;
             // 
             // barManager1
             // 
@@ -110,7 +89,6 @@
             this.barManager1.DockControls.Add(this.barDockControlBottom);
             this.barManager1.DockControls.Add(this.barDockControlLeft);
             this.barManager1.DockControls.Add(this.barDockControlRight);
-            this.barManager1.DockManager = this.dockManager;
             this.barManager1.Form = this;
             this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.barSubItem1,
@@ -129,9 +107,12 @@
             this.barSubItem10,
             this.barButtonItem5,
             this.barButtonItem6,
-            this.showMenu});
+            this.showMenu,
+            this.barButtonItem7,
+            this.CloseWindow,
+            this.showWindows});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 17;
+            this.barManager1.MaxItemId = 21;
             this.barManager1.StatusBar = this.bar3;
             // 
             // barskins
@@ -200,8 +181,24 @@
             this.barSubItem5.Caption = "窗口..";
             this.barSubItem5.Id = 4;
             this.barSubItem5.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.showMenu)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.CloseWindow),
+            new DevExpress.XtraBars.LinkPersistInfo(this.showWindows)});
             this.barSubItem5.Name = "barSubItem5";
+            // 
+            // CloseWindow
+            // 
+            this.CloseWindow.Caption = "关闭窗口";
+            this.CloseWindow.Id = 18;
+            this.CloseWindow.Name = "CloseWindow";
+            this.CloseWindow.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.CloseWindow_ItemClick);
+            // 
+            // showWindows
+            // 
+            this.showWindows.Caption = "显示窗口";
+            this.showWindows.Id = 20;
+            this.showWindows.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.showMenu)});
+            this.showWindows.Name = "showWindows";
             // 
             // showMenu
             // 
@@ -254,20 +251,20 @@
             // barDockControlBottom
             // 
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 402);
-            this.barDockControlBottom.Size = new System.Drawing.Size(601, 23);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 398);
+            this.barDockControlBottom.Size = new System.Drawing.Size(601, 27);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 54);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 348);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 344);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(601, 54);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 348);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 344);
             // 
             // barSubItem2
             // 
@@ -313,12 +310,128 @@
             this.barButtonItem4.Id = 12;
             this.barButtonItem4.Name = "barButtonItem4";
             // 
+            // barButtonItem7
+            // 
+            this.barButtonItem7.Caption = "barButtonItem7";
+            this.barButtonItem7.Id = 17;
+            this.barButtonItem7.Name = "barButtonItem7";
+            // 
+            // navBarControl1
+            // 
+            this.navBarControl1.ActiveGroup = this.StorageManageGroup;
+            this.navBarControl1.AllowSelectedLink = true;
+            this.navBarControl1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.navBarControl1.EachGroupHasSelectedLink = true;
+            this.navBarControl1.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
+            this.UserManagerGroup,
+            this.StorageManageGroup});
+            this.navBarControl1.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] {
+            this.UsersManage,
+            this.RolesManage,
+            this.Intowarehouse});
+            this.navBarControl1.Location = new System.Drawing.Point(0, 54);
+            this.navBarControl1.Margin = new System.Windows.Forms.Padding(0);
+            this.navBarControl1.Name = "navBarControl1";
+            this.navBarControl1.NavigationPaneGroupClientHeight = 160;
+            this.navBarControl1.NavigationPaneMaxVisibleGroups = 7;
+            this.navBarControl1.OptionsNavPane.ExpandedWidth = 140;
+            this.navBarControl1.Size = new System.Drawing.Size(156, 344);
+            this.navBarControl1.SmallImages = this.imageList2;
+            this.navBarControl1.TabIndex = 16;
+            this.navBarControl1.Text = "navBarControl1";
+            this.navBarControl1.View = new DevExpress.XtraNavBar.ViewInfo.SkinNavigationPaneViewInfoRegistrator();
+            // 
+            // UserManagerGroup
+            // 
+            this.UserManagerGroup.Caption = "用户管理";
+            this.UserManagerGroup.Expanded = true;
+            this.UserManagerGroup.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.RolesManage),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.UsersManage)});
+            this.UserManagerGroup.Name = "UserManagerGroup";
+            // 
+            // RolesManage
+            // 
+            this.RolesManage.Caption = "角色";
+            this.RolesManage.LargeImageIndex = 2;
+            this.RolesManage.Name = "RolesManage";
+            this.RolesManage.SmallImageIndex = 1;
+            // 
+            // UsersManage
+            // 
+            this.UsersManage.Caption = "用户";
+            this.UsersManage.Name = "UsersManage";
+            this.UsersManage.SmallImageIndex = 5;
+            // 
+            // StorageManageGroup
+            // 
+            this.StorageManageGroup.Caption = "库存管理";
+            this.StorageManageGroup.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.Intowarehouse)});
+            this.StorageManageGroup.Name = "StorageManageGroup";
+            // 
+            // Intowarehouse
+            // 
+            this.Intowarehouse.Caption = "入库";
+            this.Intowarehouse.Name = "Intowarehouse";
+            this.Intowarehouse.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.LinkClicked);
+            // 
+            // imageList2
+            // 
+            this.imageList2.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList2.ImageStream")));
+            this.imageList2.TransparentColor = System.Drawing.Color.Magenta;
+            this.imageList2.Images.SetKeyName(0, "");
+            this.imageList2.Images.SetKeyName(1, "");
+            this.imageList2.Images.SetKeyName(2, "");
+            this.imageList2.Images.SetKeyName(3, "");
+            this.imageList2.Images.SetKeyName(4, "");
+            this.imageList2.Images.SetKeyName(5, "");
+            this.imageList2.Images.SetKeyName(6, "");
+            this.imageList2.Images.SetKeyName(7, "");
+            this.imageList2.Images.SetKeyName(8, "");
+            this.imageList2.Images.SetKeyName(9, "");
+            this.imageList2.Images.SetKeyName(10, "");
+            this.imageList2.Images.SetKeyName(11, "");
+            this.imageList2.Images.SetKeyName(12, "");
+            this.imageList2.Images.SetKeyName(13, "");
+            this.imageList2.Images.SetKeyName(14, "");
+            this.imageList2.Images.SetKeyName(15, "");
+            // 
+            // splitterControl1
+            // 
+            this.splitterControl1.Location = new System.Drawing.Point(156, 54);
+            this.splitterControl1.Name = "splitterControl1";
+            this.splitterControl1.Size = new System.Drawing.Size(6, 344);
+            this.splitterControl1.TabIndex = 21;
+            this.splitterControl1.TabStop = false;
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Magenta;
+            this.imageList1.Images.SetKeyName(0, "");
+            this.imageList1.Images.SetKeyName(1, "");
+            this.imageList1.Images.SetKeyName(2, "");
+            this.imageList1.Images.SetKeyName(3, "");
+            this.imageList1.Images.SetKeyName(4, "");
+            this.imageList1.Images.SetKeyName(5, "");
+            this.imageList1.Images.SetKeyName(6, "");
+            this.imageList1.Images.SetKeyName(7, "");
+            // 
+            // imageList3
+            // 
+            this.imageList3.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList3.ImageStream")));
+            this.imageList3.TransparentColor = System.Drawing.Color.Magenta;
+            this.imageList3.Images.SetKeyName(0, "");
+            this.imageList3.Images.SetKeyName(1, "");
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(601, 425);
-            this.Controls.Add(this.MainMenus);
+            this.Controls.Add(this.splitterControl1);
+            this.Controls.Add(this.navBarControl1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
@@ -329,9 +442,8 @@
             this.Text = "frmMain";
             this.Load += new System.EventHandler(this.frmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.MDIManage)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dockManager)).EndInit();
-            this.MainMenus.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -339,7 +451,6 @@
         #endregion
 
         private MyMDIManager MDIManage;
-        private DevExpress.XtraBars.Docking.DockManager dockManager;
         private DevExpress.XtraBars.BarManager barManager1;
         private DevExpress.XtraBars.Bar barskins;
         private DevExpress.XtraBars.BarSubItem barskin;
@@ -365,8 +476,19 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem6;
         private DevExpress.XtraBars.BarButtonItem barButtonItem4;
         private DevExpress.XtraBars.BarButtonItem showMenu;
-        private DevExpress.XtraBars.Docking.DockPanel MainMenus;
-        private DevExpress.XtraBars.Docking.ControlContainer dockPanel1_Container;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem7;
+        private DevExpress.XtraBars.BarButtonItem CloseWindow;
+        private DevExpress.XtraBars.BarSubItem showWindows;
+        private DevExpress.XtraNavBar.NavBarControl navBarControl1;
+        private DevExpress.XtraNavBar.NavBarGroup StorageManageGroup;
+        private DevExpress.XtraNavBar.NavBarItem Intowarehouse;
+        private DevExpress.XtraNavBar.NavBarGroup UserManagerGroup;
+        private DevExpress.XtraNavBar.NavBarItem RolesManage;
+        private DevExpress.XtraNavBar.NavBarItem UsersManage;
+        private DevExpress.XtraEditors.SplitterControl splitterControl1;
+        private System.Windows.Forms.ImageList imageList2;
+        private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.ImageList imageList3;
 
     }
 }

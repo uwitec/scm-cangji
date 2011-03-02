@@ -84,7 +84,8 @@ namespace SCM_CangJi
 
         protected int SecondsShow
         {
-            //未设置启动画面停留时间时，使用默认时间 
+//未设置启动画面停留时间时，使用默认时间 
+
             set
             {
 

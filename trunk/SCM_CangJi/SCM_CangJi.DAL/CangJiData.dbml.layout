@@ -1,1 +1,91 @@
-﻿
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.5, 11.625" name="CangJiData">
+  <DataContextMoniker Name="/CangJiDataDataContext" />
+  <nestedChildShapes>
+    <classShape Id="7913b3ff-44ee-4712-899b-dfcb92002136" absoluteBounds="6.25, 6.75, 2, 1.1895064290364594">
+      <DataClassMoniker Name="/CangJiDataDataContext/aspnet_UsersInRole" />
+      <nestedChildShapes>
+        <elementListCompartment Id="85e6d4a0-2ca7-4010-8d70-29052aa3f51f" absoluteBounds="6.265, 7.21, 1.9700000000000002, 0.62950642903645826" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c71f473e-fac0-4fc2-ace2-e6b39e53b6f0" absoluteBounds="3.5, 7.5, 2, 2.1446048990885416">
+      <DataClassMoniker Name="/CangJiDataDataContext/aspnet_User" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ab6b8238-82ac-4fc0-bdd2-52f915f75ee0" absoluteBounds="3.515, 7.96, 1.9700000000000002, 1.5846048990885415" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="497a91e6-a019-4546-b5a9-b6dee69b8698" absoluteBounds="3.5, 5, 2, 1.7625655110677077">
+      <DataClassMoniker Name="/CangJiDataDataContext/aspnet_Role" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d22a7b10-94dd-4fd9-9208-143d3931c4e0" absoluteBounds="3.515, 5.46, 1.9700000000000002, 1.2025655110677083" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c1a2372b-0eb0-4cb6-bd5f-db4df57ced42" absoluteBounds="6.25, 9.625, 2, 1.7625655110677094">
+      <DataClassMoniker Name="/CangJiDataDataContext/aspnet_Profile" />
+      <nestedChildShapes>
+        <elementListCompartment Id="59589305-361d-4e09-aa72-4d477a30a6ec" absoluteBounds="6.265, 10.085, 1.9700000000000002, 1.2025655110677083" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="33bec946-4aae-48e2-8f63-c92823ab44a1" absoluteBounds="9.25, 5.625, 2, 4.8188806152343737">
+      <DataClassMoniker Name="/CangJiDataDataContext/aspnet_Membership" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7001f184-6c69-425e-a153-1fe39b997240" absoluteBounds="9.265, 6.085, 1.9700000000000002, 4.258880615234375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f9221119-a79b-4e7f-b87c-b89db7a2b919" absoluteBounds="0.75, 6.5, 2, 1.5715458170572925">
+      <DataClassMoniker Name="/CangJiDataDataContext/aspnet_Application" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c12900dd-90f8-48ff-b07a-9df92ad85c99" absoluteBounds="0.765, 6.96, 1.9700000000000002, 1.0115458170572915" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.5 : 7.71975321451823); (6.25 : 7.71975321451823)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CangJiDataDataContext/aspnet_User/aspnet_User_aspnet_UsersInRole" />
+      <nodes>
+        <classShapeMoniker Id="c71f473e-fac0-4fc2-ace2-e6b39e53b6f0" />
+        <classShapeMoniker Id="7913b3ff-44ee-4712-899b-dfcb92002136" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 5.8749995); (5.91666666666667 : 5.8749995 : JumpStart); (6.08333333333333 : 5.8749995 : JumpEnd); (7.25 : 5.8749995); (7.25 : 6.75)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CangJiDataDataContext/aspnet_Role/aspnet_Role_aspnet_UsersInRole" />
+      <nodes>
+        <classShapeMoniker Id="497a91e6-a019-4546-b5a9-b6dee69b8698" />
+        <classShapeMoniker Id="7913b3ff-44ee-4712-899b-dfcb92002136" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.5 : 9.64460489908854); (4.5 : 10.5160857050781); (6.25 : 10.5160857050781)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CangJiDataDataContext/aspnet_User/aspnet_User_aspnet_Profile" />
+      <nodes>
+        <classShapeMoniker Id="c71f473e-fac0-4fc2-ace2-e6b39e53b6f0" />
+        <classShapeMoniker Id="c1a2372b-0eb0-4cb6-bd5f-db4df57ced42" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 8.78225321451823); (9.25 : 8.78225321451823)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CangJiDataDataContext/aspnet_User/aspnet_User_aspnet_Membership" />
+      <nodes>
+        <classShapeMoniker Id="c71f473e-fac0-4fc2-ace2-e6b39e53b6f0" />
+        <classShapeMoniker Id="33bec946-4aae-48e2-8f63-c92823ab44a1" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 7.78577290852865); (3.5 : 7.78577290852865)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CangJiDataDataContext/aspnet_Application/aspnet_Application_aspnet_User" />
+      <nodes>
+        <classShapeMoniker Id="f9221119-a79b-4e7f-b87c-b89db7a2b919" />
+        <classShapeMoniker Id="c71f473e-fac0-4fc2-ace2-e6b39e53b6f0" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.75 : 6.5); (1.75 : 5.7499995); (3.5 : 5.7499995)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CangJiDataDataContext/aspnet_Application/aspnet_Application_aspnet_Role" />
+      <nodes>
+        <classShapeMoniker Id="f9221119-a79b-4e7f-b87c-b89db7a2b919" />
+        <classShapeMoniker Id="497a91e6-a019-4546-b5a9-b6dee69b8698" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 7.13128275553385); (6 : 7.13128275553385); (6 : 5.375); (10.25 : 5.375); (10.25 : 5.625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CangJiDataDataContext/aspnet_Application/aspnet_Application_aspnet_Membership" />
+      <nodes>
+        <classShapeMoniker Id="f9221119-a79b-4e7f-b87c-b89db7a2b919" />
+        <classShapeMoniker Id="33bec946-4aae-48e2-8f63-c92823ab44a1" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

@@ -59,17 +59,30 @@ namespace SCM_CangJi
 
         private void barButtonItem5_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            (new About()).ShowDialog(this);
+            (new About()).ShowDialog(this);   
         }
 
         private void showMenu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-           MainMenus.Show();
+           //MainMenus.Show();
         }
 
         private void barButtonItem6_ItemClick(object sender, ItemClickEventArgs e)
         {
             SCM_CangJi.Lib.Utils.OpenMasterWebPage();
+        }
+
+        private void CloseWindow_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            if (this.ActiveMdiChild != null)
+            {
+                this.ActiveMdiChild.Close();
+            }
+        }
+
+        private void LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+
         }
     }
 }

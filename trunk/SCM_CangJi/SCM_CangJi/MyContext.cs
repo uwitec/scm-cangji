@@ -15,16 +15,12 @@ namespace SCM_CangJi
 
             protected override void OnCreateMainForm()
             {
-
                 this.PrimaryForm = new frmMain();//主窗体 
-
             }
 
             protected override void SetSeconds()
             {
-
-                this.SecondsShow = 10;//启动窗体显示的时间(秒) 
-
+                this.SecondsShow = 2;//启动窗体显示的时间(秒) 
             }
     }
 }
