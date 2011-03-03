@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Web.Security;
 
 namespace SCM_CangJi.BLL.Security
 {
-    public class SecurityUser
+    public class SecurityUser:MembershipUser
     {
-        public string Name { get; set; }
-        public string Role { get; set; }
+       
     }
 }

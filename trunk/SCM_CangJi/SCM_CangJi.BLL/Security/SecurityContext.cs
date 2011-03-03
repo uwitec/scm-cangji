@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Web.Security;
 
 namespace SCM_CangJi.BLL.Security
 {
-    public class SecurityContext
+    public  class SecurityContext
     {
         #region singleton
         static SecurityContext _current;
@@ -13,7 +14,7 @@ namespace SCM_CangJi.BLL.Security
         {
             get
             {
-                if (_current != null)
+                if (_current == null)
                 {
                     _current = new SecurityContext();
                 }
@@ -21,7 +22,7 @@ namespace SCM_CangJi.BLL.Security
             }
         } 
         #endregion
-        public SecurityUser CurrentyUser
+        public MembershipUser CurrentyUser
         {
             get;
             set;

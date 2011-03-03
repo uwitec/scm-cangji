@@ -18,6 +18,7 @@ namespace SCM_CangJi
 
         private Form _PrimaryForm;//主窗体 
 
+
         private System.Timers.Timer _SplashScreenTimer;
 
         private int _SplashScreenTimerInterVal = 5000;//默认是启动窗体显示5秒 
@@ -34,7 +35,6 @@ namespace SCM_CangJi
             this.ShowSplashScreen();//这里创建和显示启动窗体 
 
             this.MainFormLoad();//这里创建和显示启动主窗体 
-
         }
 
 
@@ -60,8 +60,7 @@ namespace SCM_CangJi
             }
 
         }
-
-
+       
 
         protected Form PrimaryForm
         {
@@ -103,7 +102,7 @@ namespace SCM_CangJi
             this.SetSeconds();
 
             this.OnCreateSplashScreenForm();
-
+          
             this._SplashScreenTimer = new System.Timers.Timer(((double)(this._SplashScreenTimerInterVal)));
 
             _SplashScreenTimer.Elapsed += new System.Timers.ElapsedEventHandler(new System.Timers.ElapsedEventHandler(this.SplashScreenDisplayTimeUp));

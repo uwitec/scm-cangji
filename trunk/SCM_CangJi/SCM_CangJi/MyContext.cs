@@ -22,5 +22,7 @@ namespace SCM_CangJi
             {
                 this.SecondsShow = 2;//启动窗体显示的时间(秒) 
             }
+
+            
     }
 }

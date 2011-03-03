@@ -47,6 +47,7 @@
             this.barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem6 = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
+            this.statusbar_Userinfo = new DevExpress.XtraBars.BarStaticItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -78,6 +79,7 @@
             // 
             this.MDIManage.FixedPage = null;
             this.MDIManage.MdiParent = this;
+            this.MDIManage.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MDIManage_MouseDown);
             // 
             // barManager1
             // 
@@ -110,9 +112,10 @@
             this.showMenu,
             this.barButtonItem7,
             this.CloseWindow,
-            this.showWindows});
+            this.showWindows,
+            this.statusbar_Userinfo});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 21;
+            this.barManager1.MaxItemId = 22;
             this.barManager1.StatusBar = this.bar3;
             // 
             // barskins
@@ -237,10 +240,18 @@
             this.bar3.DockCol = 0;
             this.bar3.DockRow = 0;
             this.bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
+            this.bar3.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.statusbar_Userinfo)});
             this.bar3.OptionsBar.AllowQuickCustomization = false;
             this.bar3.OptionsBar.DrawDragBorder = false;
             this.bar3.OptionsBar.UseWholeRow = true;
             this.bar3.Text = "状态栏";
+            // 
+            // statusbar_Userinfo
+            // 
+            this.statusbar_Userinfo.Id = 21;
+            this.statusbar_Userinfo.Name = "statusbar_Userinfo";
+            this.statusbar_Userinfo.TextAlignment = System.Drawing.StringAlignment.Near;
             // 
             // barDockControlTop
             // 
@@ -251,20 +262,20 @@
             // barDockControlBottom
             // 
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 398);
-            this.barDockControlBottom.Size = new System.Drawing.Size(601, 27);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 394);
+            this.barDockControlBottom.Size = new System.Drawing.Size(601, 31);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 54);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 344);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 340);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(601, 54);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 344);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 340);
             // 
             // barSubItem2
             // 
@@ -318,13 +329,13 @@
             // 
             // navBarControl1
             // 
-            this.navBarControl1.ActiveGroup = this.StorageManageGroup;
+            this.navBarControl1.ActiveGroup = this.UserManagerGroup;
             this.navBarControl1.AllowSelectedLink = true;
             this.navBarControl1.Dock = System.Windows.Forms.DockStyle.Left;
             this.navBarControl1.EachGroupHasSelectedLink = true;
             this.navBarControl1.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
-            this.UserManagerGroup,
-            this.StorageManageGroup});
+            this.StorageManageGroup,
+            this.UserManagerGroup});
             this.navBarControl1.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] {
             this.UsersManage,
             this.RolesManage,
@@ -335,7 +346,7 @@
             this.navBarControl1.NavigationPaneGroupClientHeight = 160;
             this.navBarControl1.NavigationPaneMaxVisibleGroups = 7;
             this.navBarControl1.OptionsNavPane.ExpandedWidth = 140;
-            this.navBarControl1.Size = new System.Drawing.Size(156, 344);
+            this.navBarControl1.Size = new System.Drawing.Size(156, 340);
             this.navBarControl1.SmallImages = this.imageList2;
             this.navBarControl1.TabIndex = 16;
             this.navBarControl1.Text = "navBarControl1";
@@ -362,6 +373,7 @@
             this.UsersManage.Caption = "用户";
             this.UsersManage.Name = "UsersManage";
             this.UsersManage.SmallImageIndex = 5;
+            this.UsersManage.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.UsersManage_LinkClicked);
             // 
             // StorageManageGroup
             // 
@@ -401,7 +413,7 @@
             // 
             this.splitterControl1.Location = new System.Drawing.Point(156, 54);
             this.splitterControl1.Name = "splitterControl1";
-            this.splitterControl1.Size = new System.Drawing.Size(6, 344);
+            this.splitterControl1.Size = new System.Drawing.Size(6, 340);
             this.splitterControl1.TabIndex = 21;
             this.splitterControl1.TabStop = false;
             // 
@@ -489,6 +501,7 @@
         private System.Windows.Forms.ImageList imageList2;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.ImageList imageList3;
+        private DevExpress.XtraBars.BarStaticItem statusbar_Userinfo;
 
     }
 }

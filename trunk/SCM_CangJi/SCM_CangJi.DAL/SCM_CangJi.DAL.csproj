@@ -42,7 +42,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseDAL.cs" />
     <Compile Include="CangJiData.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

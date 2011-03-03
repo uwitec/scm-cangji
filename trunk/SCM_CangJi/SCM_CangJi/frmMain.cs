@@ -9,6 +9,9 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using DevExpress.Skins;
 using DevExpress.XtraBars;
+using SCM_CangJi.BLL.Security;
+using DevExpress.XtraTab.ViewInfo;
+using SCM_CangJi.Account;
 namespace SCM_CangJi
 {
     public partial class frmMain : XtraForm
@@ -18,6 +21,12 @@ namespace SCM_CangJi
             InitializeComponent();
             InitSkin();
             InitMenu();
+            InitStatusBar();
+        }
+
+        private void InitStatusBar()
+        {
+            statusbar_Userinfo.Caption =string.Format("欢迎您：{0}",SecurityContext.Current.CurrentyUser.UserName);
         }
 
         private void InitMenu()
@@ -83,6 +92,42 @@ namespace SCM_CangJi
         private void LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
 
+        }
+
+        private void UsersManage_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            UserList userlist = new UserList();
+            userlist.MdiParent = this;
+            userlist.Show();
+            //UserList.Instance.MdiParent = this;
+            //UserList.Instance.Show();
+        }
+        private int clickTick = -1;
+        private BaseTabHitInfo lastTab = null;//保存上次的tab页
+        private void MDIManage_MouseDown(object sender, MouseEventArgs e)
+        {
+            BaseTabHitInfo hi = this.MDIManage.CalcHitInfo(new Point(e.X, e.Y));
+            if (hi.HitTest == XtraTabHitTest.PageHeader)
+            {
+                if (this.clickTick == -1
+                   || (Environment.TickCount - this.clickTick) > SystemInformation.DoubleClickTime
+                   || this.lastTab == null
+                   || this.lastTab.Page.Text != hi.Page.Text)
+                {
+                    this.clickTick = Environment.TickCount;
+                    this.lastTab = hi;
+                }
+                else
+                {
+                    if ((Environment.TickCount - this.clickTick) < SystemInformation.DoubleClickTime)
+                    {
+                        if (null != this.ActiveMdiChild)
+                        {
+                            this.ActiveMdiChild.Hide();
+                        }
+                    }
+                }
+            }
         }
     }
 }
