@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Security;
+using SCM_CangJi.DAL;
 namespace SCM_CangJi.BLL.Services
 {
     public interface IMembershipService
@@ -85,10 +86,25 @@ namespace SCM_CangJi.BLL.Services
                 return false;
             }
         }
-        public MembershipUserCollection GetUsers()
+        public IEnumerable<MembershipUser> GetUsers()
         {
+            List<MembershipUser> users = new List<MembershipUser>(); ;
+            //Using<CangJiDataDataContext>(new CangJiDataDataContext(connectionString), context =>
+            //    {
+            //        users = context.aspnet_Users.ToList();
+            //    });
             int total=0;
-            return _provider.GetAllUsers(0, 100, out total);
+            //return users;
+            foreach (MembershipUser item in _provider.GetAllUsers(0, 100, out total))
+            {
+                users.Add(item);
+            }
+            return users;
+        }
+
+        public string[] GetAllRoles()
+        {
+           return Roles.GetAllRoles();
         }
     }
 
@@ -122,13 +138,13 @@ namespace SCM_CangJi.BLL.Services
             switch (createStatus)
             {
                 case MembershipCreateStatus.DuplicateUserName:
-                    return "Username already exists. Please enter a different user name.";
+                    return "用户名已经存在，请输入另一个用户名!";
 
                 case MembershipCreateStatus.DuplicateEmail:
-                    return "A username for that e-mail address already exists. Please enter a different e-mail address.";
+                    return "电子邮件已经被使用了!";
 
                 case MembershipCreateStatus.InvalidPassword:
-                    return "The password provided is invalid. Please enter a valid password value.";
+                    return "密码格式不正确，请输入正确格式";
 
                 case MembershipCreateStatus.InvalidEmail:
                     return "The e-mail address provided is invalid. Please check the value and try again.";
@@ -149,7 +165,7 @@ namespace SCM_CangJi.BLL.Services
                     return "The user creation request has been canceled. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
 
                 default:
-                    return "An unknown error occurred. Please verify your entry and try again. If the problem persists, please contact your system administrator.";
+                    return "未知错误，请重试。如果还存在，请联系管理员";
             }
         }
     }

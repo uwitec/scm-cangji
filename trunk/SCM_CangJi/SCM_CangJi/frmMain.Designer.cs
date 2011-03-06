@@ -61,15 +61,36 @@
             this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem7 = new DevExpress.XtraBars.BarButtonItem();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
+            this.StorageManageGroup = new DevExpress.XtraNavBar.NavBarGroup();
+            this.PreIntowarehouse = new DevExpress.XtraNavBar.NavBarItem();
+            this.IntoWareHouseConfirm = new DevExpress.XtraNavBar.NavBarItem();
+            this.PreOutWoreHouse = new DevExpress.XtraNavBar.NavBarItem();
+            this.AssignStorage = new DevExpress.XtraNavBar.NavBarItem();
+            this.OutWareHouseConfirm = new DevExpress.XtraNavBar.NavBarItem();
+            this.StorageInfo = new DevExpress.XtraNavBar.NavBarItem();
+            this.CheckStorage = new DevExpress.XtraNavBar.NavBarItem();
+            this.StorageChange = new DevExpress.XtraNavBar.NavBarItem();
+            this.ChangeCancle = new DevExpress.XtraNavBar.NavBarItem();
+            this.ChangeConfirm = new DevExpress.XtraNavBar.NavBarItem();
             this.UserManagerGroup = new DevExpress.XtraNavBar.NavBarGroup();
             this.RolesManage = new DevExpress.XtraNavBar.NavBarItem();
             this.UsersManage = new DevExpress.XtraNavBar.NavBarItem();
-            this.StorageManageGroup = new DevExpress.XtraNavBar.NavBarGroup();
-            this.Intowarehouse = new DevExpress.XtraNavBar.NavBarItem();
+            this.CustomerManage = new DevExpress.XtraNavBar.NavBarGroup();
+            this.CompanyInfo = new DevExpress.XtraNavBar.NavBarItem();
+            this.WareHouseManage = new DevExpress.XtraNavBar.NavBarGroup();
+            this.WareHouseInfo = new DevExpress.XtraNavBar.NavBarItem();
+            this.BaseInfo = new DevExpress.XtraNavBar.NavBarGroup();
+            this.ProjectCategory = new DevExpress.XtraNavBar.NavBarItem();
+            this.Unit = new DevExpress.XtraNavBar.NavBarItem();
+            this.Address = new DevExpress.XtraNavBar.NavBarItem();
+            this.ContactInfo = new DevExpress.XtraNavBar.NavBarItem();
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.splitterControl1 = new DevExpress.XtraEditors.SplitterControl();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.imageList3 = new System.Windows.Forms.ImageList(this.components);
+            this.logQuery = new DevExpress.XtraNavBar.NavBarGroup();
+            this.Systemlog = new DevExpress.XtraNavBar.NavBarItem();
+            this.AssignStorageArea = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.MDIManage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
@@ -329,17 +350,38 @@
             // 
             // navBarControl1
             // 
-            this.navBarControl1.ActiveGroup = this.UserManagerGroup;
+            this.navBarControl1.ActiveGroup = this.StorageManageGroup;
             this.navBarControl1.AllowSelectedLink = true;
             this.navBarControl1.Dock = System.Windows.Forms.DockStyle.Left;
             this.navBarControl1.EachGroupHasSelectedLink = true;
             this.navBarControl1.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
             this.StorageManageGroup,
-            this.UserManagerGroup});
+            this.UserManagerGroup,
+            this.CustomerManage,
+            this.WareHouseManage,
+            this.BaseInfo,
+            this.logQuery});
             this.navBarControl1.Items.AddRange(new DevExpress.XtraNavBar.NavBarItem[] {
             this.UsersManage,
             this.RolesManage,
-            this.Intowarehouse});
+            this.PreIntowarehouse,
+            this.CompanyInfo,
+            this.WareHouseInfo,
+            this.Address,
+            this.ContactInfo,
+            this.Unit,
+            this.ProjectCategory,
+            this.IntoWareHouseConfirm,
+            this.CheckStorage,
+            this.StorageChange,
+            this.PreOutWoreHouse,
+            this.AssignStorage,
+            this.OutWareHouseConfirm,
+            this.ChangeCancle,
+            this.ChangeConfirm,
+            this.StorageInfo,
+            this.Systemlog,
+            this.AssignStorageArea});
             this.navBarControl1.Location = new System.Drawing.Point(0, 54);
             this.navBarControl1.Margin = new System.Windows.Forms.Padding(0);
             this.navBarControl1.Name = "navBarControl1";
@@ -352,10 +394,79 @@
             this.navBarControl1.Text = "navBarControl1";
             this.navBarControl1.View = new DevExpress.XtraNavBar.ViewInfo.SkinNavigationPaneViewInfoRegistrator();
             // 
+            // StorageManageGroup
+            // 
+            this.StorageManageGroup.Caption = "库存管理";
+            this.StorageManageGroup.Expanded = true;
+            this.StorageManageGroup.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.PreIntowarehouse),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.AssignStorageArea),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.IntoWareHouseConfirm),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.PreOutWoreHouse),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.AssignStorage),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.OutWareHouseConfirm),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.StorageInfo),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.CheckStorage),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.StorageChange),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.ChangeCancle),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.ChangeConfirm)});
+            this.StorageManageGroup.Name = "StorageManageGroup";
+            this.StorageManageGroup.SelectedLinkIndex = 1;
+            // 
+            // PreIntowarehouse
+            // 
+            this.PreIntowarehouse.Caption = "预入库";
+            this.PreIntowarehouse.Name = "PreIntowarehouse";
+            this.PreIntowarehouse.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.LinkClicked);
+            // 
+            // IntoWareHouseConfirm
+            // 
+            this.IntoWareHouseConfirm.Caption = "入库确认";
+            this.IntoWareHouseConfirm.Name = "IntoWareHouseConfirm";
+            // 
+            // PreOutWoreHouse
+            // 
+            this.PreOutWoreHouse.Caption = "预出库";
+            this.PreOutWoreHouse.Name = "PreOutWoreHouse";
+            // 
+            // AssignStorage
+            // 
+            this.AssignStorage.Caption = "分配库存";
+            this.AssignStorage.Name = "AssignStorage";
+            // 
+            // OutWareHouseConfirm
+            // 
+            this.OutWareHouseConfirm.Caption = "出库确认";
+            this.OutWareHouseConfirm.Name = "OutWareHouseConfirm";
+            // 
+            // StorageInfo
+            // 
+            this.StorageInfo.Caption = "库存信息";
+            this.StorageInfo.Name = "StorageInfo";
+            // 
+            // CheckStorage
+            // 
+            this.CheckStorage.Caption = "盘库";
+            this.CheckStorage.Name = "CheckStorage";
+            // 
+            // StorageChange
+            // 
+            this.StorageChange.Caption = "库存变更";
+            this.StorageChange.Name = "StorageChange";
+            // 
+            // ChangeCancle
+            // 
+            this.ChangeCancle.Caption = "变更取消";
+            this.ChangeCancle.Name = "ChangeCancle";
+            // 
+            // ChangeConfirm
+            // 
+            this.ChangeConfirm.Caption = "变更确认";
+            this.ChangeConfirm.Name = "ChangeConfirm";
+            // 
             // UserManagerGroup
             // 
             this.UserManagerGroup.Caption = "用户管理";
-            this.UserManagerGroup.Expanded = true;
             this.UserManagerGroup.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.RolesManage),
             new DevExpress.XtraNavBar.NavBarItemLink(this.UsersManage)});
@@ -375,18 +486,60 @@
             this.UsersManage.SmallImageIndex = 5;
             this.UsersManage.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.UsersManage_LinkClicked);
             // 
-            // StorageManageGroup
+            // CustomerManage
             // 
-            this.StorageManageGroup.Caption = "库存管理";
-            this.StorageManageGroup.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.Intowarehouse)});
-            this.StorageManageGroup.Name = "StorageManageGroup";
+            this.CustomerManage.Caption = "客户管理";
+            this.CustomerManage.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.CompanyInfo)});
+            this.CustomerManage.Name = "CustomerManage";
+            this.CustomerManage.SelectedLinkIndex = 0;
             // 
-            // Intowarehouse
+            // CompanyInfo
             // 
-            this.Intowarehouse.Caption = "入库";
-            this.Intowarehouse.Name = "Intowarehouse";
-            this.Intowarehouse.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.LinkClicked);
+            this.CompanyInfo.Caption = "公司信息";
+            this.CompanyInfo.Name = "CompanyInfo";
+            // 
+            // WareHouseManage
+            // 
+            this.WareHouseManage.Caption = "仓库维护";
+            this.WareHouseManage.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.WareHouseInfo)});
+            this.WareHouseManage.Name = "WareHouseManage";
+            this.WareHouseManage.SelectedLinkIndex = 0;
+            // 
+            // WareHouseInfo
+            // 
+            this.WareHouseInfo.Caption = "仓库";
+            this.WareHouseInfo.Name = "WareHouseInfo";
+            // 
+            // BaseInfo
+            // 
+            this.BaseInfo.Caption = "基本信息";
+            this.BaseInfo.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.ProjectCategory),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.Unit)});
+            this.BaseInfo.Name = "BaseInfo";
+            this.BaseInfo.SelectedLinkIndex = 0;
+            // 
+            // ProjectCategory
+            // 
+            this.ProjectCategory.Caption = "商品类型";
+            this.ProjectCategory.Name = "ProjectCategory";
+            // 
+            // Unit
+            // 
+            this.Unit.Caption = "货币单位";
+            this.Unit.Name = "Unit";
+            // 
+            // Address
+            // 
+            this.Address.Caption = "送货地址信息";
+            this.Address.Name = "Address";
+            // 
+            // ContactInfo
+            // 
+            this.ContactInfo.Caption = "联系人";
+            this.ContactInfo.Name = "ContactInfo";
             // 
             // imageList2
             // 
@@ -436,6 +589,24 @@
             this.imageList3.TransparentColor = System.Drawing.Color.Magenta;
             this.imageList3.Images.SetKeyName(0, "");
             this.imageList3.Images.SetKeyName(1, "");
+            // 
+            // logQuery
+            // 
+            this.logQuery.Caption = "日志查询";
+            this.logQuery.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.Systemlog)});
+            this.logQuery.Name = "logQuery";
+            this.logQuery.SelectedLinkIndex = 0;
+            // 
+            // Systemlog
+            // 
+            this.Systemlog.Caption = "系统日志";
+            this.Systemlog.Name = "Systemlog";
+            // 
+            // AssignStorageArea
+            // 
+            this.AssignStorageArea.Caption = "分配库位";
+            this.AssignStorageArea.Name = "AssignStorageArea";
             // 
             // frmMain
             // 
@@ -493,7 +664,7 @@
         private DevExpress.XtraBars.BarSubItem showWindows;
         private DevExpress.XtraNavBar.NavBarControl navBarControl1;
         private DevExpress.XtraNavBar.NavBarGroup StorageManageGroup;
-        private DevExpress.XtraNavBar.NavBarItem Intowarehouse;
+        private DevExpress.XtraNavBar.NavBarItem PreIntowarehouse;
         private DevExpress.XtraNavBar.NavBarGroup UserManagerGroup;
         private DevExpress.XtraNavBar.NavBarItem RolesManage;
         private DevExpress.XtraNavBar.NavBarItem UsersManage;
@@ -502,6 +673,27 @@
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.ImageList imageList3;
         private DevExpress.XtraBars.BarStaticItem statusbar_Userinfo;
+        private DevExpress.XtraNavBar.NavBarGroup BaseInfo;
+        private DevExpress.XtraNavBar.NavBarItem ProjectCategory;
+        private DevExpress.XtraNavBar.NavBarItem Unit;
+        private DevExpress.XtraNavBar.NavBarGroup CustomerManage;
+        private DevExpress.XtraNavBar.NavBarItem CompanyInfo;
+        private DevExpress.XtraNavBar.NavBarGroup WareHouseManage;
+        private DevExpress.XtraNavBar.NavBarItem WareHouseInfo;
+        private DevExpress.XtraNavBar.NavBarItem Address;
+        private DevExpress.XtraNavBar.NavBarItem ContactInfo;
+        private DevExpress.XtraNavBar.NavBarItem IntoWareHouseConfirm;
+        private DevExpress.XtraNavBar.NavBarItem PreOutWoreHouse;
+        private DevExpress.XtraNavBar.NavBarItem AssignStorage;
+        private DevExpress.XtraNavBar.NavBarItem CheckStorage;
+        private DevExpress.XtraNavBar.NavBarItem StorageChange;
+        private DevExpress.XtraNavBar.NavBarItem OutWareHouseConfirm;
+        private DevExpress.XtraNavBar.NavBarItem StorageInfo;
+        private DevExpress.XtraNavBar.NavBarItem ChangeCancle;
+        private DevExpress.XtraNavBar.NavBarItem ChangeConfirm;
+        private DevExpress.XtraNavBar.NavBarGroup logQuery;
+        private DevExpress.XtraNavBar.NavBarItem Systemlog;
+        private DevExpress.XtraNavBar.NavBarItem AssignStorageArea;
 
     }
 }

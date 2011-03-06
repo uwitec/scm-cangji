@@ -7,6 +7,8 @@ using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using SCM_CangJi.Lib;
+using SCM_CangJi.BLL.Services;
+using System.Web.Security;
 
 namespace SCM_CangJi.Account
 {
@@ -38,6 +40,12 @@ namespace SCM_CangJi.Account
 
         private void InitRoles()
         {
+            foreach (var item in BLL.Services.AccountService.Instance.GetAllRoles())
+            {
+                ddlRoles.Properties.Items.Add(item);
+            }
+            ddlRoles.Properties.AutoComplete = true;
+            ddlRoles.Properties.CycleOnDblClick = true;
         }
 
         internal static EditUser GetInstance()
@@ -52,8 +60,15 @@ namespace SCM_CangJi.Account
 
         void EditUser_OnSave()
         {
-            SCM_CangJi.BLL.Services.AccountService.Instance.CreateUser(txtUserName.EditValue.ToString(), txtNewPassword1.EditValue.ToString(), "");
-            DialogResult = System.Windows.Forms.DialogResult.OK;
+            MembershipCreateStatus createStatue=AccountService.Instance.CreateUser(txtUserName.EditValue.ToString(), txtNewPassword1.EditValue.ToString(), "");
+            if (createStatue != MembershipCreateStatus.Success)
+            {
+                XtraMessageBox.Show(AccountValidation.ErrorCodeToString(createStatue),"", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                DialogResult = System.Windows.Forms.DialogResult.OK;
+            }
         }
 
     }

@@ -23,14 +23,14 @@ namespace SCM_CangJi.Account
         private void InitGrid()
         {
             manGrid.DataSource = SCM_CangJi.BLL.Services.AccountService.Instance.GetUsers();
-            manGrid.MainView.PopulateColumns();
+            //manGrid.MainView.PopulateColumns();
         }
 
         private void btnCreateUser_Click(object sender, EventArgs e)
         {
             if (EditUser.GetInstance().ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-               
+                XtraMessageBox.Show("创建用户成功！");
             }
         }
 
