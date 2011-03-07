@@ -86,25 +86,82 @@ namespace SCM_CangJi.BLL.Services
                 return false;
             }
         }
-        public IEnumerable<MembershipUser> GetUsers()
+        public object GetUsers()
         {
-            List<MembershipUser> users = new List<MembershipUser>(); ;
+            object result=null;
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(), context =>
+            {
+                result = (from ur in context.aspnet_UsersInRoles
+                          select new
+                          {
+                              UserId = ur.aspnet_User.UserId,
+                              UserName = ur.aspnet_User.UserName,
+                              LastActivityDate = ur.aspnet_User.LastActivityDate,
+                              RoleName = ur.aspnet_Role.RoleName,
+                              RoleId=ur.aspnet_Role.RoleId
+                          }).ToList();
+            });
             //Using<CangJiDataDataContext>(new CangJiDataDataContext(connectionString), context =>
             //    {
             //        users = context.aspnet_Users.ToList();
             //    });
-            int total=0;
+            //int total=0;
+            ////return users;
+            //foreach (MembershipUser item in _provider.GetAllUsers(0, 100, out total))
+            //{
+            //    users.Add(item);
+            //}
             //return users;
-            foreach (MembershipUser item in _provider.GetAllUsers(0, 100, out total))
-            {
-                users.Add(item);
-            }
-            return users;
+            return result;
         }
 
         public string[] GetAllRoles()
         {
            return Roles.GetAllRoles();
+        }
+
+        public object GetRoles()
+        {
+            object result = null;
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(), context =>
+            {
+                result = (from r in context.aspnet_Roles
+                          select new
+                          {
+                              //UserId = ur.aspnet_User.UserId,
+                              RoleId = r.RoleId,
+                              RoleName = r.RoleName
+                          }).ToList();
+            });
+            return result;
+        }
+
+        public bool DeleteRole(string roleName,out string message)
+        {
+            bool result = true;
+            string MessageResult = "删除成功";
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(), context =>
+            {
+                var userRole = context.aspnet_UsersInRoles.Where(o => o.aspnet_Role.RoleName.ToLower() == roleName.ToLower());
+                if (userRole.Count() > 0)
+                {
+                    MessageResult = "角色删除失败,该角色还已经被使用了。请确认没有用户属于该角色后再删除该角色！";
+                    result = false;
+                }
+                else
+                {
+                    var role = context.aspnet_Roles.SingleOrDefault(o => o.RoleName.ToLower() == roleName.ToLower());
+                    context.aspnet_Roles.DeleteOnSubmit(role);
+                    context.SubmitChanges();
+                }
+            });
+            message = MessageResult;
+            return result;
+        }
+
+        public void CreateRole(string roleName)
+        {
+            Roles.CreateRole(roleName);
         }
     }
 

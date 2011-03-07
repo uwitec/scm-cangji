@@ -14,18 +14,17 @@ namespace SCM_CangJi.Account
 {
     public partial class EditUser : EditForm
     {
-
-        FormType FormType { get; set; }
+        Guid _userID;
         
-        public EditUser():this(FormType.Create)
+        public EditUser():this(Guid.Empty)
         {
         }
-        public EditUser(FormType formtype)
+        public EditUser(Guid userID)
         {
             InitializeComponent();
-            FormType = formtype;
+            _userID = userID;
 
-            if (FormType == Lib.FormType.Create)
+            if (_userID ==Guid.Empty)
             {
                 this.Text = "创建用户";
             }
@@ -46,6 +45,7 @@ namespace SCM_CangJi.Account
             }
             ddlRoles.Properties.AutoComplete = true;
             ddlRoles.Properties.CycleOnDblClick = true;
+            ddlRoles.SelectedIndex = 0;
         }
 
         internal static EditUser GetInstance()
@@ -67,6 +67,7 @@ namespace SCM_CangJi.Account
             }
             else
             {
+                Roles.AddUsersToRole(new string[] { txtUserName.EditValue.ToString() }, ddlRoles.SelectedItem.ToString());
                 DialogResult = System.Windows.Forms.DialogResult.OK;
             }
         }

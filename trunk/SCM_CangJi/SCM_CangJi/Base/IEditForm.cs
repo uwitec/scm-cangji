@@ -11,4 +11,9 @@ namespace SCM_CangJi
         void Save();
         void SaveAndClose(Action saveAction);
     }
+
+    public interface ISingleton<T>
+    {
+        T Instance { get; }
+    }
 }

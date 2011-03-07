@@ -29,10 +29,15 @@ namespace SCM_CangJi
         {
             InitializeComponent();
         }
+       
         public bool CheckPremission()
         {
             return true;
         }
-
+        public void ShowMessage(string message)
+        {
+            XtraMessageBox.Show(message);
+        }
+       
     }
 }

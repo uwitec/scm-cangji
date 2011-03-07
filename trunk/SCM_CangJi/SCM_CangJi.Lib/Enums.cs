@@ -12,4 +12,9 @@ namespace SCM_CangJi.Lib
        Create,
        Update
     }
+   public enum CompanyType
+   {
+       供应商=1,
+       客户=2,
+   }
 }

@@ -13,10 +13,21 @@ namespace SCM_CangJi.Account
     //public partial class UserList : FormBase<UserList>
     public partial class UserList : FormBase
     {
-        
-        public UserList()
+        #region ISingleton<UserList> Members
+        private static readonly Lazy<UserList> _instance = new Lazy<UserList>(() => new UserList());
+        public static UserList Instance
+        {
+            get
+            {
+                return _instance.Value;
+            }
+        }
+
+        #endregion
+        private UserList()
         {
             InitializeComponent();
+            InitRole();
             InitGrid();
         }
 
@@ -26,11 +37,17 @@ namespace SCM_CangJi.Account
             //manGrid.MainView.PopulateColumns();
         }
 
+        private void InitRole()
+        {
+            repositoryItemLookUpEdit1.DataSource = SCM_CangJi.BLL.Services.AccountService.Instance.GetRoles();
+        }
+
         private void btnCreateUser_Click(object sender, EventArgs e)
         {
             if (EditUser.GetInstance().ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 XtraMessageBox.Show("创建用户成功！");
+                InitGrid();
             }
         }
 
@@ -38,9 +55,11 @@ namespace SCM_CangJi.Account
         {
             if (ChangePassword.GetInstance().ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-
+                XtraMessageBox.Show("修改密码成功！");
             }
         }
-        
+
+
+       
     }
 }

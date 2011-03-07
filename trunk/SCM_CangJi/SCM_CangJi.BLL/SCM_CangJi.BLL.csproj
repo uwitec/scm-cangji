@@ -53,6 +53,9 @@
     <Compile Include="Security\SecurityContext.cs" />
     <Compile Include="Security\SecurityUser.cs" />
     <Compile Include="Services\AccountService.cs" />
+    <Compile Include="Services\CompanyService.cs" />
+    <Compile Include="Services\ContactService.cs" />
+    <Compile Include="Services\ProductService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SCM_CangJi.DAL\SCM_CangJi.DAL.csproj">

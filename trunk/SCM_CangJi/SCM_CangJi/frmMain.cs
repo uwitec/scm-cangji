@@ -12,10 +12,22 @@ using DevExpress.XtraBars;
 using SCM_CangJi.BLL.Security;
 using DevExpress.XtraTab.ViewInfo;
 using SCM_CangJi.Account;
+using SCM_CangJi.CustomerManage;
 namespace SCM_CangJi
 {
     public partial class frmMain : XtraForm
     {
+        private void SetFocus(FormBase form)
+        {
+            form.MdiParent = this;
+            form.Show();
+            if (form.CanFocus && !form.Focused)
+            {
+                form.Focus();
+            }
+
+        }
+
         public frmMain()
         {
             InitializeComponent();
@@ -55,6 +67,7 @@ namespace SCM_CangJi
             MDIManage.SetFixedForm(new StartPage());
         }
 
+        #region 工具栏
         private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             Application.Exit();
@@ -68,12 +81,12 @@ namespace SCM_CangJi
 
         private void barButtonItem5_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            (new About()).ShowDialog(this);   
+            (new About()).ShowDialog(this);
         }
 
         private void showMenu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-           //MainMenus.Show();
+            //MainMenus.Show();
         }
 
         private void barButtonItem6_ItemClick(object sender, ItemClickEventArgs e)
@@ -87,21 +100,29 @@ namespace SCM_CangJi
             {
                 this.ActiveMdiChild.Close();
             }
-        }
+        } 
+        #endregion
 
-        private void LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
-        {
 
-        }
+        #region 导航
 
         private void UsersManage_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
-            UserList userlist = new UserList();
-            userlist.MdiParent = this;
-            userlist.Show();
-            //UserList.Instance.MdiParent = this;
-            //UserList.Instance.Show();
+            this.SetFocus(UserList.Instance);
         }
+        private void RolesManage_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            this.SetFocus(RoleList.Instance);
+        }
+
+        private void CompanyInfo_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            this.SetFocus(CompanyList.Instance);
+        }
+        #endregion
+
+
+        #region 双击关闭
         private int clickTick = -1;
         private BaseTabHitInfo lastTab = null;//保存上次的tab页
         private void MDIManage_MouseDown(object sender, MouseEventArgs e)
@@ -128,6 +149,11 @@ namespace SCM_CangJi
                     }
                 }
             }
-        }
+        } 
+        #endregion
+
+       
+
+       
     }
 }

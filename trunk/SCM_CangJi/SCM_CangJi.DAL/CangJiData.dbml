@@ -82,4 +82,84 @@
       <Association Name="aspnet_Application_aspnet_Membership" Member="aspnet_Memberships" ThisKey="ApplicationId" OtherKey="ApplicationId" Type="aspnet_Membership" />
     </Type>
   </Table>
+  <Table Name="dbo.CurrencyUnits" Member="CurrencyUnits">
+    <Type Name="CurrencyUnit">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CurrencyName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="CurrencySymbol" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="CurrencyUnit_Product" Member="Products" ThisKey="Id" OtherKey="CurrencyUnitId" Type="Product" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Contacts" Member="Contacts">
+    <Type Name="Contact">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Gender" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Phone1" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Phone2" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Phone3" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="IsActived" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CompanyId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Company_Contact" Member="Company" ThisKey="CompanyId" OtherKey="Id" Type="Company" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Companies" Member="Companies">
+    <Type Name="Company">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CompanyName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="CompnayAddress" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="CompanyType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Company_Contact" Member="Contacts" ThisKey="Id" OtherKey="CompanyId" Type="Contact" />
+      <Association Name="Company_DeliverAddress" Member="DeliverAddresses" ThisKey="Id" OtherKey="CompanyId" Type="DeliverAddress" />
+      <Association Name="Company_Product" Member="Products" ThisKey="Id" OtherKey="CompanyId" Type="Product" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DeliverAddresses" Member="DeliverAddresses">
+    <Type Name="DeliverAddress">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AddressCode" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="AddressName" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Column Name="CompanyId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DeliverDays" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Company_DeliverAddress" Member="Company" ThisKey="CompanyId" OtherKey="Id" Type="Company" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Products" Member="Products">
+    <Type Name="Product">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProductChName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="ProductEngName" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="ProductNumber1" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="ProductNumber2" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Spec" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="CompanyId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BarCode" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ShelfLife" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PreWorningDays" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProductTypeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SecurityCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Weight" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Volume" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Length" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LayeredCount" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UnitPrice" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="CurrencyUnitId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="CurrencyUnit_Product" Member="CurrencyUnit" ThisKey="CurrencyUnitId" OtherKey="Id" Type="CurrencyUnit" IsForeignKey="true" />
+      <Association Name="Company_Product" Member="Company" ThisKey="CompanyId" OtherKey="Id" Type="Company" IsForeignKey="true" />
+      <Association Name="ProductType_Product" Member="ProductType" ThisKey="ProductTypeId" OtherKey="Id" Type="ProductType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ProductTypes" Member="ProductTypes">
+    <Type Name="ProductType">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="SortIndex" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="ParentId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="ProductType_Product" Member="Products" ThisKey="Id" OtherKey="ProductTypeId" Type="Product" />
+      <Association Name="ProductType_ProductType" Member="ProductTypes" ThisKey="Id" OtherKey="ParentId" Type="ProductType" />
+      <Association Name="ProductType_ProductType" Member="ProductType1" ThisKey="ParentId" OtherKey="Id" Type="ProductType" IsForeignKey="true" />
+    </Type>
+  </Table>
 </Database>
