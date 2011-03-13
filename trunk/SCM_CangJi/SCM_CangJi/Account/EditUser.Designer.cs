@@ -29,25 +29,36 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraEditors.DXErrorProvider.CompareAgainstControlValidationRule compareAgainstControlValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.CompareAgainstControlValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.DXErrorProvider.CompareAgainstControlValidationRule compareAgainstControlValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.CompareAgainstControlValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            this.txtNewPassword1 = new DevExpress.XtraEditors.TextEdit();
             this.txtNewPassword2 = new DevExpress.XtraEditors.TextEdit();
             this.ddlRoles = new DevExpress.XtraEditors.ComboBoxEdit();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
-            this.txtNewPassword1 = new DevExpress.XtraEditors.TextEdit();
             this.txtUserName = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.txtNewPassword1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNewPassword2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlRoles.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNewPassword1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUserName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
             this.SuspendLayout();
+            // 
+            // txtNewPassword1
+            // 
+            this.txtNewPassword1.Location = new System.Drawing.Point(170, 100);
+            this.txtNewPassword1.Name = "txtNewPassword1";
+            this.txtNewPassword1.Properties.PasswordChar = '*';
+            this.txtNewPassword1.Size = new System.Drawing.Size(140, 21);
+            this.txtNewPassword1.TabIndex = 15;
+            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule1.ErrorText = "不能为空";
+            this.dxValidationProvider1.SetValidationRule(this.txtNewPassword1, conditionValidationRule1);
             // 
             // txtNewPassword2
             // 
@@ -78,17 +89,6 @@
             this.btnSave.TabIndex = 17;
             this.btnSave.Text = "提交";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // txtNewPassword1
-            // 
-            this.txtNewPassword1.Location = new System.Drawing.Point(170, 100);
-            this.txtNewPassword1.Name = "txtNewPassword1";
-            this.txtNewPassword1.Properties.PasswordChar = '*';
-            this.txtNewPassword1.Size = new System.Drawing.Size(140, 21);
-            this.txtNewPassword1.TabIndex = 15;
-            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule1.ErrorText = "不能为空";
-            this.dxValidationProvider1.SetValidationRule(this.txtNewPassword1, conditionValidationRule1);
             // 
             // txtUserName
             // 
@@ -134,7 +134,7 @@
             // 
             // dxValidationProvider1
             // 
-            this.dxValidationProvider1.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.Auto;
+            this.dxValidationProvider1.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.Manual;
             // 
             // EditUser
             // 
@@ -151,9 +151,9 @@
             this.Controls.Add(this.labelControl3);
             this.Controls.Add(this.labelControl1);
             this.Name = "EditUser";
+            ((System.ComponentModel.ISupportInitialize)(this.txtNewPassword1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNewPassword2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlRoles.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNewPassword1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUserName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
             this.ResumeLayout(false);

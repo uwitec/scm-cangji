@@ -119,6 +119,17 @@ namespace SCM_CangJi
         {
             this.SetFocus(CompanyList.Instance);
         }
+
+        private void navDeliveryOrders_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            this.SetFocus(DeliveryOrderManage.DeliveryOrderList.Instance);
+        }
+
+        private void PreOutWoreHouse_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            this.SetFocus(new DeliveryOrderManage.PreDeliveryOrder());
+        }
+
         #endregion
 
 
@@ -151,6 +162,10 @@ namespace SCM_CangJi
             }
         } 
         #endregion
+
+        
+
+       
 
        
 

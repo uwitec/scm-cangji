@@ -55,7 +55,10 @@ namespace SCM_CangJi.Account
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            EditUser_OnSave();
+            if (this.dxValidationProvider1.Validate())
+            {
+                EditUser_OnSave();
+            }
         }
 
         void EditUser_OnSave()

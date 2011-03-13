@@ -13,12 +13,16 @@ namespace SCM_CangJi.Account
     public partial class RoleList : FormBase
     {
         #region ISingleton<RoleList> Members
-        private static readonly Lazy<RoleList> _instance = new Lazy<RoleList>(() => new RoleList());
+        private static RoleList _instance = null;
         public static RoleList Instance
         {
             get
             {
-                return _instance.Value;
+                if (_instance == null || _instance.IsDisposed)
+                {
+                    _instance = new RoleList();
+                }
+                return _instance;
             }
         }
 

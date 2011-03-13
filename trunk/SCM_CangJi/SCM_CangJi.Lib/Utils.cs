@@ -14,5 +14,7 @@ namespace SCM_CangJi.Lib
             precess.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
             precess.Start();
         }
+       
     }
+   
 }

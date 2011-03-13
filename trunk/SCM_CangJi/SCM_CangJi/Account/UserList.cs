@@ -14,12 +14,16 @@ namespace SCM_CangJi.Account
     public partial class UserList : FormBase
     {
         #region ISingleton<UserList> Members
-        private static readonly Lazy<UserList> _instance = new Lazy<UserList>(() => new UserList());
+        private static UserList _instance = null;
         public static UserList Instance
         {
             get
             {
-                return _instance.Value;
+                if (_instance == null || _instance.IsDisposed)
+                {
+                    _instance = new UserList();
+                }
+                return _instance;
             }
         }
 

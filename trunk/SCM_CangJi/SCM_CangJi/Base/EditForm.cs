@@ -17,6 +17,7 @@ namespace SCM_CangJi
         {
             InitializeComponent();
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MinimizeBox = false;
         }
 
         #region IEditForm Members
@@ -43,5 +44,7 @@ namespace SCM_CangJi
         }
 
         #endregion
+
+        
     }
 }

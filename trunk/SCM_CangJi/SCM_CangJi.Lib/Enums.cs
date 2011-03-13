@@ -17,4 +17,22 @@ namespace SCM_CangJi.Lib
        供应商=1,
        客户=2,
    }
+   public enum DeliveryStatus
+   {
+       待出库,
+       已分配货物,
+       已出库,
+       已发货,
+       已送达,
+       作废
+   }
+   public enum OrderType
+   {
+       DeliveryOrder=1,
+       InputOrder=2,
+   }
+   public enum OrderNubmerStatus
+   {
+       Used=1,
+   }
 }

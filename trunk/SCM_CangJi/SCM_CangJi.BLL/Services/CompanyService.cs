@@ -25,12 +25,46 @@ namespace SCM_CangJi.BLL.Services
                 result = (from c in context.Companies
                           select new
                           {
+                              c.Id,
                               c.CompanyName,
-                              c.CompnayAddress,
+                              c.CompanyAddress,
                               CompanyType=(CompanyType)c.CompanyType
                           }).ToList();
             });
             return result;
+        }
+
+        public Company GetCompany(int companyId)
+        {
+            Company result = null;
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(), context =>
+            {
+                result = context.Companies.SingleOrDefault(o => o.Id == companyId);
+            });
+            return result;
+        }
+
+        public void Update(Company company)
+        {
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(), context =>
+            {
+                var c = context.Companies.SingleOrDefault(o => o.Id == company.Id);
+                c.CompanyAddress = company.CompanyAddress;
+                c.CompanyName = company.CompanyName;
+                c.CompanyType = company.CompanyType;
+                context.SubmitChanges();
+            });
+        }
+
+        public bool Delete(int companyid)
+        {
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(), context =>
+            {
+                var result = context.Companies.SingleOrDefault(o => o.Id == companyid);
+                context.Companies.DeleteOnSubmit(result);
+                context.SubmitChanges();
+            });
+            return true;
         }
     }
 }

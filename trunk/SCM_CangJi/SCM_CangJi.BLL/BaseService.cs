@@ -18,7 +18,7 @@ namespace SCM_CangJi.BLL
                 return _instance.Value;
             }
         }
-        public static string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["SCM_CangJiConnectionString"].ConnectionString;
+        static string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["SCM_CangJiConnectionString"].ConnectionString;
         public void Using<T>(T context, Action<T> action)
        where T : DataContext
         {

@@ -80,15 +80,14 @@
       <HintPath>..\..\..\..\..\dll\expressApp\DevExpress.XtraLayout.v10.1.dll</HintPath>
     </Reference>
     <Reference Include="DevExpress.XtraNavBar.v10.1, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c, processorArchitecture=MSIL" />
-    <Reference Include="stdole, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Design" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -97,9 +96,6 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="VSLangProj, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="About.cs">
@@ -161,6 +157,54 @@
     </Compile>
     <Compile Include="Base\SingletonFormBase.Designer.cs">
       <DependentUpon>SingletonFormBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerManage\EditCompany.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomerManage\EditCompany.Designer.cs">
+      <DependentUpon>EditCompany.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerManage\EditContact.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomerManage\EditContact.Designer.cs">
+      <DependentUpon>EditContact.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerManage\EditDeliverAddress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomerManage\EditDeliverAddress.Designer.cs">
+      <DependentUpon>EditDeliverAddress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerManage\EditProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomerManage\EditProduct.Designer.cs">
+      <DependentUpon>EditProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeliveryOrderManage\AutoAssignStorage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeliveryOrderManage\AutoAssignStorage.Designer.cs">
+      <DependentUpon>AutoAssignStorage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeliveryOrderManage\DeliveryOrderList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeliveryOrderManage\DeliveryOrderList.Designer.cs">
+      <DependentUpon>DeliveryOrderList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeliveryOrderManage\EditDeliveryDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeliveryOrderManage\EditDeliveryDetail.Designer.cs">
+      <DependentUpon>EditDeliveryDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeliveryOrderManage\PreDeliveryOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeliveryOrderManage\PreDeliveryOrder.Designer.cs">
+      <DependentUpon>PreDeliveryOrder.cs</DependentUpon>
     </Compile>
     <Compile Include="MyContext.cs" />
     <Compile Include="SplashScreenApplicationContext.cs" />
@@ -224,11 +268,38 @@
     <EmbeddedResource Include="Account\UserList.resx">
       <DependentUpon>UserList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Base\EditForm.resx">
+      <DependentUpon>EditForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Base\FormBase.resx">
       <DependentUpon>FormBase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomerManage\CompanyList.resx">
       <DependentUpon>CompanyList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomerManage\EditCompany.resx">
+      <DependentUpon>EditCompany.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomerManage\EditContact.resx">
+      <DependentUpon>EditContact.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomerManage\EditDeliverAddress.resx">
+      <DependentUpon>EditDeliverAddress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomerManage\EditProduct.resx">
+      <DependentUpon>EditProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeliveryOrderManage\AutoAssignStorage.resx">
+      <DependentUpon>AutoAssignStorage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeliveryOrderManage\DeliveryOrderList.resx">
+      <DependentUpon>DeliveryOrderList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeliveryOrderManage\EditDeliveryDetail.resx">
+      <DependentUpon>EditDeliveryDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeliveryOrderManage\PreDeliveryOrder.resx">
+      <DependentUpon>PreDeliveryOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
@@ -276,6 +347,9 @@
       <Project>{DA9BC5C8-239D-422E-9AAA-8C0898E39E4D}</Project>
       <Name>SCM_CangJi.Lib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loading.gif" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

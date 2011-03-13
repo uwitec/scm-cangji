@@ -1,6 +1,6 @@
-﻿namespace SCM_CangJi
+﻿namespace SCM_CangJi.DeliveryOrderManage
 {
-    partial class EditForm
+    partial class AutoAssignStorage
     {
         /// <summary>
         /// Required designer variable.
@@ -30,13 +30,13 @@
         {
             this.SuspendLayout();
             // 
-            // EditForm
+            // AutoAssignStorage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 262);
-            this.Name = "EditForm";
-            this.Text = "EditForm";
+            this.Name = "AutoAssignStorage";
+            this.Text = "分配库存";
             this.ResumeLayout(false);
 
         }

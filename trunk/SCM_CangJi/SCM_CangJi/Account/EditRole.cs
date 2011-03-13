@@ -40,7 +40,8 @@ namespace SCM_CangJi.Account
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            EditRole_OnSave();
+            if (dxValidationProvider1.Validate())
+                EditRole_OnSave();
         }
     }
 }
