@@ -32,6 +32,8 @@
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
+            this.txtDeliveryCount = new DevExpress.XtraEditors.SpinEdit();
+            this.ddlProducts = new DevExpress.XtraEditors.LookUpEdit();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.txtProductDate = new DevExpress.XtraEditors.DateEdit();
@@ -40,22 +42,60 @@
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.txtInputInvoice = new DevExpress.XtraEditors.TextEdit();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.txtDeliveryCount = new DevExpress.XtraEditors.SpinEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.ddlProducts = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDeliveryCount.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlProducts.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtProductDate.Properties.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtProductDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLotsNumber.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtInputInvoice.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDeliveryCount.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlProducts.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // dxValidationProvider1
             // 
             this.dxValidationProvider1.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.Manual;
+            // 
+            // txtDeliveryCount
+            // 
+            this.txtDeliveryCount.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtDeliveryCount.Location = new System.Drawing.Point(373, 42);
+            this.txtDeliveryCount.Name = "txtDeliveryCount";
+            this.txtDeliveryCount.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.txtDeliveryCount.Properties.Mask.EditMask = "n0";
+            this.txtDeliveryCount.Size = new System.Drawing.Size(168, 21);
+            this.txtDeliveryCount.TabIndex = 3;
+            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.Between;
+            conditionValidationRule1.ErrorText = "出库数量必须大于0";
+            conditionValidationRule1.Value1 = 1;
+            conditionValidationRule1.Value2 = 99999999;
+            this.dxValidationProvider1.SetValidationRule(this.txtDeliveryCount, conditionValidationRule1);
+            // 
+            // ddlProducts
+            // 
+            this.ddlProducts.Location = new System.Drawing.Point(100, 41);
+            this.ddlProducts.Name = "ddlProducts";
+            this.ddlProducts.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.ddlProducts.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ProductChName", "品名"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ProductNumber1", "品号1"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ProductNumber2", "品号2")});
+            this.ddlProducts.Properties.DisplayMember = "ProductChName";
+            this.ddlProducts.Properties.NullText = "请选择...";
+            this.ddlProducts.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            this.ddlProducts.Properties.ValueMember = "Id";
+            this.ddlProducts.Size = new System.Drawing.Size(170, 21);
+            this.ddlProducts.TabIndex = 1;
+            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule2.ErrorText = "不能为空";
+            this.dxValidationProvider1.SetValidationRule(this.ddlProducts, conditionValidationRule2);
             // 
             // btnCancel
             // 
@@ -72,7 +112,7 @@
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 9;
-            this.btnSave.Text = "保存";
+            this.btnSave.Text = "增加";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // txtProductDate
@@ -125,26 +165,6 @@
             this.labelControl3.TabIndex = 2;
             this.labelControl3.Text = "入库发票：";
             // 
-            // txtDeliveryCount
-            // 
-            this.txtDeliveryCount.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.txtDeliveryCount.Location = new System.Drawing.Point(373, 42);
-            this.txtDeliveryCount.Name = "txtDeliveryCount";
-            this.txtDeliveryCount.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.txtDeliveryCount.Properties.Mask.EditMask = "n0";
-            this.txtDeliveryCount.Size = new System.Drawing.Size(168, 21);
-            this.txtDeliveryCount.TabIndex = 3;
-            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.Between;
-            conditionValidationRule1.ErrorText = "出库数量必须大于0";
-            conditionValidationRule1.Value1 = 1;
-            conditionValidationRule1.Value2 = 99999999;
-            this.dxValidationProvider1.SetValidationRule(this.txtDeliveryCount, conditionValidationRule1);
-            // 
             // labelControl2
             // 
             this.labelControl2.Location = new System.Drawing.Point(305, 45);
@@ -152,26 +172,6 @@
             this.labelControl2.Size = new System.Drawing.Size(60, 14);
             this.labelControl2.TabIndex = 2;
             this.labelControl2.Text = "出库数量：";
-            // 
-            // ddlProducts
-            // 
-            this.ddlProducts.Location = new System.Drawing.Point(100, 41);
-            this.ddlProducts.Name = "ddlProducts";
-            this.ddlProducts.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ddlProducts.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ProductChName", "品名"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ProductNumber1", "品号1"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ProductNumber2", "品号2")});
-            this.ddlProducts.Properties.DisplayMember = "ProductChName";
-            this.ddlProducts.Properties.NullText = "请选择...";
-            this.ddlProducts.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
-            this.ddlProducts.Properties.ValueMember = "Id";
-            this.ddlProducts.Size = new System.Drawing.Size(170, 21);
-            this.ddlProducts.TabIndex = 1;
-            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule2.ErrorText = "不能为空";
-            this.dxValidationProvider1.SetValidationRule(this.ddlProducts, conditionValidationRule2);
             // 
             // labelControl1
             // 
@@ -201,12 +201,12 @@
             this.Name = "EditDeliveryDetail";
             this.Text = "EditDeliveryDetail";
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDeliveryCount.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlProducts.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtProductDate.Properties.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtProductDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLotsNumber.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtInputInvoice.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDeliveryCount.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlProducts.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

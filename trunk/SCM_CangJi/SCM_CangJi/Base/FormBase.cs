@@ -21,6 +21,7 @@ namespace SCM_CangJi
     /// </summary>
     public partial class FormBase : XtraForm
     {
+        
         public MembershipUser User
         {
             get
@@ -51,13 +52,57 @@ namespace SCM_CangJi
                 _updated = value;
             }
         }
-      
+        private ProgressForm _progressForm;
+        BackgroundWorker _bw;
         public FormBase()
         {
             InitializeComponent();
-            this.FormClosing += new FormClosingEventHandler(FormBase_FormClosing);
         }
 
+        public virtual void ProgressStart()
+        {
+            this.FormClosing += new FormClosingEventHandler(FormBase_FormClosing);
+            _progressForm = new ProgressForm();
+            _progressForm.OnProgressCancel += new Action(ProgressCancel);
+
+            _bw = new BackgroundWorker();
+            _bw.WorkerReportsProgress = true;
+            _bw.WorkerSupportsCancellation = true;
+            _bw.ProgressChanged += new ProgressChangedEventHandler(_bw_ProgressChanged);
+            _bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(_bw_RunWorkerCompleted);
+            _bw.DoWork += new DoWorkEventHandler(DoWork);
+
+            _bw.RunWorkerAsync();
+            _progressForm.ShowDialog();
+        }
+        void ProgressCancel()
+        {
+            _bw.CancelAsync();
+            _progressForm.Close();
+        }
+        protected virtual void _bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Cancelled)
+                XtraMessageBox.Show("You canceled");
+            else if (e.Error != null)
+                XtraMessageBox.Show("error:" + e.Error.Message);
+            else
+            {
+                _progressForm.Close();
+                _bw = null;
+            }
+
+        }
+
+       protected virtual void _bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+
+        }
+
+       protected virtual void DoWork(object sender, DoWorkEventArgs e)
+        {
+            System.Threading.Thread.Sleep(100);
+        }
         void FormBase_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (!Updated)
@@ -72,7 +117,17 @@ namespace SCM_CangJi
                 }
             }
         }
-       
+        public bool CheckUpdatedStatus()
+        {
+            if (!Updated)
+            {
+                if (XtraMessageBox.Show("数据未保存，确实要关闭吗？", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.Cancel)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
         public bool CheckPremission()
         {
             return true;
@@ -81,19 +136,10 @@ namespace SCM_CangJi
         {
             XtraMessageBox.Show(message);
         }
-        //public virtual void ShowMenu(GridView gridview, GridHitInfo hi)
-        //{
-        //    GridViewMenu menus = null;
-        //    if (hi.RowHandle >= 0)
-        //    {
-        //        menus = new GridViewMenu(gridview);
-        //        DXMenuItem deletemenu = new DXMenuItem();
-        //        deletemenu.Caption = "删除";
-        //        deletemenu.Click += new EventHandler(deletemenu_Click);
-        //        DXMenuItemCollection menucollection = new DXMenuItemCollection();
-        //        menus.Init(hi);
-        //        menus.Show(hi.HitPoint);
-        //    }
-        //}
+        public DialogResult ShowQuestion(string message)
+        {
+            return XtraMessageBox.Show(message, "", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+        }
+      
     }
 }

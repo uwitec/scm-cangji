@@ -20,7 +20,8 @@ namespace SCM_CangJi.Lib
    public enum DeliveryStatus
    {
        待出库,
-       已分配货物,
+       待分配库存,
+       已分配库存,
        已出库,
        已发货,
        已送达,

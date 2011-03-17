@@ -155,7 +155,7 @@ namespace SCM_CangJi
                     {
                         if (null != this.ActiveMdiChild)
                         {
-                            this.ActiveMdiChild.Hide();
+                            this.ActiveMdiChild.Close();
                         }
                     }
                 }
@@ -163,12 +163,5 @@ namespace SCM_CangJi
         } 
         #endregion
 
-        
-
-       
-
-       
-
-       
     }
 }

@@ -61,6 +61,8 @@
             this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem7 = new DevExpress.XtraBars.BarButtonItem();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
+            this.CustomerManage = new DevExpress.XtraNavBar.NavBarGroup();
+            this.CompanyInfo = new DevExpress.XtraNavBar.NavBarItem();
             this.StorageManageGroup = new DevExpress.XtraNavBar.NavBarGroup();
             this.PreIntowarehouse = new DevExpress.XtraNavBar.NavBarItem();
             this.AssignStorageArea = new DevExpress.XtraNavBar.NavBarItem();
@@ -77,8 +79,6 @@
             this.UserManagerGroup = new DevExpress.XtraNavBar.NavBarGroup();
             this.RolesManage = new DevExpress.XtraNavBar.NavBarItem();
             this.UsersManage = new DevExpress.XtraNavBar.NavBarItem();
-            this.CustomerManage = new DevExpress.XtraNavBar.NavBarGroup();
-            this.CompanyInfo = new DevExpress.XtraNavBar.NavBarItem();
             this.WareHouseManage = new DevExpress.XtraNavBar.NavBarGroup();
             this.WareHouseInfo = new DevExpress.XtraNavBar.NavBarItem();
             this.BaseInfo = new DevExpress.XtraNavBar.NavBarGroup();
@@ -99,6 +99,7 @@
             // 
             // MDIManage
             // 
+            this.MDIManage.ClosePageButtonShowMode = DevExpress.XtraTab.ClosePageButtonShowMode.InAllTabPagesAndTabControlHeader;
             this.MDIManage.FixedPage = null;
             this.MDIManage.MdiParent = this;
             this.MDIManage.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MDIManage_MouseDown);
@@ -396,6 +397,20 @@
             this.navBarControl1.Text = "navBarControl1";
             this.navBarControl1.View = new DevExpress.XtraNavBar.ViewInfo.SkinNavigationPaneViewInfoRegistrator();
             // 
+            // CustomerManage
+            // 
+            this.CustomerManage.Caption = "客户管理";
+            this.CustomerManage.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.CompanyInfo)});
+            this.CustomerManage.Name = "CustomerManage";
+            // 
+            // CompanyInfo
+            // 
+            this.CompanyInfo.Caption = "公司信息";
+            this.CompanyInfo.Name = "CompanyInfo";
+            this.CompanyInfo.SmallImageIndex = 1;
+            this.CompanyInfo.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.CompanyInfo_LinkClicked);
+            // 
             // StorageManageGroup
             // 
             this.StorageManageGroup.Caption = "库存管理";
@@ -414,8 +429,7 @@
             new DevExpress.XtraNavBar.NavBarItemLink(this.ChangeCancle),
             new DevExpress.XtraNavBar.NavBarItemLink(this.ChangeConfirm)});
             this.StorageManageGroup.Name = "StorageManageGroup";
-            this.StorageManageGroup.SelectedLinkIndex = 3;
-            this.StorageManageGroup.TopVisibleLinkIndex = 2;
+            this.StorageManageGroup.TopVisibleLinkIndex = 1;
             // 
             // PreIntowarehouse
             // 
@@ -499,21 +513,8 @@
             // 
             this.UsersManage.Caption = "用户";
             this.UsersManage.Name = "UsersManage";
-            this.UsersManage.SmallImageIndex = 5;
+            this.UsersManage.SmallImageIndex = 1;
             this.UsersManage.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.UsersManage_LinkClicked);
-            // 
-            // CustomerManage
-            // 
-            this.CustomerManage.Caption = "客户管理";
-            this.CustomerManage.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.CompanyInfo)});
-            this.CustomerManage.Name = "CustomerManage";
-            // 
-            // CompanyInfo
-            // 
-            this.CompanyInfo.Caption = "公司信息";
-            this.CompanyInfo.Name = "CompanyInfo";
-            this.CompanyInfo.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.CompanyInfo_LinkClicked);
             // 
             // WareHouseManage
             // 

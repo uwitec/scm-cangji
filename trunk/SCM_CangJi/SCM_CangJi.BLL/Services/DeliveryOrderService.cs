@@ -11,12 +11,12 @@ namespace SCM_CangJi.BLL.Services
 {
     public class DeliveryOrderService:BaseService<DeliveryOrderService>
     {
-        public object GetDeliveryOrders()
+        public object GetDeliveryOrders(DeliveryStatus status)
         {
             object reslut = null;
             Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
             {
-                reslut = (from o in db.DeliveryOrders
+                reslut = (from o in db.DeliveryOrders.Where(o=>o.Status==status.ToString())
                           select new
                           {
                               o.Company.CompanyName,
@@ -67,7 +67,19 @@ namespace SCM_CangJi.BLL.Services
             });
             return reslut;
         }
-
+        public DeliveryOrder GetDeliveryOrderFullInfo(int orderId)
+        {
+            DeliveryOrder reslut = null;
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            {
+                reslut = db.DeliveryOrders.SingleOrDefault(o => o.Id == orderId);
+                reslut.DeliveryOrderDetails.Load();
+                int id= reslut.Company.Id;
+                id = reslut.DeliverAddress.Id;
+                reslut.AssignedDeliveryOrderDetails.Load();
+            });
+            return reslut;
+        }
         public void Update(DeliveryOrder order)
         {
             Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
@@ -136,7 +148,8 @@ namespace SCM_CangJi.BLL.Services
                  {
                      case DeliveryStatus.已出库:
                      case DeliveryStatus.已发货:
-                     case DeliveryStatus.已分配货物:
+                     case DeliveryStatus.待分配库存:
+                     case DeliveryStatus.已分配库存:
                      case DeliveryStatus.已送达:
                          reslut = false;
                          m = string.Format("删除失败！【0】单据不能删除",status.ToString());
@@ -206,6 +219,16 @@ namespace SCM_CangJi.BLL.Services
                 db.DeliveryOrderDetails.InsertOnSubmit(deliveryOrderDetail);
                 db.SubmitChanges();
             });
+        }
+
+        public DataTable GetAssignedDetails(int orderId)
+        {
+            DataTable dt = null;
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            {
+                dt = db.AssignedDeliveryOrderDetails.Where(o => o.DeliveryOrderId == orderId).ToDataTable(db);
+            });
+            return dt;
         }
     }
 }

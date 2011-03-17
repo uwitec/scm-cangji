@@ -36,6 +36,7 @@
             this.gcDeliveryCount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemSpinEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.btnPreCompleted = new DevExpress.XtraEditors.SimpleButton();
             this.btnSaveAndClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnSaveAll = new DevExpress.XtraEditors.SimpleButton();
             this.txtReachedDate = new DevExpress.XtraEditors.DateEdit();
@@ -106,6 +107,7 @@
             this.splitContainerControl1.Horizontal = false;
             this.splitContainerControl1.Location = new System.Drawing.Point(0, 0);
             this.splitContainerControl1.Name = "splitContainerControl1";
+            this.splitContainerControl1.Panel1.Controls.Add(this.btnPreCompleted);
             this.splitContainerControl1.Panel1.Controls.Add(this.btnSaveAndClose);
             this.splitContainerControl1.Panel1.Controls.Add(this.btnSaveAll);
             this.splitContainerControl1.Panel1.Controls.Add(this.txtReachedDate);
@@ -129,6 +131,15 @@
             this.splitContainerControl1.SplitterPosition = 170;
             this.splitContainerControl1.TabIndex = 0;
             this.splitContainerControl1.Text = "splitContainerControl1";
+            // 
+            // btnPreCompleted
+            // 
+            this.btnPreCompleted.Location = new System.Drawing.Point(223, 132);
+            this.btnPreCompleted.Name = "btnPreCompleted";
+            this.btnPreCompleted.Size = new System.Drawing.Size(138, 23);
+            this.btnPreCompleted.TabIndex = 5;
+            this.btnPreCompleted.Text = "完成预出库并分配库存";
+            this.btnPreCompleted.Click += new System.EventHandler(this.btnPreCompleted_Click);
             // 
             // btnSaveAndClose
             // 
@@ -471,6 +482,7 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit gcProducts;
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEdit1;
         private DevExpress.XtraEditors.SimpleButton btnSaveAndClose;
+        private DevExpress.XtraEditors.SimpleButton btnPreCompleted;
 
     }
 }

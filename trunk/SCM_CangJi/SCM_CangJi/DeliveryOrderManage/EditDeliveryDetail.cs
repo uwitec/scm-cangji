@@ -47,6 +47,11 @@ namespace SCM_CangJi.DeliveryOrderManage
             if (_orderDetailId > 0)
             {
                 deliveryOrderDetail = DeliveryOrderService.Instance.GetDeliveryOrderDetail(_orderDetailId);
+                ddlProducts.EditValue = deliveryOrderDetail.ProductId;
+                txtDeliveryCount.EditValue = deliveryOrderDetail.DeliveryCount;
+                txtInputInvoice.EditValue = deliveryOrderDetail.InputInvoice;
+                txtLotsNumber.EditValue = deliveryOrderDetail.LotsNumber;
+                txtProductDate.EditValue = deliveryOrderDetail.ProductDate;
             }
         }
 

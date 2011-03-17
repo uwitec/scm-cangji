@@ -21,8 +21,18 @@ namespace SCM_CangJi.DeliveryOrderManage
     {
         private int _orderId = 0;
         private DeliveryOrder order = null;
-        private int companyId = 0;
-       
+        private int _companyId = 0;
+        public int CompanyId
+        {
+            set
+            {
+                if (value > 0 && _companyId != value)
+                {
+                    _companyId = value;
+                    InitProduct();
+                }
+            }
+        }
         DataTable _deliveryOrderDetailsDatable = null;
         public DataTable DeliveryOrderDetailsDatatable
         {
@@ -42,11 +52,28 @@ namespace SCM_CangJi.DeliveryOrderManage
         public PreDeliveryOrder(int orderId):base()
         {
             _orderId = orderId;
+            
             InitializeComponent();
             InitData();
-            InitProduct();
+            if (_orderId > 0)
+            {
+                ddlCompanies.Enabled = false;
+                if (this.order.Status != DeliveryStatus.待出库.ToString())
+                {
+                    btnAddDetail.Enabled = false;
+                    btnImport.Enabled = false;
+                    btnPreCompleted.Enabled = false;
+                    btnSaveAll.Enabled = false;
+                    btnSaveAndClose.Enabled = false;
+                    this.gridControlDeliveryOrerDetails.Enabled = false;
+                }
+            }
+            //ProgressStart();
         }
-
+        protected override void DoWork(object sender, DoWorkEventArgs e)
+        {
+            base.DoWork(sender, e);
+        }
         private void InitData()
         {
             CommonService.BindDDLCompany(ddlCompanies);
@@ -63,9 +90,11 @@ namespace SCM_CangJi.DeliveryOrderManage
             else
             {
                 //SHP-20100305001
+                order = new DeliveryOrder();
                 lblDeliveryOrderNumber.Text = CommonService.Instance.GetOrderNumber(OrderType.DeliveryOrder);
                 lblPreDeliveryDate.Text = DateTime.Now.ToShortDateString();
                 //txtReachedDate.EditValue = DateTime.Now.Date;
+                InitOrderDetails();
             }
         }
 
@@ -76,17 +105,15 @@ namespace SCM_CangJi.DeliveryOrderManage
         {
             if (dxValidationProvider1.Validate())
             {
+                SetOrderValue();
+                SetOrderDetailsValue();
                 if (_orderId > 0)
                 {
-                    SetOrderValue();
-                    SetOrderDetailsValue();
+                   
                     DeliveryOrderService.Instance.Update(this.order);
                 }
                 else
                 {
-                    this.order = new DeliveryOrder();
-                    SetOrderValue();
-                    SetOrderDetailsValue();
                     DeliveryOrderService.Instance.Create(this.order);
 
                 }
@@ -98,6 +125,10 @@ namespace SCM_CangJi.DeliveryOrderManage
         {
             btnSaveAll_Click(sender, e);
             DialogResult = System.Windows.Forms.DialogResult.OK;
+            if (this.MdiParent != null && dxValidationProvider1.Validate())
+            {
+                this.Close();
+            }
         }
 
 
@@ -129,6 +160,7 @@ namespace SCM_CangJi.DeliveryOrderManage
         {
             this.order.CompanyId = int.Parse(ddlCompanies.EditValue.ToString());
             this.order.DeliveryAddressId = int.Parse(ddlDeliveryAddress.EditValue.TrytoString());
+            this.order.Status = SCM_CangJi.Lib.DeliveryStatus.待出库.ToString();
             this.order.DeliveryOrderNumber = lblDeliveryOrderNumber.Text;
             this.order.Invoice = txtInvoice.EditValue.TrytoString();
             this.order.PreDeliveryDate = DateTime.Parse(lblPreDeliveryDate.Text);
@@ -137,8 +169,8 @@ namespace SCM_CangJi.DeliveryOrderManage
 
         private void ddlCompanies_Properties_EditValueChanged(object sender, EventArgs e)
         {
-            companyId=int.Parse(ddlCompanies.EditValue.ToString());
-            CommonService.BindDDLDeliveryAddress(ddlDeliveryAddress,companyId);
+            CompanyId=int.Parse(ddlCompanies.EditValue.ToString());
+            CommonService.BindDDLDeliveryAddress(ddlDeliveryAddress, _companyId);
             if (_orderId > 0)
             {
                 ddlDeliveryAddress.EditValue = order.DeliveryAddressId;
@@ -150,7 +182,7 @@ namespace SCM_CangJi.DeliveryOrderManage
 
         private void InitProduct()
         {
-            gcProducts.DataSource = ProductService.Instance.GetProducts(companyId);
+            gcProducts.DataSource = ProductService.Instance.GetProducts(_companyId);
         }
 
         private void InitOrderDetails()
@@ -165,7 +197,7 @@ namespace SCM_CangJi.DeliveryOrderManage
         {
             if (dxValidationProvider1.Validate())
             {
-                EditDeliveryDetail editform = new EditDeliveryDetail(_orderId, companyId);
+                EditDeliveryDetail editform = new EditDeliveryDetail(_orderId, _companyId);
                 editform.OnDeliveryDetailSaveing += new Func<DeliveryOrderDetail,DeliveryOrder>(editform_OnDeliveryDetailAdd);
                 if (editform.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
@@ -186,11 +218,7 @@ namespace SCM_CangJi.DeliveryOrderManage
         }
 
        
-        private void btnImport_Click(object sender, EventArgs e)
-        {
-            ShowMessage("还未实现！");
-        }
-
+       
         private void gridControlDeliveryOrerDetails_DoubleClick(object sender, EventArgs e)
         {
             GridHitInfo hi = gridViewDeliveryOrderDetails.CalcHitInfo((sender as Control).PointToClient(Control.MousePosition));
@@ -198,7 +226,7 @@ namespace SCM_CangJi.DeliveryOrderManage
             if (hi.RowHandle >= 0)
             {
                 int orderDetailId = (int)gridViewDeliveryOrderDetails.GetRowCellValue(hi.RowHandle, "Id");
-                EditDeliveryDetail editform = new EditDeliveryDetail(_orderId, companyId, orderDetailId);
+                EditDeliveryDetail editform = new EditDeliveryDetail(_orderId, _companyId, orderDetailId);
                 if (editform.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     InitOrderDetails();
@@ -246,8 +274,7 @@ namespace SCM_CangJi.DeliveryOrderManage
                 orderdetailrowhandle = e.HitInfo.RowHandle;
             }
         }
-       
-        #endregion
+      
 
         private void gridViewDeliveryOrderDetails_InitNewRow(object sender, InitNewRowEventArgs e)
         {
@@ -279,6 +306,8 @@ namespace SCM_CangJi.DeliveryOrderManage
             detail.DeliveryOrderId = int.Parse(row["DeliveryOrderId"].ToString());
             detail.InputInvoice = row["InputInvoice"].ToString();
             detail.LotsNumber = row["LotsNumber"].ToString();
+            if (row["ProductDate"]!=null)
+                detail.ProductDate = DateTime.Parse(row["ProductDate"].ToString());
             detail.ProductId = int.Parse(row["ProductId"].ToString());
             detail.ProductStorageId = 0; 
         }
@@ -288,8 +317,43 @@ namespace SCM_CangJi.DeliveryOrderManage
             row["InputInvoice"] = detail.InputInvoice;
             row["LotsNumber"] = detail.LotsNumber;
             row["ProductId"] = detail.ProductId;
+            row["ProductDate"] = detail.ProductDate;
         }
 
+        #region Import
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+            if (dxValidationProvider1.Validate())
+            {
+                ImportDetails importForm = new ImportDetails(_companyId);
+                importForm.OnImported += new Action<IEnumerable<DeliveryOrderDetail>>(importForm_OnImported);
+                if (importForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+
+                }
+            }
+        }
+
+        void importForm_OnImported(IEnumerable<DeliveryOrderDetail> deteail)
+        {
+
+        }
+        #endregion
+
+        private void btnPreCompleted_Click(object sender, EventArgs e)
+        {
+            if (ShowQuestion("您确实要开始分配库存吗？") == System.Windows.Forms.DialogResult.OK)
+            {
+                //this.order.Status = DeliveryStatus.待分配库存.ToString();
+                //DeliveryOrderService.Instance.Update(order);
+                AutoAssignStorage assignStorage = new AutoAssignStorage(this.order.Id);
+                if (assignStorage.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                }
+            }
+        }
+
+        #endregion
       
     }
 }

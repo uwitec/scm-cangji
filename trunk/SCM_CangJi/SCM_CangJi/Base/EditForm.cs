@@ -14,6 +14,7 @@ namespace SCM_CangJi
         public event Action OnSave;
         public event Action OnSaveAndClose;
         public EditForm()
+            : base()
         {
             InitializeComponent();
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
