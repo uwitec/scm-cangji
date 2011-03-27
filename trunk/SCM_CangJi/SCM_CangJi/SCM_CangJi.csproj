@@ -149,11 +149,35 @@
     <Compile Include="Account\UserList.Designer.cs">
       <DependentUpon>UserList.cs</DependentUpon>
     </Compile>
+    <Compile Include="DeliveryOrderManage\AssigningProducts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeliveryOrderManage\AssigningProducts.Designer.cs">
+      <DependentUpon>AssigningProducts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeliveryOrderManage\ConfirmDeliveryOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeliveryOrderManage\ConfirmDeliveryOrder.Designer.cs">
+      <DependentUpon>ConfirmDeliveryOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="DeliveryOrderManage\PickProductsOrder.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="DeliveryOrderManage\PickProductsOrder.Designer.cs">
       <DependentUpon>PickProductsOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeliveryOrderManage\ProductStorageList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeliveryOrderManage\ProductStorageList.Designer.cs">
+      <DependentUpon>ProductStorageList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeliveryOrderManage\ViewPreDeliveryDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeliveryOrderManage\ViewPreDeliveryDetails.Designer.cs">
+      <DependentUpon>ViewPreDeliveryDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="Print\PrintSettingController.cs" />
     <Compile Include="ProgressForm.cs">
@@ -296,8 +320,20 @@
     <EmbeddedResource Include="Base\FormBase.resx">
       <DependentUpon>FormBase.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DeliveryOrderManage\AssigningProducts.resx">
+      <DependentUpon>AssigningProducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeliveryOrderManage\ConfirmDeliveryOrder.resx">
+      <DependentUpon>ConfirmDeliveryOrder.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DeliveryOrderManage\PickProductsOrder.resx">
       <DependentUpon>PickProductsOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeliveryOrderManage\ProductStorageList.resx">
+      <DependentUpon>ProductStorageList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeliveryOrderManage\ViewPreDeliveryDetails.resx">
+      <DependentUpon>ViewPreDeliveryDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProgressForm.resx">
       <DependentUpon>ProgressForm.cs</DependentUpon>

@@ -13,17 +13,17 @@ using DevExpress.Utils.Menu;
 
 namespace SCM_CangJi.DeliveryOrderManage
 {
-    public partial class DeliveryOrderList :FormBase
+    public partial class ConfirmDeliveryOrder :FormBase
     {
-        #region ISingleton<DeliveryOrderList> Members
-        private static DeliveryOrderList _instance = null;
-        public static DeliveryOrderList Instance
+        #region ISingleton<ConfirmDeliveryOrder> Members
+        private static ConfirmDeliveryOrder _instance = null;
+        public static ConfirmDeliveryOrder Instance
         {
             get
             {
                 if (_instance == null || _instance.IsDisposed)
                 {
-                    _instance = new DeliveryOrderList();
+                    _instance = new ConfirmDeliveryOrder();
                 }
                 return _instance;
             }
@@ -32,20 +32,44 @@ namespace SCM_CangJi.DeliveryOrderManage
 
         #endregion
 
-        public DeliveryOrderList()
+        private ConfirmDeliveryOrder()
         {
             InitializeComponent();
-            InitGrid();
         }
+        private void ConfirmDeliveryOrder_Load(object sender, EventArgs e)
+        {
+            InitGrid();
+            
 
+        }
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             InitGrid();
         }
 
+        private void btnConfirm_Click(object sender, EventArgs e)
+        {
+
+            int RowHandle = gridControlDeliveryOrders.FocusedView.SourceRowHandle;
+            if (RowHandle >= 0)
+            {
+                int orderId = (int)gridViewDeliveryOrders.GetRowCellValue(RowHandle, "Id");
+                DeliveryOrderService.Instance.UpdateStatus(orderId, Lib.DeliveryStatus.已发货);
+                InitGrid();
+            }
+        }
+
+     
         public void InitGrid()
         {
-            gridControlDeliveryOrders.DataSource = DeliveryOrderService.Instance.GetDeliveryOrders(Lib.DeliveryStatus.待出库);
+            gridControlDeliveryOrders.DataSource = DeliveryOrderService.Instance.GetDeliveryOrdersView(Lib.DeliveryStatus.已分配库存);
+            ShowMasterDetailRows();
+        }
+
+        private void ShowMasterDetailRows()
+        {
+            for (int i = 0; i < gridViewDeliveryOrders.RowCount; i++)
+                gridViewDeliveryOrders.SetMasterRowExpanded(i, true);
         }
 
         private void gridControlDeliveryOrders_DoubleClick(object sender, EventArgs e)
@@ -63,12 +87,6 @@ namespace SCM_CangJi.DeliveryOrderManage
             }
         }
 
-        private void btnCreate_Click(object sender, EventArgs e)
-        {
-            PreDeliveryOrder preForm = new PreDeliveryOrder();
-            preForm.MdiParent = this.MdiParent;
-            preForm.Show();
-        }
         int orderrowhandle = -1;
         private void gridViewDeliveryOrders_ShowGridMenu(object sender, DevExpress.XtraGrid.Views.Grid.GridMenuEventArgs e)
         {
@@ -78,27 +96,7 @@ namespace SCM_CangJi.DeliveryOrderManage
                 // Delete existing menu items, if any.
                 e.Menu.Items.Clear();
 
-                DXMenuItem menuItemCreate = new DXMenuItem("新建", new EventHandler(btnCreate_Click));
-                e.Menu.Items.Add(menuItemCreate);
-
-
-                DXMenuItem menuItemDelete = new DXMenuItem("删除", (s, en) =>
-                {
-                    if (XtraMessageBox.Show("该动作将会删除相关明细列表，确实要删除吗？", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.OK)
-                    {
-                        int orderId = (int)gridViewDeliveryOrders.GetRowCellValue(orderrowhandle, "Id");
-                        string message = "";
-                        if (DeliveryOrderService.Instance.Delete(orderId, out message))
-                        {
-                            gridViewDeliveryOrders.DeleteSelectedRows();
-                        }
-                        else
-                        {
-                            ShowMessage(message);
-                        }
-                    }
-                });
-                e.Menu.Items.Add(menuItemDelete);
+             
                 DXMenuItem menuItemrefrash = new DXMenuItem("刷新", (s, en) =>
                 {
                     InitGrid();
@@ -108,6 +106,7 @@ namespace SCM_CangJi.DeliveryOrderManage
                 orderrowhandle = e.HitInfo.RowHandle;
             }
         }
+      
 
     }
 }

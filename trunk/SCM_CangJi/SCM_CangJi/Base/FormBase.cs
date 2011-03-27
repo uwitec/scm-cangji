@@ -30,6 +30,7 @@ namespace SCM_CangJi
             }
         }
         private bool _updated = true;
+       
         public bool Updated
         {
             get
@@ -98,7 +99,10 @@ namespace SCM_CangJi
         {
 
         }
-
+       protected virtual string CloseingMessage()
+       {
+           return "数据未保存";
+       }
        protected virtual void DoWork(object sender, DoWorkEventArgs e)
         {
             System.Threading.Thread.Sleep(100);
@@ -107,7 +111,7 @@ namespace SCM_CangJi
         {
             if (!Updated)
             {
-                if (XtraMessageBox.Show("数据未保存，确实要关闭吗？", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.Cancel)
+                if (XtraMessageBox.Show(string.Format("{0}，确实要关闭吗？",CloseingMessage()), "", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.Cancel)
                 {
                     e.Cancel = true;
 
@@ -135,6 +139,10 @@ namespace SCM_CangJi
         public void ShowMessage(string message)
         {
             XtraMessageBox.Show(message);
+        }
+        public void ShowWarning(string message)
+        {
+            XtraMessageBox.Show(message, "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
         public DialogResult ShowQuestion(string message)
         {

@@ -16,6 +16,7 @@ namespace SCM_CangJi
             protected override void OnCreateMainForm()
             {
                 this.PrimaryForm = new frmMain();//主窗体 
+                base.OnCreateMainForm();
             }
 
             protected override void SetSeconds()

@@ -1,6 +1,6 @@
 ﻿namespace SCM_CangJi.DeliveryOrderManage
 {
-    partial class AutoAssignStorage
+    partial class ViewPreDeliveryDetails
     {
         /// <summary>
         /// Required designer variable.
@@ -28,25 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition2 = new DevExpress.XtraGrid.StyleFormatCondition();
+            DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition1 = new DevExpress.XtraGrid.StyleFormatCondition();
             this.gcDeliveryCount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemSpinEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
-            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.btnCompleteAssign = new DevExpress.XtraEditors.SimpleButton();
             this.gridControlDeliveryOrerDetails = new DevExpress.XtraGrid.GridControl();
             this.gridViewDeliveryOrderDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gcProductChName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcProducts = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.gcCurrentProductNumber = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcAssignCount = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcStorageArea = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcInputInvoice = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcLotsNumber = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcProductDate = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.btnBack = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-            this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDeliveryOrerDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDeliveryOrderDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcProducts)).BeginInit();
@@ -55,11 +47,12 @@
             // gcDeliveryCount
             // 
             this.gcDeliveryCount.Caption = "出库数量";
+            this.gcDeliveryCount.ColumnEdit = this.repositoryItemSpinEdit1;
             this.gcDeliveryCount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gcDeliveryCount.FieldName = "DeliveryCount";
             this.gcDeliveryCount.Name = "gcDeliveryCount";
             this.gcDeliveryCount.Visible = true;
-            this.gcDeliveryCount.VisibleIndex = 2;
+            this.gcDeliveryCount.VisibleIndex = 1;
             // 
             // repositoryItemSpinEdit1
             // 
@@ -72,35 +65,16 @@
             this.repositoryItemSpinEdit1.Mask.EditMask = "n0";
             this.repositoryItemSpinEdit1.Name = "repositoryItemSpinEdit1";
             // 
-            // panelControl1
-            // 
-            this.panelControl1.Controls.Add(this.btnBack);
-            this.panelControl1.Controls.Add(this.btnCompleteAssign);
-            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelControl1.Location = new System.Drawing.Point(0, 0);
-            this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(622, 81);
-            this.panelControl1.TabIndex = 0;
-            // 
-            // btnCompleteAssign
-            // 
-            this.btnCompleteAssign.Location = new System.Drawing.Point(49, 30);
-            this.btnCompleteAssign.Name = "btnCompleteAssign";
-            this.btnCompleteAssign.Size = new System.Drawing.Size(75, 23);
-            this.btnCompleteAssign.TabIndex = 0;
-            this.btnCompleteAssign.Text = "完成分配";
-            this.btnCompleteAssign.Click += new System.EventHandler(this.btnCompleteAssign_Click);
-            // 
             // gridControlDeliveryOrerDetails
             // 
             this.gridControlDeliveryOrerDetails.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControlDeliveryOrerDetails.Location = new System.Drawing.Point(0, 81);
+            this.gridControlDeliveryOrerDetails.Location = new System.Drawing.Point(0, 0);
             this.gridControlDeliveryOrerDetails.MainView = this.gridViewDeliveryOrderDetails;
             this.gridControlDeliveryOrerDetails.Name = "gridControlDeliveryOrerDetails";
             this.gridControlDeliveryOrerDetails.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.gcProducts,
             this.repositoryItemSpinEdit1});
-            this.gridControlDeliveryOrerDetails.Size = new System.Drawing.Size(622, 302);
+            this.gridControlDeliveryOrerDetails.Size = new System.Drawing.Size(823, 376);
             this.gridControlDeliveryOrerDetails.TabIndex = 1;
             this.gridControlDeliveryOrerDetails.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewDeliveryOrderDetails});
@@ -109,19 +83,16 @@
             // 
             this.gridViewDeliveryOrderDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gcProductChName,
-            this.gcCurrentProductNumber,
             this.gcDeliveryCount,
-            this.gcAssignCount,
-            this.gcStorageArea,
             this.gcInputInvoice,
             this.gcLotsNumber,
             this.gcProductDate});
-            styleFormatCondition2.Column = this.gcDeliveryCount;
-            styleFormatCondition2.Condition = DevExpress.XtraGrid.FormatConditionEnum.Between;
-            styleFormatCondition2.Value1 = "1";
-            styleFormatCondition2.Value2 = "99999999";
+            styleFormatCondition1.Column = this.gcDeliveryCount;
+            styleFormatCondition1.Condition = DevExpress.XtraGrid.FormatConditionEnum.Between;
+            styleFormatCondition1.Value1 = "1";
+            styleFormatCondition1.Value2 = "99999999";
             this.gridViewDeliveryOrderDetails.FormatConditions.AddRange(new DevExpress.XtraGrid.StyleFormatCondition[] {
-            styleFormatCondition2});
+            styleFormatCondition1});
             this.gridViewDeliveryOrderDetails.GridControl = this.gridControlDeliveryOrerDetails;
             this.gridViewDeliveryOrderDetails.Name = "gridViewDeliveryOrderDetails";
             this.gridViewDeliveryOrderDetails.NewItemRowText = "点击添加新行";
@@ -129,8 +100,6 @@
             this.gridViewDeliveryOrderDetails.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.True;
             this.gridViewDeliveryOrderDetails.OptionsBehavior.Editable = false;
             this.gridViewDeliveryOrderDetails.OptionsNavigation.AutoFocusNewRow = true;
-            this.gridViewDeliveryOrderDetails.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridViewDeliveryOrderDetails_RowCellStyle);
-            this.gridViewDeliveryOrderDetails.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.gridViewDeliveryOrderDetails_ValidateRow);
             // 
             // gcProductChName
             // 
@@ -156,37 +125,13 @@
             this.gcProducts.NullText = "请选择...";
             this.gcProducts.ValueMember = "ProductId";
             // 
-            // gcCurrentProductNumber
-            // 
-            this.gcCurrentProductNumber.Caption = "现品票号";
-            this.gcCurrentProductNumber.FieldName = "CurrentProductNumber";
-            this.gcCurrentProductNumber.Name = "gcCurrentProductNumber";
-            this.gcCurrentProductNumber.Visible = true;
-            this.gcCurrentProductNumber.VisibleIndex = 1;
-            // 
-            // gcAssignCount
-            // 
-            this.gcAssignCount.Caption = "分配数量";
-            this.gcAssignCount.FieldName = "AssignCount";
-            this.gcAssignCount.Name = "gcAssignCount";
-            this.gcAssignCount.Visible = true;
-            this.gcAssignCount.VisibleIndex = 3;
-            // 
-            // gcStorageArea
-            // 
-            this.gcStorageArea.Caption = "库位";
-            this.gcStorageArea.FieldName = "StorageArea";
-            this.gcStorageArea.Name = "gcStorageArea";
-            this.gcStorageArea.Visible = true;
-            this.gcStorageArea.VisibleIndex = 4;
-            // 
             // gcInputInvoice
             // 
             this.gcInputInvoice.Caption = "入库发票号";
             this.gcInputInvoice.FieldName = "InputInvoice";
             this.gcInputInvoice.Name = "gcInputInvoice";
             this.gcInputInvoice.Visible = true;
-            this.gcInputInvoice.VisibleIndex = 5;
+            this.gcInputInvoice.VisibleIndex = 2;
             // 
             // gcLotsNumber
             // 
@@ -194,7 +139,7 @@
             this.gcLotsNumber.FieldName = "LotsNumber";
             this.gcLotsNumber.Name = "gcLotsNumber";
             this.gcLotsNumber.Visible = true;
-            this.gcLotsNumber.VisibleIndex = 6;
+            this.gcLotsNumber.VisibleIndex = 3;
             // 
             // gcProductDate
             // 
@@ -202,29 +147,17 @@
             this.gcProductDate.FieldName = "ProductDate";
             this.gcProductDate.Name = "gcProductDate";
             this.gcProductDate.Visible = true;
-            this.gcProductDate.VisibleIndex = 7;
+            this.gcProductDate.VisibleIndex = 4;
             // 
-            // btnBack
-            // 
-            this.btnBack.Location = new System.Drawing.Point(146, 30);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(75, 23);
-            this.btnBack.TabIndex = 1;
-            this.btnBack.Text = "退回修改";
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
-            // 
-            // AutoAssignStorage
+            // ViewPreDeliveryDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(622, 383);
+            this.ClientSize = new System.Drawing.Size(823, 376);
             this.Controls.Add(this.gridControlDeliveryOrerDetails);
-            this.Controls.Add(this.panelControl1);
-            this.Name = "AutoAssignStorage";
-            this.Text = "库存分配情况";
+            this.Name = "ViewPreDeliveryDetails";
+            this.Text = "预出库明细";
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDeliveryOrerDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDeliveryOrderDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcProducts)).EndInit();
@@ -234,7 +167,6 @@
 
         #endregion
 
-        private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraGrid.GridControl gridControlDeliveryOrerDetails;
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewDeliveryOrderDetails;
         private DevExpress.XtraGrid.Columns.GridColumn gcProductChName;
@@ -244,11 +176,5 @@
         private DevExpress.XtraGrid.Columns.GridColumn gcInputInvoice;
         private DevExpress.XtraGrid.Columns.GridColumn gcLotsNumber;
         private DevExpress.XtraGrid.Columns.GridColumn gcProductDate;
-        private DevExpress.XtraGrid.Columns.GridColumn gcAssignCount;
-        private DevExpress.XtraEditors.SimpleButton btnCompleteAssign;
-        private DevExpress.XtraGrid.Columns.GridColumn gcCurrentProductNumber;
-        private DevExpress.XtraGrid.Columns.GridColumn gcStorageArea;
-        private DevExpress.XtraEditors.SimpleButton btnBack;
-
     }
 }

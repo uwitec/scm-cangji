@@ -46,6 +46,7 @@ namespace SCM_CangJi.DeliveryOrderManage
         {
             if (_orderDetailId > 0)
             {
+                btnSave.Text = "修改";
                 deliveryOrderDetail = DeliveryOrderService.Instance.GetDeliveryOrderDetail(_orderDetailId);
                 ddlProducts.EditValue = deliveryOrderDetail.ProductId;
                 txtDeliveryCount.EditValue = deliveryOrderDetail.DeliveryCount;
@@ -70,6 +71,7 @@ namespace SCM_CangJi.DeliveryOrderManage
                     SetOrderDetailValue();
                 }
                 DeliveryOrder order = OnDeliveryDetailSaveing(deliveryOrderDetail);
+
                 DialogResult = System.Windows.Forms.DialogResult.OK;
             }
         }

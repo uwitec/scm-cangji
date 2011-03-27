@@ -16,22 +16,67 @@ namespace SCM_CangJi.BLL.Services
             object reslut = null;
             Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
             {
-                reslut = (from o in db.DeliveryOrders.Where(o=>o.Status==status.ToString())
+                reslut = (from o in db.DeliveryOrders.Where(o => o.Status == status.ToString())
                           select new
                           {
                               o.Company.CompanyName,
+                              o.CompanyId,
                               o.Id,
-                             DeliveryAddress =o.DeliverAddress.Address,
-                             o.DeliveryOrderNumber,
-                             o.Invoice,
-                             o.PreDeliveryDate,
-                             o.ReachedDate,
-                             o.Status
+                              DeliveryAddress = o.DeliverAddress.Address,
+                              o.DeliveryOrderNumber,
+                              o.Invoice,
+                              o.PreDeliveryDate,
+                              o.ReachedDate,
                           }).ToList();
             });
             return reslut;
         }
 
+        public object GetDeliveryOrdersView(DeliveryStatus status)
+        {
+            object reslut = null;
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            {
+                reslut = (from o in db.DeliveryOrders.Where(o => o.Status == status.ToString())
+                          select new
+                          {
+                              o.Company.CompanyName,
+                              o.CompanyId,
+                              o.Id,
+                              DeliveryAddress = o.DeliverAddress.Address,
+                              o.DeliveryOrderNumber,
+                              o.Invoice,
+                              o.PreDeliveryDate,
+                              o.ReachedDate,
+                              o.Status,
+                              预出库明细 = (from c in o.DeliveryOrderDetails
+                                       select new
+                                       {
+                                           品号 = c.Product.ProductNumber1,
+                                           中文品名 = c.Product.ProductChName,
+                                           英文品名 = c.Product.ProductEngName,
+                                           出库数量 = c.DeliveryCount,
+                                           生产日期 = c.ProductDate,
+                                           入库发票号 = c.InputInvoice,
+                                           批号 = c.LotsNumber,
+                                       }).ToList(),
+                              库存分配明细 = (from c in o.AssignedDeliveryOrderDetails
+                                        select new
+                                        {
+                                            品号 = c.Product.ProductNumber1,
+                                            中文品名 = c.Product.ProductChName,
+                                            英文品名 = c.Product.ProductEngName,
+                                            现品票号 = c.CurrentProductNumber,
+                                            出库数量 = c.DeliveryCount,
+                                            分配数量 = c.AssignCount,
+                                            生产日期 = c.ProductDate,
+                                            入库发票号 = c.InputInvoice,
+                                            批号 = c.LotsNumber,
+                                        }).ToList(),
+                          }).ToList();
+            });
+            return reslut;
+        }
         public DataTable GetDeliveryOrderDetailsDataTable(int orderId)
         {
             DataTable reslut = null;
@@ -229,6 +274,54 @@ namespace SCM_CangJi.BLL.Services
                 dt = db.AssignedDeliveryOrderDetails.Where(o => o.DeliveryOrderId == orderId).ToDataTable(db);
             });
             return dt;
+        }
+
+
+        public void CreateAssignedDetails(int orderId, IEnumerable<AssignedDeliveryOrderDetail> _assignedDeliveryDetails)
+        {
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            {
+                db.AssignedDeliveryOrderDetails.InsertAllOnSubmit(_assignedDeliveryDetails);
+                _assignedDeliveryDetails.GroupBy(o => o.ProductStorageId)
+                    .ToList()
+                    .ForEach(groupDetails
+                        =>
+                        {
+                            var storage = db.ProductStorages.SingleOrDefault(o => o.Id == groupDetails.Key);
+                            foreach (var item in groupDetails)
+                            {
+                                storage.UsableCount -= item.AssignCount;
+                            }
+                            
+                        });
+                var or = db.DeliveryOrders.SingleOrDefault(o => o.Id == orderId);
+                or.Status = Lib.DeliveryStatus.已分配库存.ToString();
+                db.SubmitChanges();
+            });
+        }
+        //减少可用库存
+        public void DecreaseUseableStorage(int orderId)
+        {
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            {
+                var assignedDetails = db.AssignedDeliveryOrderDetails.Where(o => o.DeliveryOrderId == orderId);
+                var order = db.DeliveryOrders.SingleOrDefault(o => o.Id == orderId);
+                order.Status = Lib.DeliveryStatus.已分配库存.ToString();
+                db.SubmitChanges();
+            });
+        }
+        public void ResumeUseableStorage(int orderId)
+        {
+
+        }
+        public void UpdateStatus(int orderId, DeliveryStatus deliveryStatus)
+        {
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            {
+                var or = db.DeliveryOrders.SingleOrDefault(o => o.Id == orderId);
+                or.Status = deliveryStatus.ToString();
+                db.SubmitChanges();
+            });
         }
     }
 }

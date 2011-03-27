@@ -15,6 +15,12 @@ namespace SCM_CangJi
         [STAThread]
         static void Main()
         {
+            // The following line provides localization for data formats. 
+            //System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("zh-CN");
+
+            // The following line provides localization for the application's user interface. 
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("zh-CHS");
+
             DevExpress.UserSkins.OfficeSkins.Register();
             DevExpress.UserSkins.BonusSkins.Register();
             DevExpress.Skins.SkinManager.EnableFormSkins();

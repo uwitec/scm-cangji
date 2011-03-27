@@ -48,11 +48,19 @@ namespace SCM_CangJi.DeliveryOrderManage
 
         public PreDeliveryOrder():this(0)
         {
+            this.Updated = false;
         }
-        public PreDeliveryOrder(int orderId):base()
+        protected override string CloseingMessage()
+        {
+            
+            return string.Format("订单：{0}，未保存",lblDeliveryOrderNumber.Text);
+            //return base.CloseingMessage();
+        }
+        public PreDeliveryOrder(int orderId)
+            : base()
         {
             _orderId = orderId;
-            
+
             InitializeComponent();
             InitData();
             if (_orderId > 0)
@@ -62,13 +70,14 @@ namespace SCM_CangJi.DeliveryOrderManage
                 {
                     btnAddDetail.Enabled = false;
                     btnImport.Enabled = false;
-                    btnPreCompleted.Enabled = false;
+                    btnPreCompletedAndAssign.Enabled = false;
                     btnSaveAll.Enabled = false;
                     btnSaveAndClose.Enabled = false;
                     this.gridControlDeliveryOrerDetails.Enabled = false;
                 }
             }
-            //ProgressStart();
+
+            ProgressStart();
         }
         protected override void DoWork(object sender, DoWorkEventArgs e)
         {
@@ -103,23 +112,36 @@ namespace SCM_CangJi.DeliveryOrderManage
         #region Delivery Base
         private void btnSaveAll_Click(object sender, EventArgs e)
         {
-            if (dxValidationProvider1.Validate())
+            lock (this)
             {
-                SetOrderValue();
-                SetOrderDetailsValue();
-                if (_orderId > 0)
+                if (dxValidationProvider1.Validate())
                 {
-                   
-                    DeliveryOrderService.Instance.Update(this.order);
-                }
-                else
-                {
-                    DeliveryOrderService.Instance.Create(this.order);
+                    SetOrderValue();
+                    SetOrderDetailsValue();
+                    if (this.order.Id > 0)
+                    {
 
+                        DeliveryOrderService.Instance.Update(this.order);
+                        //InitOrderDetails();
+                    }
+                    else
+                    {
+                        DeliveryOrderService.Instance.Create(this.order);
+                        this._orderId = this.order.Id;
+                        
+                    }
+                    Updated = true;
+                    Reset();
+                    DeliveryOrderList.Instance.InitGrid();
                 }
-                Updated = true;
-                DeliveryOrderList.Instance.InitGrid();
             }
+           
+        }
+        private void Reset()
+        {
+            this.order = DeliveryOrderService.Instance.GetDeliveryOrder(order.Id);
+            this._deliveryOrderDetailsDatable = DeliveryOrderService.Instance.GetDeliveryOrderDetailsDataTable(order.Id);
+            InitData();
         }
         private void btnSaveAndClose_Click(object sender, EventArgs e)
         {
@@ -191,7 +213,14 @@ namespace SCM_CangJi.DeliveryOrderManage
         }
         private void SetOrderDetailsValue()
         {
-          
+            this.order.DeliveryOrderDetails.Clear();
+            foreach (DataRow item in DeliveryOrderDetailsDatatable.Rows)
+            {
+                DeliveryOrderDetail detail = new DeliveryOrderDetail();
+                SetValue(item,ref detail);
+
+                this.order.DeliveryOrderDetails.Add(detail);
+            }
         }
         private void btnAddDetail_Click(object sender, EventArgs e)
         {
@@ -210,10 +239,16 @@ namespace SCM_CangJi.DeliveryOrderManage
         DeliveryOrder editform_OnDeliveryDetailAdd(DeliveryOrderDetail obj)
         {
             //UpdateOrder();
-            gridViewDeliveryOrderDetails.AddNewRow();
-            DataRow row= gridViewDeliveryOrderDetails.GetFocusedDataRow();
-            SetRowValue(row, obj);
-            gridViewDeliveryOrderDetails.UpdateCurrentRow();
+            if (obj.Id > 0)
+            {
+            }
+            else
+            {
+                gridViewDeliveryOrderDetails.AddNewRow();
+                DataRow row = gridViewDeliveryOrderDetails.GetFocusedDataRow();
+                SetRowValue(row, obj);
+                gridViewDeliveryOrderDetails.UpdateCurrentRow();
+            }
             return this.order;
         }
 
@@ -221,17 +256,17 @@ namespace SCM_CangJi.DeliveryOrderManage
        
         private void gridControlDeliveryOrerDetails_DoubleClick(object sender, EventArgs e)
         {
-            GridHitInfo hi = gridViewDeliveryOrderDetails.CalcHitInfo((sender as Control).PointToClient(Control.MousePosition));
+            //GridHitInfo hi = gridViewDeliveryOrderDetails.CalcHitInfo((sender as Control).PointToClient(Control.MousePosition));
 
-            if (hi.RowHandle >= 0)
-            {
-                int orderDetailId = (int)gridViewDeliveryOrderDetails.GetRowCellValue(hi.RowHandle, "Id");
-                EditDeliveryDetail editform = new EditDeliveryDetail(_orderId, _companyId, orderDetailId);
-                if (editform.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    InitOrderDetails();
-                }
-            }
+            //if (hi.RowHandle >= 0)
+            //{
+            //    int orderDetailId = (int)gridViewDeliveryOrderDetails.GetRowCellValue(hi.RowHandle, "Id");
+            //    EditDeliveryDetail editform = new EditDeliveryDetail(_orderId, _companyId, orderDetailId);
+            //    if (editform.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            //    {
+            //        InitOrderDetails();
+            //    }
+            //}
 
         }
         int orderdetailrowhandle = -1;
@@ -256,6 +291,8 @@ namespace SCM_CangJi.DeliveryOrderManage
                         if (DeliveryOrderService.Instance.DeleteDetail(orderdetailId, out message))
                         {
                             gridViewDeliveryOrderDetails.DeleteSelectedRows();
+                            this._deliveryOrderDetailsDatable = DeliveryOrderService.Instance.GetDeliveryOrderDetailsDataTable(order.Id);
+                            this.order = DeliveryOrderService.Instance.GetDeliveryOrder(order.Id);
                         }
                         else
                         {
@@ -286,27 +323,35 @@ namespace SCM_CangJi.DeliveryOrderManage
 
         private void gridViewDeliveryOrderDetails_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e)
         {
-            DataRow row = (e.Row as DataRowView).Row;
-            Updated = false;
-           var detail= this.order.DeliveryOrderDetails.SingleOrDefault(o => o.Id.Equals(row["Id"]));
-           if (detail == null)
-           {
-               DeliveryOrderDetail newDetail = new DeliveryOrderDetail();
-               SetValue(row, ref newDetail);
-               this.order.DeliveryOrderDetails.Add(newDetail);
-           }
-           else
-           {
-               SetValue(row, ref detail);
-           }
+            lock (this)
+            {
+                DataRow row = (e.Row as DataRowView).Row;
+                Updated = false;
+                var detail = this.order.DeliveryOrderDetails.SingleOrDefault(o => o.Id.Equals(row["Id"]));
+                if (detail == null)
+                {
+                    DeliveryOrderDetail newDetail = new DeliveryOrderDetail();
+                    SetValue(row, ref newDetail);
+                    this.order.DeliveryOrderDetails.Add(newDetail);
+                }
+                else
+                {
+                    SetValue(row, ref detail);
+                }
+            }
+           
         }
         private void SetValue(DataRow row, ref DeliveryOrderDetail detail)
         {
             detail.DeliveryCount = int.Parse(row["DeliveryCount"].ToString());
-            detail.DeliveryOrderId = int.Parse(row["DeliveryOrderId"].ToString());
+            if (detail.DeliveryOrderId == 0)
+            {
+                detail.DeliveryOrderId = int.Parse(row["DeliveryOrderId"].ToString());
+            }
+            detail.Id = int.Parse(row["Id"].ToString());
             detail.InputInvoice = row["InputInvoice"].ToString();
             detail.LotsNumber = row["LotsNumber"].ToString();
-            if (row["ProductDate"]!=null)
+            if (row["ProductDate"] != null && !string.IsNullOrEmpty(row["ProductDate"].ToString()))
                 detail.ProductDate = DateTime.Parse(row["ProductDate"].ToString());
             detail.ProductId = int.Parse(row["ProductId"].ToString());
             detail.ProductStorageId = 0; 
@@ -317,7 +362,9 @@ namespace SCM_CangJi.DeliveryOrderManage
             row["InputInvoice"] = detail.InputInvoice;
             row["LotsNumber"] = detail.LotsNumber;
             row["ProductId"] = detail.ProductId;
-            row["ProductDate"] = detail.ProductDate;
+            row["Id"] = detail.Id;
+            if (detail.ProductDate != null)
+                row["ProductDate"] = detail.ProductDate;
         }
 
         #region Import
@@ -342,18 +389,49 @@ namespace SCM_CangJi.DeliveryOrderManage
 
         private void btnPreCompleted_Click(object sender, EventArgs e)
         {
+            if (!this.Updated)
+            {
+                ShowWarning("还未保存！请先保存后在完成预出库！");
+                return;
+            }
+            if (_deliveryOrderDetailsDatable == null || _deliveryOrderDetailsDatable.Rows.Count == 0)
+            {
+                ShowWarning("请至少输入一个出库明细！");
+                return;
+            }
             if (ShowQuestion("您确实要开始分配库存吗？") == System.Windows.Forms.DialogResult.OK)
             {
-                //this.order.Status = DeliveryStatus.待分配库存.ToString();
-                //DeliveryOrderService.Instance.Update(order);
                 AutoAssignStorage assignStorage = new AutoAssignStorage(this.order.Id);
                 if (assignStorage.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
+                    this.order.Status = DeliveryStatus.待分配库存.ToString();
+                    DeliveryOrderService.Instance.Update(order);
+                    InitData();
                 }
             }
         }
 
         #endregion
+
+        private void btn_Click(object sender, EventArgs e)
+        {
+            if (!this.Updated)
+            {
+                ShowWarning("还未保存！请先保存后在完成预出库！");
+                return;
+            }
+            if (_deliveryOrderDetailsDatable == null || _deliveryOrderDetailsDatable.Rows.Count == 0)
+            {
+                ShowWarning("请至少输入一个出库明细！");
+            }
+            else
+            {
+                this.order.Status = DeliveryStatus.待分配库存.ToString();
+                DeliveryOrderService.Instance.Update(order);
+                DialogResult = System.Windows.Forms.DialogResult.OK;
+                this.Close();
+            }
+        }
       
     }
 }

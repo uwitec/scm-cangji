@@ -22,5 +22,16 @@ namespace SCM_CangJi.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.;Initial Catalog=SCM_CangJi;Persist Security Info=True;User ID=sa;Pa" +
+            "ssword=\"Abc 123\"")]
+        public string SCM_CangJiConnectionString {
+            get {
+                return ((string)(this["SCM_CangJiConnectionString"]));
+            }
+        }
     }
 }

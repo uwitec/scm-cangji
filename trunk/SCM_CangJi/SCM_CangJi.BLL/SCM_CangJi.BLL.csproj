@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="BaseService.cs" />
     <Compile Include="DataHandler.cs" />
+    <Compile Include="DeliveryOrderAndDetails.cs" />
     <Compile Include="Extentions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\SecurityContext.cs" />

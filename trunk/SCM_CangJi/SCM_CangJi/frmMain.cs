@@ -13,6 +13,7 @@ using SCM_CangJi.BLL.Security;
 using DevExpress.XtraTab.ViewInfo;
 using SCM_CangJi.Account;
 using SCM_CangJi.CustomerManage;
+using SCM_CangJi.DeliveryOrderManage;
 namespace SCM_CangJi
 {
     public partial class frmMain : XtraForm
@@ -129,7 +130,20 @@ namespace SCM_CangJi
         {
             this.SetFocus(new DeliveryOrderManage.PreDeliveryOrder());
         }
+        private void AssignStorage_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            this.SetFocus(DeliveryOrderManage.AssigningProducts.Instance);
 
+        }
+        private void OutWareHouseConfirm_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            this.SetFocus(ConfirmDeliveryOrder.Instance);
+        }
+        private void StorageInfo_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            this.SetFocus(ProductStorageList.Instance);
+
+        }
         #endregion
 
 
@@ -162,6 +176,12 @@ namespace SCM_CangJi
             }
         } 
         #endregion
+
+       
+
+       
+
+        
 
     }
 }

@@ -36,7 +36,8 @@
             this.gcDeliveryCount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemSpinEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
-            this.btnPreCompleted = new DevExpress.XtraEditors.SimpleButton();
+            this.btn = new DevExpress.XtraEditors.SimpleButton();
+            this.btnPreCompletedAndAssign = new DevExpress.XtraEditors.SimpleButton();
             this.btnSaveAndClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnSaveAll = new DevExpress.XtraEditors.SimpleButton();
             this.txtReachedDate = new DevExpress.XtraEditors.DateEdit();
@@ -107,7 +108,8 @@
             this.splitContainerControl1.Horizontal = false;
             this.splitContainerControl1.Location = new System.Drawing.Point(0, 0);
             this.splitContainerControl1.Name = "splitContainerControl1";
-            this.splitContainerControl1.Panel1.Controls.Add(this.btnPreCompleted);
+            this.splitContainerControl1.Panel1.Controls.Add(this.btn);
+            this.splitContainerControl1.Panel1.Controls.Add(this.btnPreCompletedAndAssign);
             this.splitContainerControl1.Panel1.Controls.Add(this.btnSaveAndClose);
             this.splitContainerControl1.Panel1.Controls.Add(this.btnSaveAll);
             this.splitContainerControl1.Panel1.Controls.Add(this.txtReachedDate);
@@ -132,18 +134,27 @@
             this.splitContainerControl1.TabIndex = 0;
             this.splitContainerControl1.Text = "splitContainerControl1";
             // 
-            // btnPreCompleted
+            // btn
             // 
-            this.btnPreCompleted.Location = new System.Drawing.Point(223, 132);
-            this.btnPreCompleted.Name = "btnPreCompleted";
-            this.btnPreCompleted.Size = new System.Drawing.Size(138, 23);
-            this.btnPreCompleted.TabIndex = 5;
-            this.btnPreCompleted.Text = "完成预出库并分配库存";
-            this.btnPreCompleted.Click += new System.EventHandler(this.btnPreCompleted_Click);
+            this.btn.Location = new System.Drawing.Point(194, 132);
+            this.btn.Name = "btn";
+            this.btn.Size = new System.Drawing.Size(75, 23);
+            this.btn.TabIndex = 6;
+            this.btn.Text = "完成预出库";
+            this.btn.Click += new System.EventHandler(this.btn_Click);
+            // 
+            // btnPreCompletedAndAssign
+            // 
+            this.btnPreCompletedAndAssign.Location = new System.Drawing.Point(275, 132);
+            this.btnPreCompletedAndAssign.Name = "btnPreCompletedAndAssign";
+            this.btnPreCompletedAndAssign.Size = new System.Drawing.Size(138, 23);
+            this.btnPreCompletedAndAssign.TabIndex = 5;
+            this.btnPreCompletedAndAssign.Text = "完成预出库并分配库存";
+            this.btnPreCompletedAndAssign.Click += new System.EventHandler(this.btnPreCompleted_Click);
             // 
             // btnSaveAndClose
             // 
-            this.btnSaveAndClose.Location = new System.Drawing.Point(127, 132);
+            this.btnSaveAndClose.Location = new System.Drawing.Point(113, 132);
             this.btnSaveAndClose.Name = "btnSaveAndClose";
             this.btnSaveAndClose.Size = new System.Drawing.Size(75, 23);
             this.btnSaveAndClose.TabIndex = 5;
@@ -482,7 +493,8 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit gcProducts;
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEdit1;
         private DevExpress.XtraEditors.SimpleButton btnSaveAndClose;
-        private DevExpress.XtraEditors.SimpleButton btnPreCompleted;
+        private DevExpress.XtraEditors.SimpleButton btnPreCompletedAndAssign;
+        private DevExpress.XtraEditors.SimpleButton btn;
 
     }
 }

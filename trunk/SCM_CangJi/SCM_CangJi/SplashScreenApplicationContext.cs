@@ -43,7 +43,10 @@ namespace SCM_CangJi
 
 
 
-        protected abstract void OnCreateMainForm();
+        protected virtual void OnCreateMainForm()
+        {
+            this._bSplashScreenClosed = true;
+        }
 
 
 
@@ -101,13 +104,14 @@ namespace SCM_CangJi
         {
             this.SetSeconds();
 
-            this.OnCreateSplashScreenForm();
-          
+
             this._SplashScreenTimer = new System.Timers.Timer(((double)(this._SplashScreenTimerInterVal)));
 
             _SplashScreenTimer.Elapsed += new System.Timers.ElapsedEventHandler(new System.Timers.ElapsedEventHandler(this.SplashScreenDisplayTimeUp));
 
             this._SplashScreenTimer.AutoReset = false;
+
+            this.OnCreateSplashScreenForm();
 
             Thread DisplaySpashScreenThread = new Thread(new ThreadStart(DisplaySplashScreen));
 
@@ -127,16 +131,14 @@ namespace SCM_CangJi
         }
 
 
-
         private void SplashScreenDisplayTimeUp(object sender, System.Timers.ElapsedEventArgs e)
         {
+            if (this._bSplashScreenClosed)
+            {
+                this._SplashScreenTimer.Dispose();
 
-            this._SplashScreenTimer.Dispose();
-
-            this._SplashScreenTimer = null;
-
-            this._bSplashScreenClosed = true;
-
+                this._SplashScreenTimer = null;
+            }
         }
 
 
