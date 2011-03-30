@@ -54,7 +54,6 @@
             this.gridControlProductStorages.TabIndex = 2;
             this.gridControlProductStorages.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewProductStorages});
-            this.gridControlProductStorages.Click += new System.EventHandler(this.gridControlProductStorages_Click);
             // 
             // gridViewProductStorages
             // 
@@ -70,6 +69,7 @@
             this.Controls.Add(this.panelControl1);
             this.Name = "ProductStorageList";
             this.Text = "ProductStorageList";
+            this.Load += new System.EventHandler(this.ProductStorageList_Load);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlProductStorages)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewProductStorages)).EndInit();

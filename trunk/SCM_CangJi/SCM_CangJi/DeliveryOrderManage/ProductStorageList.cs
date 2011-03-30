@@ -32,11 +32,18 @@ namespace SCM_CangJi.DeliveryOrderManage
         private ProductStorageList()
         {
             InitializeComponent();
+            ProgressStart();
         }
 
-        private void gridControlProductStorages_Click(object sender, EventArgs e)
+
+        protected override void DoWork(object sender, DoWorkEventArgs e)
         {
             gridControlProductStorages.DataSource = ProductStorageService.Instance.GetCurrentStorages();
+            base.DoWork(sender, e);
+        }
+        private void ProductStorageList_Load(object sender, EventArgs e)
+        {
+           
         }
     }
 }

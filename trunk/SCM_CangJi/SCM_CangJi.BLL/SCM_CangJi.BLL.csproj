@@ -79,6 +79,7 @@
     <Compile Include="Services\DeliverAddressService.cs" />
     <Compile Include="Services\DeliveryOrderService.cs" />
     <Compile Include="Services\ImportProfileService.cs" />
+    <Compile Include="Services\InputOrderService.cs" />
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\ProductStorageService.cs" />
   </ItemGroup>

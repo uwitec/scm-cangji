@@ -38,6 +38,7 @@
             this.pictureEdit1.EditValue = global::SCM_CangJi.Properties.Resources.loading;
             this.pictureEdit1.Location = new System.Drawing.Point(0, 0);
             this.pictureEdit1.Name = "pictureEdit1";
+            this.pictureEdit1.Properties.ShowMenu = false;
             this.pictureEdit1.Size = new System.Drawing.Size(83, 84);
             this.pictureEdit1.TabIndex = 7;
             // 
@@ -45,6 +46,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImageLayoutStore = System.Windows.Forms.ImageLayout.Tile;
+            this.BackgroundImageStore = global::SCM_CangJi.Properties.Resources.loading;
             this.ClientSize = new System.Drawing.Size(83, 84);
             this.Controls.Add(this.pictureEdit1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -61,6 +64,7 @@
         #endregion
 
         private DevExpress.XtraEditors.PictureEdit pictureEdit1;
+
 
     }
 }

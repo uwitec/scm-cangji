@@ -35,9 +35,13 @@ namespace SCM_CangJi.DeliveryOrderManage
         public DeliveryOrderList()
         {
             InitializeComponent();
-            InitGrid();
+            ProgressStart();
         }
-
+        protected override void DoWork(object sender, DoWorkEventArgs e)
+        {
+            InitGrid();
+            base.DoWork(sender, e);
+        }
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             InitGrid();

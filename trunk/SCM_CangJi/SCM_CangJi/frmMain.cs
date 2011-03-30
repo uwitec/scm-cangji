@@ -107,6 +107,7 @@ namespace SCM_CangJi
 
         #region 导航
 
+        #region 用户
         private void UsersManage_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
             this.SetFocus(UserList.Instance);
@@ -114,13 +115,24 @@ namespace SCM_CangJi
         private void RolesManage_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
             this.SetFocus(RoleList.Instance);
-        }
+        } 
+        #endregion
 
+        #region 基本信息
         private void CompanyInfo_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
             this.SetFocus(CompanyList.Instance);
-        }
+        } 
+        #endregion
 
+        #region 入库
+        private void PreIntowarehouse_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            this.SetFocus(new InputOrderManage.PreInputOrder());
+        }
+        #endregion
+
+        #region 出库
         private void navDeliveryOrders_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
             this.SetFocus(DeliveryOrderManage.DeliveryOrderList.Instance);
@@ -138,12 +150,16 @@ namespace SCM_CangJi
         private void OutWareHouseConfirm_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
             this.SetFocus(ConfirmDeliveryOrder.Instance);
-        }
+        } 
+        #endregion
+
+        #region 库存
         private void StorageInfo_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
             this.SetFocus(ProductStorageList.Instance);
 
-        }
+        } 
+        #endregion
         #endregion
 
 
@@ -176,6 +192,8 @@ namespace SCM_CangJi
             }
         } 
         #endregion
+
+       
 
        
 

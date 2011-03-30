@@ -27,6 +27,13 @@ namespace SCM_CangJi.Lib
        已送达,
        作废
    }
+   public enum InputStatus
+   {
+       待入库,
+       待分配库位,
+       已入库,
+       作废
+   }
    public enum OrderType
    {
        DeliveryOrder=1,

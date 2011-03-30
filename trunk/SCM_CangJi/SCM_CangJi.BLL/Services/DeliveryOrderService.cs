@@ -82,9 +82,6 @@ namespace SCM_CangJi.BLL.Services
             DataTable reslut = null;
             Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
             {
-                //var order = db.DeliveryOrders.SingleOrDefault(o => o.Id == orderId);
-                //reslut = (from o in order.DeliveryOrderDetails
-                //          select o.ToViewModel()).;
                 reslut = (from o in db.DeliveryOrderDetails.Where(o => o.DeliveryOrderId == orderId)
                           select o.ToViewModel()).ToDataTable(db);
             });
@@ -95,9 +92,6 @@ namespace SCM_CangJi.BLL.Services
             IEnumerable<DeliveryOrderDetail> reslut = null;
             Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
             {
-                //var order = db.DeliveryOrders.SingleOrDefault(o => o.Id == orderId);
-                //reslut = (from o in order.DeliveryOrderDetails
-                //          select o.ToViewModel()).;
                 reslut = db.DeliveryOrderDetails.Where(o => o.DeliveryOrderId == orderId).ToList();
             });
             return reslut;

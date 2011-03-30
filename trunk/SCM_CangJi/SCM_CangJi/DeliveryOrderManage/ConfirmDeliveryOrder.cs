@@ -35,10 +35,15 @@ namespace SCM_CangJi.DeliveryOrderManage
         private ConfirmDeliveryOrder()
         {
             InitializeComponent();
+            ProgressStart();
+        }
+        protected override void DoWork(object sender, DoWorkEventArgs e)
+        {
+            InitGrid();
+            base.DoWork(sender, e);
         }
         private void ConfirmDeliveryOrder_Load(object sender, EventArgs e)
         {
-            InitGrid();
             
 
         }

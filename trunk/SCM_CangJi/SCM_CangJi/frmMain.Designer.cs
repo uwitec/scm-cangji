@@ -66,8 +66,8 @@
             this.PreIntowarehouse = new DevExpress.XtraNavBar.NavBarItem();
             this.AssignStorageArea = new DevExpress.XtraNavBar.NavBarItem();
             this.IntoWareHouseConfirm = new DevExpress.XtraNavBar.NavBarItem();
-            this.navDeliveryOrders = new DevExpress.XtraNavBar.NavBarItem();
             this.PreOutWoreHouse = new DevExpress.XtraNavBar.NavBarItem();
+            this.navDeliveryOrders = new DevExpress.XtraNavBar.NavBarItem();
             this.AssignStorage = new DevExpress.XtraNavBar.NavBarItem();
             this.OutWareHouseConfirm = new DevExpress.XtraNavBar.NavBarItem();
             this.StorageInfo = new DevExpress.XtraNavBar.NavBarItem();
@@ -362,7 +362,6 @@
             // navBarControl1
             // 
             this.navBarControl1.ActiveGroup = this.StorageManageGroup;
-            this.navBarControl1.AllowSelectedLink = true;
             this.navBarControl1.Dock = System.Windows.Forms.DockStyle.Left;
             this.navBarControl1.EachGroupHasSelectedLink = true;
             this.navBarControl1.Groups.AddRange(new DevExpress.XtraNavBar.NavBarGroup[] {
@@ -414,8 +413,8 @@
             new DevExpress.XtraNavBar.NavBarItemLink(this.PreIntowarehouse),
             new DevExpress.XtraNavBar.NavBarItemLink(this.AssignStorageArea),
             new DevExpress.XtraNavBar.NavBarItemLink(this.IntoWareHouseConfirm),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.navDeliveryOrders),
             new DevExpress.XtraNavBar.NavBarItemLink(this.PreOutWoreHouse),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navDeliveryOrders),
             new DevExpress.XtraNavBar.NavBarItemLink(this.AssignStorage),
             new DevExpress.XtraNavBar.NavBarItemLink(this.OutWareHouseConfirm),
             new DevExpress.XtraNavBar.NavBarItemLink(this.StorageInfo),
@@ -424,12 +423,12 @@
             new DevExpress.XtraNavBar.NavBarItemLink(this.ChangeCancle),
             new DevExpress.XtraNavBar.NavBarItemLink(this.ChangeConfirm)});
             this.StorageManageGroup.Name = "StorageManageGroup";
-            this.StorageManageGroup.TopVisibleLinkIndex = 2;
             // 
             // PreIntowarehouse
             // 
             this.PreIntowarehouse.Caption = "预入库";
             this.PreIntowarehouse.Name = "PreIntowarehouse";
+            this.PreIntowarehouse.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.PreIntowarehouse_LinkClicked);
             // 
             // AssignStorageArea
             // 
@@ -441,17 +440,17 @@
             this.IntoWareHouseConfirm.Caption = "入库确认";
             this.IntoWareHouseConfirm.Name = "IntoWareHouseConfirm";
             // 
-            // navDeliveryOrders
-            // 
-            this.navDeliveryOrders.Caption = "出库单列表";
-            this.navDeliveryOrders.Name = "navDeliveryOrders";
-            this.navDeliveryOrders.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navDeliveryOrders_LinkClicked);
-            // 
             // PreOutWoreHouse
             // 
             this.PreOutWoreHouse.Caption = "预出库";
             this.PreOutWoreHouse.Name = "PreOutWoreHouse";
             this.PreOutWoreHouse.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.PreOutWoreHouse_LinkClicked);
+            // 
+            // navDeliveryOrders
+            // 
+            this.navDeliveryOrders.Caption = "出库单列表";
+            this.navDeliveryOrders.Name = "navDeliveryOrders";
+            this.navDeliveryOrders.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navDeliveryOrders_LinkClicked);
             // 
             // AssignStorage
             // 

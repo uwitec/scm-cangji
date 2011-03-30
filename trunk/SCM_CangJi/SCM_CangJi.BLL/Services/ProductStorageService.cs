@@ -167,6 +167,7 @@ namespace SCM_CangJi.BLL.Services
                               现品号 = c.CurrentProductNumber,
                               当前库存数 = c.CurrentCount,
                               实际可用数量 = c.UsableCount,
+                              库位=c.AreaId
                           }).ToList();
             });
             return result;

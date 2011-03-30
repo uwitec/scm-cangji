@@ -33,9 +33,13 @@ namespace SCM_CangJi.DeliveryOrderManage
         public AssigningProducts()
         {
             InitializeComponent();
-            InitGrid();
+            ProgressStart();
         }
-
+        protected override void DoWork(object sender, DoWorkEventArgs e)
+        {
+            InitGrid();
+            base.DoWork(sender, e);
+        }
         private void InitGrid()
         {
             gridControlDeliveryOrders.DataSource = DeliveryOrderService.Instance.GetDeliveryOrders(Lib.DeliveryStatus.待分配库存);
