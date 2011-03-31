@@ -8064,6 +8064,8 @@ namespace SCM_CangJi.DAL
 		
 		private string _CurrentProductNumber;
 		
+		private System.Nullable<int> _StorageAreaId;
+		
 		private int _InputCount;
 		
 		private System.Nullable<System.DateTime> _ProductDate;
@@ -8094,6 +8096,8 @@ namespace SCM_CangJi.DAL
     partial void OnCompanyIdChanged();
     partial void OnCurrentProductNumberChanging(string value);
     partial void OnCurrentProductNumberChanged();
+    partial void OnStorageAreaIdChanging(System.Nullable<int> value);
+    partial void OnStorageAreaIdChanged();
     partial void OnInputCountChanging(int value);
     partial void OnInputCountChanged();
     partial void OnProductDateChanging(System.Nullable<System.DateTime> value);
@@ -8221,6 +8225,26 @@ namespace SCM_CangJi.DAL
 					this._CurrentProductNumber = value;
 					this.SendPropertyChanged("CurrentProductNumber");
 					this.OnCurrentProductNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StorageAreaId", DbType="Int")]
+		public System.Nullable<int> StorageAreaId
+		{
+			get
+			{
+				return this._StorageAreaId;
+			}
+			set
+			{
+				if ((this._StorageAreaId != value))
+				{
+					this.OnStorageAreaIdChanging(value);
+					this.SendPropertyChanging();
+					this._StorageAreaId = value;
+					this.SendPropertyChanged("StorageAreaId");
+					this.OnStorageAreaIdChanged();
 				}
 			}
 		}

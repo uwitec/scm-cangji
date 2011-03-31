@@ -53,7 +53,7 @@ namespace SCM_CangJi.DeliveryOrderManage
         protected override string CloseingMessage()
         {
             
-            return string.Format("订单：{0}，未保存",lblDeliveryOrderNumber.Text);
+            return string.Format("出库单：{0}，未保存",lblDeliveryOrderNumber.Text);
             //return base.CloseingMessage();
         }
         public PreDeliveryOrder(int orderId)

@@ -179,11 +179,29 @@
     <Compile Include="DeliveryOrderManage\ViewPreDeliveryDetails.Designer.cs">
       <DependentUpon>ViewPreDeliveryDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="InputOrderManage\AssignedAreaList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputOrderManage\AssignedAreaList.Designer.cs">
+      <DependentUpon>AssignedAreaList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputOrderManage\AssignStorageArea.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputOrderManage\AssignStorageArea.Designer.cs">
+      <DependentUpon>AssignStorageArea.cs</DependentUpon>
+    </Compile>
     <Compile Include="InputOrderManage\EditInputDetail.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="InputOrderManage\EditInputDetail.Designer.cs">
       <DependentUpon>EditInputDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputOrderManage\InputOrderList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputOrderManage\InputOrderList.Designer.cs">
+      <DependentUpon>InputOrderList.cs</DependentUpon>
     </Compile>
     <Compile Include="InputOrderManage\PreInputOrder.cs">
       <SubType>Form</SubType>
@@ -347,8 +365,17 @@
     <EmbeddedResource Include="DeliveryOrderManage\ViewPreDeliveryDetails.resx">
       <DependentUpon>ViewPreDeliveryDetails.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="InputOrderManage\AssignedAreaList.resx">
+      <DependentUpon>AssignedAreaList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputOrderManage\AssignStorageArea.resx">
+      <DependentUpon>AssignStorageArea.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InputOrderManage\EditInputDetail.resx">
       <DependentUpon>EditInputDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputOrderManage\InputOrderList.resx">
+      <DependentUpon>InputOrderList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InputOrderManage\PreInputOrder.resx">
       <DependentUpon>PreInputOrder.cs</DependentUpon>

@@ -55,7 +55,7 @@ namespace SCM_CangJi.InputOrderManage
         protected override string CloseingMessage()
         {
             
-            return string.Format("订单：{0}，未保存",lblInputOrderNumber.Text);
+            return string.Format("入库单：{0}，未保存",lblInputOrderNumber.Text);
             //return base.CloseingMessage();
         }
         public PreInputOrder(int orderId)
@@ -93,6 +93,7 @@ namespace SCM_CangJi.InputOrderManage
                 lblPreInputDate.Text = order.PreInputDate.ToShortDateString();
                 lblInputOrderNumber.Text = order.InputOrderNumber;
                 ddlCompanies.EditValue = order.CompanyId;
+                txtFromWhere.EditValue = order.FromWhere;
                 InitOrderDetails();
             }
             else
@@ -365,13 +366,15 @@ namespace SCM_CangJi.InputOrderManage
             }
             if (ShowQuestion("您确实要开始分配库位吗？") == System.Windows.Forms.DialogResult.OK)
             {
-                //AutoAssignStorage assignStorage = new AutoAssignStorage(this.order.ID);
-                //if (assignStorage.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                //{
-                //    this.order.Status = InputStatus.待分配库存.ToString();
-                //    InputOrderService.Instance.Update(order);
-                //    InitData();
-                //}
+                this.order.Status = InputStatus.待分配库位.ToString();
+                InputOrderService.Instance.Update(order);
+                AssignStorageArea assignStorageArea = new AssignStorageArea(this.order.ID);
+                if (assignStorageArea.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    this.order.Status = InputStatus.已分配库位.ToString();
+                    InputOrderService.Instance.Update(order);
+                    InitData();
+                }
             }
         }
         #endregion

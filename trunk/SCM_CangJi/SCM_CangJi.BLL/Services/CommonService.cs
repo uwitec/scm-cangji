@@ -36,6 +36,11 @@ namespace SCM_CangJi.BLL.Services
             ddl.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             ddl.Properties.DataSource = CompanyService.Instance.GetAllCompany();
         }
+        public static void BindDDLStorageArea(LookUpEditBase ddl)
+        {
+            ddl.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            ddl.Properties.DataSource = StorageAreaService.Instance.GetSrorageArea();
+        }
         public static void BindDDLDeliveryAddress(LookUpEditBase ddl, int companyId)
         {
             ddl.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
@@ -62,6 +67,12 @@ namespace SCM_CangJi.BLL.Services
                 db.SubmitChanges();
             });
             return result;
+        }
+
+        public static void BindDDLStorageArea(DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit gcStorageArea)
+        {
+            gcStorageArea.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            gcStorageArea.DataSource = StorageAreaService.Instance.GetSrorageArea();
         }
     }
 }

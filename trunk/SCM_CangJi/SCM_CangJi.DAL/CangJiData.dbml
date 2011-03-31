@@ -367,6 +367,7 @@
       <Column Name="ProductId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="CompanyId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="CurrentProductNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="StorageAreaId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="InputCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="ProductDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="LotsNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />

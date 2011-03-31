@@ -130,6 +130,16 @@ namespace SCM_CangJi
         {
             this.SetFocus(new InputOrderManage.PreInputOrder());
         }
+        private void nvaInputOrders_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            this.SetFocus(InputOrderManage.InputOrderList.Instance);
+        }
+        private void AssignStorageArea_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            this.SetFocus(InputOrderManage.AssignedAreaList.Instance);
+        }
+
+       
         #endregion
 
         #region 出库
@@ -192,6 +202,8 @@ namespace SCM_CangJi
             }
         } 
         #endregion
+
+       
 
        
 

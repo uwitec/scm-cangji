@@ -39,9 +39,9 @@
             this.gcProducts = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.btnPreCompletedAndAssign = new DevExpress.XtraEditors.SimpleButton();
             this.gridViewInputOrderDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gcInputInvoice = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcLotsNumber = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcProductDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcInputInvoice = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridControlInputOrerDetails = new DevExpress.XtraGrid.GridControl();
             this.btnSaveAndClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnAddDetail = new DevExpress.XtraEditors.SimpleButton();
@@ -162,14 +162,7 @@
             this.gridViewInputOrderDetails.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.True;
             this.gridViewInputOrderDetails.OptionsNavigation.AutoFocusNewRow = true;
             this.gridViewInputOrderDetails.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gridViewInputOrderDetails_InitNewRow);
-            // 
-            // gcInputInvoice
-            // 
-            this.gcInputInvoice.Caption = "备注";
-            this.gcInputInvoice.FieldName = "Remark";
-            this.gcInputInvoice.Name = "gcInputInvoice";
-            this.gcInputInvoice.Visible = true;
-            this.gcInputInvoice.VisibleIndex = 4;
+            this.gridViewInputOrderDetails.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.gridViewInputOrderDetails_RowUpdated);
             // 
             // gcLotsNumber
             // 
@@ -186,6 +179,14 @@
             this.gcProductDate.Name = "gcProductDate";
             this.gcProductDate.Visible = true;
             this.gcProductDate.VisibleIndex = 3;
+            // 
+            // gcInputInvoice
+            // 
+            this.gcInputInvoice.Caption = "备注";
+            this.gcInputInvoice.FieldName = "Remark";
+            this.gcInputInvoice.Name = "gcInputInvoice";
+            this.gcInputInvoice.Visible = true;
+            this.gcInputInvoice.VisibleIndex = 4;
             // 
             // gridControlInputOrerDetails
             // 

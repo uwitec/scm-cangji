@@ -25,6 +25,9 @@ namespace SCM_CangJi.BLL.Services
                               o.Invoice,
                               o.PreInputDate,
                               o.FromWhere,
+                              o.EnterUser,
+                              o.Status,
+                              StorageAreaId=0
                           }).ToList();
             });
             return reslut;
@@ -105,6 +108,7 @@ namespace SCM_CangJi.BLL.Services
                             orderdetail.LotsNumber = item.LotsNumber;
                             orderdetail.CurrentProductNumber = item.CurrentProductNumber;
                             orderdetail.InputOrderId = item.InputOrderId;
+                            orderdetail.CompanyId = item.CompanyId;
                             db.InputOrderDetails.InsertOnSubmit(orderdetail);
                         }
                     }
@@ -130,7 +134,7 @@ namespace SCM_CangJi.BLL.Services
             string m = "删除成功";
             Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
             {
-                var order = db.DeliveryOrders.SingleOrDefault(o => o.Id == orderId);
+                var order = db.InputOrders.SingleOrDefault(o => o.ID == orderId);
                 InputStatus status = (InputStatus)Enum.Parse(typeof(InputStatus), order.Status);
                 switch (status)
                 {
@@ -141,8 +145,8 @@ namespace SCM_CangJi.BLL.Services
                         break;
                     case InputStatus.待入库:
                     case InputStatus.作废:
-                        db.DeliveryOrderDetails.DeleteAllOnSubmit(order.DeliveryOrderDetails);
-                        db.DeliveryOrders.DeleteOnSubmit(order);
+                        db.InputOrderDetails.DeleteAllOnSubmit(order.InputOrderDetails);
+                        db.InputOrders.DeleteOnSubmit(order);
                         db.SubmitChanges();
                         break;
                 }
@@ -203,5 +207,71 @@ namespace SCM_CangJi.BLL.Services
                 db.SubmitChanges();
             });
         }
+
+        public void CompleteAssignStorageArea(int _orderId, IEnumerable<InputOrderDetail> _assignedInputDetails)
+        {
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            {
+                foreach (var item in _assignedInputDetails)
+                {
+                    var detail = db.InputOrderDetails.SingleOrDefault(o => o.ID==item.ID);
+                    detail.StorageAreaId = item.StorageAreaId;
+                }
+                db.SubmitChanges();
+            });
+        }
+
+        public void UpdateStatus(int orderId, InputStatus inputStatus)
+        {
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            {
+                var order = db.InputOrders.SingleOrDefault(o => o.ID == orderId);
+                order.Status = inputStatus.ToString();
+                db.SubmitChanges();
+            });
+        }
+
+        public object GetInputOrdersFull(InputStatus inputStatus)
+        {
+            object reslut = null;
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            {
+                reslut = (from o in db.InputOrders.Where(o => o.Status == inputStatus.ToString())
+                          select new
+                          {
+                              o.Company.CompanyName,
+                              o.CompanyId,
+                              o.ID,
+                              o.InputOrderNumber,
+                              o.Invoice,
+                              o.PreInputDate,
+                              o.FromWhere,
+                              o.EnterUser,
+                              o.Status,
+                              入库明细 = (from c in o.InputOrderDetails
+                                       select new
+                                       {
+                                           品号 = c.Product.ProductNumber1,
+                                           中文品名 = c.Product.ProductChName,
+                                           英文品名 = c.Product.ProductEngName,
+                                           入库数量 = c.InputCount,
+                                           生产日期 = c.ProductDate,
+                                           批号 = c.LotsNumber,
+                                           //库位编号 = GetArea(c, db),
+                                       }).ToList(),
+                          }).ToList();
+            });
+            return reslut;
+        }
+
+        private string GetArea(InputOrderDetail c, CangJiDataDataContext db)
+        {
+            if (!c.StorageAreaId.HasValue)
+                return null;
+            var area = db.StorageAreas.SingleOrDefault(o => o.Id == c.StorageAreaId);
+            return area.库位编号;
+        }
+
+       
     }
 }

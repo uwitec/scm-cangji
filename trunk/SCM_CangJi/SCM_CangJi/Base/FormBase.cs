@@ -57,12 +57,12 @@ namespace SCM_CangJi
         BackgroundWorker _bw;
         public FormBase()
         {
+            this.FormClosing += new FormClosingEventHandler(FormBase_FormClosing);
             InitializeComponent();
         }
 
         public virtual void ProgressStart()
         {
-            this.FormClosing += new FormClosingEventHandler(FormBase_FormClosing);
             _progressForm = new ProgressForm();
             _progressForm.OnProgressCancel += new Action(ProgressCancel);
 

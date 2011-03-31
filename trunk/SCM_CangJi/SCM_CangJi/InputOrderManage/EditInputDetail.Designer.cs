@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule3 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.txtProductDate = new DevExpress.XtraEditors.DateEdit();
@@ -109,11 +109,11 @@
             this.txtInputCount.Properties.Mask.EditMask = "n0";
             this.txtInputCount.Size = new System.Drawing.Size(168, 21);
             this.txtInputCount.TabIndex = 15;
-            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.Between;
-            conditionValidationRule2.ErrorText = "出库数量必须大于0";
-            conditionValidationRule2.Value1 = 1;
-            conditionValidationRule2.Value2 = 99999999;
-            this.dxValidationProvider1.SetValidationRule(this.txtInputCount, conditionValidationRule2);
+            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.Between;
+            conditionValidationRule1.ErrorText = "出库数量必须大于0";
+            conditionValidationRule1.Value1 = 1;
+            conditionValidationRule1.Value2 = 99999999;
+            this.dxValidationProvider1.SetValidationRule(this.txtInputCount, conditionValidationRule1);
             // 
             // ddlProducts
             // 
@@ -131,9 +131,9 @@
             this.ddlProducts.Properties.ValueMember = "Id";
             this.ddlProducts.Size = new System.Drawing.Size(170, 21);
             this.ddlProducts.TabIndex = 12;
-            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule3.ErrorText = "不能为空";
-            this.dxValidationProvider1.SetValidationRule(this.ddlProducts, conditionValidationRule3);
+            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule2.ErrorText = "不能为空";
+            this.dxValidationProvider1.SetValidationRule(this.ddlProducts, conditionValidationRule2);
             // 
             // txtLotsNumber
             // 
@@ -199,7 +199,7 @@
             this.Controls.Add(this.ddlProducts);
             this.Controls.Add(this.labelControl1);
             this.Name = "EditInputDetail";
-            this.Text = "EditInputDetail";
+            this.Text = "入库明细";
             ((System.ComponentModel.ISupportInitialize)(this.txtProductDate.Properties.VistaTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtProductDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();

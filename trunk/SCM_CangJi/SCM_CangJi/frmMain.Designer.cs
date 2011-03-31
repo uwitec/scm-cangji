@@ -64,6 +64,7 @@
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
             this.StorageManageGroup = new DevExpress.XtraNavBar.NavBarGroup();
             this.PreIntowarehouse = new DevExpress.XtraNavBar.NavBarItem();
+            this.nvaInputOrders = new DevExpress.XtraNavBar.NavBarItem();
             this.AssignStorageArea = new DevExpress.XtraNavBar.NavBarItem();
             this.IntoWareHouseConfirm = new DevExpress.XtraNavBar.NavBarItem();
             this.PreOutWoreHouse = new DevExpress.XtraNavBar.NavBarItem();
@@ -392,7 +393,8 @@
             this.StorageInfo,
             this.Systemlog,
             this.AssignStorageArea,
-            this.navDeliveryOrders});
+            this.navDeliveryOrders,
+            this.nvaInputOrders});
             this.navBarControl1.Location = new System.Drawing.Point(0, 54);
             this.navBarControl1.Margin = new System.Windows.Forms.Padding(0);
             this.navBarControl1.Name = "navBarControl1";
@@ -411,6 +413,7 @@
             this.StorageManageGroup.Expanded = true;
             this.StorageManageGroup.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.PreIntowarehouse),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.nvaInputOrders),
             new DevExpress.XtraNavBar.NavBarItemLink(this.AssignStorageArea),
             new DevExpress.XtraNavBar.NavBarItemLink(this.IntoWareHouseConfirm),
             new DevExpress.XtraNavBar.NavBarItemLink(this.PreOutWoreHouse),
@@ -430,10 +433,17 @@
             this.PreIntowarehouse.Name = "PreIntowarehouse";
             this.PreIntowarehouse.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.PreIntowarehouse_LinkClicked);
             // 
+            // nvaInputOrders
+            // 
+            this.nvaInputOrders.Caption = "入库单列表";
+            this.nvaInputOrders.Name = "nvaInputOrders";
+            this.nvaInputOrders.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.nvaInputOrders_LinkClicked);
+            // 
             // AssignStorageArea
             // 
             this.AssignStorageArea.Caption = "分配库位";
             this.AssignStorageArea.Name = "AssignStorageArea";
+            this.AssignStorageArea.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.AssignStorageArea_LinkClicked);
             // 
             // IntoWareHouseConfirm
             // 
@@ -716,6 +726,7 @@
         private DevExpress.XtraNavBar.NavBarItem AssignStorageArea;
         private DevExpress.XtraNavBar.NavBarItem navDeliveryOrders;
         private DevExpress.XtraBars.BarMdiChildrenListItem barMdiChildrenListItem1;
+        private DevExpress.XtraNavBar.NavBarItem nvaInputOrders;
 
     }
 }

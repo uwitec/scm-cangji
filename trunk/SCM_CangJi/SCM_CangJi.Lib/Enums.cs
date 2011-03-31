@@ -31,6 +31,7 @@ namespace SCM_CangJi.Lib
    {
        待入库,
        待分配库位,
+       已分配库位,
        已入库,
        作废
    }

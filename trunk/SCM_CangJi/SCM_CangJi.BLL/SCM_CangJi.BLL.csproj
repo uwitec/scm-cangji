@@ -82,6 +82,7 @@
     <Compile Include="Services\InputOrderService.cs" />
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\ProductStorageService.cs" />
+    <Compile Include="Services\StorageAreaService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SCM_CangJi.DAL\SCM_CangJi.DAL.csproj">
