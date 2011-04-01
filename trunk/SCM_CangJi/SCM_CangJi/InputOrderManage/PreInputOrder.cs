@@ -192,7 +192,7 @@ namespace SCM_CangJi.InputOrderManage
             if (dxValidationProvider1.Validate())
             {
                 EditInputDetail editform = new EditInputDetail(_orderId, _companyId);
-                editform.OnInputDetailSaveing += new Func<InputOrderDetail, InputOrder>(editform_OnInputDetailAdd);
+                editform.OnInputDetailSaveing += new Func<InputOrderDetail, InputOrder>(editform_OnInputDetailUpdate);
                 if (editform.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     InitOrderDetails();
@@ -201,11 +201,14 @@ namespace SCM_CangJi.InputOrderManage
 
         }
 
-        InputOrder editform_OnInputDetailAdd(InputOrderDetail obj)
+        InputOrder editform_OnInputDetailUpdate(InputOrderDetail obj)
         {
             //UpdateOrder();
             if (obj.ID > 0)
             {
+                DataRow row = gridViewInputOrderDetails.GetFocusedDataRow();
+                SetRowValue(row, obj);
+                gridViewInputOrderDetails.UpdateCurrentRow();
             }
             else
             {
@@ -227,6 +230,7 @@ namespace SCM_CangJi.InputOrderManage
             {
                 int orderDetailId = (int)gridViewInputOrderDetails.GetRowCellValue(hi.RowHandle, "ID");
                 EditInputDetail editform = new EditInputDetail(_orderId, _companyId, orderDetailId);
+                editform.OnInputDetailSaveing += new Func<InputOrderDetail, InputOrder>(editform_OnInputDetailUpdate);
                 if (editform.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     InitOrderDetails();
@@ -327,7 +331,8 @@ namespace SCM_CangJi.InputOrderManage
             row["LotsNumber"] = detail.LotsNumber;
             row["ProductId"] = detail.ProductId;
             row["CompanyId"] = detail.CompanyId;
-            row["ID"] = detail.ID;
+            if (detail.ID == 0)
+                row["ID"] = detail.ID;
             if (detail.ProductDate != null)
                 row["ProductDate"] = detail.ProductDate;
         }
