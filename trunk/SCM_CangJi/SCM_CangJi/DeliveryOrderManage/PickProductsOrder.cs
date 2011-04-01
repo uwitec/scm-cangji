@@ -16,6 +16,7 @@ namespace SCM_CangJi.DeliveryOrderManage
     {
         private DeliveryOrder order;
         bool _printImmediately = false;
+        PrintSettingController print = null;
         public PickProductsOrder(int orderId,bool printImmediately)
         {
             _printImmediately = printImmediately;
@@ -23,6 +24,8 @@ namespace SCM_CangJi.DeliveryOrderManage
             order = BLL.Services.DeliveryOrderService.Instance.GetDeliveryOrderFullInfo(orderId);
             InitData();
             InitProduct();
+            print = new PrintSettingController(this.layoutControl1, "拣品单");
+            print.PrintHeader = "拣品单";
             if (_printImmediately)
             {
                 Print();
@@ -41,14 +44,10 @@ namespace SCM_CangJi.DeliveryOrderManage
 
         private void PrintPreview()
         {
-            PrintSettingController print = new PrintSettingController(this.layoutControl1, "拣品单");
-            print.PrintHeader = "拣品单";
             print.Preview();
         }
         private void Print()
         {
-            PrintSettingController print = new PrintSettingController(this.layoutControl1, "拣品单");
-            print.PrintHeader = "拣品单";
             print.Print();
         }
         private void InitData()
@@ -63,7 +62,7 @@ namespace SCM_CangJi.DeliveryOrderManage
 
         private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            PrintPreview();
+            Print();
         }
 
      
