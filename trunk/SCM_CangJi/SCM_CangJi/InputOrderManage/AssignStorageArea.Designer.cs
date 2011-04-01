@@ -59,6 +59,7 @@
             this.gcInputCount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gcInputCount.FieldName = "InputCount";
             this.gcInputCount.Name = "gcInputCount";
+            this.gcInputCount.OptionsColumn.AllowEdit = false;
             this.gcInputCount.Visible = true;
             this.gcInputCount.VisibleIndex = 1;
             // 
@@ -137,6 +138,7 @@
             this.gridViewInputOrderDetails.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
             this.gridViewInputOrderDetails.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.True;
             this.gridViewInputOrderDetails.OptionsNavigation.AutoFocusNewRow = true;
+            this.gridViewInputOrderDetails.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.gridViewInputOrderDetails_RowUpdated);
             // 
             // gcProductChName
             // 
@@ -144,6 +146,7 @@
             this.gcProductChName.ColumnEdit = this.gcProducts;
             this.gcProductChName.FieldName = "ProductId";
             this.gcProductChName.Name = "gcProductChName";
+            this.gcProductChName.OptionsColumn.AllowEdit = false;
             this.gcProductChName.Visible = true;
             this.gcProductChName.VisibleIndex = 0;
             // 
@@ -190,6 +193,7 @@
             this.gcLotsNumber.Caption = "生产批号";
             this.gcLotsNumber.FieldName = "LotsNumber";
             this.gcLotsNumber.Name = "gcLotsNumber";
+            this.gcLotsNumber.OptionsColumn.AllowEdit = false;
             this.gcLotsNumber.Visible = true;
             this.gcLotsNumber.VisibleIndex = 3;
             // 
@@ -198,6 +202,7 @@
             this.gcProductDate.Caption = "生产日期";
             this.gcProductDate.FieldName = "ProductDate";
             this.gcProductDate.Name = "gcProductDate";
+            this.gcProductDate.OptionsColumn.AllowEdit = false;
             this.gcProductDate.Visible = true;
             this.gcProductDate.VisibleIndex = 4;
             // 

@@ -52,8 +52,8 @@ namespace SCM_CangJi.InputOrderManage
         private void btnCompleteAssign_Click(object sender, EventArgs e)
         {
            InputOrderService.Instance.CompleteAssignStorageArea(_orderId, _assignedInputDetails);
-            //PickProductsOrder p = new PickProductsOrder(_oaorderId, false);
-            //p.Show();
+           PrintCurrentProductOrder printForm = new PrintCurrentProductOrder(_orderId, false);
+           printForm.Show();
         }
        
         private void simpleButton2_Click(object sender, EventArgs e)
@@ -81,6 +81,29 @@ namespace SCM_CangJi.InputOrderManage
         private void btnBack_Click(object sender, EventArgs e)
         {
             DialogResult = System.Windows.Forms.DialogResult.Retry;
+        }
+
+        private void gridViewInputOrderDetails_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e)
+        {
+            lock (this)
+            {
+                DataRow row = (e.Row as DataRowView).Row;
+                Updated = false;
+                var detail = this._assignedInputDetails.SingleOrDefault(o => o.ID.Equals(row["ID"]));
+                if (detail == null)
+                {
+                    DeliveryOrderDetail newDetail = new DeliveryOrderDetail();
+                }
+                else
+                {
+                    SetValue(row, ref detail);
+                }
+            }
+        }
+
+        private void SetValue(DataRow row, ref InputOrderDetail detail)
+        {
+            detail.StorageAreaId = int.Parse(row["StorageAreaId"].ToString());
         }
 
     }
