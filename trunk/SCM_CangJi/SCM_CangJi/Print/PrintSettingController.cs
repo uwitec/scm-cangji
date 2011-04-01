@@ -9,8 +9,10 @@ using System.Xml.Serialization;
 
 namespace SCM_CangJi.Print
 {
+    
     public class PrintSettingController
     {
+       public event Action OnPrinted;
         PrintingSystem ps = null;
         string formName = null;
 
@@ -31,8 +33,15 @@ namespace SCM_CangJi.Print
             LoadPageSetting();
             ps.PageSettingsChanged += new EventHandler(ps_PageSettingsChanged);
             ps.AfterMarginsChange += new MarginsChangeEventHandler(ps_AfterMarginsChange);
-
+            ps.EndPrint += new EventHandler(ps_EndPrint);
         }
+
+        void ps_EndPrint(object sender, EventArgs e)
+        {
+            if (OnPrinted != null)
+                OnPrinted();
+        }
+       
         public void Preview()
         {
             try

@@ -5,6 +5,7 @@ using System.Text;
 using SCM_CangJi.Lib;
 using SCM_CangJi.DAL;
 using System.Data;
+using System.Dynamic;
 
 namespace SCM_CangJi.BLL.Services
 {
@@ -98,6 +99,7 @@ namespace SCM_CangJi.BLL.Services
                             orderdetail.ProductDate = item.ProductDate;
                             orderdetail.LotsNumber = item.LotsNumber;
                             orderdetail.CurrentProductNumber = item.CurrentProductNumber;
+                            orderdetail.Remark = item.Remark;
                         }
                         else
                         {
@@ -108,6 +110,7 @@ namespace SCM_CangJi.BLL.Services
                             orderdetail.LotsNumber = item.LotsNumber;
                             orderdetail.CurrentProductNumber = item.CurrentProductNumber;
                             orderdetail.InputOrderId = item.InputOrderId;
+                            orderdetail.Remark = item.Remark;
                             orderdetail.CompanyId = item.CompanyId;
                             db.InputOrderDetails.InsertOnSubmit(orderdetail);
                         }
@@ -183,7 +186,57 @@ namespace SCM_CangJi.BLL.Services
             });
             return reslut;
         }
-
+        public object GetInputOrderDetailsFullInfo(int orderlId)
+        {
+            object reslut = null;
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            {
+                reslut = (from d in db.InputOrderDetails
+                         join area in db.StorageAreas
+                         on d.StorageAreaId equals area.Id
+                         where d.InputOrderId == orderlId
+                         select new
+                         {
+                             CompanyName=d.Company.CompanyName,
+                             CurrentProductNumber=d.CurrentProductNumber,
+                             InputCount=d.InputCount.ToString(),
+                             InputOrderNumber=d.InputOrder.InputOrderNumber,
+                             LotsNumber=d.LotsNumber,
+                             d.Remark,
+                             BarCode=d.Product.BarCode,
+                             ProductChName=d.Product.ProductChName,
+                             ProductEngName=d.Product.ProductEngName,
+                             ProductNumber1=d.Product.ProductNumber1,
+                             ProductNumber2=d.Product.ProductNumber2,
+                             AreaNumber=area.库位编号,
+                             WareHouseName = "（" + area.StorageRack.Storage.仓库编号 + "）" + area.StorageRack.Storage.仓库名称,
+                         }).ToList();
+            });
+            return reslut;
+        }
+        public dynamic GetInputOrderDetailFullInfo(int orderDetailId)
+        {
+            dynamic reslut = new System.Dynamic.ExpandoObject();
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            {
+                var detail = db.InputOrderDetails.SingleOrDefault(o => o.ID == orderDetailId);
+                var area = db.StorageAreas.SingleOrDefault(o => o.Id == detail.StorageAreaId);
+                reslut.CompanyName = detail.Company.CompanyName;
+                reslut.CurrentProductNumber = detail.CurrentProductNumber;
+                reslut.InputCount = detail.InputCount;
+                reslut.InputOrderNumber = detail.InputOrder.InputOrderNumber;
+                reslut.LotsNumber = detail.LotsNumber;
+                reslut.Remark = detail.Remark;
+                reslut.BarCode = detail.Product.BarCode;
+                reslut.ProductChName = detail.Product.ProductChName;
+                reslut.ProductEngName = detail.Product.ProductEngName;
+                reslut.ProductNumber1 = detail.Product.ProductNumber1;
+                reslut.ProductNumber2 = detail.Product.ProductNumber2;
+                reslut.AreaNumber = area.库位编号;
+                reslut.WareHouseName = "（" + area.StorageRack.Storage.仓库编号 + "）" + area.StorageRack.Storage.仓库名称;
+            });
+            return reslut;
+        }
         public void UpdateDetail(InputOrderDetail deliveryOrderDetail)
         {
             Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
@@ -216,6 +269,7 @@ namespace SCM_CangJi.BLL.Services
                 {
                     var detail = db.InputOrderDetails.SingleOrDefault(o => o.ID==item.ID);
                     detail.StorageAreaId = item.StorageAreaId;
+                    detail.CurrentProductNumber = CommonService.Instance.GetOrderNumber(OrderType.CurrentProductOrder);
                 }
                 db.SubmitChanges();
             });

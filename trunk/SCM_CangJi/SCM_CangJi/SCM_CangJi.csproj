@@ -209,6 +209,12 @@
     <Compile Include="InputOrderManage\PreInputOrder.Designer.cs">
       <DependentUpon>PreInputOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="InputOrderManage\PrintCurrentProductOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputOrderManage\PrintCurrentProductOrder.Designer.cs">
+      <DependentUpon>PrintCurrentProductOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Print\PrintSettingController.cs" />
     <Compile Include="ProgressForm.cs">
       <SubType>Form</SubType>
@@ -380,6 +386,9 @@
     <EmbeddedResource Include="InputOrderManage\PreInputOrder.resx">
       <DependentUpon>PreInputOrder.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="InputOrderManage\PrintCurrentProductOrder.resx">
+      <DependentUpon>PrintCurrentProductOrder.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProgressForm.resx">
       <DependentUpon>ProgressForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -436,6 +445,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\app.manifest" />
+    <None Include="Properties\DataSources\SCM_CangJi.DAL.Company.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

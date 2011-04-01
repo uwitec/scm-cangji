@@ -53,7 +53,22 @@ namespace SCM_CangJi.BLL.Services
         }
         public string GetOrderNumber(OrderType orderType)
         {
-            string result = orderType == OrderType.DeliveryOrder ? "SHP-{0}{1}" : "REC-{0}{1}";
+
+            string result = "{0}{1}"; //orderType == OrderType.DeliveryOrder ? "SHP-{0}{1}" : "REC-{0}{1}";
+            switch (orderType)
+            {
+                case OrderType.DeliveryOrder:
+                    result = "SHP-{0}{1}";
+                    break;
+                case OrderType.InputOrder:
+                    result = "REC-{0}{1}";
+                    break;
+                case OrderType.CurrentProductOrder:
+                    result = "{0}{1}";
+                    break;
+                default:
+                    break;
+            }
             Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
             {
                 var ordrnumbers = db.OrderNumbers.Where(o => o.OrderType == (int)orderType&&o.CreateDate.Date==DateTime.Now.Date);

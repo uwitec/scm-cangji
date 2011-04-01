@@ -37,8 +37,9 @@ namespace SCM_CangJi.Lib
    }
    public enum OrderType
    {
-       DeliveryOrder=1,
-       InputOrder=2,
+       DeliveryOrder = 1,
+       InputOrder = 2,
+       CurrentProductOrder=3
    }
    public enum OrderNubmerStatus
    {

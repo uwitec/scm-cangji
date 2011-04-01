@@ -371,7 +371,7 @@
       <Column Name="InputCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="ProductDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="LotsNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Remark" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Remark" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
       <Association Name="InputOrderDetail_ProductStorage" Member="ProductStorages" ThisKey="ID" OtherKey="InputDetailId" Type="ProductStorage" />
       <Association Name="Company_InputOrderDetail" Member="Company" ThisKey="CompanyId" OtherKey="Id" Type="Company" IsForeignKey="true" />
       <Association Name="InputOrder_InputOrderDetail" Member="InputOrder" ThisKey="InputOrderId" OtherKey="ID" Type="InputOrder" IsForeignKey="true" />
