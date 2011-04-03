@@ -51,16 +51,48 @@ namespace SCM_CangJi.InputOrderManage
       
         private void btnCompleteAssign_Click(object sender, EventArgs e)
         {
-           InputOrderService.Instance.CompleteAssignStorageArea(_orderId, _assignedInputDetails);
-           PrintCurrentProductOrder printForm = new PrintCurrentProductOrder(_orderId, false);
-           printForm.Show();
+            if (CheckAssigned())
+            {
+                InputOrderService.Instance.CompleteAssignStorageArea(_orderId, _assignedInputDetails);
+                PrintCurrentProductOrder printForm = new PrintCurrentProductOrder(_orderId, false);
+                if (printForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    this.Updated = true;
+                    DialogResult = System.Windows.Forms.DialogResult.OK;
+                }
+            }
         }
-       
-        private void simpleButton2_Click(object sender, EventArgs e)
+
+        private bool CheckAssigned()
         {
-            //PickProductsOrder p = new PickProductsOrder(_orderId, false);
-            //p.Show();
+            bool result=true;
+            foreach (var item in _assignedInputDetails)
+            {
+                if (!item.StorageAreaId.HasValue)
+                {
+                    result = false;
+                    break;
+                }
+            }
+            if (!result)
+            {
+                ShowMessage("库位还未分配完毕！请先分配库位！");
+            }
+            return result;
         }
+        private void btnCompleteAndConfirmInput_Click(object sender, EventArgs e)
+        {
+            if (CheckAssigned())
+            {
+                InputOrderService.Instance.CompleteAssignStorageArea(_orderId, _assignedInputDetails);
+                PrintCurrentProductOrder printForm = new PrintCurrentProductOrder(_orderId, false, true);
+                if (printForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    DialogResult = System.Windows.Forms.DialogResult.OK;
+                }
+            }
+        }
+
 
         private void gridViewInputOrderDetails_ValidateRow(object sender, DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs e)
         {
@@ -106,5 +138,6 @@ namespace SCM_CangJi.InputOrderManage
             detail.StorageAreaId = int.Parse(row["StorageAreaId"].ToString());
         }
 
+       
     }
 }

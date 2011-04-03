@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule3 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.txtProductDate = new DevExpress.XtraEditors.DateEdit();
@@ -141,6 +142,9 @@
             this.txtLotsNumber.Name = "txtLotsNumber";
             this.txtLotsNumber.Size = new System.Drawing.Size(168, 21);
             this.txtLotsNumber.TabIndex = 18;
+            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule3.ErrorText = "不能为空！";
+            this.dxValidationProvider1.SetValidationRule(this.txtLotsNumber, conditionValidationRule3);
             // 
             // labelControl4
             // 

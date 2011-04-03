@@ -84,8 +84,16 @@ namespace SCM_CangJi.InputOrderManage
 
                 DXMenuItem menuItemCreate = new DXMenuItem("新建", new EventHandler(btnCreate_Click));
                 e.Menu.Items.Add(menuItemCreate);
-
-
+                DXMenuItem menuItemDetail = new DXMenuItem("明细", (s, en) =>
+                {
+                    int orderId = (int)gridViewInputOrders.GetRowCellValue(orderrowhandle, "ID");
+                    PreInputOrder editform = new PreInputOrder(orderId);
+                    if (editform.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                    {
+                        InitGrid();
+                    }
+                });
+                e.Menu.Items.Add(menuItemDetail);
                 DXMenuItem menuItemDelete = new DXMenuItem("删除", (s, en) =>
                 {
                     if (XtraMessageBox.Show("该动作将会删除相关明细列表，确实要删除吗？", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.OK)

@@ -75,13 +75,13 @@
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.btnCreateProduct = new DevExpress.XtraEditors.SimpleButton();
             this.DeliverAddressTab = new DevExpress.XtraTab.XtraTabPage();
-            this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
             this.gridControlDeliverAddress = new DevExpress.XtraGrid.GridControl();
             this.gridViewDeliverAddress = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn18 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn19 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn20 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn21 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
             this.btnCreateDeliverAddress = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
@@ -106,10 +106,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
             this.DeliverAddressTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).BeginInit();
-            this.panelControl4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDeliverAddress)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDeliverAddress)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).BeginInit();
+            this.panelControl4.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainerControl1
@@ -147,6 +147,7 @@
             this.gcCompanyType});
             this.gridViewCompany.GridControl = this.gridControlCompany;
             this.gridViewCompany.Name = "gridViewCompany";
+            this.gridViewCompany.OptionsBehavior.Editable = false;
             this.gridViewCompany.OptionsBehavior.ReadOnly = true;
             this.gridViewCompany.OptionsView.ShowAutoFilterRow = true;
             this.gridViewCompany.ShowGridMenu += new DevExpress.XtraGrid.Views.Grid.GridMenuEventHandler(this.gridViewCompany_ShowGridMenu);
@@ -251,6 +252,7 @@
             this.gcEmail});
             this.gridViewContacts.GridControl = this.gridControlContacts;
             this.gridViewContacts.Name = "gridViewContacts";
+            this.gridViewContacts.OptionsBehavior.Editable = false;
             this.gridViewContacts.ShowGridMenu += new DevExpress.XtraGrid.Views.Grid.GridMenuEventHandler(this.gridViewContacts_ShowGridMenu);
             // 
             // gridColumn1
@@ -381,6 +383,7 @@
             this.gridColumn14});
             this.gridViewProduct.GridControl = this.gridControlProduct;
             this.gridViewProduct.Name = "gridViewProduct";
+            this.gridViewProduct.OptionsBehavior.Editable = false;
             this.gridViewProduct.ShowGridMenu += new DevExpress.XtraGrid.Views.Grid.GridMenuEventHandler(this.gridViewProduct_ShowGridMenu);
             // 
             // gridColumn2
@@ -554,15 +557,6 @@
             this.DeliverAddressTab.Size = new System.Drawing.Size(400, 440);
             this.DeliverAddressTab.Text = "送货地址";
             // 
-            // panelControl4
-            // 
-            this.panelControl4.Controls.Add(this.btnCreateDeliverAddress);
-            this.panelControl4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelControl4.Location = new System.Drawing.Point(0, 0);
-            this.panelControl4.Name = "panelControl4";
-            this.panelControl4.Size = new System.Drawing.Size(400, 67);
-            this.panelControl4.TabIndex = 0;
-            // 
             // gridControlDeliverAddress
             // 
             this.gridControlDeliverAddress.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -584,6 +578,7 @@
             this.gridColumn21});
             this.gridViewDeliverAddress.GridControl = this.gridControlDeliverAddress;
             this.gridViewDeliverAddress.Name = "gridViewDeliverAddress";
+            this.gridViewDeliverAddress.OptionsBehavior.Editable = false;
             this.gridViewDeliverAddress.ShowGridMenu += new DevExpress.XtraGrid.Views.Grid.GridMenuEventHandler(this.gridViewDeliverAddress_ShowGridMenu);
             // 
             // gridColumn18
@@ -617,6 +612,15 @@
             this.gridColumn21.Name = "gridColumn21";
             this.gridColumn21.Visible = true;
             this.gridColumn21.VisibleIndex = 3;
+            // 
+            // panelControl4
+            // 
+            this.panelControl4.Controls.Add(this.btnCreateDeliverAddress);
+            this.panelControl4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelControl4.Location = new System.Drawing.Point(0, 0);
+            this.panelControl4.Name = "panelControl4";
+            this.panelControl4.Size = new System.Drawing.Size(400, 67);
+            this.panelControl4.TabIndex = 0;
             // 
             // btnCreateDeliverAddress
             // 
@@ -659,10 +663,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
             this.DeliverAddressTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).EndInit();
-            this.panelControl4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDeliverAddress)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDeliverAddress)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).EndInit();
+            this.panelControl4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

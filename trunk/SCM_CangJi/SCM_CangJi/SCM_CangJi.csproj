@@ -191,6 +191,12 @@
     <Compile Include="InputOrderManage\AssignStorageArea.Designer.cs">
       <DependentUpon>AssignStorageArea.cs</DependentUpon>
     </Compile>
+    <Compile Include="InputOrderManage\ConfirmInputOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputOrderManage\ConfirmInputOrder.Designer.cs">
+      <DependentUpon>ConfirmInputOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="InputOrderManage\EditInputDetail.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -376,6 +382,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InputOrderManage\AssignStorageArea.resx">
       <DependentUpon>AssignStorageArea.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputOrderManage\ConfirmInputOrder.resx">
+      <DependentUpon>ConfirmInputOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InputOrderManage\EditInputDetail.resx">
       <DependentUpon>EditInputDetail.cs</DependentUpon>

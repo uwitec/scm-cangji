@@ -67,7 +67,7 @@ namespace SCM_CangJi.DeliveryOrderManage
                 row["ProductDate"] = assignedDetail.ProductDate;
             row["ProductStorageId"] = assignedDetail.ProductStorageId;
             row["CurrentProductNumber"] = assignedDetail.CurrentProductNumber;
-            row["StorageArea"] = assignedDetail.StorageArea;
+            row["StorageArea"] = ProductStorageService.Instance.GetArea(assignedDetail.StorageAreaId);
             row["IsSucess"] = assignedDetail.IsSucess;
            // row["CurrentProductNumber"] = assignedDetail.ProductStorage.CurrentProductNumber;
         }

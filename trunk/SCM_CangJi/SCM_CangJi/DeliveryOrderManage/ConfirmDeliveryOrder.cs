@@ -59,7 +59,7 @@ namespace SCM_CangJi.DeliveryOrderManage
             if (RowHandle >= 0)
             {
                 int orderId = (int)gridViewDeliveryOrders.GetRowCellValue(RowHandle, "Id");
-                DeliveryOrderService.Instance.UpdateStatus(orderId, Lib.DeliveryStatus.已发货);
+                DeliveryOrderService.Instance.ConfirmOutput(orderId);
                 InitGrid();
             }
         }
@@ -109,6 +109,18 @@ namespace SCM_CangJi.DeliveryOrderManage
                 e.Menu.Items.Add(menuItemrefrash);
 
                 orderrowhandle = e.HitInfo.RowHandle;
+            }
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            if (this.ShowQuestion("您确定要退回修改么？") == System.Windows.Forms.DialogResult.OK)
+            {
+                int RowHandle = gridControlDeliveryOrders.FocusedView.SourceRowHandle;
+
+                int orderId = (int)gridViewDeliveryOrders.GetRowCellValue(RowHandle, "Id");
+                DeliveryOrderService.Instance.CancelAssigedDetails(orderId);
+                InitGrid();
             }
         }
       

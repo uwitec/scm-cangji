@@ -105,7 +105,7 @@
             this.btnPreComplete.Name = "btnPreComplete";
             this.btnPreComplete.Size = new System.Drawing.Size(75, 23);
             this.btnPreComplete.TabIndex = 6;
-            this.btnPreComplete.Text = "完成预出库";
+            this.btnPreComplete.Text = "完成预入库";
             this.btnPreComplete.Click += new System.EventHandler(this.btnPreComplete_Click);
             // 
             // gcProductChName
@@ -138,7 +138,7 @@
             this.btnPreCompletedAndAssign.Name = "btnPreCompletedAndAssign";
             this.btnPreCompletedAndAssign.Size = new System.Drawing.Size(138, 23);
             this.btnPreCompletedAndAssign.TabIndex = 5;
-            this.btnPreCompletedAndAssign.Text = "完成预出库并分配库位";
+            this.btnPreCompletedAndAssign.Text = "完成预入库并分配库位";
             this.btnPreCompletedAndAssign.Click += new System.EventHandler(this.btnPreCompletedAndAssign_Click);
             // 
             // gridViewInputOrderDetails
@@ -161,6 +161,7 @@
             this.gridViewInputOrderDetails.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
             this.gridViewInputOrderDetails.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.True;
             this.gridViewInputOrderDetails.OptionsNavigation.AutoFocusNewRow = true;
+            this.gridViewInputOrderDetails.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridViewInputOrderDetails_RowCellStyle);
             this.gridViewInputOrderDetails.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gridViewInputOrderDetails_InitNewRow);
             this.gridViewInputOrderDetails.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.gridViewInputOrderDetails_RowUpdated);
             // 

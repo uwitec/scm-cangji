@@ -32,6 +32,11 @@
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule3 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
+            this.txtProductNumber2 = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl27 = new DevExpress.XtraEditors.LabelControl();
+            this.txtProductNumber1 = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl26 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl25 = new DevExpress.XtraEditors.LabelControl();
             this.txtWidth = new DevExpress.XtraEditors.SpinEdit();
             this.labelControl24 = new DevExpress.XtraEditors.LabelControl();
@@ -42,7 +47,6 @@
             this.txtLayeredCount = new DevExpress.XtraEditors.SpinEdit();
             this.ddlCurrencyUnits = new DevExpress.XtraEditors.GridLookUpEdit();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.labelControl21 = new DevExpress.XtraEditors.LabelControl();
             this.txtVolume = new DevExpress.XtraEditors.SpinEdit();
             this.labelControl20 = new DevExpress.XtraEditors.LabelControl();
@@ -53,7 +57,6 @@
             this.txtPreWorningDays = new DevExpress.XtraEditors.SpinEdit();
             this.ddlProductType = new DevExpress.XtraEditors.GridLookUpEdit();
             this.gridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl16 = new DevExpress.XtraEditors.LabelControl();
@@ -78,12 +81,12 @@
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.txtShelfLife = new DevExpress.XtraEditors.SpinEdit();
-            this.txtProductNumber1 = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl26 = new DevExpress.XtraEditors.LabelControl();
-            this.txtProductNumber2 = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl27 = new DevExpress.XtraEditors.LabelControl();
-            this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
+            this.txtShelfLife = new DevExpress.XtraEditors.CalcEdit();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtProductNumber2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtProductNumber1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtWidth.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLength.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHeight.Properties)).BeginInit();
@@ -102,10 +105,41 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtSpec.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtProductChName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtShelfLife.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtProductNumber1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtProductNumber2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
             this.SuspendLayout();
+            // 
+            // dxValidationProvider1
+            // 
+            this.dxValidationProvider1.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.Manual;
+            // 
+            // txtProductNumber2
+            // 
+            this.txtProductNumber2.Location = new System.Drawing.Point(422, 70);
+            this.txtProductNumber2.Name = "txtProductNumber2";
+            this.txtProductNumber2.Size = new System.Drawing.Size(170, 21);
+            this.txtProductNumber2.TabIndex = 40;
+            // 
+            // labelControl27
+            // 
+            this.labelControl27.Location = new System.Drawing.Point(368, 73);
+            this.labelControl27.Name = "labelControl27";
+            this.labelControl27.Size = new System.Drawing.Size(43, 14);
+            this.labelControl27.TabIndex = 39;
+            this.labelControl27.Text = "品号2：";
+            // 
+            // txtProductNumber1
+            // 
+            this.txtProductNumber1.Location = new System.Drawing.Point(108, 70);
+            this.txtProductNumber1.Name = "txtProductNumber1";
+            this.txtProductNumber1.Size = new System.Drawing.Size(170, 21);
+            this.txtProductNumber1.TabIndex = 38;
+            // 
+            // labelControl26
+            // 
+            this.labelControl26.Location = new System.Drawing.Point(54, 73);
+            this.labelControl26.Name = "labelControl26";
+            this.labelControl26.Size = new System.Drawing.Size(43, 14);
+            this.labelControl26.TabIndex = 37;
+            this.labelControl26.Text = "品号1：";
             // 
             // labelControl25
             // 
@@ -227,14 +261,6 @@
             this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
-            // gridColumn2
-            // 
-            this.gridColumn2.Caption = "货币类型";
-            this.gridColumn2.FieldName = "CurrencyName";
-            this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 0;
-            // 
             // labelControl21
             // 
             this.labelControl21.Location = new System.Drawing.Point(598, 236);
@@ -354,14 +380,6 @@
             this.gridLookUpEdit1View.Name = "gridLookUpEdit1View";
             this.gridLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridLookUpEdit1View.OptionsView.ShowGroupPanel = false;
-            // 
-            // gridColumn1
-            // 
-            this.gridColumn1.Caption = "商品类型";
-            this.gridColumn1.FieldName = "Name";
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 0;
             // 
             // btnCancel
             // 
@@ -567,45 +585,27 @@
             this.txtShelfLife.Location = new System.Drawing.Point(422, 155);
             this.txtShelfLife.Name = "txtShelfLife";
             this.txtShelfLife.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.txtShelfLife.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.txtShelfLife.Properties.Mask.EditMask = "n0";
+            this.txtShelfLife.Properties.ShowCloseButton = true;
             this.txtShelfLife.Size = new System.Drawing.Size(170, 21);
             this.txtShelfLife.TabIndex = 3;
             // 
-            // txtProductNumber1
+            // gridColumn2
             // 
-            this.txtProductNumber1.Location = new System.Drawing.Point(108, 70);
-            this.txtProductNumber1.Name = "txtProductNumber1";
-            this.txtProductNumber1.Size = new System.Drawing.Size(170, 21);
-            this.txtProductNumber1.TabIndex = 38;
+            this.gridColumn2.Caption = "货币类型";
+            this.gridColumn2.FieldName = "CurrencyName";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 0;
             // 
-            // labelControl26
+            // gridColumn1
             // 
-            this.labelControl26.Location = new System.Drawing.Point(54, 73);
-            this.labelControl26.Name = "labelControl26";
-            this.labelControl26.Size = new System.Drawing.Size(43, 14);
-            this.labelControl26.TabIndex = 37;
-            this.labelControl26.Text = "品号1：";
-            // 
-            // txtProductNumber2
-            // 
-            this.txtProductNumber2.Location = new System.Drawing.Point(422, 70);
-            this.txtProductNumber2.Name = "txtProductNumber2";
-            this.txtProductNumber2.Size = new System.Drawing.Size(170, 21);
-            this.txtProductNumber2.TabIndex = 40;
-            // 
-            // labelControl27
-            // 
-            this.labelControl27.Location = new System.Drawing.Point(368, 73);
-            this.labelControl27.Name = "labelControl27";
-            this.labelControl27.Size = new System.Drawing.Size(43, 14);
-            this.labelControl27.TabIndex = 39;
-            this.labelControl27.Text = "品号2：";
-            // 
-            // dxValidationProvider1
-            // 
-            this.dxValidationProvider1.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.Manual;
+            this.gridColumn1.Caption = "商品类型";
+            this.gridColumn1.FieldName = "Name";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 0;
             // 
             // EditProduct
             // 
@@ -661,6 +661,9 @@
             this.Controls.Add(this.txtShelfLife);
             this.Name = "EditProduct";
             this.Text = "EditProduct";
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtProductNumber2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtProductNumber1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtWidth.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLength.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHeight.Properties)).EndInit();
@@ -679,9 +682,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtSpec.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtProductChName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtShelfLife.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtProductNumber1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtProductNumber2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -714,7 +714,6 @@
         private DevExpress.XtraEditors.GridLookUpEdit ddlProductType;
         private DevExpress.XtraGrid.Views.Grid.GridView gridLookUpEdit1View;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
-        private DevExpress.XtraEditors.SpinEdit txtShelfLife;
         private DevExpress.XtraEditors.LabelControl labelControl17;
         private DevExpress.XtraEditors.LabelControl labelControl18;
         private DevExpress.XtraEditors.SpinEdit txtPreWorningDays;
@@ -741,5 +740,6 @@
         private DevExpress.XtraEditors.TextEdit txtProductNumber2;
         private DevExpress.XtraEditors.LabelControl labelControl27;
         private DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider dxValidationProvider1;
+        private DevExpress.XtraEditors.CalcEdit txtShelfLife;
     }
 }

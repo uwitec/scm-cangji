@@ -12,81 +12,62 @@ using System.Dynamic;
 
 namespace SCM_CangJi.InputOrderManage
 {
-    public partial class PrintCurrentProductOrder : DevExpress.XtraEditors.XtraForm
+    public partial class PrintCurrentProductOrder :FormBase
     {
         private dynamic orderDetail=new ExpandoObject();
         bool _printImmediately = false;
         PrintSettingController print = null;
-        List<int> _orderDetailIds = null;
         int _orderId;
-        public PrintCurrentProductOrder(int orderId,bool printImmediately)
+        private bool _canConfirmInput=false;
+        private bool hasInputted = false;
+        public PrintCurrentProductOrder(int orderId, bool printImmediately)
+                      : base()
         {
             _printImmediately = printImmediately;
             _orderId = orderId;
             InitializeComponent();
             print = new PrintSettingController(this.gridControl1, "现品票");
             print.PrintHeader = "现品票";
-            print.OnPrinted += () => { hasPrinted = true; };
+            print.OnPrinted += new Action(print_OnPrinted);
             InitData();
         }
+
+        public PrintCurrentProductOrder(int orderId, bool printImmediately, bool canConfirmInput):this(orderId,printImmediately)
+        {
+            this._canConfirmInput = canConfirmInput;
+        }
+     
+        void print_OnPrinted()
+        {
+            if (_canConfirmInput)
+            {
+                if (!hasInputted)
+                {
+                    if (BLL.Services.InputOrderService.Instance.ConfirmInputOrder(_orderId))
+                    {
+                        hasInputted = true;
+                        ShowMessage("入库成功！");
+                    }
+                    else
+                    {
+                        ShowMessage("入库失败！");
+                        return;
+                    }
+                }
+            }
+            else
+            {
+                BLL.Services.InputOrderService.Instance.UpdateStatus(_orderId, Lib.InputStatus.已分配库位);
+            }
+            DialogResult = System.Windows.Forms.DialogResult.OK;
+        }
         
-        bool hasPrinted = false;
-        int i = 0;
-            
-        //private void PrintPreview()
-        //{
-        //    foreach (var orderDetailIds in _orderDetailIds)
-        //    {
-
-        //        orderDetail = BLL.Services.InputOrderService.Instance.GetInputOrderDetailsFullInfo(orderDetailIds);
-        //        InitData();
-        //        int k = 0;
-        //        while (!hasPrinted)
-        //        {
-        //            if (k == 0)
-        //                print.Preview();
-        //            k++;
-
-        //        }
-        //        if (i > 0)
-        //        {
-        //            print.Print();
-        //        }
-        //        i++;
-        //    }
-
-        //}
-        //private void Print()
-        //{
-        //    foreach (var orderDetailIds in _orderDetailIds)
-        //    {
-        //        orderDetail = BLL.Services.InputOrderService.Instance.GetInputOrderDetailFullInfo(orderDetailIds);
-        //        InitData();
-        //        print.Print();
-        //    }
-          
-        //}
         private void InitData()
         {
            gridControl1.DataSource=  BLL.Services.InputOrderService.Instance.GetInputOrderDetailsFullInfo(_orderId);
-
-            //txtArea.EditValue = orderDetail.AreaNumber;
-            //txtBarCode.EditValue = orderDetail.BarCode;
-            //txtCompayName.EditValue = orderDetail.CompanyName;
-            //txtCount.EditValue=orderDetail.InputCount;
-            //txtCurrentProductNumber.EditValue=orderDetail.CurrentProductNumber;
-            //txtInputOrderNumber.EditValue = orderDetail.InputOrderNumber;
-            //txtLotsNumber.EditValue = orderDetail.LotsNumber;
-            //txtProductEngName.EditValue = orderDetail.ProductEngName;
-            //txtProductNmber1.EditValue = orderDetail.ProductNumber1;
-            //txtProductNumber2.EditValue = orderDetail.ProductNumber2;
-            //txtProductZhName.EditValue = orderDetail.ProductChName;
-            //txtWareHouseName.EditValue = orderDetail.WareHouseName;
         }
 
-        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-        }
+       
         private void PrintCurrentProductOrder_Load(object sender, EventArgs e)
         {
             if (_printImmediately)
@@ -97,13 +78,17 @@ namespace SCM_CangJi.InputOrderManage
             {
                 print.Preview();
             }
+           
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            print.Print();
+            print.Preview();
+        }
 
-
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
        

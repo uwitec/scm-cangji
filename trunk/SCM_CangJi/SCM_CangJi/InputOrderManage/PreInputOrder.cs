@@ -24,6 +24,7 @@ namespace SCM_CangJi.InputOrderManage
         private int _orderId = 0;
         private InputOrder order = null;
         private int _companyId = 0;
+        bool HasValidateDetailData = true;
         public int CompanyId
         {
             set
@@ -386,6 +387,12 @@ namespace SCM_CangJi.InputOrderManage
 
         private void btnPreComplete_Click(object sender, EventArgs e)
         {
+            if (!HasValidateDetailData)
+            {
+                ShowWarning("生产批号不能为空！");
+
+                return;
+            }
             if (!this.Updated)
             {
                 ShowWarning("还未保存！请先保存后在完成预入库！");
@@ -400,10 +407,25 @@ namespace SCM_CangJi.InputOrderManage
                 this.order.Status = InputStatus.待分配库位.ToString();
                 InputOrderService.Instance.Update(order);
                 DialogResult = System.Windows.Forms.DialogResult.OK;
+                ShowMessage("完成预入库！");
                 this.Close();
             }
         }
+        private void gridViewInputOrderDetails_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
 
+            if (e.Column.FieldName == "LotsNumber")
+            {
+                HasValidateDetailData = true;
+
+                if (string.IsNullOrWhiteSpace(e.CellValue.ToString()))
+                {
+                    e.Appearance.BackColor = Color.Red;
+                    HasValidateDetailData = false;
+                }
+            }
+        }
+        
         private void ddlCompanies_EditValueChanged(object sender, EventArgs e)
         {
             _companyId = int.Parse(ddlCompanies.EditValue.ToString());

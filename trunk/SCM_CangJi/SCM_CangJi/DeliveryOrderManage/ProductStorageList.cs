@@ -38,12 +38,21 @@ namespace SCM_CangJi.DeliveryOrderManage
 
         protected override void DoWork(object sender, DoWorkEventArgs e)
         {
-            gridControlProductStorages.DataSource = ProductStorageService.Instance.GetCurrentStorages();
+            InitGrid();
             base.DoWork(sender, e);
+        }
+
+        private void InitGrid()
+        {
+            gridControlProductStorages.DataSource = ProductStorageService.Instance.GetCurrentStorages();
         }
         private void ProductStorageList_Load(object sender, EventArgs e)
         {
-           
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            InitGrid();
         }
     }
 }

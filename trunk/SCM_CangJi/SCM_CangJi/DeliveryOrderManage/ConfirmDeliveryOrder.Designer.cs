@@ -43,6 +43,7 @@
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.btnRefresh = new DevExpress.XtraEditors.SimpleButton();
             this.btnConfirm = new DevExpress.XtraEditors.SimpleButton();
+            this.btnBack = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewOrderDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDeliveryOrders)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDeliveryOrders)).BeginInit();
@@ -153,6 +154,7 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.btnBack);
             this.panelControl1.Controls.Add(this.btnRefresh);
             this.panelControl1.Controls.Add(this.btnConfirm);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -163,7 +165,7 @@
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(146, 24);
+            this.btnRefresh.Location = new System.Drawing.Point(238, 24);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(75, 23);
             this.btnRefresh.TabIndex = 0;
@@ -178,6 +180,15 @@
             this.btnConfirm.TabIndex = 0;
             this.btnConfirm.Text = "确认出库";
             this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
+            // 
+            // btnBack
+            // 
+            this.btnBack.Location = new System.Drawing.Point(146, 24);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(75, 23);
+            this.btnBack.TabIndex = 1;
+            this.btnBack.Text = "退回修改";
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // ConfirmDeliveryOrder
             // 
@@ -214,5 +225,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridInvoice;
         private DevExpress.XtraGrid.Columns.GridColumn gridStatus;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraEditors.SimpleButton btnBack;
     }
 }

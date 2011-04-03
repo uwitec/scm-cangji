@@ -429,6 +429,7 @@ namespace SCM_CangJi.DeliveryOrderManage
                 this.order.Status = DeliveryStatus.待分配库存.ToString();
                 DeliveryOrderService.Instance.Update(order);
                 DialogResult = System.Windows.Forms.DialogResult.OK;
+                ShowMessage("预出库完成！");
                 this.Close();
             }
         }
