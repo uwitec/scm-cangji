@@ -138,7 +138,10 @@ namespace SCM_CangJi
         {
             this.SetFocus(InputOrderManage.AssignedAreaList.Instance);
         }
-
+        private void IntoWareHouseConfirm_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            this.SetFocus(InputOrderManage.ConfirmInputOrder.Instance);
+        }
        
         #endregion
 
@@ -202,6 +205,8 @@ namespace SCM_CangJi
             }
         } 
         #endregion
+
+       
 
        
 

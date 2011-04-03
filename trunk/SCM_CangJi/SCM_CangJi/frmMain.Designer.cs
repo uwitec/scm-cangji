@@ -449,6 +449,7 @@
             // 
             this.IntoWareHouseConfirm.Caption = "入库确认";
             this.IntoWareHouseConfirm.Name = "IntoWareHouseConfirm";
+            this.IntoWareHouseConfirm.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.IntoWareHouseConfirm_LinkClicked);
             // 
             // PreOutWoreHouse
             // 
