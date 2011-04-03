@@ -72,11 +72,26 @@ namespace SCM_CangJi.BLL.Services
                                             生产日期 = c.ProductDate,
                                             入库发票号 = c.InputInvoice,
                                             批号 = c.LotsNumber,
+                                            库位=GetArea(db,c.StorageAreaId)
                                         }).ToList(),
                           }).ToList();
             });
             return reslut;
         }
+
+        private string GetArea(CangJiDataDataContext db, int? StorageAreaId)
+        {
+            if (!StorageAreaId.HasValue)
+                return "未分配";
+            string result = null;
+
+            var ps = db.StorageAreas.SingleOrDefault(o => o.Id == StorageAreaId);
+
+            result = ps.StorageRack.Storage.仓库名称 + "--" + ps.库位编号;
+            return result;
+        }
+
+       
         public DataTable GetDeliveryOrderDetailsDataTable(int orderId)
         {
             DataTable reslut = null;
@@ -265,7 +280,7 @@ namespace SCM_CangJi.BLL.Services
             DataTable dt = null;
             Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
             {
-                dt = db.AssignedDeliveryOrderDetails.Where(o => o.DeliveryOrderId == orderId).ToDataTable(db);
+                dt = db.VewAssingedDeliveryOrderDetails.Where(o => o.DeliveryOrderId == orderId).ToDataTable(db);
             });
             return dt;
         }
@@ -304,16 +319,41 @@ namespace SCM_CangJi.BLL.Services
                 db.SubmitChanges();
             });
         }
-        public void ResumeUseableStorage(int orderId)
-        {
-
-        }
         public void UpdateStatus(int orderId, DeliveryStatus deliveryStatus)
         {
             Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
             {
                 var or = db.DeliveryOrders.SingleOrDefault(o => o.Id == orderId);
                 or.Status = deliveryStatus.ToString();
+                db.SubmitChanges();
+            });
+        }
+
+        public void ConfirmOutput(int orderId)
+        {
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            {
+                var or = db.DeliveryOrders.SingleOrDefault(o => o.Id == orderId);
+                or.Status =DeliveryStatus.已发货.ToString();
+                foreach (var item in or.AssignedDeliveryOrderDetails)
+                {
+                    item.ProductStorage.CurrentCount = item.ProductStorage.UsableCount;
+                }
+                db.SubmitChanges();
+            });
+        }
+
+        public void CancelAssigedDetails(int orderId)
+        {
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            {
+                var or = db.DeliveryOrders.SingleOrDefault(o => o.Id == orderId);
+                or.Status = DeliveryStatus.待分配库存.ToString();
+                foreach (var item in or.AssignedDeliveryOrderDetails)
+                {
+                    item.ProductStorage.UsableCount += item.AssignCount;
+                }
+                db.AssignedDeliveryOrderDetails.DeleteAllOnSubmit(or.AssignedDeliveryOrderDetails);
                 db.SubmitChanges();
             });
         }

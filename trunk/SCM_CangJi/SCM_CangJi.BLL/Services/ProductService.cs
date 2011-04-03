@@ -27,7 +27,7 @@ namespace SCM_CangJi.BLL.Services
                               p.Height,
                               p.Length,
                               p.PreWorningDays,
-                              ProductChName = string.Format("({0}){1}", p.ProductNumber1, p.ProductChName),
+                              ProductChName = p.ProductChName,
                               p.ProductEngName,
                               p.ProductNumber1,
                               p.ProductNumber2,

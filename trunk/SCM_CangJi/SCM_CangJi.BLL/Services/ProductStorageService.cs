@@ -64,7 +64,7 @@ namespace SCM_CangJi.BLL.Services
                             ProductDate = detail.ProductDate,
                             ProductId = detail.ProductId,
                             ProductStorageId = 0,
-                            StorageArea = "无",
+                            //StorageAreaId = "无",
                             CurrentProductNumber = "",
                             IsSucess=false
                         });
@@ -96,7 +96,7 @@ namespace SCM_CangJi.BLL.Services
                 if (remainAssignCount > 0)
                 {
                     //该条可用库存数量足够
-                    if (item.UsableCount - hasAssignedCount >= remainAssignCount)
+                    if (item.UsableCount  >= remainAssignCount)
                     {
                         result.Add(new AssignedDeliveryOrderDetail()
                         {
@@ -104,11 +104,11 @@ namespace SCM_CangJi.BLL.Services
                             DeliveryOrderId = detail.DeliveryOrderId,
                             DeliveryCount = detail.DeliveryCount,
                             InputInvoice = detail.InputInvoice,
-                            LotsNumber = detail.LotsNumber,
-                            ProductDate = detail.ProductDate,
+                            LotsNumber = item.LotsNumber,
+                            ProductDate = item.ProductDate,
                             ProductId = detail.ProductId,
                             ProductStorageId = item.Id,
-                            StorageArea=item.AreaId.ToString(),
+                            StorageAreaId=item.AreaId,
                             CurrentProductNumber=item.CurrentProductNumber
                         });
                         hasAssignedCount += remainAssignCount;
@@ -124,15 +124,15 @@ namespace SCM_CangJi.BLL.Services
                              DeliveryOrderId=detail.DeliveryOrderId,
                              DeliveryCount=detail.DeliveryCount,
                              InputInvoice=detail.InputInvoice,
-                             LotsNumber=detail.LotsNumber,
-                             ProductDate=detail.ProductDate,
+                             LotsNumber = item.LotsNumber,
+                             ProductDate = item.ProductDate,
                              ProductId=detail.ProductId,
                              ProductStorageId=item.Id,
-                             StorageArea=item.AreaId.ToString(),
+                             StorageAreaId=item.AreaId,
                             CurrentProductNumber=item.CurrentProductNumber
                         });
-                        perhasAssignedCount += (item.UsableCount - hasAssignedCount);
-                        hasAssignedCount += (item.UsableCount - hasAssignedCount);
+                        perhasAssignedCount += (item.UsableCount );
+                        hasAssignedCount += (item.UsableCount );
                         continue;
                     }
                 }
@@ -156,19 +156,33 @@ namespace SCM_CangJi.BLL.Services
             object result = null;
             Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
             {
-                result = (from c in db.View_ProductStorages
-                          orderby c.EntryDate ascending
+                result = (from ps in db.ProductStorages
+                          orderby ps.EntryDate ascending
                           select new
                           {
-                              公司名 = c.CompanyName,
-                              品名 = c.ProductChName,
-                              品号 = c.ProductNumber1,
-                              条形码 = c.BarCode,
-                              现品号 = c.CurrentProductNumber,
-                              当前库存数 = c.CurrentCount,
-                              实际可用数量 = c.UsableCount,
-                              库位=c.AreaId
+                              公司名 = ps.Company.CompanyName,
+                              品名 = ps.Product.ProductChName,
+                              品号 = ps.Product.ProductNumber1,
+                              条形码 = ps.Product.BarCode,
+                              现品号 = ps.CurrentProductNumber,
+                              当前库存数 = ps.CurrentCount,
+                              实际可用数量 = ps.UsableCount,
+                              库位 = ps.StorageArea.StorageRack.Storage.仓库名称 + "--" + ps.StorageArea.库位编号
                           }).ToList();
+            });
+            return result;
+        }
+
+        public string GetArea(int? areaId)
+        {
+            if (!areaId.HasValue)
+                return "未分配";
+            string result = null;
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            {
+                var ps = db.StorageAreas.SingleOrDefault(o => o.Id == areaId);
+
+                result = ps.StorageRack.Storage.仓库名称 + "--" + ps.库位编号;
             });
             return result;
         }

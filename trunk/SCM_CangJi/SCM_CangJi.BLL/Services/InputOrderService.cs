@@ -284,7 +284,6 @@ namespace SCM_CangJi.BLL.Services
                 db.SubmitChanges();
             });
         }
-
         public object GetInputOrdersFull(InputStatus inputStatus)
         {
             object reslut = null;
@@ -326,6 +325,48 @@ namespace SCM_CangJi.BLL.Services
             return area.库位编号;
         }
 
-       
+
+
+        public bool ConfirmInputOrder(int orderId)
+        {
+            bool result=false;
+            try
+            {
+                Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+                {
+                    var inputorder = db.InputOrders.SingleOrDefault(o => o.ID == orderId);
+                    inputorder.Status = Lib.InputStatus.已入库.ToString();
+                    inputorder.EnterDate=DateTime.Now;
+                    inputorder.EnterConfirmUser=Security.SecurityContext.Current.CurrentyUser.UserName;
+                    foreach (var inputDetail in inputorder.InputOrderDetails)
+                    {
+                        ProductStorage ps = new ProductStorage();
+                        ps.AreaId = inputDetail.StorageAreaId.Value;
+                        ps.CompanyId = inputDetail.CompanyId;
+                        ps.CurrentCount = inputDetail.InputCount;
+                        ps.CurrentProductNumber = inputDetail.CurrentProductNumber;
+                        ps.EntryDate = inputorder.EnterDate.Value;
+                        ps.EntryUser = Security.SecurityContext.Current.CurrentyUser.UserName;
+                        ps.InputDetailId = inputDetail.ID;
+                        ps.LotsNumber = inputDetail.LotsNumber;
+                        ps.OriginalCount = inputDetail.InputCount;
+                        ps.ProductId = inputDetail.ProductId;
+                        if (inputDetail.ProductDate.HasValue)
+                            ps.ProductDate = inputDetail.ProductDate.Value;
+                        ps.UpdateDate =DateTime.Now;
+                        ps.UpdateUser = Security.SecurityContext.Current.CurrentyUser.UserName;
+                        ps.UsableCount = inputDetail.InputCount;
+                        db.ProductStorages.InsertOnSubmit(ps);
+                    }
+
+                    db.SubmitChanges();
+                    result=true;
+                });
+            }
+            catch
+            {
+            }
+            return result;
+        }
     }
 }
