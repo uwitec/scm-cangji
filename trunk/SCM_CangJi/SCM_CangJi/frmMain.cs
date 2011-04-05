@@ -14,12 +14,16 @@ using DevExpress.XtraTab.ViewInfo;
 using SCM_CangJi.Account;
 using SCM_CangJi.CustomerManage;
 using SCM_CangJi.DeliveryOrderManage;
+using SCM_CangJi.WareHouseManage;
 namespace SCM_CangJi
 {
     public partial class frmMain : XtraForm
     {
         private void SetFocus(FormBase form)
         {
+            #region meicunzhi
+            StoragePanel.Visible = false;
+            #endregion
             form.MdiParent = this;
             form.Show();
             if (form.CanFocus && !form.Focused)
@@ -173,6 +177,33 @@ namespace SCM_CangJi
 
         } 
         #endregion
+
+        #region meicunzhi 仓库
+        private void WareHouseInfo_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            //XtraMessageBox.Show("left=" + this.Left.ToString() + "Top=" + this.Top.ToString() + "Height=" + this.Height.ToString() + "w=" + this.Width.ToString());
+            if (StoragePanel.Visible == false)
+            {
+                StorageView.TopLevel = false;
+                StorageView.SetWindowsPos(this.splitterControl1.Left, 1, (this.Width - this.splitterControl1.Left), this.splitterControl1.Height);
+
+                StoragePanel.Dock = DockStyle.Fill;
+                StoragePanel.Visible = true;
+                StoragePanel.Controls.Add(StorageView);
+                this.Controls.Add(StoragePanel);
+            }
+
+        }
+        #endregion
+        #endregion
+        #region meicunzhi
+        private void OnResize(object sender, EventArgs e)
+        {
+            if (StoragePanel.Visible == true)
+            {
+                StorageView.SetWindowsPos(this.splitterControl1.Left, 1, (this.Width - this.splitterControl1.Left), this.splitterControl1.Height);
+            }
+        }
         #endregion
 
 

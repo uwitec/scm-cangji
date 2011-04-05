@@ -25,10 +25,12 @@ namespace SCM_CangJi.Lib
        已出库,
        已发货,
        已送达,
-       作废
+       作废,
+       all
    }
    public enum InputStatus
    {
+       all,
        待入库,
        待分配库位,
        已分配库位,

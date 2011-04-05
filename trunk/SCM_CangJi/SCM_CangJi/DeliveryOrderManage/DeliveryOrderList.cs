@@ -49,7 +49,7 @@ namespace SCM_CangJi.DeliveryOrderManage
 
         public void InitGrid()
         {
-            gridControlDeliveryOrders.DataSource = DeliveryOrderService.Instance.GetDeliveryOrders(Lib.DeliveryStatus.待出库);
+            gridControlDeliveryOrders.DataSource = DeliveryOrderService.Instance.GetDeliveryOrders(Lib.DeliveryStatus.all);
         }
 
         private void gridControlDeliveryOrders_DoubleClick(object sender, EventArgs e)

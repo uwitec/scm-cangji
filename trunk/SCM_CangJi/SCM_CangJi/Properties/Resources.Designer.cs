@@ -66,5 +66,12 @@ namespace SCM_CangJi.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        internal static System.Drawing.Bitmap OFFICE2007BLUEBUTTON {
+            get {
+                object obj = ResourceManager.GetObject("OFFICE2007BLUEBUTTON", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

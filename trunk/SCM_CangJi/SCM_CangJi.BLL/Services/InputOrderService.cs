@@ -16,7 +16,7 @@ namespace SCM_CangJi.BLL.Services
             object reslut = null;
             Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
             {
-                reslut = (from o in db.InputOrders.Where(o => o.Status == status.ToString())
+                reslut = (from o in db.InputOrders.Where(o => status==InputStatus.all|| o.Status == status.ToString())
                           select new
                           {
                               o.Company.CompanyName,

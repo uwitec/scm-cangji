@@ -49,7 +49,7 @@ namespace SCM_CangJi.InputOrderManage
 
         public void InitGrid()
         {
-            gridControlInputOrders.DataSource = InputOrderService.Instance.GetInputOrders(Lib.InputStatus.待入库);
+            gridControlInputOrders.DataSource = InputOrderService.Instance.GetInputOrders(Lib.InputStatus.all);
         }
 
         private void gridControlInputOrders_DoubleClick(object sender, EventArgs e)

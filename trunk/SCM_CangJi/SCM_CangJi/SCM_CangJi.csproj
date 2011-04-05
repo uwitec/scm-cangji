@@ -14,6 +14,22 @@
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -35,52 +51,72 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>false</SignManifests>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <TargetZone>Internet</TargetZone>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>false</GenerateManifests>
+    <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>06EEBA493D962FFB972E7E51C12C0BDEE4147BB4</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>SCM_CangJi_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.BonusSkins.v10.1, Version=10.1.6.0, Culture=neutral, PublicKeyToken=95fc6c5621878f0a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\dll\expressApp\DevExpress.BonusSkins.v10.1.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.Data.v10.1, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\dll\expressApp\DevExpress.Data.v10.1.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.OfficeSkins.v10.1, Version=10.1.6.0, Culture=neutral, PublicKeyToken=95fc6c5621878f0a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\dll\expressApp\DevExpress.OfficeSkins.v10.1.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.Utils.v10.1, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\dll\expressApp\DevExpress.Utils.v10.1.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.XtraBars.v10.1, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\dll\expressApp\DevExpress.XtraBars.v10.1.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.XtraEditors.v10.1, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\dll\expressApp\DevExpress.XtraEditors.v10.1.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.XtraGrid.v10.1, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\dll\expressApp\DevExpress.XtraGrid.v10.1.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.XtraLayout.v10.1, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\dll\expressApp\DevExpress.XtraLayout.v10.1.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraNavBar.v10.1, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraPrinting.v10.1, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraNavBar.v10.1, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraPrinting.v10.1, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -335,6 +371,77 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WareHouseManage\ButtonEx.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WareHouseManage\ButtonEx.Designer.cs">
+      <DependentUpon>ButtonEx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WareHouseManage\DrawLayer.cs" />
+    <Compile Include="WareHouseManage\EditRackArea.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WareHouseManage\EditRackArea.Designer.cs">
+      <DependentUpon>EditRackArea.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WareHouseManage\EditRackType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WareHouseManage\EditRackType.Designer.cs">
+      <DependentUpon>EditRackType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WareHouseManage\EditStorage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WareHouseManage\EditStorage.Designer.cs">
+      <DependentUpon>EditStorage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WareHouseManage\EditStorageRack.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WareHouseManage\EditStorageRack.Designer.cs">
+      <DependentUpon>EditStorageRack.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WareHouseManage\EditStorageRackArea.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WareHouseManage\EditStorageRackArea.Designer.cs">
+      <DependentUpon>EditStorageRackArea.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WareHouseManage\NavigationButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WareHouseManage\NavigationButton.Designer.cs">
+      <DependentUpon>NavigationButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WareHouseManage\NavigationRackButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WareHouseManage\NavigationRackButton.Designer.cs">
+      <DependentUpon>NavigationRackButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WareHouseManage\StorageDataView.cs" />
+    <Compile Include="WareHouseManage\StorageManageView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WareHouseManage\StorageManageView.Designer.cs">
+      <DependentUpon>StorageManageView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WareHouseManage\StorageRackManage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WareHouseManage\StorageRackManage.Designer.cs">
+      <DependentUpon>StorageRackManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WareHouseManage\TabFrameEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WareHouseManage\TabStorageManage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WareHouseManage\TabStorageRack.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <EmbeddedResource Include="About.resx">
       <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>
@@ -450,6 +557,36 @@
     <EmbeddedResource Include="StartPage.resx">
       <DependentUpon>StartPage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="WareHouseManage\ButtonEx.resx">
+      <DependentUpon>ButtonEx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WareHouseManage\EditRackArea.resx">
+      <DependentUpon>EditRackArea.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WareHouseManage\EditRackType.resx">
+      <DependentUpon>EditRackType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WareHouseManage\EditStorage.resx">
+      <DependentUpon>EditStorage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WareHouseManage\EditStorageRack.resx">
+      <DependentUpon>EditStorageRack.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WareHouseManage\EditStorageRackArea.resx">
+      <DependentUpon>EditStorageRackArea.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WareHouseManage\NavigationButton.resx">
+      <DependentUpon>NavigationButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WareHouseManage\StorageManageView.resx">
+      <DependentUpon>StorageManageView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WareHouseManage\StorageRackManage.resx">
+      <DependentUpon>StorageRackManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WareHouseManage\TabStorageManage.resx">
+      <DependentUpon>TabStorageManage.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
@@ -464,6 +601,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="SCM_CangJi_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SCM_CangJi.BLL\SCM_CangJi.BLL.csproj">
@@ -482,7 +620,31 @@
   <ItemGroup>
     <None Include="Resources\loading.gif" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Resources\Office2007_BlueButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

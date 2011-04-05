@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseService.cs" />
+    <Compile Include="DataBaseConnection.cs" />
     <Compile Include="DataHandler.cs" />
     <Compile Include="DeliveryOrderAndDetails.cs" />
     <Compile Include="Extentions.cs" />

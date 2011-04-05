@@ -2,6 +2,11 @@
 {
     partial class frmMain
     {
+        #region meicunzhi
+        private System.Windows.Forms.Panel StoragePanel;
+        private SCM_CangJi.WareHouseManage.StorageManageView StorageView;
+        #endregion
+
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -94,10 +99,17 @@
             this.splitterControl1 = new DevExpress.XtraEditors.SplitterControl();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.imageList3 = new System.Windows.Forms.ImageList(this.components);
+            this.StoragePanel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.MDIManage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             this.SuspendLayout();
+
+            #region meicunzhi
+            StoragePanel = new System.Windows.Forms.Panel();
+            StoragePanel.Visible = false;
+            StorageView = new SCM_CangJi.WareHouseManage.StorageManageView(StoragePanel);
+            #endregion
             // 
             // MDIManage
             // 
@@ -549,6 +561,7 @@
             // 
             this.WareHouseInfo.Caption = "仓库";
             this.WareHouseInfo.Name = "WareHouseInfo";
+            this.WareHouseInfo.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.WareHouseInfo_LinkClicked);
             // 
             // BaseInfo
             // 
@@ -658,6 +671,27 @@
             ((System.ComponentModel.ISupportInitialize)(this.MDIManage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
+            // 
+            // StoragePanel
+            // 
+            this.StoragePanel.Location = new System.Drawing.Point(0, 0);
+            this.StoragePanel.Name = "StoragePanel";
+            this.StoragePanel.Size = new System.Drawing.Size(200, 100);
+            this.StoragePanel.TabIndex = 0;
+            this.StoragePanel.Visible = false;
+            // 
+            // StorageView
+            // 
+            this.StorageView.AutoSize = true;
+            this.StorageView.ClientSize = new System.Drawing.Size(332, 55);
+            this.StorageView.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.StorageView.Location = new System.Drawing.Point(0, 150);
+            this.StorageView.MaximizeBox = false;
+            this.StorageView.MinimizeBox = false;
+            this.StorageView.Name = "StorageView";
+            this.StorageView.Text = "StorageManageView";
+            this.StorageView.Visible = false;
+            // 
             this.ResumeLayout(false);
 
         }

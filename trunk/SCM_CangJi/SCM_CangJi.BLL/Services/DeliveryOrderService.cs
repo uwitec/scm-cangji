@@ -16,7 +16,7 @@ namespace SCM_CangJi.BLL.Services
             object reslut = null;
             Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
             {
-                reslut = (from o in db.DeliveryOrders.Where(o => o.Status == status.ToString())
+                reslut = (from o in db.DeliveryOrders.Where(o => status==DeliveryStatus.all||o.Status == status.ToString())
                           select new
                           {
                               o.Company.CompanyName,
@@ -27,6 +27,7 @@ namespace SCM_CangJi.BLL.Services
                               o.Invoice,
                               o.PreDeliveryDate,
                               o.ReachedDate,
+                              o.Status
                           }).ToList();
             });
             return reslut;
