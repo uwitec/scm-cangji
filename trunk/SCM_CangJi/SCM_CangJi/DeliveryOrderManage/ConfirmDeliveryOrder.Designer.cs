@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
             this.gridViewOrderDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridControlDeliveryOrders = new DevExpress.XtraGrid.GridControl();
@@ -41,9 +41,9 @@
             this.gridInvoice = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridStatus = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.btnBack = new DevExpress.XtraEditors.SimpleButton();
             this.btnRefresh = new DevExpress.XtraEditors.SimpleButton();
             this.btnConfirm = new DevExpress.XtraEditors.SimpleButton();
-            this.btnBack = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewOrderDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDeliveryOrders)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDeliveryOrders)).BeginInit();
@@ -57,6 +57,7 @@
             this.gridColumn1});
             this.gridViewOrderDetails.GridControl = this.gridControlDeliveryOrders;
             this.gridViewOrderDetails.Name = "gridViewOrderDetails";
+            this.gridViewOrderDetails.OptionsView.EnableAppearanceEvenRow = true;
             // 
             // gridColumn1
             // 
@@ -69,10 +70,10 @@
             // gridControlDeliveryOrders
             // 
             this.gridControlDeliveryOrders.Dock = System.Windows.Forms.DockStyle.Fill;
-            gridLevelNode1.LevelTemplate = this.gridViewOrderDetails;
-            gridLevelNode1.RelationName = "Level1";
+            gridLevelNode2.LevelTemplate = this.gridViewOrderDetails;
+            gridLevelNode2.RelationName = "Level1";
             this.gridControlDeliveryOrders.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode1});
+            gridLevelNode2});
             this.gridControlDeliveryOrders.Location = new System.Drawing.Point(0, 80);
             this.gridControlDeliveryOrders.MainView = this.gridViewDeliveryOrders;
             this.gridControlDeliveryOrders.Name = "gridControlDeliveryOrders";
@@ -95,6 +96,7 @@
             this.gridViewDeliveryOrders.GridControl = this.gridControlDeliveryOrders;
             this.gridViewDeliveryOrders.Name = "gridViewDeliveryOrders";
             this.gridViewDeliveryOrders.OptionsBehavior.Editable = false;
+            this.gridViewDeliveryOrders.OptionsView.EnableAppearanceEvenRow = true;
             // 
             // gcDeliveryOrderNumber
             // 
@@ -163,6 +165,15 @@
             this.panelControl1.Size = new System.Drawing.Size(838, 80);
             this.panelControl1.TabIndex = 1;
             // 
+            // btnBack
+            // 
+            this.btnBack.Location = new System.Drawing.Point(146, 24);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(75, 23);
+            this.btnBack.TabIndex = 1;
+            this.btnBack.Text = "退回修改";
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
             // btnRefresh
             // 
             this.btnRefresh.Location = new System.Drawing.Point(238, 24);
@@ -180,15 +191,6 @@
             this.btnConfirm.TabIndex = 0;
             this.btnConfirm.Text = "确认出库";
             this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
-            // 
-            // btnBack
-            // 
-            this.btnBack.Location = new System.Drawing.Point(146, 24);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(75, 23);
-            this.btnBack.TabIndex = 1;
-            this.btnBack.Text = "退回修改";
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // ConfirmDeliveryOrder
             // 

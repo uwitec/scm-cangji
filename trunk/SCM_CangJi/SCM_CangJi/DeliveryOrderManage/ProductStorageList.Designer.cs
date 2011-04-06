@@ -71,6 +71,7 @@
             // 
             this.gridViewProductStorages.GridControl = this.gridControlProductStorages;
             this.gridViewProductStorages.Name = "gridViewProductStorages";
+            this.gridViewProductStorages.OptionsView.EnableAppearanceEvenRow = true;
             // 
             // ProductStorageList
             // 

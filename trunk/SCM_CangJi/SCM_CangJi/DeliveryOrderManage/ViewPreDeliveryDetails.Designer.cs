@@ -100,6 +100,7 @@
             this.gridViewDeliveryOrderDetails.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.True;
             this.gridViewDeliveryOrderDetails.OptionsBehavior.Editable = false;
             this.gridViewDeliveryOrderDetails.OptionsNavigation.AutoFocusNewRow = true;
+            this.gridViewDeliveryOrderDetails.OptionsView.EnableAppearanceEvenRow = true;
             // 
             // gcProductChName
             // 

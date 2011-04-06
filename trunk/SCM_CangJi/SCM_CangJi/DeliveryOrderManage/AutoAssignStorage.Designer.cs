@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition2 = new DevExpress.XtraGrid.StyleFormatCondition();
+            DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition1 = new DevExpress.XtraGrid.StyleFormatCondition();
             this.gcDeliveryCount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemSpinEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.btnBack = new DevExpress.XtraEditors.SimpleButton();
             this.btnCompleteAssign = new DevExpress.XtraEditors.SimpleButton();
             this.gridControlDeliveryOrerDetails = new DevExpress.XtraGrid.GridControl();
             this.gridViewDeliveryOrderDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -43,7 +44,6 @@
             this.gcInputInvoice = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcLotsNumber = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcProductDate = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.btnBack = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -82,6 +82,15 @@
             this.panelControl1.Size = new System.Drawing.Size(622, 81);
             this.panelControl1.TabIndex = 0;
             // 
+            // btnBack
+            // 
+            this.btnBack.Location = new System.Drawing.Point(146, 30);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(75, 23);
+            this.btnBack.TabIndex = 1;
+            this.btnBack.Text = "退回修改";
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
             // btnCompleteAssign
             // 
             this.btnCompleteAssign.Location = new System.Drawing.Point(49, 30);
@@ -116,12 +125,12 @@
             this.gcInputInvoice,
             this.gcLotsNumber,
             this.gcProductDate});
-            styleFormatCondition2.Column = this.gcDeliveryCount;
-            styleFormatCondition2.Condition = DevExpress.XtraGrid.FormatConditionEnum.Between;
-            styleFormatCondition2.Value1 = "1";
-            styleFormatCondition2.Value2 = "99999999";
+            styleFormatCondition1.Column = this.gcDeliveryCount;
+            styleFormatCondition1.Condition = DevExpress.XtraGrid.FormatConditionEnum.Between;
+            styleFormatCondition1.Value1 = "1";
+            styleFormatCondition1.Value2 = "99999999";
             this.gridViewDeliveryOrderDetails.FormatConditions.AddRange(new DevExpress.XtraGrid.StyleFormatCondition[] {
-            styleFormatCondition2});
+            styleFormatCondition1});
             this.gridViewDeliveryOrderDetails.GridControl = this.gridControlDeliveryOrerDetails;
             this.gridViewDeliveryOrderDetails.Name = "gridViewDeliveryOrderDetails";
             this.gridViewDeliveryOrderDetails.NewItemRowText = "点击添加新行";
@@ -129,6 +138,7 @@
             this.gridViewDeliveryOrderDetails.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.True;
             this.gridViewDeliveryOrderDetails.OptionsBehavior.Editable = false;
             this.gridViewDeliveryOrderDetails.OptionsNavigation.AutoFocusNewRow = true;
+            this.gridViewDeliveryOrderDetails.OptionsView.EnableAppearanceEvenRow = true;
             this.gridViewDeliveryOrderDetails.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridViewDeliveryOrderDetails_RowCellStyle);
             this.gridViewDeliveryOrderDetails.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.gridViewDeliveryOrderDetails_ValidateRow);
             // 
@@ -203,15 +213,6 @@
             this.gcProductDate.Name = "gcProductDate";
             this.gcProductDate.Visible = true;
             this.gcProductDate.VisibleIndex = 7;
-            // 
-            // btnBack
-            // 
-            this.btnBack.Location = new System.Drawing.Point(146, 30);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(75, 23);
-            this.btnBack.TabIndex = 1;
-            this.btnBack.Text = "退回修改";
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // AutoAssignStorage
             // 

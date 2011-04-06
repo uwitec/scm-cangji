@@ -139,7 +139,7 @@
             this.btn.Location = new System.Drawing.Point(194, 132);
             this.btn.Name = "btn";
             this.btn.Size = new System.Drawing.Size(75, 23);
-            this.btn.TabIndex = 6;
+            this.btn.TabIndex = 7;
             this.btn.Text = "完成预出库";
             this.btn.Click += new System.EventHandler(this.btn_Click);
             // 
@@ -148,7 +148,7 @@
             this.btnPreCompletedAndAssign.Location = new System.Drawing.Point(275, 132);
             this.btnPreCompletedAndAssign.Name = "btnPreCompletedAndAssign";
             this.btnPreCompletedAndAssign.Size = new System.Drawing.Size(138, 23);
-            this.btnPreCompletedAndAssign.TabIndex = 5;
+            this.btnPreCompletedAndAssign.TabIndex = 8;
             this.btnPreCompletedAndAssign.Text = "完成预出库并分配库存";
             this.btnPreCompletedAndAssign.Click += new System.EventHandler(this.btnPreCompleted_Click);
             // 
@@ -157,7 +157,7 @@
             this.btnSaveAndClose.Location = new System.Drawing.Point(113, 132);
             this.btnSaveAndClose.Name = "btnSaveAndClose";
             this.btnSaveAndClose.Size = new System.Drawing.Size(75, 23);
-            this.btnSaveAndClose.TabIndex = 5;
+            this.btnSaveAndClose.TabIndex = 6;
             this.btnSaveAndClose.Text = "保存并关闭";
             this.btnSaveAndClose.Click += new System.EventHandler(this.btnSaveAndClose_Click);
             // 
@@ -225,7 +225,7 @@
             this.ddlCompanies.Properties.ValueMember = "Id";
             this.ddlCompanies.Properties.EditValueChanged += new System.EventHandler(this.ddlCompanies_Properties_EditValueChanged);
             this.ddlCompanies.Size = new System.Drawing.Size(146, 21);
-            this.ddlCompanies.TabIndex = 2;
+            this.ddlCompanies.TabIndex = 1;
             conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
             conditionValidationRule3.ErrorText = "不能为空";
             this.dxValidationProvider1.SetValidationRule(this.ddlCompanies, conditionValidationRule3);
@@ -270,7 +270,7 @@
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(60, 14);
             this.labelControl6.TabIndex = 0;
-            this.labelControl6.Text = "送达日期：";
+            this.labelControl6.Text = "出库日期：";
             // 
             // labelControl4
             // 
@@ -330,7 +330,7 @@
             this.btnImport.Location = new System.Drawing.Point(139, 10);
             this.btnImport.Name = "btnImport";
             this.btnImport.Size = new System.Drawing.Size(75, 23);
-            this.btnImport.TabIndex = 5;
+            this.btnImport.TabIndex = 10;
             this.btnImport.Text = "从文件导入";
             this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
@@ -339,7 +339,7 @@
             this.btnAddDetail.Location = new System.Drawing.Point(58, 10);
             this.btnAddDetail.Name = "btnAddDetail";
             this.btnAddDetail.Size = new System.Drawing.Size(75, 23);
-            this.btnAddDetail.TabIndex = 5;
+            this.btnAddDetail.TabIndex = 9;
             this.btnAddDetail.Text = "增加明细";
             this.btnAddDetail.Click += new System.EventHandler(this.btnAddDetail_Click);
             // 
@@ -378,6 +378,7 @@
             this.gridViewDeliveryOrderDetails.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
             this.gridViewDeliveryOrderDetails.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.True;
             this.gridViewDeliveryOrderDetails.OptionsNavigation.AutoFocusNewRow = true;
+            this.gridViewDeliveryOrderDetails.OptionsView.EnableAppearanceEvenRow = true;
             this.gridViewDeliveryOrderDetails.ShowGridMenu += new DevExpress.XtraGrid.Views.Grid.GridMenuEventHandler(this.gridViewDeliveryOrderDetails_ShowGridMenu);
             this.gridViewDeliveryOrderDetails.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gridViewDeliveryOrderDetails_InitNewRow);
             this.gridViewDeliveryOrderDetails.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.gridViewDeliveryOrderDetails_RowUpdated);

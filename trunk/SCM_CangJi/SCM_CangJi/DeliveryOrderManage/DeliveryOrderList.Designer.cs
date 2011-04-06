@@ -99,7 +99,7 @@
             this.gridViewDeliveryOrders.GridControl = this.gridControlDeliveryOrders;
             this.gridViewDeliveryOrders.Name = "gridViewDeliveryOrders";
             this.gridViewDeliveryOrders.OptionsBehavior.Editable = false;
-            
+            this.gridViewDeliveryOrders.OptionsView.EnableAppearanceEvenRow = true;
             this.gridViewDeliveryOrders.ShowGridMenu += new DevExpress.XtraGrid.Views.Grid.GridMenuEventHandler(this.gridViewDeliveryOrders_ShowGridMenu);
             // 
             // gcDeliveryOrderNumber

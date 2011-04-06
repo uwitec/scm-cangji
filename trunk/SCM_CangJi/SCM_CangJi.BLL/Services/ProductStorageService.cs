@@ -167,7 +167,7 @@ namespace SCM_CangJi.BLL.Services
                               现品号 = ps.CurrentProductNumber,
                               当前库存数 = ps.CurrentCount,
                               实际可用数量 = ps.UsableCount,
-                              库位 = ps.StorageArea.StorageRack.Storage.仓库名称 + "--" + ps.StorageArea.库位编号
+                              库位 = ps.StorageArea.StorageRack.Storage.仓库名称 + "--" + ps.StorageArea.StorageRack.RackName + "--" + ps.StorageArea.库位编号
                           }).ToList();
             });
             return result;
@@ -182,7 +182,7 @@ namespace SCM_CangJi.BLL.Services
             {
                 var ps = db.StorageAreas.SingleOrDefault(o => o.Id == areaId);
 
-                result = ps.StorageRack.Storage.仓库名称 + "--" + ps.库位编号;
+                result = ps.StorageRack.Storage.仓库名称 + "--" + ps.StorageRack.RackName + "--" + ps.库位编号;
             });
             return result;
         }

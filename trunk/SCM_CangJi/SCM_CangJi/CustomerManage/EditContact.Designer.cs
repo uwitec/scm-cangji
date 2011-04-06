@@ -34,10 +34,10 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.txtName = new DevExpress.XtraEditors.TextEdit();
             this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
+            this.txtPhone1 = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.ddlGender = new DevExpress.XtraEditors.ComboBoxEdit();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.txtPhone1 = new DevExpress.XtraEditors.TextEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.txtPhone3 = new DevExpress.XtraEditors.TextEdit();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
@@ -48,8 +48,8 @@
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlGender.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhone1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlGender.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhone3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhone2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmail.Properties)).BeginInit();
@@ -76,6 +76,16 @@
             // dxValidationProvider1
             // 
             this.dxValidationProvider1.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.Manual;
+            // 
+            // txtPhone1
+            // 
+            this.txtPhone1.Location = new System.Drawing.Point(95, 109);
+            this.txtPhone1.Name = "txtPhone1";
+            this.txtPhone1.Size = new System.Drawing.Size(170, 21);
+            this.txtPhone1.TabIndex = 3;
+            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule2.ErrorText = "不能为空";
+            this.dxValidationProvider1.SetValidationRule(this.txtPhone1, conditionValidationRule2);
             // 
             // labelControl2
             // 
@@ -106,16 +116,6 @@
             this.labelControl3.TabIndex = 0;
             this.labelControl3.Text = "联系电话1：";
             // 
-            // txtPhone1
-            // 
-            this.txtPhone1.Location = new System.Drawing.Point(95, 109);
-            this.txtPhone1.Name = "txtPhone1";
-            this.txtPhone1.Size = new System.Drawing.Size(170, 21);
-            this.txtPhone1.TabIndex = 1;
-            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule2.ErrorText = "不能为空";
-            this.dxValidationProvider1.SetValidationRule(this.txtPhone1, conditionValidationRule2);
-            // 
             // labelControl4
             // 
             this.labelControl4.Location = new System.Drawing.Point(281, 154);
@@ -129,7 +129,7 @@
             this.txtPhone3.Location = new System.Drawing.Point(347, 151);
             this.txtPhone3.Name = "txtPhone3";
             this.txtPhone3.Size = new System.Drawing.Size(170, 21);
-            this.txtPhone3.TabIndex = 1;
+            this.txtPhone3.TabIndex = 6;
             // 
             // labelControl5
             // 
@@ -144,7 +144,7 @@
             this.txtPhone2.Location = new System.Drawing.Point(95, 151);
             this.txtPhone2.Name = "txtPhone2";
             this.txtPhone2.Size = new System.Drawing.Size(170, 21);
-            this.txtPhone2.TabIndex = 1;
+            this.txtPhone2.TabIndex = 5;
             // 
             // labelControl6
             // 
@@ -159,14 +159,14 @@
             this.txtEmail.Location = new System.Drawing.Point(345, 109);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(172, 21);
-            this.txtEmail.TabIndex = 1;
+            this.txtEmail.TabIndex = 4;
             // 
             // btnSave
             // 
             this.btnSave.Location = new System.Drawing.Point(305, 213);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 3;
+            this.btnSave.TabIndex = 7;
             this.btnSave.Text = "保存";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -175,7 +175,7 @@
             this.btnCancel.Location = new System.Drawing.Point(406, 213);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 3;
+            this.btnCancel.TabIndex = 8;
             this.btnCancel.Text = "取消";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -202,8 +202,8 @@
             this.Text = "EditContact";
             ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlGender.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhone1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlGender.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhone3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhone2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmail.Properties)).EndInit();

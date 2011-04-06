@@ -33,6 +33,13 @@
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule3 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
+            this.ddlCurrencyUnits = new DevExpress.XtraEditors.GridLookUpEdit();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ddlProductType = new DevExpress.XtraEditors.GridLookUpEdit();
+            this.gridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.txtProductChName = new DevExpress.XtraEditors.TextEdit();
             this.txtProductNumber2 = new DevExpress.XtraEditors.TextEdit();
             this.labelControl27 = new DevExpress.XtraEditors.LabelControl();
             this.txtProductNumber1 = new DevExpress.XtraEditors.TextEdit();
@@ -45,8 +52,6 @@
             this.txtHeight = new DevExpress.XtraEditors.SpinEdit();
             this.labelControl22 = new DevExpress.XtraEditors.LabelControl();
             this.txtLayeredCount = new DevExpress.XtraEditors.SpinEdit();
-            this.ddlCurrencyUnits = new DevExpress.XtraEditors.GridLookUpEdit();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.labelControl21 = new DevExpress.XtraEditors.LabelControl();
             this.txtVolume = new DevExpress.XtraEditors.SpinEdit();
             this.labelControl20 = new DevExpress.XtraEditors.LabelControl();
@@ -55,8 +60,6 @@
             this.txtSecurityCount = new DevExpress.XtraEditors.SpinEdit();
             this.labelControl18 = new DevExpress.XtraEditors.LabelControl();
             this.txtPreWorningDays = new DevExpress.XtraEditors.SpinEdit();
-            this.ddlProductType = new DevExpress.XtraEditors.GridLookUpEdit();
-            this.gridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl16 = new DevExpress.XtraEditors.LabelControl();
@@ -70,7 +73,6 @@
             this.txtCodeBar = new DevExpress.XtraEditors.TextEdit();
             this.txtProductEngName = new DevExpress.XtraEditors.TextEdit();
             this.txtSpec = new DevExpress.XtraEditors.TextEdit();
-            this.txtProductChName = new DevExpress.XtraEditors.TextEdit();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
@@ -82,28 +84,26 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.txtShelfLife = new DevExpress.XtraEditors.CalcEdit();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlCurrencyUnits.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlProductType.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtProductChName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtProductNumber2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtProductNumber1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtWidth.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLength.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHeight.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLayeredCount.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlCurrencyUnits.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtVolume.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtWeight.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSecurityCount.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPreWorningDays.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlProductType.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUnitPrice.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCodeBar.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtProductEngName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSpec.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtProductChName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtShelfLife.Properties)).BeginInit();
             this.SuspendLayout();
             // 
@@ -111,12 +111,86 @@
             // 
             this.dxValidationProvider1.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.Manual;
             // 
+            // ddlCurrencyUnits
+            // 
+            this.ddlCurrencyUnits.Location = new System.Drawing.Point(422, 345);
+            this.ddlCurrencyUnits.Name = "ddlCurrencyUnits";
+            this.ddlCurrencyUnits.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.ddlCurrencyUnits.Properties.DisplayMember = "CurrencyName";
+            this.ddlCurrencyUnits.Properties.ValueMember = "Id";
+            this.ddlCurrencyUnits.Properties.View = this.gridView1;
+            this.ddlCurrencyUnits.Size = new System.Drawing.Size(170, 21);
+            this.ddlCurrencyUnits.TabIndex = 18;
+            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule1.ErrorText = "不能为空";
+            this.dxValidationProvider1.SetValidationRule(this.ddlCurrencyUnits, conditionValidationRule1);
+            // 
+            // gridView1
+            // 
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn2});
+            this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.Caption = "货币类型";
+            this.gridColumn2.FieldName = "CurrencyName";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 0;
+            // 
+            // ddlProductType
+            // 
+            this.ddlProductType.Location = new System.Drawing.Point(422, 113);
+            this.ddlProductType.Name = "ddlProductType";
+            this.ddlProductType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.ddlProductType.Properties.DisplayMember = "Name";
+            this.ddlProductType.Properties.ValueMember = "Id";
+            this.ddlProductType.Properties.View = this.gridLookUpEdit1View;
+            this.ddlProductType.Size = new System.Drawing.Size(170, 21);
+            this.ddlProductType.TabIndex = 6;
+            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule2.ErrorText = "不能为空";
+            this.dxValidationProvider1.SetValidationRule(this.ddlProductType, conditionValidationRule2);
+            // 
+            // gridLookUpEdit1View
+            // 
+            this.gridLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn1});
+            this.gridLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridLookUpEdit1View.Name = "gridLookUpEdit1View";
+            this.gridLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "商品类型";
+            this.gridColumn1.FieldName = "Name";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 0;
+            // 
+            // txtProductChName
+            // 
+            this.txtProductChName.Location = new System.Drawing.Point(108, 31);
+            this.txtProductChName.Name = "txtProductChName";
+            this.txtProductChName.Size = new System.Drawing.Size(170, 21);
+            this.txtProductChName.TabIndex = 1;
+            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule3.ErrorText = "不能为空";
+            this.dxValidationProvider1.SetValidationRule(this.txtProductChName, conditionValidationRule3);
+            // 
             // txtProductNumber2
             // 
             this.txtProductNumber2.Location = new System.Drawing.Point(422, 70);
             this.txtProductNumber2.Name = "txtProductNumber2";
             this.txtProductNumber2.Size = new System.Drawing.Size(170, 21);
-            this.txtProductNumber2.TabIndex = 40;
+            this.txtProductNumber2.TabIndex = 4;
             // 
             // labelControl27
             // 
@@ -131,7 +205,7 @@
             this.txtProductNumber1.Location = new System.Drawing.Point(108, 70);
             this.txtProductNumber1.Name = "txtProductNumber1";
             this.txtProductNumber1.Size = new System.Drawing.Size(170, 21);
-            this.txtProductNumber1.TabIndex = 38;
+            this.txtProductNumber1.TabIndex = 3;
             // 
             // labelControl26
             // 
@@ -163,7 +237,7 @@
             this.txtWidth.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.txtWidth.Properties.Mask.EditMask = "n0";
             this.txtWidth.Size = new System.Drawing.Size(166, 21);
-            this.txtWidth.TabIndex = 36;
+            this.txtWidth.TabIndex = 14;
             // 
             // labelControl24
             // 
@@ -187,7 +261,7 @@
             this.txtLength.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.txtLength.Properties.Mask.EditMask = "n0";
             this.txtLength.Size = new System.Drawing.Size(170, 21);
-            this.txtLength.TabIndex = 34;
+            this.txtLength.TabIndex = 13;
             // 
             // labelControl23
             // 
@@ -211,7 +285,7 @@
             this.txtHeight.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.txtHeight.Properties.Mask.EditMask = "n0";
             this.txtHeight.Size = new System.Drawing.Size(170, 21);
-            this.txtHeight.TabIndex = 32;
+            this.txtHeight.TabIndex = 15;
             // 
             // labelControl22
             // 
@@ -235,31 +309,7 @@
             this.txtLayeredCount.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.txtLayeredCount.Properties.Mask.EditMask = "n0";
             this.txtLayeredCount.Size = new System.Drawing.Size(166, 21);
-            this.txtLayeredCount.TabIndex = 30;
-            // 
-            // ddlCurrencyUnits
-            // 
-            this.ddlCurrencyUnits.Location = new System.Drawing.Point(422, 345);
-            this.ddlCurrencyUnits.Name = "ddlCurrencyUnits";
-            this.ddlCurrencyUnits.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ddlCurrencyUnits.Properties.DisplayMember = "CurrencyName";
-            this.ddlCurrencyUnits.Properties.ValueMember = "Id";
-            this.ddlCurrencyUnits.Properties.View = this.gridView1;
-            this.ddlCurrencyUnits.Size = new System.Drawing.Size(170, 21);
-            this.ddlCurrencyUnits.TabIndex = 28;
-            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule1.ErrorText = "不能为空";
-            this.dxValidationProvider1.SetValidationRule(this.ddlCurrencyUnits, conditionValidationRule1);
-            // 
-            // gridView1
-            // 
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn2});
-            this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.txtLayeredCount.TabIndex = 16;
             // 
             // labelControl21
             // 
@@ -283,7 +333,7 @@
             this.txtVolume.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.txtVolume.Properties.Mask.EditMask = "n0";
             this.txtVolume.Size = new System.Drawing.Size(168, 21);
-            this.txtVolume.TabIndex = 27;
+            this.txtVolume.TabIndex = 12;
             // 
             // labelControl20
             // 
@@ -307,7 +357,7 @@
             this.txtWeight.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.txtWeight.Properties.Mask.EditMask = "n0";
             this.txtWeight.Size = new System.Drawing.Size(170, 21);
-            this.txtWeight.TabIndex = 25;
+            this.txtWeight.TabIndex = 11;
             // 
             // labelControl19
             // 
@@ -331,7 +381,7 @@
             this.txtSecurityCount.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.txtSecurityCount.Properties.Mask.EditMask = "n0";
             this.txtSecurityCount.Size = new System.Drawing.Size(170, 21);
-            this.txtSecurityCount.TabIndex = 23;
+            this.txtSecurityCount.TabIndex = 9;
             // 
             // labelControl18
             // 
@@ -355,38 +405,14 @@
             this.txtPreWorningDays.Properties.EditValueChangedFiringMode = DevExpress.XtraEditors.Controls.EditValueChangedFiringMode.Default;
             this.txtPreWorningDays.Properties.Mask.EditMask = "n0";
             this.txtPreWorningDays.Size = new System.Drawing.Size(168, 21);
-            this.txtPreWorningDays.TabIndex = 21;
-            // 
-            // ddlProductType
-            // 
-            this.ddlProductType.Location = new System.Drawing.Point(422, 113);
-            this.ddlProductType.Name = "ddlProductType";
-            this.ddlProductType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.ddlProductType.Properties.DisplayMember = "Name";
-            this.ddlProductType.Properties.ValueMember = "Id";
-            this.ddlProductType.Properties.View = this.gridLookUpEdit1View;
-            this.ddlProductType.Size = new System.Drawing.Size(170, 21);
-            this.ddlProductType.TabIndex = 19;
-            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule2.ErrorText = "不能为空";
-            this.dxValidationProvider1.SetValidationRule(this.ddlProductType, conditionValidationRule2);
-            // 
-            // gridLookUpEdit1View
-            // 
-            this.gridLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn1});
-            this.gridLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.gridLookUpEdit1View.Name = "gridLookUpEdit1View";
-            this.gridLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            this.txtPreWorningDays.TabIndex = 10;
             // 
             // btnCancel
             // 
             this.btnCancel.Location = new System.Drawing.Point(503, 388);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 18;
+            this.btnCancel.TabIndex = 20;
             this.btnCancel.Text = "取消";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -395,7 +421,7 @@
             this.btnSave.Location = new System.Drawing.Point(422, 388);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 18;
+            this.btnSave.TabIndex = 19;
             this.btnSave.Text = "保存";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -414,7 +440,7 @@
             this.txtUnitPrice.Properties.Mask.EditMask = "n2";
             this.txtUnitPrice.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
             this.txtUnitPrice.Size = new System.Drawing.Size(170, 21);
-            this.txtUnitPrice.TabIndex = 15;
+            this.txtUnitPrice.TabIndex = 17;
             // 
             // labelControl15
             // 
@@ -469,31 +495,21 @@
             this.txtCodeBar.Location = new System.Drawing.Point(108, 151);
             this.txtCodeBar.Name = "txtCodeBar";
             this.txtCodeBar.Size = new System.Drawing.Size(170, 21);
-            this.txtCodeBar.TabIndex = 3;
+            this.txtCodeBar.TabIndex = 7;
             // 
             // txtProductEngName
             // 
             this.txtProductEngName.Location = new System.Drawing.Point(422, 31);
             this.txtProductEngName.Name = "txtProductEngName";
             this.txtProductEngName.Size = new System.Drawing.Size(170, 21);
-            this.txtProductEngName.TabIndex = 3;
+            this.txtProductEngName.TabIndex = 2;
             // 
             // txtSpec
             // 
             this.txtSpec.Location = new System.Drawing.Point(108, 113);
             this.txtSpec.Name = "txtSpec";
             this.txtSpec.Size = new System.Drawing.Size(170, 21);
-            this.txtSpec.TabIndex = 3;
-            // 
-            // txtProductChName
-            // 
-            this.txtProductChName.Location = new System.Drawing.Point(108, 31);
-            this.txtProductChName.Name = "txtProductChName";
-            this.txtProductChName.Size = new System.Drawing.Size(170, 21);
-            this.txtProductChName.TabIndex = 3;
-            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule3.ErrorText = "不能为空";
-            this.dxValidationProvider1.SetValidationRule(this.txtProductChName, conditionValidationRule3);
+            this.txtSpec.TabIndex = 5;
             // 
             // labelControl8
             // 
@@ -589,23 +605,7 @@
             this.txtShelfLife.Properties.Mask.EditMask = "n0";
             this.txtShelfLife.Properties.ShowCloseButton = true;
             this.txtShelfLife.Size = new System.Drawing.Size(170, 21);
-            this.txtShelfLife.TabIndex = 3;
-            // 
-            // gridColumn2
-            // 
-            this.gridColumn2.Caption = "货币类型";
-            this.gridColumn2.FieldName = "CurrencyName";
-            this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 0;
-            // 
-            // gridColumn1
-            // 
-            this.gridColumn1.Caption = "商品类型";
-            this.gridColumn1.FieldName = "Name";
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 0;
+            this.txtShelfLife.TabIndex = 8;
             // 
             // EditProduct
             // 
@@ -662,25 +662,25 @@
             this.Name = "EditProduct";
             this.Text = "EditProduct";
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlCurrencyUnits.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlProductType.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtProductChName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtProductNumber2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtProductNumber1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtWidth.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLength.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHeight.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLayeredCount.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlCurrencyUnits.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtVolume.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtWeight.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSecurityCount.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPreWorningDays.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlProductType.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUnitPrice.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCodeBar.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtProductEngName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSpec.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtProductChName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtShelfLife.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

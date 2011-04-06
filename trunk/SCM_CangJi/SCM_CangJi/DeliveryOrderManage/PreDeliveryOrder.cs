@@ -72,8 +72,10 @@ namespace SCM_CangJi.DeliveryOrderManage
                     btnImport.Enabled = false;
                     btnPreCompletedAndAssign.Enabled = false;
                     btnSaveAll.Enabled = false;
+                    btn.Enabled = false;
                     btnSaveAndClose.Enabled = false;
-                    this.gridControlDeliveryOrerDetails.Enabled = false;
+                    this.gridViewDeliveryOrderDetails.OptionsBehavior.Editable = false;
+                    this.gridControlDeliveryOrerDetails.DoubleClick -= gridControlDeliveryOrerDetails_DoubleClick;
                 }
             }
 

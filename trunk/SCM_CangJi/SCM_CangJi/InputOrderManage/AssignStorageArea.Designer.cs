@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition2 = new DevExpress.XtraGrid.StyleFormatCondition();
+            DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition1 = new DevExpress.XtraGrid.StyleFormatCondition();
             this.gcInputCount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemSpinEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.btnBack = new DevExpress.XtraEditors.SimpleButton();
+            this.btnCompleteAndConfirmInput = new DevExpress.XtraEditors.SimpleButton();
             this.btnCompleteAssign = new DevExpress.XtraEditors.SimpleButton();
             this.gridControlInputOrerDetails = new DevExpress.XtraGrid.GridControl();
             this.gridViewInputOrderDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -43,7 +44,6 @@
             this.gcLotsNumber = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcProductDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcInputInvoice = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.btnCompleteAndConfirmInput = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -95,6 +95,15 @@
             this.btnBack.Text = "退回修改";
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
+            // btnCompleteAndConfirmInput
+            // 
+            this.btnCompleteAndConfirmInput.Location = new System.Drawing.Point(121, 30);
+            this.btnCompleteAndConfirmInput.Name = "btnCompleteAndConfirmInput";
+            this.btnCompleteAndConfirmInput.Size = new System.Drawing.Size(102, 23);
+            this.btnCompleteAndConfirmInput.TabIndex = 0;
+            this.btnCompleteAndConfirmInput.Text = "完成分配并入库";
+            this.btnCompleteAndConfirmInput.Click += new System.EventHandler(this.btnCompleteAndConfirmInput_Click);
+            // 
             // btnCompleteAssign
             // 
             this.btnCompleteAssign.Location = new System.Drawing.Point(29, 30);
@@ -128,18 +137,19 @@
             this.gcLotsNumber,
             this.gcProductDate,
             this.gcInputInvoice});
-            styleFormatCondition2.Column = this.gcInputCount;
-            styleFormatCondition2.Condition = DevExpress.XtraGrid.FormatConditionEnum.Between;
-            styleFormatCondition2.Value1 = "1";
-            styleFormatCondition2.Value2 = "99999999";
+            styleFormatCondition1.Column = this.gcInputCount;
+            styleFormatCondition1.Condition = DevExpress.XtraGrid.FormatConditionEnum.Between;
+            styleFormatCondition1.Value1 = "1";
+            styleFormatCondition1.Value2 = "99999999";
             this.gridViewInputOrderDetails.FormatConditions.AddRange(new DevExpress.XtraGrid.StyleFormatCondition[] {
-            styleFormatCondition2});
+            styleFormatCondition1});
             this.gridViewInputOrderDetails.GridControl = this.gridControlInputOrerDetails;
             this.gridViewInputOrderDetails.Name = "gridViewInputOrderDetails";
             this.gridViewInputOrderDetails.NewItemRowText = "点击添加新行";
             this.gridViewInputOrderDetails.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
             this.gridViewInputOrderDetails.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.True;
             this.gridViewInputOrderDetails.OptionsNavigation.AutoFocusNewRow = true;
+            this.gridViewInputOrderDetails.OptionsView.EnableAppearanceEvenRow = true;
             this.gridViewInputOrderDetails.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.gridViewInputOrderDetails_RowUpdated);
             // 
             // gcProductChName
@@ -215,15 +225,6 @@
             this.gcInputInvoice.Name = "gcInputInvoice";
             this.gcInputInvoice.Visible = true;
             this.gcInputInvoice.VisibleIndex = 5;
-            // 
-            // btnCompleteAndConfirmInput
-            // 
-            this.btnCompleteAndConfirmInput.Location = new System.Drawing.Point(121, 30);
-            this.btnCompleteAndConfirmInput.Name = "btnCompleteAndConfirmInput";
-            this.btnCompleteAndConfirmInput.Size = new System.Drawing.Size(102, 23);
-            this.btnCompleteAndConfirmInput.TabIndex = 0;
-            this.btnCompleteAndConfirmInput.Text = "完成分配并入库";
-            this.btnCompleteAndConfirmInput.Click += new System.EventHandler(this.btnCompleteAndConfirmInput_Click);
             // 
             // AssignStorageArea
             // 

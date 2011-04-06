@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule3 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.txtProductDate = new DevExpress.XtraEditors.DateEdit();
@@ -59,7 +58,7 @@
             this.btnCancel.Location = new System.Drawing.Point(322, 185);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 22;
+            this.btnCancel.TabIndex = 7;
             this.btnCancel.Text = "取消";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -68,7 +67,7 @@
             this.btnSave.Location = new System.Drawing.Point(212, 185);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 21;
+            this.btnSave.TabIndex = 6;
             this.btnSave.Text = "增加";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -82,7 +81,7 @@
             this.txtProductDate.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.txtProductDate.Size = new System.Drawing.Size(170, 21);
-            this.txtProductDate.TabIndex = 20;
+            this.txtProductDate.TabIndex = 3;
             // 
             // labelControl5
             // 
@@ -109,7 +108,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.txtInputCount.Properties.Mask.EditMask = "n0";
             this.txtInputCount.Size = new System.Drawing.Size(168, 21);
-            this.txtInputCount.TabIndex = 15;
+            this.txtInputCount.TabIndex = 2;
             conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.Between;
             conditionValidationRule1.ErrorText = "出库数量必须大于0";
             conditionValidationRule1.Value1 = 1;
@@ -131,7 +130,7 @@
             this.ddlProducts.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.ddlProducts.Properties.ValueMember = "Id";
             this.ddlProducts.Size = new System.Drawing.Size(170, 21);
-            this.ddlProducts.TabIndex = 12;
+            this.ddlProducts.TabIndex = 1;
             conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
             conditionValidationRule2.ErrorText = "不能为空";
             this.dxValidationProvider1.SetValidationRule(this.ddlProducts, conditionValidationRule2);
@@ -141,10 +140,7 @@
             this.txtLotsNumber.Location = new System.Drawing.Point(390, 96);
             this.txtLotsNumber.Name = "txtLotsNumber";
             this.txtLotsNumber.Size = new System.Drawing.Size(168, 21);
-            this.txtLotsNumber.TabIndex = 18;
-            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule3.ErrorText = "不能为空！";
-            this.dxValidationProvider1.SetValidationRule(this.txtLotsNumber, conditionValidationRule3);
+            this.txtLotsNumber.TabIndex = 4;
             // 
             // labelControl4
             // 
@@ -159,7 +155,7 @@
             this.txtRemark.Location = new System.Drawing.Point(117, 140);
             this.txtRemark.Name = "txtRemark";
             this.txtRemark.Size = new System.Drawing.Size(170, 21);
-            this.txtRemark.TabIndex = 16;
+            this.txtRemark.TabIndex = 5;
             // 
             // labelControl3
             // 

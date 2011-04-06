@@ -10,6 +10,7 @@ using SCM_CangJi.BLL.Services;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.Utils.Menu;
+using SCM_CangJi.Lib;
 
 namespace SCM_CangJi.DeliveryOrderManage
 {
@@ -81,28 +82,40 @@ namespace SCM_CangJi.DeliveryOrderManage
                 orderrowhandle = -1;
                 // Delete existing menu items, if any.
                 e.Menu.Items.Clear();
+                string deliveryStatus = gridViewDeliveryOrders.GetRowCellValue(e.HitInfo.RowHandle, "Status").ToString();
 
                 DXMenuItem menuItemCreate = new DXMenuItem("新建", new EventHandler(btnCreate_Click));
                 e.Menu.Items.Add(menuItemCreate);
-
-
-                DXMenuItem menuItemDelete = new DXMenuItem("删除", (s, en) =>
+                DXMenuItem menuItemDetail = new DXMenuItem("明细", (s, en) =>
                 {
-                    if (XtraMessageBox.Show("该动作将会删除相关明细列表，确实要删除吗？", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.OK)
+                    int orderId = (int)gridViewDeliveryOrders.GetRowCellValue(orderrowhandle, "Id");
+                    PreDeliveryOrder editform = new PreDeliveryOrder(orderId);
+                    if (editform.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                     {
-                        int orderId = (int)gridViewDeliveryOrders.GetRowCellValue(orderrowhandle, "Id");
-                        string message = "";
-                        if (DeliveryOrderService.Instance.Delete(orderId, out message))
-                        {
-                            gridViewDeliveryOrders.DeleteSelectedRows();
-                        }
-                        else
-                        {
-                            ShowMessage(message);
-                        }
+                        InitGrid();
                     }
                 });
-                e.Menu.Items.Add(menuItemDelete);
+                e.Menu.Items.Add(menuItemDetail);
+                if (deliveryStatus== DeliveryStatus.待出库.ToString())
+                {
+                    DXMenuItem menuItemDelete = new DXMenuItem("删除", (s, en) =>
+                    {
+                        if (XtraMessageBox.Show("该动作将会删除相关明细列表，确实要删除吗？", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.OK)
+                        {
+                            int orderId = (int)gridViewDeliveryOrders.GetRowCellValue(orderrowhandle, "Id");
+                            string message = "";
+                            if (DeliveryOrderService.Instance.Delete(orderId, out message))
+                            {
+                                gridViewDeliveryOrders.DeleteSelectedRows();
+                            }
+                            else
+                            {
+                                ShowMessage(message);
+                            }
+                        }
+                    });
+                    e.Menu.Items.Add(menuItemDelete);
+                }
                 DXMenuItem menuItemrefrash = new DXMenuItem("刷新", (s, en) =>
                 {
                     InitGrid();

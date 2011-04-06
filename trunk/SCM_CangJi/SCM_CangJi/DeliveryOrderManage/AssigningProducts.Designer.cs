@@ -80,6 +80,7 @@
             this.gridViewDeliveryOrders.GridControl = this.gridControlDeliveryOrders;
             this.gridViewDeliveryOrders.Name = "gridViewDeliveryOrders";
             this.gridViewDeliveryOrders.OptionsBehavior.Editable = false;
+            this.gridViewDeliveryOrders.OptionsView.EnableAppearanceEvenRow = true;
             // 
             // gcDeliveryOrderNumber
             // 

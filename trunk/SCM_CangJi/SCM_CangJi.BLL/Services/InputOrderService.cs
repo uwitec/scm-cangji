@@ -38,8 +38,23 @@ namespace SCM_CangJi.BLL.Services
             DataTable reslut = null;
             Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
             {
-                reslut = (from o in db.InputOrderDetails.Where(o => o.InputOrderId == orderId)
-                          select o).ToDataTable(db);
+                var deteils = from o in db.InputOrderDetails.Where(o => o.InputOrderId == orderId)
+                              select new
+                              {
+                                  o.CompanyId,
+                                  o.CurrentProductNumber,
+                                  o.ID,
+                                  o.InputCount,
+                                  o.InputOrderId,
+                                  o.Product.ProductNumber1,
+                                  o.Product.ProductNumber2,
+                                  o.ProductDate,
+                                  o.ProductId,
+                                  o.LotsNumber,
+                                  o.Remark,
+                                  o.StorageAreaId
+                              };
+                reslut = deteils.ToDataTable(db);
             });
             return reslut;
         }
@@ -308,9 +323,9 @@ namespace SCM_CangJi.BLL.Services
                                            中文品名 = c.Product.ProductChName,
                                            英文品名 = c.Product.ProductEngName,
                                            入库数量 = c.InputCount,
+                                           库位 = GetArea(c, db),
                                            生产日期 = c.ProductDate,
                                            批号 = c.LotsNumber,
-                                           //库位编号 = GetArea(c, db),
                                        }).ToList(),
                           }).ToList();
             });
@@ -320,9 +335,13 @@ namespace SCM_CangJi.BLL.Services
         private string GetArea(InputOrderDetail c, CangJiDataDataContext db)
         {
             if (!c.StorageAreaId.HasValue)
-                return null;
-            var area = db.StorageAreas.SingleOrDefault(o => o.Id == c.StorageAreaId);
-            return area.库位编号;
+                return "未分配";
+            string result = null;
+
+            var ps = db.StorageAreas.SingleOrDefault(o => o.Id == c.StorageAreaId);
+
+            result = ps.StorageRack.Storage.仓库名称 + "--" + ps.StorageRack.RackName + "--" + ps.库位编号;
+            return result; ;
         }
 
 

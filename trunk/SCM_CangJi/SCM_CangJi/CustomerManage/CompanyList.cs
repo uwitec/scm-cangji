@@ -218,7 +218,7 @@ namespace SCM_CangJi.CustomerManage
                 EditProduct editform = new EditProduct(CompanyId, productId);
                 if (editform.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
-                    InitContact(CompanyId);
+                    InitProduct(CompanyId);
                 }
             }
         }

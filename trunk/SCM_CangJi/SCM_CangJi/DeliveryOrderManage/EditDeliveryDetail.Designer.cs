@@ -70,7 +70,7 @@
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.txtDeliveryCount.Properties.Mask.EditMask = "n0";
             this.txtDeliveryCount.Size = new System.Drawing.Size(168, 21);
-            this.txtDeliveryCount.TabIndex = 3;
+            this.txtDeliveryCount.TabIndex = 2;
             conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.Between;
             conditionValidationRule1.ErrorText = "出库数量必须大于0";
             conditionValidationRule1.Value1 = 1;
@@ -102,7 +102,7 @@
             this.btnCancel.Location = new System.Drawing.Point(305, 178);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 10;
+            this.btnCancel.TabIndex = 7;
             this.btnCancel.Text = "取消";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -111,7 +111,7 @@
             this.btnSave.Location = new System.Drawing.Point(195, 178);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 9;
+            this.btnSave.TabIndex = 6;
             this.btnSave.Text = "增加";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -125,7 +125,7 @@
             this.txtProductDate.Properties.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.txtProductDate.Size = new System.Drawing.Size(170, 21);
-            this.txtProductDate.TabIndex = 8;
+            this.txtProductDate.TabIndex = 5;
             // 
             // labelControl5
             // 
@@ -140,7 +140,7 @@
             this.txtLotsNumber.Location = new System.Drawing.Point(373, 89);
             this.txtLotsNumber.Name = "txtLotsNumber";
             this.txtLotsNumber.Size = new System.Drawing.Size(168, 21);
-            this.txtLotsNumber.TabIndex = 6;
+            this.txtLotsNumber.TabIndex = 4;
             // 
             // labelControl4
             // 
@@ -155,7 +155,7 @@
             this.txtInputInvoice.Location = new System.Drawing.Point(100, 89);
             this.txtInputInvoice.Name = "txtInputInvoice";
             this.txtInputInvoice.Size = new System.Drawing.Size(170, 21);
-            this.txtInputInvoice.TabIndex = 4;
+            this.txtInputInvoice.TabIndex = 3;
             // 
             // labelControl3
             // 

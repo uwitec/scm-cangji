@@ -88,6 +88,7 @@
             this.gridViewInputOrders.GridControl = this.gridControlInputOrders;
             this.gridViewInputOrders.Name = "gridViewInputOrders";
             this.gridViewInputOrders.OptionsBehavior.Editable = false;
+            this.gridViewInputOrders.OptionsView.EnableAppearanceEvenRow = true;
             // 
             // gcDeliveryOrderNumber
             // 

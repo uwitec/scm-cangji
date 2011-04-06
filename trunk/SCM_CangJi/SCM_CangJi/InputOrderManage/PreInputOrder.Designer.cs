@@ -39,6 +39,8 @@
             this.gcProducts = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.btnPreCompletedAndAssign = new DevExpress.XtraEditors.SimpleButton();
             this.gridViewInputOrderDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gcProductNumber1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcLotsNumber = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcProductDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcInputInvoice = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -86,7 +88,7 @@
             this.gcInputCount.FieldName = "InputCount";
             this.gcInputCount.Name = "gcInputCount";
             this.gcInputCount.Visible = true;
-            this.gcInputCount.VisibleIndex = 1;
+            this.gcInputCount.VisibleIndex = 2;
             // 
             // repositoryItemSpinEdit1
             // 
@@ -104,7 +106,7 @@
             this.btnPreComplete.Location = new System.Drawing.Point(194, 152);
             this.btnPreComplete.Name = "btnPreComplete";
             this.btnPreComplete.Size = new System.Drawing.Size(75, 23);
-            this.btnPreComplete.TabIndex = 6;
+            this.btnPreComplete.TabIndex = 7;
             this.btnPreComplete.Text = "完成预入库";
             this.btnPreComplete.Click += new System.EventHandler(this.btnPreComplete_Click);
             // 
@@ -137,7 +139,7 @@
             this.btnPreCompletedAndAssign.Location = new System.Drawing.Point(275, 152);
             this.btnPreCompletedAndAssign.Name = "btnPreCompletedAndAssign";
             this.btnPreCompletedAndAssign.Size = new System.Drawing.Size(138, 23);
-            this.btnPreCompletedAndAssign.TabIndex = 5;
+            this.btnPreCompletedAndAssign.TabIndex = 8;
             this.btnPreCompletedAndAssign.Text = "完成预入库并分配库位";
             this.btnPreCompletedAndAssign.Click += new System.EventHandler(this.btnPreCompletedAndAssign_Click);
             // 
@@ -145,7 +147,9 @@
             // 
             this.gridViewInputOrderDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gcProductChName,
+            this.gcProductNumber1,
             this.gcInputCount,
+            this.gridColumn1,
             this.gcLotsNumber,
             this.gcProductDate,
             this.gcInputInvoice});
@@ -161,9 +165,27 @@
             this.gridViewInputOrderDetails.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
             this.gridViewInputOrderDetails.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.True;
             this.gridViewInputOrderDetails.OptionsNavigation.AutoFocusNewRow = true;
+            this.gridViewInputOrderDetails.OptionsView.EnableAppearanceEvenRow = true;
             this.gridViewInputOrderDetails.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridViewInputOrderDetails_RowCellStyle);
+            this.gridViewInputOrderDetails.ShowGridMenu += new DevExpress.XtraGrid.Views.Grid.GridMenuEventHandler(this.gridViewInputOrderDetails_ShowGridMenu);
             this.gridViewInputOrderDetails.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gridViewInputOrderDetails_InitNewRow);
             this.gridViewInputOrderDetails.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.gridViewInputOrderDetails_RowUpdated);
+            // 
+            // gcProductNumber1
+            // 
+            this.gcProductNumber1.Caption = "品号1";
+            this.gcProductNumber1.FieldName = "ProductNumber1";
+            this.gcProductNumber1.Name = "gcProductNumber1";
+            this.gcProductNumber1.OptionsColumn.AllowEdit = false;
+            this.gcProductNumber1.Visible = true;
+            this.gcProductNumber1.VisibleIndex = 1;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "库位";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 3;
             // 
             // gcLotsNumber
             // 
@@ -171,7 +193,7 @@
             this.gcLotsNumber.FieldName = "LotsNumber";
             this.gcLotsNumber.Name = "gcLotsNumber";
             this.gcLotsNumber.Visible = true;
-            this.gcLotsNumber.VisibleIndex = 2;
+            this.gcLotsNumber.VisibleIndex = 4;
             // 
             // gcProductDate
             // 
@@ -179,7 +201,7 @@
             this.gcProductDate.FieldName = "ProductDate";
             this.gcProductDate.Name = "gcProductDate";
             this.gcProductDate.Visible = true;
-            this.gcProductDate.VisibleIndex = 3;
+            this.gcProductDate.VisibleIndex = 5;
             // 
             // gcInputInvoice
             // 
@@ -187,7 +209,7 @@
             this.gcInputInvoice.FieldName = "Remark";
             this.gcInputInvoice.Name = "gcInputInvoice";
             this.gcInputInvoice.Visible = true;
-            this.gcInputInvoice.VisibleIndex = 4;
+            this.gcInputInvoice.VisibleIndex = 6;
             // 
             // gridControlInputOrerDetails
             // 
@@ -209,7 +231,7 @@
             this.btnSaveAndClose.Location = new System.Drawing.Point(113, 152);
             this.btnSaveAndClose.Name = "btnSaveAndClose";
             this.btnSaveAndClose.Size = new System.Drawing.Size(75, 23);
-            this.btnSaveAndClose.TabIndex = 5;
+            this.btnSaveAndClose.TabIndex = 6;
             this.btnSaveAndClose.Text = "保存并关闭";
             this.btnSaveAndClose.Click += new System.EventHandler(this.btnSaveAndClose_Click);
             // 
@@ -218,7 +240,7 @@
             this.btnAddDetail.Location = new System.Drawing.Point(101, 10);
             this.btnAddDetail.Name = "btnAddDetail";
             this.btnAddDetail.Size = new System.Drawing.Size(75, 23);
-            this.btnAddDetail.TabIndex = 5;
+            this.btnAddDetail.TabIndex = 9;
             this.btnAddDetail.Text = "增加明细";
             this.btnAddDetail.Click += new System.EventHandler(this.btnAddDetail_Click);
             // 
@@ -269,7 +291,7 @@
             this.btnImport.Location = new System.Drawing.Point(182, 10);
             this.btnImport.Name = "btnImport";
             this.btnImport.Size = new System.Drawing.Size(75, 23);
-            this.btnImport.TabIndex = 5;
+            this.btnImport.TabIndex = 10;
             this.btnImport.Text = "从文件导入";
             // 
             // labelControl7
@@ -345,7 +367,7 @@
             this.txtFromWhere.Location = new System.Drawing.Point(355, 109);
             this.txtFromWhere.Name = "txtFromWhere";
             this.txtFromWhere.Size = new System.Drawing.Size(175, 21);
-            this.txtFromWhere.TabIndex = 3;
+            this.txtFromWhere.TabIndex = 4;
             conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
             conditionValidationRule2.ErrorText = "发货地不能为空!";
             this.dxValidationProvider1.SetValidationRule(this.txtFromWhere, conditionValidationRule2);
@@ -472,5 +494,7 @@
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.LabelControl labelControl9;
         private DevExpress.XtraEditors.LabelControl lblEnterUser;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gcProductNumber1;
     }
 }

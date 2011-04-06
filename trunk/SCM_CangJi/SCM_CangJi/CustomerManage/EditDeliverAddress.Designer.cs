@@ -72,7 +72,7 @@
             this.txtAddressName.Location = new System.Drawing.Point(373, 71);
             this.txtAddressName.Name = "txtAddressName";
             this.txtAddressName.Size = new System.Drawing.Size(154, 21);
-            this.txtAddressName.TabIndex = 1;
+            this.txtAddressName.TabIndex = 2;
             // 
             // labelControl3
             // 
@@ -87,7 +87,7 @@
             this.txtAddress.Location = new System.Drawing.Point(125, 125);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(154, 21);
-            this.txtAddress.TabIndex = 1;
+            this.txtAddress.TabIndex = 3;
             // 
             // labelControl4
             // 
@@ -109,14 +109,14 @@
             this.txtDeliverDays.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.txtDeliverDays.Size = new System.Drawing.Size(154, 21);
-            this.txtDeliverDays.TabIndex = 2;
+            this.txtDeliverDays.TabIndex = 4;
             // 
             // btnSave
             // 
             this.btnSave.Location = new System.Drawing.Point(371, 186);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 3;
+            this.btnSave.TabIndex = 5;
             this.btnSave.Text = "保存";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -125,7 +125,7 @@
             this.btnCancel.Location = new System.Drawing.Point(452, 186);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 3;
+            this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "取消";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 

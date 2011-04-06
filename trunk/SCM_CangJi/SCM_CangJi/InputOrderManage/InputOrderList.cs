@@ -81,7 +81,7 @@ namespace SCM_CangJi.InputOrderManage
                 orderrowhandle = -1;
                 // Delete existing menu items, if any.
                 e.Menu.Items.Clear();
-
+                string inputStatus = gridViewInputOrders.GetRowCellValue(e.HitInfo.RowHandle, "Status").ToString();
                 DXMenuItem menuItemCreate = new DXMenuItem("新建", new EventHandler(btnCreate_Click));
                 e.Menu.Items.Add(menuItemCreate);
                 DXMenuItem menuItemDetail = new DXMenuItem("明细", (s, en) =>
@@ -94,23 +94,26 @@ namespace SCM_CangJi.InputOrderManage
                     }
                 });
                 e.Menu.Items.Add(menuItemDetail);
-                DXMenuItem menuItemDelete = new DXMenuItem("删除", (s, en) =>
+                if (inputStatus == Lib.InputStatus.待入库.ToString())
                 {
-                    if (XtraMessageBox.Show("该动作将会删除相关明细列表，确实要删除吗？", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.OK)
+                    DXMenuItem menuItemDelete = new DXMenuItem("删除", (s, en) =>
                     {
-                        int orderId = (int)gridViewInputOrders.GetRowCellValue(orderrowhandle, "ID");
-                        string message = "";
-                        if (InputOrderService.Instance.Delete(orderId, out message))
+                        if (XtraMessageBox.Show("该动作将会删除相关明细列表，确实要删除吗？", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.OK)
                         {
-                            gridViewInputOrders.DeleteSelectedRows();
+                            int orderId = (int)gridViewInputOrders.GetRowCellValue(orderrowhandle, "ID");
+                            string message = "";
+                            if (InputOrderService.Instance.Delete(orderId, out message))
+                            {
+                                gridViewInputOrders.DeleteSelectedRows();
+                            }
+                            else
+                            {
+                                ShowMessage(message);
+                            }
                         }
-                        else
-                        {
-                            ShowMessage(message);
-                        }
-                    }
-                });
-                e.Menu.Items.Add(menuItemDelete);
+                    });
+                    e.Menu.Items.Add(menuItemDelete);
+                }
                 DXMenuItem menuItemrefrash = new DXMenuItem("刷新", (s, en) =>
                 {
                     InitGrid();

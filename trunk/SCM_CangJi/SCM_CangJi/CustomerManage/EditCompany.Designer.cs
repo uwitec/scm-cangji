@@ -50,7 +50,7 @@
             this.btnSave.Location = new System.Drawing.Point(237, 229);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 0;
+            this.btnSave.TabIndex = 6;
             this.btnSave.Text = "保存";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -69,7 +69,7 @@
             this.ddlCompanyType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.ddlCompanyType.Size = new System.Drawing.Size(147, 21);
-            this.ddlCompanyType.TabIndex = 2;
+            this.ddlCompanyType.TabIndex = 5;
             // 
             // labelControl2
             // 
@@ -102,7 +102,7 @@
             this.txtCompanyAddress.Location = new System.Drawing.Point(165, 115);
             this.txtCompanyAddress.Name = "txtCompanyAddress";
             this.txtCompanyAddress.Size = new System.Drawing.Size(147, 21);
-            this.txtCompanyAddress.TabIndex = 3;
+            this.txtCompanyAddress.TabIndex = 4;
             conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
             conditionValidationRule2.ErrorText = "不能为空";
             this.dxValidationProvider1.SetValidationRule(this.txtCompanyAddress, conditionValidationRule2);

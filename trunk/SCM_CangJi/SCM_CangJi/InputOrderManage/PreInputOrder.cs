@@ -48,8 +48,9 @@ namespace SCM_CangJi.InputOrderManage
                 return _inputOrderDetailsDatable;
             }
         }
-
-        public PreInputOrder():this(0)
+        
+        public PreInputOrder()
+            : this(0)
         {
             this.Updated = false;
         }
@@ -75,8 +76,10 @@ namespace SCM_CangJi.InputOrderManage
                     btnImport.Enabled = false;
                     btnPreCompletedAndAssign.Enabled = false;
                     btnSaveAll.Enabled = false;
+                    btnPreComplete.Enabled = false;
                     btnSaveAndClose.Enabled = false;
-                    this.gridControlInputOrerDetails.Enabled = false;
+                    this.gridViewInputOrderDetails.OptionsBehavior.Editable = false;
+                    this.gridControlInputOrerDetails.DoubleClick -= gridControlInputOrerDetails_DoubleClick;
                 }
             }
 
@@ -323,9 +326,13 @@ namespace SCM_CangJi.InputOrderManage
             if (row["ProductDate"] != null && !string.IsNullOrEmpty(row["ProductDate"].ToString()))
                 detail.ProductDate = DateTime.Parse(row["ProductDate"].ToString());
             detail.ProductId = int.Parse(row["ProductId"].ToString());
+
+            SetProductRow(row, detail.ProductId);
         }
         private void SetRowValue(DataRow row, InputOrderDetail detail)
         {
+            SetProductRow(row, detail.ProductId);
+
             row["InputCount"] = detail.InputCount;
             row["ProductId"] = detail.ProductId;
             row["Remark"] = detail.Remark;
@@ -336,6 +343,13 @@ namespace SCM_CangJi.InputOrderManage
                 row["ID"] = detail.ID;
             if (detail.ProductDate != null)
                 row["ProductDate"] = detail.ProductDate;
+        }
+
+        private static void SetProductRow(DataRow row, int ProductId)
+        {
+            Product product = ProductService.Instance.GetProduct(ProductId);
+            row["ProductNumber1"] = product.ProductNumber1;
+            row["ProductNumber2"] = product.ProductNumber2;
         }
 
         #region Import
@@ -387,12 +401,12 @@ namespace SCM_CangJi.InputOrderManage
 
         private void btnPreComplete_Click(object sender, EventArgs e)
         {
-            if (!HasValidateDetailData)
-            {
-                ShowWarning("生产批号不能为空！");
+            //if (!HasValidateDetailData)
+            //{
+            //    ShowWarning("生产批号不能为空！");
 
-                return;
-            }
+            //    return;
+            //}
             if (!this.Updated)
             {
                 ShowWarning("还未保存！请先保存后在完成预入库！");
@@ -416,13 +430,13 @@ namespace SCM_CangJi.InputOrderManage
 
             if (e.Column.FieldName == "LotsNumber")
             {
-                HasValidateDetailData = true;
+                //HasValidateDetailData = true;
 
-                if (string.IsNullOrWhiteSpace(e.CellValue.ToString()))
-                {
-                    e.Appearance.BackColor = Color.Red;
-                    HasValidateDetailData = false;
-                }
+                //if (string.IsNullOrWhiteSpace(e.CellValue.ToString()))
+                //{
+                //    e.Appearance.BackColor = Color.Red;
+                //    HasValidateDetailData = false;
+                //}
             }
         }
         

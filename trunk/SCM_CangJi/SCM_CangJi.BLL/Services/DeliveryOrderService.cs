@@ -88,8 +88,8 @@ namespace SCM_CangJi.BLL.Services
 
             var ps = db.StorageAreas.SingleOrDefault(o => o.Id == StorageAreaId);
 
-            result = ps.StorageRack.Storage.仓库名称 + "--" + ps.库位编号;
-            return result;
+            result = ps.StorageRack.Storage.仓库名称 + "--" + ps.StorageRack.RackName + "--" + ps.库位编号;
+            return result; ;
         }
 
        
