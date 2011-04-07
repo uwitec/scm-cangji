@@ -68,14 +68,15 @@ namespace SCM_CangJi.DeliveryOrderManage
                 ddlCompanies.Enabled = false;
                 if (this.order.Status != DeliveryStatus.待出库.ToString())
                 {
-                    btnAddDetail.Enabled = false;
-                    btnImport.Enabled = false;
-                    btnPreCompletedAndAssign.Enabled = false;
-                    btnSaveAll.Enabled = false;
-                    btn.Enabled = false;
-                    btnSaveAndClose.Enabled = false;
+                    btnAddDetail.Visible = false;
+                    btnImport.Visible = false;
+                    btnPreCompletedAndAssign.Visible = false;
+                    btnSaveAll.Visible = false;
+                    btn.Visible = false;
+                    btnSaveAndClose.Visible = false;
                     this.gridViewDeliveryOrderDetails.OptionsBehavior.Editable = false;
                     this.gridControlDeliveryOrerDetails.DoubleClick -= gridControlDeliveryOrerDetails_DoubleClick;
+                    this.gridViewDeliveryOrderDetails.ShowGridMenu -= gridViewDeliveryOrderDetails_ShowGridMenu;
                 }
             }
 
@@ -97,10 +98,12 @@ namespace SCM_CangJi.DeliveryOrderManage
                 lblDeliveryOrderNumber.Text = order.DeliveryOrderNumber;
                 ddlCompanies.EditValue = order.CompanyId;
                 InitOrderDetails();
+                InitAssingedDetails();
             }
             else
             {
                 //SHP-20100305001
+                tabAssigned.PageVisible = false;
                 order = new DeliveryOrder();
                 lblDeliveryOrderNumber.Text = CommonService.Instance.GetOrderNumber(OrderType.DeliveryOrder);
                 lblPreDeliveryDate.Text = DateTime.Now.ToShortDateString();
@@ -212,6 +215,10 @@ namespace SCM_CangJi.DeliveryOrderManage
         private void InitOrderDetails()
         {
             gridControlDeliveryOrerDetails.DataSource = this.DeliveryOrderDetailsDatatable;
+        }
+        private void InitAssingedDetails()
+        {
+            gridControlAsssigned.DataSource = DeliveryOrderService.Instance.GetAssignedDeliveryOrderDetails(order.Id);
         }
         private void SetOrderDetailsValue()
         {

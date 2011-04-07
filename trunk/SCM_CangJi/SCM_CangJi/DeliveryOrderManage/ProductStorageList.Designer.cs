@@ -32,6 +32,7 @@
             this.btnRefresh = new DevExpress.XtraEditors.SimpleButton();
             this.gridControlProductStorages = new DevExpress.XtraGrid.GridControl();
             this.gridViewProductStorages = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.btnExportExcle = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlProductStorages)).BeginInit();
@@ -40,6 +41,7 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.btnExportExcle);
             this.panelControl1.Controls.Add(this.btnRefresh);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
@@ -73,6 +75,15 @@
             this.gridViewProductStorages.Name = "gridViewProductStorages";
             this.gridViewProductStorages.OptionsView.EnableAppearanceEvenRow = true;
             // 
+            // btnExportExcle
+            // 
+            this.btnExportExcle.Location = new System.Drawing.Point(102, 12);
+            this.btnExportExcle.Name = "btnExportExcle";
+            this.btnExportExcle.Size = new System.Drawing.Size(75, 23);
+            this.btnExportExcle.TabIndex = 3;
+            this.btnExportExcle.Text = "导出";
+            this.btnExportExcle.Click += new System.EventHandler(this.btnExportExcle_Click);
+            // 
             // ProductStorageList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -97,5 +108,6 @@
         private DevExpress.XtraGrid.GridControl gridControlProductStorages;
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewProductStorages;
         private DevExpress.XtraEditors.SimpleButton btnRefresh;
+        private DevExpress.XtraEditors.SimpleButton btnExportExcle;
     }
 }

@@ -53,9 +53,11 @@ namespace SCM_CangJi.BLL.Services
                               预出库明细 = (from c in o.DeliveryOrderDetails
                                        select new
                                        {
-                                           品号 = c.Product.ProductNumber1,
+                                           品号1 = c.Product.ProductNumber1,
+                                           品号2 = c.Product.ProductNumber2,
                                            中文品名 = c.Product.ProductChName,
                                            英文品名 = c.Product.ProductEngName,
+                                           规格 = c.Product.Spec,
                                            出库数量 = c.DeliveryCount,
                                            生产日期 = c.ProductDate,
                                            入库发票号 = c.InputInvoice,
@@ -64,10 +66,12 @@ namespace SCM_CangJi.BLL.Services
                               库存分配明细 = (from c in o.AssignedDeliveryOrderDetails
                                         select new
                                         {
-                                            品号 = c.Product.ProductNumber1,
+                                            品号1 = c.Product.ProductNumber1,
+                                            品号2 = c.Product.ProductNumber2,
                                             中文品名 = c.Product.ProductChName,
                                             英文品名 = c.Product.ProductEngName,
                                             现品票号 = c.CurrentProductNumber,
+                                            规格 = c.Product.Spec,
                                             出库数量 = c.DeliveryCount,
                                             分配数量 = c.AssignCount,
                                             生产日期 = c.ProductDate,
@@ -79,7 +83,31 @@ namespace SCM_CangJi.BLL.Services
             });
             return reslut;
         }
-
+        public object GetAssignedDeliveryOrderDetails(int orderId)
+        {
+            return Using<CangJiDataDataContext, object>(new CangJiDataDataContext(), db =>
+              {
+                  object reslut = null;
+                  var order = db.DeliveryOrders.SingleOrDefault(o => o.Id == orderId);
+                  reslut = (from c in order.AssignedDeliveryOrderDetails
+                            select new
+                            {
+                                品号1 = c.Product.ProductNumber1,
+                                品号2 = c.Product.ProductNumber2,
+                                中文品名 = c.Product.ProductChName,
+                                英文品名 = c.Product.ProductEngName,
+                                规格 = c.Product.Spec,
+                                现品票号 = c.CurrentProductNumber,
+                                出库数量 = c.DeliveryCount,
+                                分配数量 = c.AssignCount,
+                                生产日期 = c.ProductDate,
+                                入库发票号 = c.InputInvoice,
+                                批号 = c.LotsNumber,
+                                库位 = GetArea(db, c.StorageAreaId)
+                            }).ToList();
+                  return reslut;
+              });
+        }
         private string GetArea(CangJiDataDataContext db, int? StorageAreaId)
         {
             if (!StorageAreaId.HasValue)

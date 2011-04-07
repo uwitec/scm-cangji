@@ -26,5 +26,19 @@ namespace SCM_CangJi.BLL.Services
             });
             return result;
         }
+        public string GetArea(int? StorageAreaId)
+        {
+            return Using<CangJiDataDataContext, string>(new CangJiDataDataContext(), db =>
+             {
+                 if (StorageAreaId == null || !StorageAreaId.HasValue)
+                     return "未分配";
+                 string result = null;
+
+                 var ps = db.StorageAreas.SingleOrDefault(o => o.Id == StorageAreaId);
+
+                 result = ps.StorageRack.Storage.仓库名称 + "--" + ps.StorageRack.RackName + "--" + ps.库位编号;
+                 return result; ;
+             });
+        }
     }
 }

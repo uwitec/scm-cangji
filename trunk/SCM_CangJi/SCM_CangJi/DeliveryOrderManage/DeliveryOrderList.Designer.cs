@@ -40,6 +40,7 @@
             this.gridReachedDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridInvoice = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridStatus = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnExportExcle = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlDeliveryOrders)).BeginInit();
@@ -48,6 +49,7 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.btnExportExcle);
             this.panelControl1.Controls.Add(this.btnRefresh);
             this.panelControl1.Controls.Add(this.btnCreate);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -61,7 +63,7 @@
             this.btnRefresh.Location = new System.Drawing.Point(146, 24);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(75, 23);
-            this.btnRefresh.TabIndex = 0;
+            this.btnRefresh.TabIndex = 1;
             this.btnRefresh.Text = "刷新";
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
@@ -158,6 +160,15 @@
             this.gridStatus.Visible = true;
             this.gridStatus.VisibleIndex = 6;
             // 
+            // btnExportExcle
+            // 
+            this.btnExportExcle.Location = new System.Drawing.Point(244, 24);
+            this.btnExportExcle.Name = "btnExportExcle";
+            this.btnExportExcle.Size = new System.Drawing.Size(75, 23);
+            this.btnExportExcle.TabIndex = 2;
+            this.btnExportExcle.Text = "导出";
+            this.btnExportExcle.Click += new System.EventHandler(this.btnExportExcle_Click);
+            // 
             // DeliveryOrderList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -189,5 +200,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridReachedDate;
         private DevExpress.XtraGrid.Columns.GridColumn gridInvoice;
         private DevExpress.XtraGrid.Columns.GridColumn gridStatus;
+        private DevExpress.XtraEditors.SimpleButton btnExportExcle;
     }
 }

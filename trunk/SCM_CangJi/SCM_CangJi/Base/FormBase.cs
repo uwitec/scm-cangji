@@ -148,6 +148,19 @@ namespace SCM_CangJi
         {
             return XtraMessageBox.Show(message, "", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
         }
-      
+        public void ExportExcle(GridView gridview, string filename)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Title = "导出Excel";
+            saveFileDialog.Filter = "Excel文件(*.xls)|*.xls";
+            saveFileDialog.FileName = filename;
+            DialogResult dialogResult = saveFileDialog.ShowDialog(this);
+            if (dialogResult == DialogResult.OK)
+            {
+                //gridControl1.ExportToXls(saveFileDialog.FileName, options);  
+                gridview.ExportToXls(saveFileDialog.FileName);
+                DevExpress.XtraEditors.XtraMessageBox.Show("保存成功！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
     }
 }

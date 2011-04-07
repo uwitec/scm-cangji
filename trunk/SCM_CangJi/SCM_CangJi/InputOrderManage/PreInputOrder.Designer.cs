@@ -57,6 +57,7 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
+            this.btnBack = new DevExpress.XtraEditors.SimpleButton();
             this.txtFromWhere = new DevExpress.XtraEditors.TextEdit();
             this.lblEnterUser = new DevExpress.XtraEditors.LabelControl();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
@@ -66,6 +67,8 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
+            this.gcProductNumber2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcSpec = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcProducts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewInputOrderDetails)).BeginInit();
@@ -88,7 +91,7 @@
             this.gcInputCount.FieldName = "InputCount";
             this.gcInputCount.Name = "gcInputCount";
             this.gcInputCount.Visible = true;
-            this.gcInputCount.VisibleIndex = 2;
+            this.gcInputCount.VisibleIndex = 4;
             // 
             // repositoryItemSpinEdit1
             // 
@@ -148,6 +151,8 @@
             this.gridViewInputOrderDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gcProductChName,
             this.gcProductNumber1,
+            this.gcProductNumber2,
+            this.gcSpec,
             this.gcInputCount,
             this.gridColumn1,
             this.gcLotsNumber,
@@ -183,9 +188,11 @@
             // gridColumn1
             // 
             this.gridColumn1.Caption = "库位";
+            this.gridColumn1.FieldName = "StorageArea";
             this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.OptionsColumn.AllowEdit = false;
             this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 3;
+            this.gridColumn1.VisibleIndex = 5;
             // 
             // gcLotsNumber
             // 
@@ -193,7 +200,7 @@
             this.gcLotsNumber.FieldName = "LotsNumber";
             this.gcLotsNumber.Name = "gcLotsNumber";
             this.gcLotsNumber.Visible = true;
-            this.gcLotsNumber.VisibleIndex = 4;
+            this.gcLotsNumber.VisibleIndex = 6;
             // 
             // gcProductDate
             // 
@@ -201,7 +208,7 @@
             this.gcProductDate.FieldName = "ProductDate";
             this.gcProductDate.Name = "gcProductDate";
             this.gcProductDate.Visible = true;
-            this.gcProductDate.VisibleIndex = 5;
+            this.gcProductDate.VisibleIndex = 7;
             // 
             // gcInputInvoice
             // 
@@ -209,7 +216,7 @@
             this.gcInputInvoice.FieldName = "Remark";
             this.gcInputInvoice.Name = "gcInputInvoice";
             this.gcInputInvoice.Visible = true;
-            this.gcInputInvoice.VisibleIndex = 6;
+            this.gcInputInvoice.VisibleIndex = 8;
             // 
             // gridControlInputOrerDetails
             // 
@@ -336,6 +343,7 @@
             this.splitContainerControl1.Horizontal = false;
             this.splitContainerControl1.Location = new System.Drawing.Point(0, 0);
             this.splitContainerControl1.Name = "splitContainerControl1";
+            this.splitContainerControl1.Panel1.Controls.Add(this.btnBack);
             this.splitContainerControl1.Panel1.Controls.Add(this.btnPreComplete);
             this.splitContainerControl1.Panel1.Controls.Add(this.btnPreCompletedAndAssign);
             this.splitContainerControl1.Panel1.Controls.Add(this.btnSaveAndClose);
@@ -361,6 +369,16 @@
             this.splitContainerControl1.SplitterPosition = 190;
             this.splitContainerControl1.TabIndex = 1;
             this.splitContainerControl1.Text = "splitContainerControl1";
+            // 
+            // btnBack
+            // 
+            this.btnBack.Location = new System.Drawing.Point(32, 152);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(75, 23);
+            this.btnBack.TabIndex = 9;
+            this.btnBack.Text = "退回修改";
+            this.btnBack.Visible = false;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // txtFromWhere
             // 
@@ -435,6 +453,23 @@
             // 
             this.dxValidationProvider1.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.Manual;
             // 
+            // gcProductNumber2
+            // 
+            this.gcProductNumber2.Caption = "品号2";
+            this.gcProductNumber2.FieldName = "ProductNumber2";
+            this.gcProductNumber2.Name = "gcProductNumber2";
+            this.gcProductNumber2.OptionsColumn.AllowEdit = false;
+            this.gcProductNumber2.Visible = true;
+            this.gcProductNumber2.VisibleIndex = 2;
+            // 
+            // gcSpec
+            // 
+            this.gcSpec.Caption = "规格";
+            this.gcSpec.FieldName = "Spec";
+            this.gcSpec.Name = "gcSpec";
+            this.gcSpec.Visible = true;
+            this.gcSpec.VisibleIndex = 3;
+            // 
             // PreInputOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -496,5 +531,8 @@
         private DevExpress.XtraEditors.LabelControl lblEnterUser;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gcProductNumber1;
+        private DevExpress.XtraEditors.SimpleButton btnBack;
+        private DevExpress.XtraGrid.Columns.GridColumn gcProductNumber2;
+        private DevExpress.XtraGrid.Columns.GridColumn gcSpec;
     }
 }

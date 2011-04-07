@@ -38,6 +38,7 @@
             this.gridInvoice = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridStatus = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.btnExportExcle = new DevExpress.XtraEditors.SimpleButton();
             this.btnRefresh = new DevExpress.XtraEditors.SimpleButton();
             this.btnCreate = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlInputOrders)).BeginInit();
@@ -132,6 +133,7 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.btnExportExcle);
             this.panelControl1.Controls.Add(this.btnRefresh);
             this.panelControl1.Controls.Add(this.btnCreate);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -140,12 +142,21 @@
             this.panelControl1.Size = new System.Drawing.Size(682, 80);
             this.panelControl1.TabIndex = 2;
             // 
+            // btnExportExcle
+            // 
+            this.btnExportExcle.Location = new System.Drawing.Point(242, 24);
+            this.btnExportExcle.Name = "btnExportExcle";
+            this.btnExportExcle.Size = new System.Drawing.Size(75, 23);
+            this.btnExportExcle.TabIndex = 2;
+            this.btnExportExcle.Text = "导出";
+            this.btnExportExcle.Click += new System.EventHandler(this.btnExportExcle_Click);
+            // 
             // btnRefresh
             // 
             this.btnRefresh.Location = new System.Drawing.Point(146, 24);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(75, 23);
-            this.btnRefresh.TabIndex = 0;
+            this.btnRefresh.TabIndex = 1;
             this.btnRefresh.Text = "刷新";
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
@@ -189,5 +200,6 @@
         private DevExpress.XtraEditors.SimpleButton btnRefresh;
         private DevExpress.XtraEditors.SimpleButton btnCreate;
         private DevExpress.XtraGrid.Columns.GridColumn gcEnterUser;
+        private DevExpress.XtraEditors.SimpleButton btnExportExcle;
     }
 }

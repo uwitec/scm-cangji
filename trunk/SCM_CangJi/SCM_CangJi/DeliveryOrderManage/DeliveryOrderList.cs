@@ -126,5 +126,10 @@ namespace SCM_CangJi.DeliveryOrderManage
             }
         }
 
+        private void btnExportExcle_Click(object sender, EventArgs e)
+        {
+            ExportExcle(gridViewDeliveryOrders,"出库单.xls");
+        }
+
     }
 }

@@ -39,6 +39,10 @@ namespace SCM_CangJi.BLL.Services
             Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
             {
                 var deteils = from o in db.InputOrderDetails.Where(o => o.InputOrderId == orderId)
+                              join s in db.StorageAreas
+                              on o.StorageAreaId equals s.Id
+                              into x
+                              from y in x.DefaultIfEmpty()
                               select new
                               {
                                   o.CompanyId,
@@ -48,11 +52,13 @@ namespace SCM_CangJi.BLL.Services
                                   o.InputOrderId,
                                   o.Product.ProductNumber1,
                                   o.Product.ProductNumber2,
+                                  o.Product.Spec,
                                   o.ProductDate,
                                   o.ProductId,
                                   o.LotsNumber,
                                   o.Remark,
-                                  o.StorageAreaId
+                                  o.StorageAreaId,
+                                  StorageArea = !o.StorageAreaId.HasValue ? "未分配" : y.StorageRack.Storage.仓库名称 + "--" + y.StorageRack.RackName + "--" + y.库位编号
                               };
                 reslut = deteils.ToDataTable(db);
             });
@@ -319,7 +325,9 @@ namespace SCM_CangJi.BLL.Services
                               入库明细 = (from c in o.InputOrderDetails
                                        select new
                                        {
-                                           品号 = c.Product.ProductNumber1,
+                                           品号1 = c.Product.ProductNumber1,
+                                           品号2 = c.Product.ProductNumber2,
+                                           规格 = c.Product.Spec,
                                            中文品名 = c.Product.ProductChName,
                                            英文品名 = c.Product.ProductEngName,
                                            入库数量 = c.InputCount,

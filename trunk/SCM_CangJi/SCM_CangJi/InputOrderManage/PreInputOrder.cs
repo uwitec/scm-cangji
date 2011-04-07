@@ -72,14 +72,22 @@ namespace SCM_CangJi.InputOrderManage
                 ddlCompanies.Enabled = false;
                 if (this.order.Status != InputStatus.待入库.ToString())
                 {
-                    btnAddDetail.Enabled = false;
-                    btnImport.Enabled = false;
-                    btnPreCompletedAndAssign.Enabled = false;
-                    btnSaveAll.Enabled = false;
-                    btnPreComplete.Enabled = false;
-                    btnSaveAndClose.Enabled = false;
+                    btnAddDetail.Visible = false;
+                    btnImport.Visible = false;
+                    btnPreCompletedAndAssign.Visible = false;
+                    btnSaveAll.Visible = false;
+                    btnPreComplete.Visible = false;
+                    btnSaveAndClose.Visible = false;
                     this.gridViewInputOrderDetails.OptionsBehavior.Editable = false;
+                    if (this.order.Status == InputStatus.已入库.ToString() || this.order.Status == InputStatus.作废.ToString())
+                    {
+                    }
+                    else
+                    {
+                        btnBack.Visible = true;
+                    }
                     this.gridControlInputOrerDetails.DoubleClick -= gridControlInputOrerDetails_DoubleClick;
+                    this.gridViewInputOrderDetails.ShowGridMenu -= gridViewInputOrderDetails_ShowGridMenu;
                 }
             }
 
@@ -339,6 +347,7 @@ namespace SCM_CangJi.InputOrderManage
             row["LotsNumber"] = detail.LotsNumber;
             row["ProductId"] = detail.ProductId;
             row["CompanyId"] = detail.CompanyId;
+            row["StorageArea"] = StorageAreaService.Instance.GetArea(detail.StorageAreaId);
             if (detail.ID == 0)
                 row["ID"] = detail.ID;
             if (detail.ProductDate != null)
@@ -350,6 +359,7 @@ namespace SCM_CangJi.InputOrderManage
             Product product = ProductService.Instance.GetProduct(ProductId);
             row["ProductNumber1"] = product.ProductNumber1;
             row["ProductNumber2"] = product.ProductNumber2;
+            row["Spec"] = product.Spec;
         }
 
         #region Import
@@ -444,6 +454,13 @@ namespace SCM_CangJi.InputOrderManage
         {
             _companyId = int.Parse(ddlCompanies.EditValue.ToString());
             InitProduct();
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            InputOrderService.Instance.UpdateStatus(order.ID, InputStatus.待入库);
+            ShowMessage("已退回到待入库状态");
+            DialogResult = System.Windows.Forms.DialogResult.OK;
         }
     }
 }

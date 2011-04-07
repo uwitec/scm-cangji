@@ -10,6 +10,7 @@ using SCM_CangJi.BLL.Services;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.Utils.Menu;
+using DevExpress.XtraPrinting;
 
 namespace SCM_CangJi.InputOrderManage
 {
@@ -123,6 +124,13 @@ namespace SCM_CangJi.InputOrderManage
                 orderrowhandle = e.HitInfo.RowHandle;
             }
         }
+
+        private void btnExportExcle_Click(object sender, EventArgs e)
+        {
+            ExportExcle(gridViewInputOrders,"入库单.xls");
+        }
+
+        
 
     }
 }

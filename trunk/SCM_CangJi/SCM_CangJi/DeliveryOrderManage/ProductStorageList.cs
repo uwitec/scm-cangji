@@ -54,5 +54,10 @@ namespace SCM_CangJi.DeliveryOrderManage
         {
             InitGrid();
         }
+
+        private void btnExportExcle_Click(object sender, EventArgs e)
+        {
+            ExportExcle(this.gridViewProductStorages, "库存表.xls");
+        }
     }
 }
