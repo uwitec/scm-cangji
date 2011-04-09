@@ -334,8 +334,8 @@ namespace SCM_CangJi.DeliveryOrderManage
         {
             lock (this)
             {
-                DataRow row = (e.Row as DataRowView).Row;
                 Updated = false;
+                DataRow row = (e.Row as DataRowView).Row;
                 var detail = this.order.DeliveryOrderDetails.SingleOrDefault(o => o.Id.Equals(row["Id"]));
                 if (detail == null)
                 {

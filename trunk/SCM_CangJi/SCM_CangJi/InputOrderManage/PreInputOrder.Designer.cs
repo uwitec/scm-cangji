@@ -40,6 +40,8 @@
             this.btnPreCompletedAndAssign = new DevExpress.XtraEditors.SimpleButton();
             this.gridViewInputOrderDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gcProductNumber1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcProductNumber2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcSpec = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcLotsNumber = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcProductDate = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -67,8 +69,6 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
-            this.gcProductNumber2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcSpec = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcProducts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewInputOrderDetails)).BeginInit();
@@ -185,6 +185,23 @@
             this.gcProductNumber1.Visible = true;
             this.gcProductNumber1.VisibleIndex = 1;
             // 
+            // gcProductNumber2
+            // 
+            this.gcProductNumber2.Caption = "品号2";
+            this.gcProductNumber2.FieldName = "ProductNumber2";
+            this.gcProductNumber2.Name = "gcProductNumber2";
+            this.gcProductNumber2.OptionsColumn.AllowEdit = false;
+            this.gcProductNumber2.Visible = true;
+            this.gcProductNumber2.VisibleIndex = 2;
+            // 
+            // gcSpec
+            // 
+            this.gcSpec.Caption = "规格";
+            this.gcSpec.FieldName = "Spec";
+            this.gcSpec.Name = "gcSpec";
+            this.gcSpec.Visible = true;
+            this.gcSpec.VisibleIndex = 3;
+            // 
             // gridColumn1
             // 
             this.gridColumn1.Caption = "库位";
@@ -300,6 +317,7 @@
             this.btnImport.Size = new System.Drawing.Size(75, 23);
             this.btnImport.TabIndex = 10;
             this.btnImport.Text = "从文件导入";
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
             // labelControl7
             // 
@@ -452,23 +470,6 @@
             // dxValidationProvider1
             // 
             this.dxValidationProvider1.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.Manual;
-            // 
-            // gcProductNumber2
-            // 
-            this.gcProductNumber2.Caption = "品号2";
-            this.gcProductNumber2.FieldName = "ProductNumber2";
-            this.gcProductNumber2.Name = "gcProductNumber2";
-            this.gcProductNumber2.OptionsColumn.AllowEdit = false;
-            this.gcProductNumber2.Visible = true;
-            this.gcProductNumber2.VisibleIndex = 2;
-            // 
-            // gcSpec
-            // 
-            this.gcSpec.Caption = "规格";
-            this.gcSpec.FieldName = "Spec";
-            this.gcSpec.Name = "gcSpec";
-            this.gcSpec.Visible = true;
-            this.gcSpec.VisibleIndex = 3;
             // 
             // PreInputOrder
             // 

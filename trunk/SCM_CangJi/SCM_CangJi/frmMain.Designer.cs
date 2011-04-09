@@ -667,7 +667,7 @@
             this.Name = "frmMain";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmMain";
+            this.Text = "众为仓储";
             this.Load += new System.EventHandler(this.frmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.MDIManage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();

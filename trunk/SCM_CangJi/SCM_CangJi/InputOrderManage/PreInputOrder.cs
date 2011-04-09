@@ -367,12 +367,11 @@ namespace SCM_CangJi.InputOrderManage
         {
             if (dxValidationProvider1.Validate())
             {
-                //ImportDetails importForm = new ImportDetails(_companyId);
-                //importForm.OnImported += new Action<IEnumerable<InputOrderDetail>>(importForm_OnImported);
-                //if (importForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                //{
-
-                //}
+                WareHouseManage.ImportDataBaseManage importForm = new WareHouseManage.ImportDataBaseManage();
+                if (importForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    InitOrderDetails();
+                }
             }
         }
 

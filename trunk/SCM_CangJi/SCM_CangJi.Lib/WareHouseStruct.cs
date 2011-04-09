@@ -94,4 +94,15 @@ namespace SCM_CangJi.Lib
         public uint nCheck;
     }
     #endregion
+
+    #region 导入的数据结构
+    public struct ImportDataInfo
+    {
+        public string TableName;    //表名称
+        public string DestField;    //目标字段
+        public string SrcField;     //源字段
+    }
+    #endregion
+
+    
 }

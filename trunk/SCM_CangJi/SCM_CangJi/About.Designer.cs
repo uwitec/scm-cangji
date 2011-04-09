@@ -37,7 +37,7 @@
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(114, 14);
             this.labelControl1.TabIndex = 0;
-            this.labelControl1.Text = "仓吉物流库存管理1.0";
+            this.labelControl1.Text = "众为物流库存管理1.0";
             // 
             // About
             // 

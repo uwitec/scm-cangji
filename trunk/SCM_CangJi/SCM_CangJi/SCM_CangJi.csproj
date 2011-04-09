@@ -115,8 +115,12 @@
     <Reference Include="DevExpress.XtraPrinting.v10.1, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualBasic">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -408,6 +412,18 @@
     <Compile Include="WareHouseManage\EditStorageRackArea.Designer.cs">
       <DependentUpon>EditStorageRackArea.cs</DependentUpon>
     </Compile>
+    <Compile Include="WareHouseManage\ImportDataBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WareHouseManage\ImportDataBase.designer.cs">
+      <DependentUpon>ImportDataBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WareHouseManage\ImportDataBaseManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WareHouseManage\ImportDataBaseManage.designer.cs">
+      <DependentUpon>ImportDataBaseManage.cs</DependentUpon>
+    </Compile>
     <Compile Include="WareHouseManage\NavigationButton.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -574,6 +590,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WareHouseManage\EditStorageRackArea.resx">
       <DependentUpon>EditStorageRackArea.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WareHouseManage\ImportDataBase.resx">
+      <DependentUpon>ImportDataBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WareHouseManage\ImportDataBaseManage.resx">
+      <DependentUpon>ImportDataBaseManage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WareHouseManage\NavigationButton.resx">
       <DependentUpon>NavigationButton.cs</DependentUpon>

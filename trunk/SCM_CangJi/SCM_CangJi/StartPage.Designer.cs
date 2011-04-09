@@ -36,7 +36,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 262);
             this.Name = "StartPage";
-            this.Text = "欢迎进入仓吉存储管理系统";
+            this.Text = "欢迎进入众为仓储管理系统";
             this.ResumeLayout(false);
 
         }
