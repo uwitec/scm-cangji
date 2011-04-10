@@ -83,6 +83,7 @@
             this.gridColumn21 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
             this.btnCreateDeliverAddress = new DevExpress.XtraEditors.SimpleButton();
+            this.btnImportProduct = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlCompany)).BeginInit();
@@ -533,6 +534,7 @@
             // 
             // panelControl3
             // 
+            this.panelControl3.Controls.Add(this.btnImportProduct);
             this.panelControl3.Controls.Add(this.btnCreateProduct);
             this.panelControl3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl3.Location = new System.Drawing.Point(0, 0);
@@ -631,6 +633,15 @@
             this.btnCreateDeliverAddress.Text = "新建地址";
             this.btnCreateDeliverAddress.Click += new System.EventHandler(this.btnCreateDeliverAddress_Click);
             // 
+            // btnImportProduct
+            // 
+            this.btnImportProduct.Location = new System.Drawing.Point(124, 25);
+            this.btnImportProduct.Name = "btnImportProduct";
+            this.btnImportProduct.Size = new System.Drawing.Size(75, 23);
+            this.btnImportProduct.TabIndex = 1;
+            this.btnImportProduct.Text = "导入商品";
+            this.btnImportProduct.Click += new System.EventHandler(this.btnImportProduct_Click);
+            // 
             // CompanyList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -728,6 +739,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn21;
         private DevExpress.XtraEditors.PanelControl panelControl4;
         private DevExpress.XtraEditors.SimpleButton btnCreateDeliverAddress;
+        private DevExpress.XtraEditors.SimpleButton btnImportProduct;
 
     }
 }

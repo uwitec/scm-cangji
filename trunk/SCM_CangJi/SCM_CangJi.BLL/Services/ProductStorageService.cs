@@ -17,7 +17,7 @@ namespace SCM_CangJi.BLL.Services
         public List<AssignedDeliveryOrderDetail> AutoAssign(int orderId)
         {
             List<AssignedDeliveryOrderDetail> result = new List<AssignedDeliveryOrderDetail>();
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 List<Queue<ProductStorage>> assigningList=new List<Queue<ProductStorage>>();
                 List<ProductStorage> assignedList=new List<ProductStorage>();
@@ -154,7 +154,7 @@ namespace SCM_CangJi.BLL.Services
         public object GetCurrentStorages()
         {
             object result = null;
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 result = (from ps in db.ProductStorages
                           orderby ps.EntryDate ascending
@@ -178,7 +178,7 @@ namespace SCM_CangJi.BLL.Services
             if (!areaId.HasValue)
                 return "未分配";
             string result = null;
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 var ps = db.StorageAreas.SingleOrDefault(o => o.Id == areaId);
 

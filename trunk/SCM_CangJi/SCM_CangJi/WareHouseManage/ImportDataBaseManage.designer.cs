@@ -173,7 +173,7 @@
             this.rectangleShape4.Enabled = false;
             this.rectangleShape4.Location = new System.Drawing.Point(5, 5);
             this.rectangleShape4.Name = "rectangleShape4";
-            this.rectangleShape4.Size = new System.Drawing.Size(604, 71);
+            this.rectangleShape4.Size = new System.Drawing.Size(707, 81);
             // 
             // rectangleShape3
             // 
@@ -181,7 +181,7 @@
             this.rectangleShape3.Enabled = false;
             this.rectangleShape3.Location = new System.Drawing.Point(6, 6);
             this.rectangleShape3.Name = "rectangleShape3";
-            this.rectangleShape3.Size = new System.Drawing.Size(602, 69);
+            this.rectangleShape3.Size = new System.Drawing.Size(705, 79);
             // 
             // rectangleShape2
             // 
@@ -189,7 +189,7 @@
             this.rectangleShape2.Enabled = false;
             this.rectangleShape2.Location = new System.Drawing.Point(6, 92);
             this.rectangleShape2.Name = "rectangleShape2";
-            this.rectangleShape2.Size = new System.Drawing.Size(602, 303);
+            this.rectangleShape2.Size = new System.Drawing.Size(705, 370);
             // 
             // rectangleShape1
             // 
@@ -197,7 +197,7 @@
             this.rectangleShape1.Enabled = false;
             this.rectangleShape1.Location = new System.Drawing.Point(5, 91);
             this.rectangleShape1.Name = "rectangleShape1";
-            this.rectangleShape1.Size = new System.Drawing.Size(604, 305);
+            this.rectangleShape1.Size = new System.Drawing.Size(707, 372);
             // 
             // gridData
             // 

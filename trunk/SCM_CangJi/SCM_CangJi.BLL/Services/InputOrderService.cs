@@ -14,7 +14,7 @@ namespace SCM_CangJi.BLL.Services
         public object GetInputOrders(InputStatus status)
         {
             object reslut = null;
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 reslut = (from o in db.InputOrders.Where(o => status==InputStatus.all|| o.Status == status.ToString())
                           select new
@@ -36,7 +36,7 @@ namespace SCM_CangJi.BLL.Services
         public DataTable GetInputOrderDetailsDataTable(int orderId)
         {
             DataTable reslut = null;
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 var deteils = from o in db.InputOrderDetails.Where(o => o.InputOrderId == orderId)
                               join s in db.StorageAreas
@@ -67,7 +67,7 @@ namespace SCM_CangJi.BLL.Services
         public IEnumerable<InputOrderDetail> GetInputOrderDetails(int orderId)
         {
             IEnumerable<InputOrderDetail> reslut = null;
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 reslut = db.InputOrderDetails.Where(o => o.InputOrderId == orderId).ToList();
             });
@@ -76,7 +76,7 @@ namespace SCM_CangJi.BLL.Services
         public InputOrder GetInputOrder(int orderId)
         {
             InputOrder reslut = null;
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 reslut = db.InputOrders.SingleOrDefault(o => o.ID == orderId);
                 reslut.InputOrderDetails.Load();
@@ -86,7 +86,7 @@ namespace SCM_CangJi.BLL.Services
         public InputOrder GetInputOrderFullInfo(int orderId)
         {
             InputOrder reslut = null;
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 reslut = db.InputOrders.SingleOrDefault(o => o.ID == orderId);
                 reslut.InputOrderDetails.Load();
@@ -96,7 +96,7 @@ namespace SCM_CangJi.BLL.Services
         }
         public void Update(InputOrder order)
         {
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 var inputOrder = db.InputOrders.SingleOrDefault(o => o.ID == order.ID);
                 if (order.InputOrderDetails != null)
@@ -145,7 +145,7 @@ namespace SCM_CangJi.BLL.Services
 
         public void Create(InputOrder deliveryOrder)
         {
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 db.InputOrders.InsertOnSubmit(deliveryOrder);
                 db.SubmitChanges();
@@ -156,7 +156,7 @@ namespace SCM_CangJi.BLL.Services
         {
             bool reslut = true;
             string m = "删除成功";
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 var order = db.InputOrders.SingleOrDefault(o => o.ID == orderId);
                 InputStatus status = (InputStatus)Enum.Parse(typeof(InputStatus), order.Status);
@@ -185,7 +185,7 @@ namespace SCM_CangJi.BLL.Services
             bool reslut = true;
             string m = "删除成功";
             message = m;
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 var orderDetail = db.InputOrderDetails.SingleOrDefault(o => o.ID == orderdetailId);
                 if (orderDetail != null)
@@ -200,7 +200,7 @@ namespace SCM_CangJi.BLL.Services
         public InputOrderDetail GetInputOrderDetail(int orderDetailId)
         {
             InputOrderDetail reslut = null;
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 reslut = db.InputOrderDetails.SingleOrDefault(o => o.ID == orderDetailId);
                 int id = reslut.Product.Id;
@@ -210,7 +210,7 @@ namespace SCM_CangJi.BLL.Services
         public object GetInputOrderDetailsFullInfo(int orderlId)
         {
             object reslut = null;
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 reslut = (from d in db.InputOrderDetails
                          join area in db.StorageAreas
@@ -238,7 +238,7 @@ namespace SCM_CangJi.BLL.Services
         public dynamic GetInputOrderDetailFullInfo(int orderDetailId)
         {
             dynamic reslut = new System.Dynamic.ExpandoObject();
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 var detail = db.InputOrderDetails.SingleOrDefault(o => o.ID == orderDetailId);
                 var area = db.StorageAreas.SingleOrDefault(o => o.Id == detail.StorageAreaId);
@@ -260,7 +260,7 @@ namespace SCM_CangJi.BLL.Services
         }
         public void UpdateDetail(InputOrderDetail deliveryOrderDetail)
         {
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 var reslut = db.InputOrderDetails.SingleOrDefault(o => o.ID == deliveryOrderDetail.ID);
                 reslut.InputCount = deliveryOrderDetail.InputCount;
@@ -275,16 +275,23 @@ namespace SCM_CangJi.BLL.Services
 
         public void CreateDetail(InputOrderDetail deliveryOrderDetail)
         {
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 db.InputOrderDetails.InsertOnSubmit(deliveryOrderDetail);
                 db.SubmitChanges();
             });
         }
-
+        public void CreateDetail(List<InputOrderDetail> deliveryOrderDetails)
+        {
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
+            {
+                db.InputOrderDetails.InsertAllOnSubmit(deliveryOrderDetails);
+                db.SubmitChanges();
+            });
+        }
         public void CompleteAssignStorageArea(int _orderId, IEnumerable<InputOrderDetail> _assignedInputDetails)
         {
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 foreach (var item in _assignedInputDetails)
                 {
@@ -298,7 +305,7 @@ namespace SCM_CangJi.BLL.Services
 
         public void UpdateStatus(int orderId, InputStatus inputStatus)
         {
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 var order = db.InputOrders.SingleOrDefault(o => o.ID == orderId);
                 order.Status = inputStatus.ToString();
@@ -308,7 +315,7 @@ namespace SCM_CangJi.BLL.Services
         public object GetInputOrdersFull(InputStatus inputStatus)
         {
             object reslut = null;
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 reslut = (from o in db.InputOrders.Where(o => o.Status == inputStatus.ToString())
                           select new
@@ -359,7 +366,7 @@ namespace SCM_CangJi.BLL.Services
             bool result=false;
             try
             {
-                Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+                Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
                 {
                     var inputorder = db.InputOrders.SingleOrDefault(o => o.ID == orderId);
                     inputorder.Status = Lib.InputStatus.已入库.ToString();

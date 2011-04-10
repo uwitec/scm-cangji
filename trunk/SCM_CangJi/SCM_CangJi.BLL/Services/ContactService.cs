@@ -11,7 +11,7 @@ namespace SCM_CangJi.BLL.Services
         public object GetContacts(int companyId)
         {
             object result = null;
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), context =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), context =>
             {
                 var company = context.Companies.SingleOrDefault(o => o.Id == companyId);
                 result = company.Contacts.ToList();
@@ -22,7 +22,7 @@ namespace SCM_CangJi.BLL.Services
 
         public bool Delete(int contactId)
         {
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), context =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), context =>
             {
                 var contact = context.Contacts.SingleOrDefault(o => o.Id == contactId);
                 context.Contacts.DeleteOnSubmit(contact);
@@ -35,7 +35,7 @@ namespace SCM_CangJi.BLL.Services
         public Contact GetContact(int contactId)
         {
             Contact contact = null;
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), context =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), context =>
             {
                 contact = context.Contacts.SingleOrDefault(o => o.Id == contactId);
             });
@@ -44,7 +44,7 @@ namespace SCM_CangJi.BLL.Services
 
         public void Update(Contact contact)
         {
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), context =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), context =>
             {
                 var c = context.Contacts.SingleOrDefault(o => o.Id == contact.Id);
                 c.Email = contact.Email;
@@ -60,7 +60,7 @@ namespace SCM_CangJi.BLL.Services
 
         public void Insert(Contact contact)
         {
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), context =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), context =>
             {
                 context.Contacts.InsertOnSubmit(contact);
                 context.SubmitChanges();

@@ -59,6 +59,7 @@ namespace SCM_CangJi
         {
             this.FormClosing += new FormClosingEventHandler(FormBase_FormClosing);
             InitializeComponent();
+            this.Icon = SCM_CangJi.Properties.Resources.favicon;
         }
 
         public virtual void ProgressStart()

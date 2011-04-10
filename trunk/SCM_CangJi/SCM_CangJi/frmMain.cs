@@ -15,6 +15,7 @@ using SCM_CangJi.Account;
 using SCM_CangJi.CustomerManage;
 using SCM_CangJi.DeliveryOrderManage;
 using SCM_CangJi.WareHouseManage;
+using SCM_CangJi.BaseInfo;
 namespace SCM_CangJi
 {
     public partial class frmMain : XtraForm
@@ -39,6 +40,7 @@ namespace SCM_CangJi
             InitSkin();
             InitMenu();
             InitStatusBar();
+            this.Icon = SCM_CangJi.Properties.Resources.favicon;
         }
 
         private void InitStatusBar()
@@ -48,7 +50,11 @@ namespace SCM_CangJi
 
         private void InitMenu()
         {
+          
+        }
 
+        void changepasswordItem_ItemClick(object sender, ItemClickEventArgs e)
+        {
         }
         private void InitSkin()
         {
@@ -83,7 +89,24 @@ namespace SCM_CangJi
             if (this.ActiveMdiChild != null)
                 this.ActiveMdiChild.Close();
         }
+        private void barButtonItem8_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            new ChangeMyPassword().ShowDialog();
+        }
 
+        private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            this.Hide();
+            SecurityContext.Current.CurrentyUser = null;
+            if (new LogOn().ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                this.Show();
+            }
+            else
+            {
+                this.Close();
+            }
+        }
         private void barButtonItem5_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             (new About()).ShowDialog(this);
@@ -126,7 +149,11 @@ namespace SCM_CangJi
         private void CompanyInfo_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
             this.SetFocus(CompanyList.Instance);
-        } 
+        }
+        private void ProjectCategory_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            this.SetFocus(ProductTypeList.Instance);
+        }
         #endregion
 
         #region 入库
@@ -236,6 +263,10 @@ namespace SCM_CangJi
             }
         } 
         #endregion
+
+        
+
+       
 
        
 

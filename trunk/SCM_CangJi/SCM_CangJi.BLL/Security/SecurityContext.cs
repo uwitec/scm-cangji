@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Web.Security;
+using SCM_CangJi.DAL;
 
 namespace SCM_CangJi.BLL.Security
 {
@@ -27,6 +28,26 @@ namespace SCM_CangJi.BLL.Security
             get;
             set;
         }
+        //List<Product> products;
+        //public List<Product> Products
+        //{
+        //    get
+        //    {
+        //        if (products == null)
+        //        {
+        //            using (s)
+        //            {
+                        
+        //            }
+        //        }
+        //        return products;
+        //    }
+        //}
+        //public List<ProductType> ProductTypes
+        //{
+        //    get;
+        //    set;
+        //}
     }
   
 }

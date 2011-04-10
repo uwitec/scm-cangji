@@ -13,7 +13,7 @@ namespace SCM_CangJi.BLL.Services
         public object GetAllCurrencyUnit()
         {
             object result = null;
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 result = db.CurrencyUnits.ToList();
 
@@ -24,7 +24,7 @@ namespace SCM_CangJi.BLL.Services
         public object GetAllProductType()
         {
             object result = null;
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 result = db.ProductTypes.ToList();
 
@@ -69,7 +69,7 @@ namespace SCM_CangJi.BLL.Services
                 default:
                     break;
             }
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 var ordrnumbers = db.OrderNumbers.Where(o => o.OrderType == (int)orderType&&o.CreateDate.Date==DateTime.Now.Date);
                 result = string.Format(result, DateTime.Now.ToString("yyMMdd"), (ordrnumbers.Count()+1).ToString("000000"));
@@ -88,6 +88,15 @@ namespace SCM_CangJi.BLL.Services
         {
             gcStorageArea.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             gcStorageArea.DataSource = StorageAreaService.Instance.GetSrorageArea();
+        }
+
+        public bool UpdateDB(string sql)
+        {
+          return  Using<CangJiDataDataContext,bool>(new CangJiDataDataContext(this.connectionString), db =>
+           {
+               db.ExecuteCommand(sql, "");
+               return true;
+           });
         }
     }
 }

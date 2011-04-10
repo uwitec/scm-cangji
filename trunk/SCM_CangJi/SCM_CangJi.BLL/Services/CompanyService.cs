@@ -11,7 +11,7 @@ namespace SCM_CangJi.BLL.Services
     {
         public void Create(Company company)
         {
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), context =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), context =>
                 {
                     context.Companies.InsertOnSubmit(company);
                     context.SubmitChanges();
@@ -20,7 +20,7 @@ namespace SCM_CangJi.BLL.Services
         public object GetAllCompany()
         {
             object result = null;
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), context =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), context =>
             {
                 result = (from c in context.Companies
                           select new
@@ -37,7 +37,7 @@ namespace SCM_CangJi.BLL.Services
         public Company GetCompany(int companyId)
         {
             Company result = null;
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), context =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), context =>
             {
                 result = context.Companies.SingleOrDefault(o => o.Id == companyId);
             });
@@ -46,7 +46,7 @@ namespace SCM_CangJi.BLL.Services
 
         public void Update(Company company)
         {
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), context =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), context =>
             {
                 var c = context.Companies.SingleOrDefault(o => o.Id == company.Id);
                 c.CompanyAddress = company.CompanyAddress;
@@ -58,7 +58,7 @@ namespace SCM_CangJi.BLL.Services
 
         public bool Delete(int companyid)
         {
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), context =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), context =>
             {
                 var result = context.Companies.SingleOrDefault(o => o.Id == companyid);
                 context.Companies.DeleteOnSubmit(result);

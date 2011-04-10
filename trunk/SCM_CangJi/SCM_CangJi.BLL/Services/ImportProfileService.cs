@@ -12,7 +12,7 @@ namespace SCM_CangJi.BLL.Services
         public IEnumerable<ImportProfile> GetImportProfile(OrderType orderType)
         {
             IEnumerable<ImportProfile> result = null;
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 result = db.ImportProfiles.Where(o => o.OrderType == (int)orderType).ToList();
             });
@@ -21,7 +21,7 @@ namespace SCM_CangJi.BLL.Services
         public DataTable GetImportProfileDT(OrderType orderType)
         {
             DataTable result = null;
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 result = db.ImportProfiles.Where(o => o.OrderType == (int)orderType).ToDataTable(db);
             });
@@ -30,7 +30,7 @@ namespace SCM_CangJi.BLL.Services
 
         public bool Delete(int profileId)
         {
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 var result = db.ImportProfiles.SingleOrDefault(o => o.Id == profileId);
                 if (result != null)

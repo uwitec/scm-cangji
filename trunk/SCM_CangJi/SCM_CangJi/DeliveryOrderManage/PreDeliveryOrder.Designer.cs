@@ -351,6 +351,7 @@
             this.btnImport.Size = new System.Drawing.Size(75, 23);
             this.btnImport.TabIndex = 10;
             this.btnImport.Text = "从文件导入";
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
             // btnAddDetail
             // 

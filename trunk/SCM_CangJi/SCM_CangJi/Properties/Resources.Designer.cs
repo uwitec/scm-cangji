@@ -60,6 +60,13 @@ namespace SCM_CangJi.Properties {
             }
         }
         
+        internal static System.Drawing.Icon favicon {
+            get {
+                object obj = ResourceManager.GetObject("favicon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap loading {
             get {
                 object obj = ResourceManager.GetObject("loading", resourceCulture);
@@ -70,6 +77,13 @@ namespace SCM_CangJi.Properties {
         internal static System.Drawing.Bitmap OFFICE2007BLUEBUTTON {
             get {
                 object obj = ResourceManager.GetObject("OFFICE2007BLUEBUTTON", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap zw {
+            get {
+                object obj = ResourceManager.GetObject("zw", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

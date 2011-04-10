@@ -5,6 +5,17 @@ using System.Text;
 
 namespace SCM_CangJi.Lib
 {
+    public struct ValidateValue
+    {
+         public string Message;
+         public bool ValidateReslut;
+    }
+    public class Constains
+    {
+        public const string InputOrderDetails = "InputOrderDetails";
+        public const string DeliveryOrderDetails = "DeliveryOrderDetails";
+        public const string Products = "Products";
+    }
    public enum FormType
     {
        Detail,

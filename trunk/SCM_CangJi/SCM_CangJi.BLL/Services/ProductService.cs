@@ -11,7 +11,7 @@ namespace SCM_CangJi.BLL.Services
         public object GetProducts(int companyId)
         {
             object result = null;
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), context =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), context =>
             {
                 var company = context.Companies.SingleOrDefault(o => o.Id == companyId);
                 result = (from p in company.Products
@@ -46,7 +46,7 @@ namespace SCM_CangJi.BLL.Services
 
         public bool Delete(int productId)
         {
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 var product = db.Products.SingleOrDefault(o => o.Id == productId);
                 db.Products.DeleteOnSubmit(product);
@@ -58,16 +58,26 @@ namespace SCM_CangJi.BLL.Services
         public Product GetProduct(int productId)
         {
             Product product = null;
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 product = db.Products.SingleOrDefault(o => o.Id == productId);
             });
             return product;
         }
-
+        public Product GetProduct(int CompanyId,string productNumber1)
+        {
+          return  Using<CangJiDataDataContext,Product>(new CangJiDataDataContext(this.connectionString), db =>
+            {
+                return db.Products.SingleOrDefault(o => o.CompanyId == CompanyId && o.ProductNumber1 == productNumber1);
+            });
+        }
+        public bool HasProduct(int CompanyId, string productNumber1)
+        {
+            return GetProduct(CompanyId, productNumber1) != null;
+        }
         public void Update(Product product)
         {
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 var p = db.Products.SingleOrDefault(o => o.Id == product.Id);
                 p.BarCode = product.BarCode;
@@ -95,11 +105,20 @@ namespace SCM_CangJi.BLL.Services
 
         public void Create(Product product)
         {
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
            {
                db.Products.InsertOnSubmit(product);
                db.SubmitChanges(0);
            });
         }
+        public void Create(List<Product> products)
+        {
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
+            {
+                db.Products.InsertAllOnSubmit(products);
+                db.SubmitChanges(0);
+            });
+        }
+      
     }
 }

@@ -63,6 +63,7 @@ namespace SCM_CangJi.DeliveryOrderManage
 
             InitializeComponent();
             InitData();
+            btnImport.Visible = false;
             if (_orderId > 0)
             {
                 ddlCompanies.Enabled = false;
@@ -379,15 +380,15 @@ namespace SCM_CangJi.DeliveryOrderManage
         #region Import
         private void btnImport_Click(object sender, EventArgs e)
         {
-            if (dxValidationProvider1.Validate())
-            {
-                ImportDetails importForm = new ImportDetails(_companyId);
-                importForm.OnImported += new Action<IEnumerable<DeliveryOrderDetail>>(importForm_OnImported);
-                if (importForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
+            //if (dxValidationProvider1.Validate())
+            //{
+            //    ImportDetails importForm = new ImportDetails(_companyId);
+            //    importForm.OnImported += new Action<IEnumerable<DeliveryOrderDetail>>(importForm_OnImported);
+            //    if (importForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            //    {
 
-                }
-            }
+            //    }
+            //}
         }
 
         void importForm_OnImported(IEnumerable<DeliveryOrderDetail> deteail)

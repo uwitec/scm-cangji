@@ -6,6 +6,8 @@ using SCM_CangJi.DAL;
 using System.Data;
 using System.Data.Linq;
 using System.Data.Common;
+using System.Collections;
+using System.ComponentModel;
 
 namespace SCM_CangJi.BLL
 {
@@ -68,5 +70,78 @@ namespace SCM_CangJi.BLL
             }
 
         }
+    }
+
+    public class ProductImportInfo : IDataErrorInfo
+    {
+        Hashtable propertyErrors;
+        string _productError;
+        DataRow _row;
+        public ProductImportInfo(DataRow row)
+        {
+            propertyErrors = new Hashtable();
+            _row = row;
+        }
+        public string 中文品名 { get; set; }
+        public string 英文品名 { get; set; }
+        public string 品号1 { get; set; }
+        public string 品号2 { get; set; }
+        public string 规格 { get; set; }
+        public string 条形码 { get; set; }
+        public string 商品类型 { get; set; }
+        #region IDataErrorInfo Members
+
+        string IDataErrorInfo.this[string columnName]
+        {
+            get
+            {
+                return GetColumnError(columnName);
+            }
+        }
+        public void ClearErrors()
+        {
+            SetColumnError("中文品名", "");
+            SetColumnError("英文品名", "");
+            SetColumnError("品号1", "");
+            SetColumnError("品号2", "");
+            SetColumnError("规格", "");
+            SetColumnError("条形码", "");
+            SetColumnError("商品类型", "");
+            ProductError = "";
+        }
+
+        //Sets an error for an item's property
+        public void SetColumnError(string elem, string error)
+        {
+            if (propertyErrors.ContainsKey(elem))
+            {
+                if ((string)propertyErrors[elem] == error) return;
+                propertyErrors[elem] = error;
+            }
+        }
+        //Gets an error for an item's property
+        public string GetColumnError(string elem)
+        {
+            if (propertyErrors.ContainsKey(elem))
+                return (string)propertyErrors[elem];
+            else
+                return "";
+        }
+        //Returns an error description set for the current item
+        string IDataErrorInfo.Error
+        {
+            get { return ProductError; }
+        }
+        //Gets and sets an error for the current item
+        public string ProductError
+        {
+            get { return _productError; }
+            set
+            {
+                if (_productError == value) return;
+                _productError = value;
+            }
+        }
+        #endregion
     }
 }

@@ -89,7 +89,7 @@ namespace SCM_CangJi.BLL.Services
         public object GetUsers()
         {
             object result=null;
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), context =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), context =>
             {
                 result = (from ur in context.aspnet_UsersInRoles
                           select new
@@ -123,7 +123,7 @@ namespace SCM_CangJi.BLL.Services
         public object GetRoles()
         {
             object result = null;
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), context =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), context =>
             {
                 result = (from r in context.aspnet_Roles
                           select new
@@ -140,7 +140,7 @@ namespace SCM_CangJi.BLL.Services
         {
             bool result = true;
             string MessageResult = "删除成功";
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), context =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), context =>
             {
                 var userRole = context.aspnet_UsersInRoles.Where(o => o.aspnet_Role.RoleName.ToLower() == roleName.ToLower());
                 if (userRole.Count() > 0)

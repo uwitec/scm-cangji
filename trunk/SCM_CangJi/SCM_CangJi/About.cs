@@ -10,9 +10,10 @@ using DevExpress.XtraEditors;
 
 namespace SCM_CangJi
 {
-    public partial class About : XtraForm
+    public partial class About : FormBase
     {
         public About()
+            : base()
         {
             InitializeComponent();
         }

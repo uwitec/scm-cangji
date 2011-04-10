@@ -59,14 +59,18 @@
   <PropertyGroup>
     <GenerateManifests>false</GenerateManifests>
   </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
-  </PropertyGroup>
+  <PropertyGroup />
   <PropertyGroup>
     <ManifestCertificateThumbprint>06EEBA493D962FFB972E7E51C12C0BDEE4147BB4</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>SCM_CangJi_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.BonusSkins.v10.1, Version=10.1.6.0, Culture=neutral, PublicKeyToken=95fc6c5621878f0a, processorArchitecture=MSIL">
@@ -189,6 +193,19 @@
     <Compile Include="Account\UserList.Designer.cs">
       <DependentUpon>UserList.cs</DependentUpon>
     </Compile>
+    <Compile Include="BaseInfo\ProductTypeList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseInfo\ProductTypeList.Designer.cs">
+      <DependentUpon>ProductTypeList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commom\CommonUtil.cs" />
+    <Compile Include="CustomerManage\ProductImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomerManage\ProductImport.Designer.cs">
+      <DependentUpon>ProductImport.cs</DependentUpon>
+    </Compile>
     <Compile Include="DeliveryOrderManage\AssigningProducts.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -242,6 +259,12 @@
     </Compile>
     <Compile Include="InputOrderManage\EditInputDetail.Designer.cs">
       <DependentUpon>EditInputDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputOrderManage\ImportInputDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputOrderManage\ImportInputDetails.Designer.cs">
+      <DependentUpon>ImportInputDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="InputOrderManage\InputOrderList.cs">
       <SubType>Form</SubType>
@@ -461,6 +484,9 @@
     <EmbeddedResource Include="About.resx">
       <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Account\ChangeMyPassword.resx">
+      <DependentUpon>ChangeMyPassword.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Account\ChangePassword.resx">
       <DependentUpon>ChangePassword.cs</DependentUpon>
     </EmbeddedResource>
@@ -479,11 +505,17 @@
     <EmbeddedResource Include="Account\UserList.resx">
       <DependentUpon>UserList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BaseInfo\ProductTypeList.resx">
+      <DependentUpon>ProductTypeList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Base\EditForm.resx">
       <DependentUpon>EditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Base\FormBase.resx">
       <DependentUpon>FormBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomerManage\ProductImport.resx">
+      <DependentUpon>ProductImport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DeliveryOrderManage\AssigningProducts.resx">
       <DependentUpon>AssigningProducts.cs</DependentUpon>
@@ -511,6 +543,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InputOrderManage\EditInputDetail.resx">
       <DependentUpon>EditInputDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputOrderManage\ImportInputDetails.resx">
+      <DependentUpon>ImportInputDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InputOrderManage\InputOrderList.resx">
       <DependentUpon>InputOrderList.cs</DependentUpon>
@@ -614,6 +649,7 @@
     </None>
     <None Include="Properties\app.manifest" />
     <None Include="Properties\DataSources\SCM_CangJi.DAL.Company.datasource" />
+    <None Include="Properties\DataSources\SCM_CangJi.DAL.ProductType.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -643,6 +679,8 @@
     <None Include="Resources\loading.gif" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\zw.jpg" />
+    <None Include="Resources\favicon.ico" />
     <Content Include="Resources\Office2007_BlueButton.png" />
   </ItemGroup>
   <ItemGroup>

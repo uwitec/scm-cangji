@@ -43,6 +43,7 @@
             this.barSubItem1 = new DevExpress.XtraBars.BarSubItem();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem8 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
             this.barSubItem5 = new DevExpress.XtraBars.BarSubItem();
             this.CloseWindow = new DevExpress.XtraBars.BarButtonItem();
@@ -151,9 +152,10 @@
             this.CloseWindow,
             this.showWindows,
             this.statusbar_Userinfo,
-            this.barMdiChildrenListItem1});
+            this.barMdiChildrenListItem1,
+            this.barButtonItem8});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 23;
+            this.barManager1.MaxItemId = 24;
             this.barManager1.StatusBar = this.bar3;
             // 
             // barskins
@@ -189,11 +191,12 @@
             // 
             // barSubItem1
             // 
-            this.barSubItem1.Caption = "文件...";
+            this.barSubItem1.Caption = "系统...";
             this.barSubItem1.Id = 0;
             this.barSubItem1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem1),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem2),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem8),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem3)});
             this.barSubItem1.Name = "barSubItem1";
             // 
@@ -202,6 +205,7 @@
             this.barButtonItem1.Caption = "注销登陆";
             this.barButtonItem1.Id = 9;
             this.barButtonItem1.Name = "barButtonItem1";
+            this.barButtonItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
             // 
             // barButtonItem2
             // 
@@ -209,6 +213,13 @@
             this.barButtonItem2.Id = 10;
             this.barButtonItem2.Name = "barButtonItem2";
             this.barButtonItem2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem2_ItemClick);
+            // 
+            // barButtonItem8
+            // 
+            this.barButtonItem8.Caption = "修改密码";
+            this.barButtonItem8.Id = 23;
+            this.barButtonItem8.Name = "barButtonItem8";
+            this.barButtonItem8.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem8_ItemClick);
             // 
             // barButtonItem3
             // 
@@ -575,6 +586,7 @@
             // 
             this.ProjectCategory.Caption = "商品类型";
             this.ProjectCategory.Name = "ProjectCategory";
+            this.ProjectCategory.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.ProjectCategory_LinkClicked);
             // 
             // Unit
             // 
@@ -652,27 +664,6 @@
             this.imageList3.Images.SetKeyName(0, "");
             this.imageList3.Images.SetKeyName(1, "");
             // 
-            // frmMain
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(601, 425);
-            this.Controls.Add(this.splitterControl1);
-            this.Controls.Add(this.navBarControl1);
-            this.Controls.Add(this.barDockControlLeft);
-            this.Controls.Add(this.barDockControlRight);
-            this.Controls.Add(this.barDockControlBottom);
-            this.Controls.Add(this.barDockControlTop);
-            this.IsMdiContainer = true;
-            this.Name = "frmMain";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "众为仓储";
-            this.Load += new System.EventHandler(this.frmMain_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.MDIManage)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
-            // 
             // StoragePanel
             // 
             this.StoragePanel.Location = new System.Drawing.Point(0, 0);
@@ -693,6 +684,26 @@
             this.StorageView.Text = "StorageManageView";
             this.StorageView.Visible = false;
             // 
+            // frmMain
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(601, 425);
+            this.Controls.Add(this.splitterControl1);
+            this.Controls.Add(this.navBarControl1);
+            this.Controls.Add(this.barDockControlLeft);
+            this.Controls.Add(this.barDockControlRight);
+            this.Controls.Add(this.barDockControlBottom);
+            this.Controls.Add(this.barDockControlTop);
+            this.IsMdiContainer = true;
+            this.Name = "frmMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "众为仓储";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmMain_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.MDIManage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -763,6 +774,7 @@
         private DevExpress.XtraNavBar.NavBarItem navDeliveryOrders;
         private DevExpress.XtraBars.BarMdiChildrenListItem barMdiChildrenListItem1;
         private DevExpress.XtraNavBar.NavBarItem nvaInputOrders;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem8;
 
     }
 }

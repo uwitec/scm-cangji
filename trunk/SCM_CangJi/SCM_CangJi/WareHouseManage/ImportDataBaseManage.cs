@@ -10,16 +10,17 @@ using DevExpress.XtraEditors;
 using System.Data.OleDb;
 using SCM_CangJi.Lib;
 using SCM_CangJi.BLL;
+using SCM_CangJi.CustomerManage;
 
 namespace SCM_CangJi.WareHouseManage
 {
     public partial class ImportDataBaseManage : FormBase
     {
-      
+        ImportDataInfo importData;  //源数据表
+        List<ImportDataInfo> listImportData;    //存放要写进数据库中的数据库表、目标表字段和源数据表字段的对应关系
 
-        ImportDataInfo importData;
-        List<ImportDataInfo> listImportData;
-        
+        IntPtr _formObject; //保存传递过来的窗体实例
+
         private string strConn;
         private string TargetTable;
 
@@ -36,9 +37,10 @@ namespace SCM_CangJi.WareHouseManage
             InitializeComponent();
         }
 
-        public ImportDataBaseManage(string tablename)
+        public ImportDataBaseManage(IntPtr formObject, string tablename)
         {
             TargetTable = tablename;
+            _formObject = formObject;
 
             InitializeVariable();
             InitializeComponent();
@@ -122,12 +124,13 @@ namespace SCM_CangJi.WareHouseManage
         {
             DataSet db = dataConn.Query("select TableRemark as '目标数据表', TargetTable as '目标数据表名称' from ImportProfiles ");
             int count = db.Tables[0].Rows.Count;
-            
+
             if (count <= 0)
             {
                 lookUpDesTable.Properties.DataSource = null;
+                lookUpDesTable.Enabled = false;
                 return;
-            }
+            }            
 
             DataTable dataTabTmp = new DataTable();
             dataTabTmp.Clear();
@@ -164,7 +167,6 @@ namespace SCM_CangJi.WareHouseManage
                 lookUpDesTable.EditValue = TargetTable;
                 lookUpDesTable.Enabled = false;
             }
-
         }
 
         private void SetStoragesAreaImportView(DataTable dataTabTmp)
@@ -344,7 +346,7 @@ namespace SCM_CangJi.WareHouseManage
                     default:
                         string sql = "select TableName,TableId, ColumnName as '字段名', description as '字段说明',case when IsNull=1 then N'能' else N'不能' end as '是否为空', ColumnId, "
                             + "case when TypeName='nvarchar'  then TypeName+'（'+rtrim(Length/2)+'）' else TypeName+'（'+rtrim(Length)+'）' end as '类型（长度）',SourceColumnName as '导入字段'"
-                            + " from View_ImportTargetDataMetas where tablename='" + TargetTable + "' and is_identity<>1 and description is not null";
+                            + " from View_ImportTargetDataMetas where tablename='" + TargetTable + "' and is_identity<>1 and description is not null and description <>''";
                         DataSet db = dataConn.Query(sql);
                         gridData.DataSource = db.Tables[0];
 
@@ -387,7 +389,7 @@ namespace SCM_CangJi.WareHouseManage
 
                 repositoryItemLookUpEdit1.Columns.Clear();
                 repositoryItemLookUpEdit1.DataSource = dataSrcTabTmp;
-                //repositoryItemLookUpEdit1.NullText = "--请选择要导入的字段--";
+                repositoryItemLookUpEdit1.NullText = "--请选择要导入的字段--";
                 //控制字段的显示
                 repositoryItemLookUpEdit1.Columns.Add(new DevExpress.XtraEditors.Controls.LookUpColumnInfo("字段名称", 50, "字段名称"));    
                 repositoryItemLookUpEdit1.DisplayMember = "字段名称";
@@ -417,34 +419,16 @@ namespace SCM_CangJi.WareHouseManage
 
         private void butImport_Click(object sender, EventArgs e)
         {
+            bool isOk = false;
+
+            /*
+             * 检查要导入数据的字段是否都选了，没选提示返回，选好了就显示数据导入处理窗口。
+               default中处理共性的正常的表，如果有个性的表需要进行单独处理，如：case "StorageAreas":
+             * */
             switch (lookUpDesTable.EditValue.ToString().Trim())
             {
-                case "StorageAreas":
-                    //检查仓库是否选中
-                    bool isOk = ImportStorageAreasData();
-                    if (isOk == false)
-                        return;
-
-                    //检查不为空的数据项是否全选中
-                    isOk = CheckImportData();
-                    if (isOk == false)
-                        return;
-                    /*
-                    string sqlStorageRack = "";            
-                    string sqlStorageAreas = "";
-                    List<string> srcRackField = new List<string>();
-                    List<string> srcAreaField = new List<string>();
-                    SetImportTableInfo("StorageRacks", ref sqlStorageRack, ref srcRackField, gridView1);
-                    SetImportTableInfo("StorageAreas", ref sqlStorageAreas, ref srcAreaField, gridView1);
-
-                    List<ImportDataInfo> listStorageAreasData = new List<ImportDataInfo>();
-                    List<ImportDataInfo> listStorageRacksData = new List<ImportDataInfo>();
-                    SetImportTableInfo("StorageRacks", ref listStorageRacksData, gridView1);
-                    SetImportTableInfo("StorageAreas", ref listStorageAreasData, gridView1);
-                    */
-                    ImportDataBase ImprotWnd = new ImportDataBase(srcData, listImportData);
-                    ImprotWnd.ShowDialog();
-                    
+                case "StorageAreas"://库位表是个性表，在导入时需要对2张表进行操作,需要进行单独处理，处理正确了显示数据导入处理窗口。
+                                        
                     break;
 
                 default:
@@ -455,22 +439,52 @@ namespace SCM_CangJi.WareHouseManage
 
                     //读取要导入的字段结构List<ImportDataInfo> listImportData;
                     SetImportTableInfo(TargetTable, gridView1);
-                    
-                    //显示数据导入处理窗口
-                    ImportDataBase ImprotWnd1 = new ImportDataBase(srcData, listImportData);
-                    if (ImprotWnd1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+
+                    /*
+                     * 显示数据导入处理窗口,传递3个参数
+                     * 1._formObject        窗体对象
+                     * 2.srcData            源数据表对象
+                     * 3.listImportData     数据库表、目标表和源数据表对应关系的结构
+                     * */
+
+                    ImportDataBase ImprotForm = ImportFormFactory();
+                    if (ImprotForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                     {
                         DialogResult = System.Windows.Forms.DialogResult.OK;
                     }
                     break;
             }
         }
+        /// <summary>
+        /// 根据TargetTable 返回具体的导入窗体
+        /// </summary>
+        /// <returns></returns>
+        private ImportDataBase ImportFormFactory()
+        {
+            ImportDataBase importform=null;
+            switch (this.TargetTable)
+            {
+                case Constains.Products:
+                    importform = new ProductImport(_formObject, srcData, listImportData);
+                    break;
+                case Constains.InputOrderDetails:
+                    importform = new InputOrderManage.ImportInputDetails(_formObject, srcData, listImportData);
+                    break;
+                case Constains.DeliveryOrderDetails:
+               
+                default:
+                   importform= new ImportDataBase(_formObject, srcData, listImportData);
+ 
+                    break;
+            }
+            return importform;
+        }
 
         private bool ImportStorageAreasData()
         {
             if (lookUpStorage.EditValue.ToString().Trim().Equals(""))
             {
-                MessageBox.Show("请选择要导入的仓库！");
+                XtraMessageBox.Show("请选择要导入的仓库！");
                 lookUpStorage.Focus();
                 return false;
             }
@@ -503,7 +517,7 @@ namespace SCM_CangJi.WareHouseManage
         private void butSave_Click(object sender, EventArgs e)
         { 
             
-            MessageBox.Show(gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "导入字段").ToString());
+            XtraMessageBox.Show(gridView1.GetRowCellValue(gridView1.FocusedRowHandle, "导入字段").ToString());
         }
 
         private bool CheckImportData()
@@ -526,9 +540,9 @@ namespace SCM_CangJi.WareHouseManage
                         if (!gridView1.GetRowCellValue(i, "字段说明").ToString().Equals(""))
                         {
                             field += "(" + gridView1.GetRowCellValue(i, "字段说明").ToString() + ")";
-                        }
+                        } 
                         gridView1.FocusedRowHandle = i;
-                        MessageBox.Show(field+"信息不能为空！");
+                        XtraMessageBox.Show(field+"信息不能为空！");
                         return false;
                     }
 
@@ -542,14 +556,16 @@ namespace SCM_CangJi.WareHouseManage
                     }
                 }
             }
-
             //检查不能为空的字段在源数据表中是否有空的数据
-            DataRow[] update_row = srcData.Tables[0].Select(sql);
-            if (update_row.Length > 0)
-            {
-                MessageBox.Show("要导入的数据文件中有字段为空请检查！");
-                return false;
-            }
+            //DataRow[] update_row = srcData.Tables[0].Select(sql);
+            //这段代码会始终取出一行，该行数据全部为空
+            //故一直返回false
+            //去除这段验证代码，让个子窗体去验证数据有效性
+            //if (update_row.Length > 0)
+            //{
+            //    XtraMessageBox.Show("要导入的数据文件中有字段为空请检查！");
+            //    return false;
+            //}
 
             return true;
         }
@@ -675,8 +691,8 @@ namespace SCM_CangJi.WareHouseManage
 
             sqlStorageRack += ")";
             sqlStorageAreas += ")";
-            MessageBox.Show(sqlStorageRack);
-            MessageBox.Show(sqlStorageAreas);
+            XtraMessageBox.Show(sqlStorageRack);
+            XtraMessageBox.Show(sqlStorageAreas);
 
             return true;
         }

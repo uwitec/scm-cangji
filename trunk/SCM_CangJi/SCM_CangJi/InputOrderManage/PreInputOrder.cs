@@ -25,8 +25,19 @@ namespace SCM_CangJi.InputOrderManage
         private InputOrder order = null;
         private int _companyId = 0;
         bool HasValidateDetailData = true;
+        public int OrderId
+        {
+            get
+            {
+                return _orderId;
+            }
+        }
         public int CompanyId
         {
+            get
+            {
+                return _companyId;
+            }
             set
             {
                 if (value > 0 && _companyId != value)
@@ -39,13 +50,18 @@ namespace SCM_CangJi.InputOrderManage
         DataTable _inputOrderDetailsDatable = null;
         public DataTable InputOrderDetailsDatatable
         {
+
+
             get
             {
-                if (_inputOrderDetailsDatable == null)
+                lock (this)
                 {
-                    _inputOrderDetailsDatable = InputOrderService.Instance.GetInputOrderDetailsDataTable(_orderId);
+                    if (_inputOrderDetailsDatable == null)
+                    {
+                        _inputOrderDetailsDatable = InputOrderService.Instance.GetInputOrderDetailsDataTable(_orderId);
+                    }
+                    return _inputOrderDetailsDatable;
                 }
-                return _inputOrderDetailsDatable;
             }
         }
         
@@ -367,9 +383,10 @@ namespace SCM_CangJi.InputOrderManage
         {
             if (dxValidationProvider1.Validate())
             {
-                WareHouseManage.ImportDataBaseManage importForm = new WareHouseManage.ImportDataBaseManage();
+                WareHouseManage.ImportDataBaseManage importForm = new WareHouseManage.ImportDataBaseManage(this.Handle,"InputOrderDetails");
                 if (importForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
+                    _inputOrderDetailsDatable = null;
                     InitOrderDetails();
                 }
             }

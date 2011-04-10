@@ -12,7 +12,7 @@ namespace SCM_CangJi.BLL.Services
         public  object GetSrorageArea()
         {
             object result = null;
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), context =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), context =>
             {
                 result = (from a in context.StorageAreas
                           select new
@@ -28,7 +28,7 @@ namespace SCM_CangJi.BLL.Services
         }
         public string GetArea(int? StorageAreaId)
         {
-            return Using<CangJiDataDataContext, string>(new CangJiDataDataContext(), db =>
+            return Using<CangJiDataDataContext, string>(new CangJiDataDataContext(this.connectionString), db =>
              {
                  if (StorageAreaId == null || !StorageAreaId.HasValue)
                      return "未分配";

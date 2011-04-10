@@ -54,7 +54,7 @@ namespace SCM_CangJi.CustomerManage
         }
 
         #region 公司相关
-        int CompanyId = 0;
+       public int CompanyId = 0;
         private void InitCompanyGrid()
         {
             gridControlCompany.DataSource = SCM_CangJi.BLL.Services.CompanyService.Instance.GetAllCompany();
@@ -265,6 +265,14 @@ namespace SCM_CangJi.CustomerManage
                 InitProduct(CompanyId);
             }
         }
+        private void btnImportProduct_Click(object sender, EventArgs e)
+        {
+            WareHouseManage.ImportDataBaseManage importForm = new WareHouseManage.ImportDataBaseManage(this.Handle, Lib.Constains.Products);
+            if (importForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                InitProduct(this.CompanyId);
+            }
+        }
         #endregion
 
         #region 送货地址
@@ -334,5 +342,7 @@ namespace SCM_CangJi.CustomerManage
 
         }
         #endregion
+
+      
     }
 }

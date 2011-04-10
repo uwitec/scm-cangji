@@ -14,7 +14,7 @@ namespace SCM_CangJi.BLL.Services
         public object GetDeliveryOrders(DeliveryStatus status)
         {
             object reslut = null;
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 reslut = (from o in db.DeliveryOrders.Where(o => status==DeliveryStatus.all||o.Status == status.ToString())
                           select new
@@ -36,7 +36,7 @@ namespace SCM_CangJi.BLL.Services
         public object GetDeliveryOrdersView(DeliveryStatus status)
         {
             object reslut = null;
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 reslut = (from o in db.DeliveryOrders.Where(o => o.Status == status.ToString())
                           select new
@@ -85,7 +85,7 @@ namespace SCM_CangJi.BLL.Services
         }
         public object GetAssignedDeliveryOrderDetails(int orderId)
         {
-            return Using<CangJiDataDataContext, object>(new CangJiDataDataContext(), db =>
+            return Using<CangJiDataDataContext, object>(new CangJiDataDataContext(this.connectionString), db =>
               {
                   object reslut = null;
                   var order = db.DeliveryOrders.SingleOrDefault(o => o.Id == orderId);
@@ -124,7 +124,7 @@ namespace SCM_CangJi.BLL.Services
         public DataTable GetDeliveryOrderDetailsDataTable(int orderId)
         {
             DataTable reslut = null;
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 reslut = (from o in db.DeliveryOrderDetails.Where(o => o.DeliveryOrderId == orderId)
                           select o.ToViewModel()).ToDataTable(db);
@@ -134,7 +134,7 @@ namespace SCM_CangJi.BLL.Services
         public IEnumerable<DeliveryOrderDetail> GetDeliveryOrderDetails(int orderId)
         {
             IEnumerable<DeliveryOrderDetail> reslut = null;
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 reslut = db.DeliveryOrderDetails.Where(o => o.DeliveryOrderId == orderId).ToList();
             });
@@ -143,7 +143,7 @@ namespace SCM_CangJi.BLL.Services
         public DeliveryOrder GetDeliveryOrder(int orderId)
         {
             DeliveryOrder reslut = null;
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 reslut = db.DeliveryOrders.SingleOrDefault(o => o.Id == orderId);
                 reslut.DeliveryOrderDetails.Load();
@@ -153,7 +153,7 @@ namespace SCM_CangJi.BLL.Services
         public DeliveryOrder GetDeliveryOrderFullInfo(int orderId)
         {
             DeliveryOrder reslut = null;
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 reslut = db.DeliveryOrders.SingleOrDefault(o => o.Id == orderId);
                 reslut.DeliveryOrderDetails.Load();
@@ -165,7 +165,7 @@ namespace SCM_CangJi.BLL.Services
         }
         public void Update(DeliveryOrder order)
         {
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 var deliveryOrder = db.DeliveryOrders.SingleOrDefault(o => o.Id == order.Id);
                 if (order.DeliveryOrderDetails != null)
@@ -212,7 +212,7 @@ namespace SCM_CangJi.BLL.Services
 
         public void Create(DeliveryOrder deliveryOrder)
         {
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 db.DeliveryOrders.InsertOnSubmit(deliveryOrder);
                 db.SubmitChanges();
@@ -223,7 +223,7 @@ namespace SCM_CangJi.BLL.Services
         {
             bool reslut = true;
             string m = "删除成功";
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
              {
                  var order = db.DeliveryOrders.SingleOrDefault(o => o.Id == orderId);
                  DeliveryStatus status=(DeliveryStatus)Enum.Parse(typeof(DeliveryStatus), order.Status);
@@ -255,7 +255,7 @@ namespace SCM_CangJi.BLL.Services
             bool reslut = true;
             string m = "删除成功";
             message = m;
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 var orderDetail = db.DeliveryOrderDetails.SingleOrDefault(o => o.Id == orderdetailId);
                 if (orderDetail != null)
@@ -270,7 +270,7 @@ namespace SCM_CangJi.BLL.Services
         public DeliveryOrderDetail GetDeliveryOrderDetail(int orderDetailId)
         {
             DeliveryOrderDetail reslut = null;
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 reslut = db.DeliveryOrderDetails.SingleOrDefault(o => o.Id == orderDetailId);
                 int id = reslut.Product.Id;
@@ -280,7 +280,7 @@ namespace SCM_CangJi.BLL.Services
 
         public void UpdateDetail(DeliveryOrderDetail deliveryOrderDetail)
         {
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 var reslut = db.DeliveryOrderDetails.SingleOrDefault(o => o.Id == deliveryOrderDetail.Id);
                 reslut.AssignCount = deliveryOrderDetail.AssignCount;
@@ -297,7 +297,7 @@ namespace SCM_CangJi.BLL.Services
 
         public void CreateDetail(DeliveryOrderDetail deliveryOrderDetail)
         {
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 db.DeliveryOrderDetails.InsertOnSubmit(deliveryOrderDetail);
                 db.SubmitChanges();
@@ -307,7 +307,7 @@ namespace SCM_CangJi.BLL.Services
         public DataTable GetAssignedDetails(int orderId)
         {
             DataTable dt = null;
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 dt = db.VewAssingedDeliveryOrderDetails.Where(o => o.DeliveryOrderId == orderId).ToDataTable(db);
             });
@@ -317,7 +317,7 @@ namespace SCM_CangJi.BLL.Services
 
         public void CreateAssignedDetails(int orderId, IEnumerable<AssignedDeliveryOrderDetail> _assignedDeliveryDetails)
         {
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 db.AssignedDeliveryOrderDetails.InsertAllOnSubmit(_assignedDeliveryDetails);
                 _assignedDeliveryDetails.GroupBy(o => o.ProductStorageId)
@@ -340,7 +340,7 @@ namespace SCM_CangJi.BLL.Services
         //减少可用库存
         public void DecreaseUseableStorage(int orderId)
         {
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 var assignedDetails = db.AssignedDeliveryOrderDetails.Where(o => o.DeliveryOrderId == orderId);
                 var order = db.DeliveryOrders.SingleOrDefault(o => o.Id == orderId);
@@ -350,7 +350,7 @@ namespace SCM_CangJi.BLL.Services
         }
         public void UpdateStatus(int orderId, DeliveryStatus deliveryStatus)
         {
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 var or = db.DeliveryOrders.SingleOrDefault(o => o.Id == orderId);
                 or.Status = deliveryStatus.ToString();
@@ -360,7 +360,7 @@ namespace SCM_CangJi.BLL.Services
 
         public void ConfirmOutput(int orderId)
         {
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 var or = db.DeliveryOrders.SingleOrDefault(o => o.Id == orderId);
                 or.Status =DeliveryStatus.已发货.ToString();
@@ -374,7 +374,7 @@ namespace SCM_CangJi.BLL.Services
 
         public void CancelAssigedDetails(int orderId)
         {
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 var or = db.DeliveryOrders.SingleOrDefault(o => o.Id == orderId);
                 or.Status = DeliveryStatus.待分配库存.ToString();

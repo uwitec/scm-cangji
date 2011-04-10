@@ -11,7 +11,7 @@ namespace SCM_CangJi.BLL.Services
         public object GetAddresses(int companyId)
         {
             object reslut = null;
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 var company = db.Companies.SingleOrDefault(o => o.Id == companyId);
                 reslut = (from a in company.DeliverAddresses
@@ -29,7 +29,7 @@ namespace SCM_CangJi.BLL.Services
 
         public bool Delete(int addressId)
         {
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 var address = db.DeliverAddresses.SingleOrDefault(o => o.Id == addressId);
                 db.DeliverAddresses.DeleteOnSubmit(address);
@@ -41,7 +41,7 @@ namespace SCM_CangJi.BLL.Services
         public DeliverAddress GetAddress(int addressId)
         {
             DeliverAddress address = null;
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 address = db.DeliverAddresses.SingleOrDefault(o => o.Id == addressId);
             });
@@ -50,7 +50,7 @@ namespace SCM_CangJi.BLL.Services
 
         public void Update(DeliverAddress deliverAddress)
         {
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 var address = db.DeliverAddresses.SingleOrDefault(o => o.Id == deliverAddress.Id);
                 address.Address = deliverAddress.Address;
@@ -63,7 +63,7 @@ namespace SCM_CangJi.BLL.Services
 
         public void Create(DeliverAddress deliverAddress)
         {
-            Using<CangJiDataDataContext>(new CangJiDataDataContext(), db =>
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 db.DeliverAddresses.InsertOnSubmit(deliverAddress);
                 db.SubmitChanges();
