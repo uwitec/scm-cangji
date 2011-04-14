@@ -46,11 +46,11 @@ namespace SCM_CangJi.CustomerManage
             ProductStyleFormatCondition cn;
             foreach (var item in _importDataStruct)
             {
-                cn = new ProductStyleFormatCondition(this, companyForm.CompanyId);
-                cn.OnCheckValue += new CheckValue(cn_OnCheckValue);
-                cn.Appearance.BackColor = Color.Red;
-                cn.Appearance.ForeColor = Color.White;
-                ImportingGridView.FormatConditions.Add(cn);
+                //cn = new ProductStyleFormatCondition(this, companyForm.CompanyId);
+                //cn.OnCheckValue += new CheckValue(cn_OnCheckValue);
+                //cn.Appearance.BackColor = Color.Red;
+                //cn.Appearance.ForeColor = Color.White;
+                //ImportingGridView.FormatConditions.Add(cn);
             }
             ImportingGridView.BestFitColumns();
 

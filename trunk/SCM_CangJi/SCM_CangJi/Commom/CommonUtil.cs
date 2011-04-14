@@ -17,7 +17,8 @@ namespace SCM_CangJi.Commom
 
             if (property.PropertyType == typeof(Int32))
             {
-                property.SetValue(p, Convert.ToInt32(row[importDataInfo.SrcField]), null);
+                if (row[importDataInfo.SrcField] != null && !string.IsNullOrWhiteSpace(row[importDataInfo.SrcField].ToString()))
+                    property.SetValue(p, Convert.ToInt32(row[importDataInfo.SrcField]), null);
             }
             else if (property.PropertyType == typeof(Nullable<Int32>))
             {

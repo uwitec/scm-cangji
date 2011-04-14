@@ -478,5 +478,16 @@ namespace SCM_CangJi.InputOrderManage
             ShowMessage("已退回到待入库状态");
             DialogResult = System.Windows.Forms.DialogResult.OK;
         }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            if (!this.Updated)
+            {
+                ShowMessage("请先保存！");
+                return;
+            }
+            PrintPreOrder printForm = new PrintPreOrder(_orderId);
+            printForm.ShowDialog();
+        }
     }
 }

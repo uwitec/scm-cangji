@@ -212,26 +212,29 @@ namespace SCM_CangJi.BLL.Services
             object reslut = null;
             Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
-                reslut = (from d in db.InputOrderDetails
-                         join area in db.StorageAreas
-                         on d.StorageAreaId equals area.Id
-                         where d.InputOrderId == orderlId
-                         select new
-                         {
-                             CompanyName=d.Company.CompanyName,
-                             CurrentProductNumber=d.CurrentProductNumber,
-                             InputCount=d.InputCount.ToString(),
-                             InputOrderNumber=d.InputOrder.InputOrderNumber,
-                             LotsNumber=d.LotsNumber,
-                             d.Remark,
-                             BarCode=d.Product.BarCode,
-                             ProductChName=d.Product.ProductChName,
-                             ProductEngName=d.Product.ProductEngName,
-                             ProductNumber1=d.Product.ProductNumber1,
-                             ProductNumber2=d.Product.ProductNumber2,
-                             AreaNumber=area.库位编号,
-                             WareHouseName = "（" + area.StorageRack.Storage.仓库编号 + "）" + area.StorageRack.Storage.仓库名称,
-                         }).ToList();
+                var resultTem = from d in db.InputOrderDetails.Where(o => o.InputOrderId == orderlId)
+
+                                join area in db.StorageAreas
+                                     on d.StorageAreaId equals area.Id
+                                     into x
+                                from y in x.DefaultIfEmpty()
+                                select new
+                                {
+                                    CompanyName = d.Company.CompanyName,
+                                    CurrentProductNumber = d.CurrentProductNumber,
+                                    InputCount = d.InputCount.ToString(),
+                                    InputOrderNumber = d.InputOrder.InputOrderNumber,
+                                    LotsNumber = d.LotsNumber,
+                                    d.Remark,
+                                    BarCode = d.Product.BarCode,
+                                    ProductChName = d.Product.ProductChName,
+                                    ProductEngName = d.Product.ProductEngName,
+                                    ProductNumber1 = d.Product.ProductNumber1,
+                                    ProductNumber2 = d.Product.ProductNumber2,
+                                    AreaNumber = y==null ? "未分配" : y.StorageRack.Storage.仓库名称 + "--" + y.StorageRack.RackName + "--" + y.库位编号,
+                                    WareHouseName = "（" + y.StorageRack.Storage.仓库编号 + "）" + y.StorageRack.Storage.仓库名称,
+                                };
+                reslut=resultTem.ToList();
             });
             return reslut;
         }

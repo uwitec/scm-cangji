@@ -68,6 +68,7 @@
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.btnPrint = new DevExpress.XtraEditors.SimpleButton();
             this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcProducts)).BeginInit();
@@ -170,6 +171,7 @@
             this.gridViewInputOrderDetails.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
             this.gridViewInputOrderDetails.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.True;
             this.gridViewInputOrderDetails.OptionsNavigation.AutoFocusNewRow = true;
+            this.gridViewInputOrderDetails.OptionsPrint.UsePrintStyles = true;
             this.gridViewInputOrderDetails.OptionsView.EnableAppearanceEvenRow = true;
             this.gridViewInputOrderDetails.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridViewInputOrderDetails_RowCellStyle);
             this.gridViewInputOrderDetails.ShowGridMenu += new DevExpress.XtraGrid.Views.Grid.GridMenuEventHandler(this.gridViewInputOrderDetails_ShowGridMenu);
@@ -458,6 +460,7 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.btnPrint);
             this.panelControl1.Controls.Add(this.labelControl8);
             this.panelControl1.Controls.Add(this.btnImport);
             this.panelControl1.Controls.Add(this.btnAddDetail);
@@ -466,6 +469,15 @@
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(634, 38);
             this.panelControl1.TabIndex = 1;
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Location = new System.Drawing.Point(263, 9);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(75, 23);
+            this.btnPrint.TabIndex = 11;
+            this.btnPrint.Text = "打印入库单";
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // dxValidationProvider1
             // 
@@ -535,5 +547,6 @@
         private DevExpress.XtraEditors.SimpleButton btnBack;
         private DevExpress.XtraGrid.Columns.GridColumn gcProductNumber2;
         private DevExpress.XtraGrid.Columns.GridColumn gcSpec;
+        private DevExpress.XtraEditors.SimpleButton btnPrint;
     }
 }
