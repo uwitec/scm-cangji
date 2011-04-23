@@ -18,6 +18,7 @@ namespace SCM_CangJi.BLL.Services
                           select new
                           {
                               p.BarCode,
+                              p.Brand,
                               p.Company.CompanyName,
                               p.CompanyId,
                               CurrencyName = p.CurrencyUnit == null ? "" : p.CurrencyUnit.CurrencyName,
@@ -99,6 +100,7 @@ namespace SCM_CangJi.BLL.Services
                 p.Volume = product.Volume;
                 p.Weight = product.Weight;
                 p.Width = product.Width;
+                p.Brand = product.Brand;
                 db.SubmitChanges();
             });
         }
