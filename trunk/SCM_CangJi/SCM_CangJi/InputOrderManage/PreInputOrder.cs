@@ -90,10 +90,10 @@ namespace SCM_CangJi.InputOrderManage
                 {
                     btnAddDetail.Visible = false;
                     btnImport.Visible = false;
-                    btnPreCompletedAndAssign.Visible = false;
+                    //btnPreCompletedAndAssign.Visible = false;
                     btnSaveAll.Visible = false;
                     btnPreComplete.Visible = false;
-                    btnSaveAndClose.Visible = false;
+                    //btnSaveAndClose.Visible = false;
                     this.gridViewInputOrderDetails.OptionsBehavior.Editable = false;
                     if (this.order.Status == InputStatus.已入库.ToString() || this.order.Status == InputStatus.作废.ToString())
                     {
@@ -363,7 +363,10 @@ namespace SCM_CangJi.InputOrderManage
             row["LotsNumber"] = detail.LotsNumber;
             row["ProductId"] = detail.ProductId;
             row["CompanyId"] = detail.CompanyId;
-            row["StorageArea"] = StorageAreaService.Instance.GetArea(detail.StorageAreaId);
+            if (detail.StorageAreaId.HasValue)
+            {
+                row["StorageArea"] = StorageAreaService.Instance.GetArea(detail.StorageAreaId);
+            }
             if (detail.ID == 0)
                 row["ID"] = detail.ID;
             if (detail.ProductDate != null)
@@ -376,6 +379,7 @@ namespace SCM_CangJi.InputOrderManage
             row["ProductNumber1"] = product.ProductNumber1;
             row["ProductNumber2"] = product.ProductNumber2;
             row["Spec"] = product.Spec;
+            row["Brand"] = product.Brand;
         }
 
         #region Import

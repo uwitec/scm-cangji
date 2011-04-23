@@ -73,6 +73,7 @@
             this.repositoryItemComboBox4 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.repositoryItemComboBox3 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
+            this.btnImportProduct = new DevExpress.XtraEditors.SimpleButton();
             this.btnCreateProduct = new DevExpress.XtraEditors.SimpleButton();
             this.DeliverAddressTab = new DevExpress.XtraTab.XtraTabPage();
             this.gridControlDeliverAddress = new DevExpress.XtraGrid.GridControl();
@@ -83,7 +84,7 @@
             this.gridColumn21 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
             this.btnCreateDeliverAddress = new DevExpress.XtraEditors.SimpleButton();
-            this.btnImportProduct = new DevExpress.XtraEditors.SimpleButton();
+            this.gcBrand = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlCompany)).BeginInit();
@@ -368,6 +369,7 @@
             this.gridViewProduct.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn2,
             this.gridColumn3,
+            this.gcBrand,
             this.gridColumn4,
             this.gridColumn5,
             this.gridColumn17,
@@ -409,7 +411,7 @@
             this.gridColumn4.FieldName = "ProductNumber1";
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 2;
+            this.gridColumn4.VisibleIndex = 3;
             // 
             // gridColumn5
             // 
@@ -417,7 +419,7 @@
             this.gridColumn5.FieldName = "ProductNumber2";
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 3;
+            this.gridColumn5.VisibleIndex = 4;
             // 
             // gridColumn17
             // 
@@ -425,7 +427,7 @@
             this.gridColumn17.FieldName = "ProductTypeName";
             this.gridColumn17.Name = "gridColumn17";
             this.gridColumn17.Visible = true;
-            this.gridColumn17.VisibleIndex = 15;
+            this.gridColumn17.VisibleIndex = 16;
             // 
             // gridColumn15
             // 
@@ -433,7 +435,7 @@
             this.gridColumn15.FieldName = "UnitPrice";
             this.gridColumn15.Name = "gridColumn15";
             this.gridColumn15.Visible = true;
-            this.gridColumn15.VisibleIndex = 13;
+            this.gridColumn15.VisibleIndex = 14;
             // 
             // gridColumn16
             // 
@@ -441,7 +443,7 @@
             this.gridColumn16.FieldName = "CurrencyName";
             this.gridColumn16.Name = "gridColumn16";
             this.gridColumn16.Visible = true;
-            this.gridColumn16.VisibleIndex = 14;
+            this.gridColumn16.VisibleIndex = 15;
             // 
             // gridColumn6
             // 
@@ -449,7 +451,7 @@
             this.gridColumn6.FieldName = "Spec";
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 4;
+            this.gridColumn6.VisibleIndex = 5;
             // 
             // gridColumn7
             // 
@@ -457,7 +459,7 @@
             this.gridColumn7.FieldName = "ShelfLife";
             this.gridColumn7.Name = "gridColumn7";
             this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 5;
+            this.gridColumn7.VisibleIndex = 6;
             // 
             // gridColumn8
             // 
@@ -465,7 +467,7 @@
             this.gridColumn8.FieldName = "PreWorningDays";
             this.gridColumn8.Name = "gridColumn8";
             this.gridColumn8.Visible = true;
-            this.gridColumn8.VisibleIndex = 6;
+            this.gridColumn8.VisibleIndex = 7;
             // 
             // gridColumn9
             // 
@@ -473,7 +475,7 @@
             this.gridColumn9.FieldName = "SecurityCount";
             this.gridColumn9.Name = "gridColumn9";
             this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 7;
+            this.gridColumn9.VisibleIndex = 8;
             // 
             // gridColumn10
             // 
@@ -481,7 +483,7 @@
             this.gridColumn10.FieldName = "Weight";
             this.gridColumn10.Name = "gridColumn10";
             this.gridColumn10.Visible = true;
-            this.gridColumn10.VisibleIndex = 8;
+            this.gridColumn10.VisibleIndex = 9;
             // 
             // gridColumn11
             // 
@@ -489,7 +491,7 @@
             this.gridColumn11.FieldName = "Volume";
             this.gridColumn11.Name = "gridColumn11";
             this.gridColumn11.Visible = true;
-            this.gridColumn11.VisibleIndex = 9;
+            this.gridColumn11.VisibleIndex = 10;
             // 
             // gridColumn12
             // 
@@ -497,7 +499,7 @@
             this.gridColumn12.FieldName = "Length";
             this.gridColumn12.Name = "gridColumn12";
             this.gridColumn12.Visible = true;
-            this.gridColumn12.VisibleIndex = 10;
+            this.gridColumn12.VisibleIndex = 11;
             // 
             // gridColumn13
             // 
@@ -505,7 +507,7 @@
             this.gridColumn13.FieldName = "Height";
             this.gridColumn13.Name = "gridColumn13";
             this.gridColumn13.Visible = true;
-            this.gridColumn13.VisibleIndex = 11;
+            this.gridColumn13.VisibleIndex = 12;
             // 
             // gridColumn14
             // 
@@ -513,7 +515,7 @@
             this.gridColumn14.FieldName = "LayeredCount";
             this.gridColumn14.Name = "gridColumn14";
             this.gridColumn14.Visible = true;
-            this.gridColumn14.VisibleIndex = 12;
+            this.gridColumn14.VisibleIndex = 13;
             // 
             // repositoryItemComboBox4
             // 
@@ -541,6 +543,15 @@
             this.panelControl3.Name = "panelControl3";
             this.panelControl3.Size = new System.Drawing.Size(400, 65);
             this.panelControl3.TabIndex = 0;
+            // 
+            // btnImportProduct
+            // 
+            this.btnImportProduct.Location = new System.Drawing.Point(124, 25);
+            this.btnImportProduct.Name = "btnImportProduct";
+            this.btnImportProduct.Size = new System.Drawing.Size(75, 23);
+            this.btnImportProduct.TabIndex = 1;
+            this.btnImportProduct.Text = "导入商品";
+            this.btnImportProduct.Click += new System.EventHandler(this.btnImportProduct_Click);
             // 
             // btnCreateProduct
             // 
@@ -633,14 +644,13 @@
             this.btnCreateDeliverAddress.Text = "新建地址";
             this.btnCreateDeliverAddress.Click += new System.EventHandler(this.btnCreateDeliverAddress_Click);
             // 
-            // btnImportProduct
+            // gcBrand
             // 
-            this.btnImportProduct.Location = new System.Drawing.Point(124, 25);
-            this.btnImportProduct.Name = "btnImportProduct";
-            this.btnImportProduct.Size = new System.Drawing.Size(75, 23);
-            this.btnImportProduct.TabIndex = 1;
-            this.btnImportProduct.Text = "导入商品";
-            this.btnImportProduct.Click += new System.EventHandler(this.btnImportProduct_Click);
+            this.gcBrand.Caption = "品牌";
+            this.gcBrand.FieldName = "Brand";
+            this.gcBrand.Name = "gcBrand";
+            this.gcBrand.Visible = true;
+            this.gcBrand.VisibleIndex = 2;
             // 
             // CompanyList
             // 
@@ -740,6 +750,7 @@
         private DevExpress.XtraEditors.PanelControl panelControl4;
         private DevExpress.XtraEditors.SimpleButton btnCreateDeliverAddress;
         private DevExpress.XtraEditors.SimpleButton btnImportProduct;
+        private DevExpress.XtraGrid.Columns.GridColumn gcBrand;
 
     }
 }

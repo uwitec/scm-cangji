@@ -24,7 +24,7 @@ namespace SCM_CangJi.Account
             {
                 if (SCM_CangJi.BLL.Services.AccountService.Instance.ValidateUser(txtUserName.EditValue.ToString(), txtPassword.EditValue.ToString()))
                 {
-                   UpdateDB();
+                   //UpdateDB();
                     this.DialogResult = DialogResult.OK;
                 }
                 else

@@ -32,21 +32,21 @@
             this.gcInputCount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemSpinEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.btnPrint = new DevExpress.XtraEditors.SimpleButton();
             this.btnBack = new DevExpress.XtraEditors.SimpleButton();
-            this.btnCompleteAndConfirmInput = new DevExpress.XtraEditors.SimpleButton();
             this.btnCompleteAssign = new DevExpress.XtraEditors.SimpleButton();
             this.gridControlInputOrerDetails = new DevExpress.XtraGrid.GridControl();
             this.gridViewInputOrderDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gcProductChName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcProducts = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.gcProductNumber1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcProductNumber2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcSpec = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridStorageArea = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcStorageArea = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.gcLotsNumber = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcProductDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcInputInvoice = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcSpec = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcProductNumber2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcProductNumber1 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -80,8 +80,8 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.btnPrint);
             this.panelControl1.Controls.Add(this.btnBack);
-            this.panelControl1.Controls.Add(this.btnCompleteAndConfirmInput);
             this.panelControl1.Controls.Add(this.btnCompleteAssign);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
@@ -89,29 +89,29 @@
             this.panelControl1.Size = new System.Drawing.Size(687, 81);
             this.panelControl1.TabIndex = 2;
             // 
+            // btnPrint
+            // 
+            this.btnPrint.Location = new System.Drawing.Point(202, 30);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(75, 23);
+            this.btnPrint.TabIndex = 2;
+            this.btnPrint.Text = "打印";
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(239, 30);
+            this.btnBack.Location = new System.Drawing.Point(121, 30);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(75, 23);
             this.btnBack.TabIndex = 1;
             this.btnBack.Text = "退回修改";
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
-            // btnCompleteAndConfirmInput
-            // 
-            this.btnCompleteAndConfirmInput.Location = new System.Drawing.Point(121, 30);
-            this.btnCompleteAndConfirmInput.Name = "btnCompleteAndConfirmInput";
-            this.btnCompleteAndConfirmInput.Size = new System.Drawing.Size(102, 23);
-            this.btnCompleteAndConfirmInput.TabIndex = 0;
-            this.btnCompleteAndConfirmInput.Text = "完成分配并入库";
-            this.btnCompleteAndConfirmInput.Click += new System.EventHandler(this.btnCompleteAndConfirmInput_Click);
-            // 
             // btnCompleteAssign
             // 
             this.btnCompleteAssign.Location = new System.Drawing.Point(29, 30);
             this.btnCompleteAssign.Name = "btnCompleteAssign";
-            this.btnCompleteAssign.Size = new System.Drawing.Size(75, 23);
+            this.btnCompleteAssign.Size = new System.Drawing.Size(86, 23);
             this.btnCompleteAssign.TabIndex = 0;
             this.btnCompleteAssign.Text = "完成分配";
             this.btnCompleteAssign.Click += new System.EventHandler(this.btnCompleteAssign_Click);
@@ -183,6 +183,30 @@
             this.gcProducts.NullText = "请选择...";
             this.gcProducts.ValueMember = "ProductId";
             // 
+            // gcProductNumber1
+            // 
+            this.gcProductNumber1.Caption = "品号1";
+            this.gcProductNumber1.FieldName = "ProductNumber1";
+            this.gcProductNumber1.Name = "gcProductNumber1";
+            this.gcProductNumber1.Visible = true;
+            this.gcProductNumber1.VisibleIndex = 1;
+            // 
+            // gcProductNumber2
+            // 
+            this.gcProductNumber2.Caption = "品号2";
+            this.gcProductNumber2.FieldName = "ProductNumber2";
+            this.gcProductNumber2.Name = "gcProductNumber2";
+            this.gcProductNumber2.Visible = true;
+            this.gcProductNumber2.VisibleIndex = 2;
+            // 
+            // gcSpec
+            // 
+            this.gcSpec.Caption = "规格";
+            this.gcSpec.FieldName = "Spec";
+            this.gcSpec.Name = "gcSpec";
+            this.gcSpec.Visible = true;
+            this.gcSpec.VisibleIndex = 3;
+            // 
             // gridStorageArea
             // 
             this.gridStorageArea.Caption = "库位";
@@ -232,30 +256,6 @@
             this.gcInputInvoice.Visible = true;
             this.gcInputInvoice.VisibleIndex = 8;
             // 
-            // gcSpec
-            // 
-            this.gcSpec.Caption = "规格";
-            this.gcSpec.FieldName = "Spec";
-            this.gcSpec.Name = "gcSpec";
-            this.gcSpec.Visible = true;
-            this.gcSpec.VisibleIndex = 3;
-            // 
-            // gcProductNumber2
-            // 
-            this.gcProductNumber2.Caption = "品号2";
-            this.gcProductNumber2.FieldName = "ProductNumber2";
-            this.gcProductNumber2.Name = "gcProductNumber2";
-            this.gcProductNumber2.Visible = true;
-            this.gcProductNumber2.VisibleIndex = 2;
-            // 
-            // gcProductNumber1
-            // 
-            this.gcProductNumber1.Caption = "品号1";
-            this.gcProductNumber1.FieldName = "ProductNumber1";
-            this.gcProductNumber1.Name = "gcProductNumber1";
-            this.gcProductNumber1.Visible = true;
-            this.gcProductNumber1.VisibleIndex = 1;
-            // 
             // AssignStorageArea
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -292,10 +292,10 @@
         private DevExpress.XtraGrid.Columns.GridColumn gcLotsNumber;
         private DevExpress.XtraGrid.Columns.GridColumn gcProductDate;
         private DevExpress.XtraGrid.Columns.GridColumn gcInputInvoice;
-        private DevExpress.XtraEditors.SimpleButton btnCompleteAndConfirmInput;
         private DevExpress.XtraGrid.Columns.GridColumn gcProductNumber1;
         private DevExpress.XtraGrid.Columns.GridColumn gcProductNumber2;
         private DevExpress.XtraGrid.Columns.GridColumn gcSpec;
+        private DevExpress.XtraEditors.SimpleButton btnPrint;
 
     }
 }

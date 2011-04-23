@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition1 = new DevExpress.XtraGrid.StyleFormatCondition();
+            DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition2 = new DevExpress.XtraGrid.StyleFormatCondition();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule3 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.gcInputCount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemSpinEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.btnPreComplete = new DevExpress.XtraEditors.SimpleButton();
             this.gcProductChName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcProducts = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.btnPreCompletedAndAssign = new DevExpress.XtraEditors.SimpleButton();
             this.gridViewInputOrderDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gcBrand = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcProductNumber1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcProductNumber2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcSpec = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -47,7 +47,6 @@
             this.gcProductDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcInputInvoice = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridControlInputOrerDetails = new DevExpress.XtraGrid.GridControl();
-            this.btnSaveAndClose = new DevExpress.XtraEditors.SimpleButton();
             this.btnAddDetail = new DevExpress.XtraEditors.SimpleButton();
             this.btnSaveAll = new DevExpress.XtraEditors.SimpleButton();
             this.txtInvoice = new DevExpress.XtraEditors.TextEdit();
@@ -92,7 +91,7 @@
             this.gcInputCount.FieldName = "InputCount";
             this.gcInputCount.Name = "gcInputCount";
             this.gcInputCount.Visible = true;
-            this.gcInputCount.VisibleIndex = 4;
+            this.gcInputCount.VisibleIndex = 5;
             // 
             // repositoryItemSpinEdit1
             // 
@@ -107,7 +106,7 @@
             // 
             // btnPreComplete
             // 
-            this.btnPreComplete.Location = new System.Drawing.Point(194, 152);
+            this.btnPreComplete.Location = new System.Drawing.Point(113, 152);
             this.btnPreComplete.Name = "btnPreComplete";
             this.btnPreComplete.Size = new System.Drawing.Size(75, 23);
             this.btnPreComplete.TabIndex = 7;
@@ -138,19 +137,11 @@
             this.gcProducts.NullText = "请选择...";
             this.gcProducts.ValueMember = "ProductId";
             // 
-            // btnPreCompletedAndAssign
-            // 
-            this.btnPreCompletedAndAssign.Location = new System.Drawing.Point(275, 152);
-            this.btnPreCompletedAndAssign.Name = "btnPreCompletedAndAssign";
-            this.btnPreCompletedAndAssign.Size = new System.Drawing.Size(138, 23);
-            this.btnPreCompletedAndAssign.TabIndex = 8;
-            this.btnPreCompletedAndAssign.Text = "完成预入库并分配库位";
-            this.btnPreCompletedAndAssign.Click += new System.EventHandler(this.btnPreCompletedAndAssign_Click);
-            // 
             // gridViewInputOrderDetails
             // 
             this.gridViewInputOrderDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gcProductChName,
+            this.gcBrand,
             this.gcProductNumber1,
             this.gcProductNumber2,
             this.gcSpec,
@@ -159,12 +150,12 @@
             this.gcLotsNumber,
             this.gcProductDate,
             this.gcInputInvoice});
-            styleFormatCondition1.Column = this.gcInputCount;
-            styleFormatCondition1.Condition = DevExpress.XtraGrid.FormatConditionEnum.Between;
-            styleFormatCondition1.Value1 = "1";
-            styleFormatCondition1.Value2 = "99999999";
+            styleFormatCondition2.Column = this.gcInputCount;
+            styleFormatCondition2.Condition = DevExpress.XtraGrid.FormatConditionEnum.Between;
+            styleFormatCondition2.Value1 = "1";
+            styleFormatCondition2.Value2 = "99999999";
             this.gridViewInputOrderDetails.FormatConditions.AddRange(new DevExpress.XtraGrid.StyleFormatCondition[] {
-            styleFormatCondition1});
+            styleFormatCondition2});
             this.gridViewInputOrderDetails.GridControl = this.gridControlInputOrerDetails;
             this.gridViewInputOrderDetails.Name = "gridViewInputOrderDetails";
             this.gridViewInputOrderDetails.NewItemRowText = "点击添加新行";
@@ -178,6 +169,15 @@
             this.gridViewInputOrderDetails.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gridViewInputOrderDetails_InitNewRow);
             this.gridViewInputOrderDetails.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.gridViewInputOrderDetails_RowUpdated);
             // 
+            // gcBrand
+            // 
+            this.gcBrand.Caption = "品牌";
+            this.gcBrand.FieldName = "Brand";
+            this.gcBrand.Name = "gcBrand";
+            this.gcBrand.OptionsColumn.AllowEdit = false;
+            this.gcBrand.Visible = true;
+            this.gcBrand.VisibleIndex = 1;
+            // 
             // gcProductNumber1
             // 
             this.gcProductNumber1.Caption = "品号1";
@@ -185,7 +185,7 @@
             this.gcProductNumber1.Name = "gcProductNumber1";
             this.gcProductNumber1.OptionsColumn.AllowEdit = false;
             this.gcProductNumber1.Visible = true;
-            this.gcProductNumber1.VisibleIndex = 1;
+            this.gcProductNumber1.VisibleIndex = 2;
             // 
             // gcProductNumber2
             // 
@@ -194,7 +194,7 @@
             this.gcProductNumber2.Name = "gcProductNumber2";
             this.gcProductNumber2.OptionsColumn.AllowEdit = false;
             this.gcProductNumber2.Visible = true;
-            this.gcProductNumber2.VisibleIndex = 2;
+            this.gcProductNumber2.VisibleIndex = 3;
             // 
             // gcSpec
             // 
@@ -202,7 +202,7 @@
             this.gcSpec.FieldName = "Spec";
             this.gcSpec.Name = "gcSpec";
             this.gcSpec.Visible = true;
-            this.gcSpec.VisibleIndex = 3;
+            this.gcSpec.VisibleIndex = 4;
             // 
             // gridColumn1
             // 
@@ -211,7 +211,7 @@
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.OptionsColumn.AllowEdit = false;
             this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 5;
+            this.gridColumn1.VisibleIndex = 6;
             // 
             // gcLotsNumber
             // 
@@ -219,7 +219,7 @@
             this.gcLotsNumber.FieldName = "LotsNumber";
             this.gcLotsNumber.Name = "gcLotsNumber";
             this.gcLotsNumber.Visible = true;
-            this.gcLotsNumber.VisibleIndex = 6;
+            this.gcLotsNumber.VisibleIndex = 7;
             // 
             // gcProductDate
             // 
@@ -227,7 +227,7 @@
             this.gcProductDate.FieldName = "ProductDate";
             this.gcProductDate.Name = "gcProductDate";
             this.gcProductDate.Visible = true;
-            this.gcProductDate.VisibleIndex = 7;
+            this.gcProductDate.VisibleIndex = 8;
             // 
             // gcInputInvoice
             // 
@@ -235,7 +235,7 @@
             this.gcInputInvoice.FieldName = "Remark";
             this.gcInputInvoice.Name = "gcInputInvoice";
             this.gcInputInvoice.Visible = true;
-            this.gcInputInvoice.VisibleIndex = 8;
+            this.gcInputInvoice.VisibleIndex = 9;
             // 
             // gridControlInputOrerDetails
             // 
@@ -251,15 +251,6 @@
             this.gridControlInputOrerDetails.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridViewInputOrderDetails});
             this.gridControlInputOrerDetails.DoubleClick += new System.EventHandler(this.gridControlInputOrerDetails_DoubleClick);
-            // 
-            // btnSaveAndClose
-            // 
-            this.btnSaveAndClose.Location = new System.Drawing.Point(113, 152);
-            this.btnSaveAndClose.Name = "btnSaveAndClose";
-            this.btnSaveAndClose.Size = new System.Drawing.Size(75, 23);
-            this.btnSaveAndClose.TabIndex = 6;
-            this.btnSaveAndClose.Text = "保存并关闭";
-            this.btnSaveAndClose.Click += new System.EventHandler(this.btnSaveAndClose_Click);
             // 
             // btnAddDetail
             // 
@@ -299,9 +290,9 @@
             this.ddlCompanies.Properties.ValueMember = "Id";
             this.ddlCompanies.Size = new System.Drawing.Size(171, 21);
             this.ddlCompanies.TabIndex = 2;
-            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule1.ErrorText = "不能为空";
-            this.dxValidationProvider1.SetValidationRule(this.ddlCompanies, conditionValidationRule1);
+            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule3.ErrorText = "不能为空";
+            this.dxValidationProvider1.SetValidationRule(this.ddlCompanies, conditionValidationRule3);
             this.ddlCompanies.EditValueChanged += new System.EventHandler(this.ddlCompanies_EditValueChanged);
             // 
             // lblPreInputDate
@@ -365,8 +356,6 @@
             this.splitContainerControl1.Name = "splitContainerControl1";
             this.splitContainerControl1.Panel1.Controls.Add(this.btnBack);
             this.splitContainerControl1.Panel1.Controls.Add(this.btnPreComplete);
-            this.splitContainerControl1.Panel1.Controls.Add(this.btnPreCompletedAndAssign);
-            this.splitContainerControl1.Panel1.Controls.Add(this.btnSaveAndClose);
             this.splitContainerControl1.Panel1.Controls.Add(this.btnSaveAll);
             this.splitContainerControl1.Panel1.Controls.Add(this.txtFromWhere);
             this.splitContainerControl1.Panel1.Controls.Add(this.txtInvoice);
@@ -406,9 +395,9 @@
             this.txtFromWhere.Name = "txtFromWhere";
             this.txtFromWhere.Size = new System.Drawing.Size(175, 21);
             this.txtFromWhere.TabIndex = 4;
-            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule2.ErrorText = "发货地不能为空!";
-            this.dxValidationProvider1.SetValidationRule(this.txtFromWhere, conditionValidationRule2);
+            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule1.ErrorText = "发货地不能为空!";
+            this.dxValidationProvider1.SetValidationRule(this.txtFromWhere, conditionValidationRule1);
             // 
             // lblEnterUser
             // 
@@ -515,13 +504,11 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEdit1;
         private DevExpress.XtraGrid.Columns.GridColumn gcProductChName;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit gcProducts;
-        private DevExpress.XtraEditors.SimpleButton btnPreCompletedAndAssign;
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewInputOrderDetails;
         private DevExpress.XtraGrid.Columns.GridColumn gcInputInvoice;
         private DevExpress.XtraGrid.Columns.GridColumn gcLotsNumber;
         private DevExpress.XtraGrid.Columns.GridColumn gcProductDate;
         private DevExpress.XtraGrid.GridControl gridControlInputOrerDetails;
-        private DevExpress.XtraEditors.SimpleButton btnSaveAndClose;
         private DevExpress.XtraEditors.SimpleButton btnAddDetail;
         private DevExpress.XtraEditors.SimpleButton btnSaveAll;
         private DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider dxValidationProvider1;
@@ -548,5 +535,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gcProductNumber2;
         private DevExpress.XtraGrid.Columns.GridColumn gcSpec;
         private DevExpress.XtraEditors.SimpleButton btnPrint;
+        private DevExpress.XtraGrid.Columns.GridColumn gcBrand;
     }
 }

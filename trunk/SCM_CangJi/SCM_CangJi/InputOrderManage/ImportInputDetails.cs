@@ -109,7 +109,7 @@ namespace SCM_CangJi.InputOrderManage
                 InputOrderDetailsAdding.Add(detail);
             }
             InputOrderService.Instance.CreateDetail(InputOrderDetailsAdding);
-            ShowMessage("出库明细导入成功!");
+            ShowMessage("入库明细导入成功!");
             this.Updated = true;
         }
     }

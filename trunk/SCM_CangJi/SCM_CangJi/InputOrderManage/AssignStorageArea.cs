@@ -54,12 +54,13 @@ namespace SCM_CangJi.InputOrderManage
             if (CheckAssigned())
             {
                 InputOrderService.Instance.CompleteAssignStorageArea(_orderId, _assignedInputDetails);
-                PrintCurrentProductOrder printForm = new PrintCurrentProductOrder(_orderId, false);
-                if (printForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    this.Updated = true;
-                    DialogResult = System.Windows.Forms.DialogResult.OK;
-                }
+                this.Updated = true;
+                BLL.Services.InputOrderService.Instance.UpdateStatus(_orderId, InputStatus.已分配库位);
+                ShowMessage("完成分配！");
+                //if (ShowQuestion("已完成库位分配！是否关闭窗口？") == System.Windows.Forms.DialogResult.OK)
+                //{
+                //    DialogResult = System.Windows.Forms.DialogResult.OK;
+                //}
             }
         }
 
@@ -85,8 +86,8 @@ namespace SCM_CangJi.InputOrderManage
             if (CheckAssigned())
             {
                 InputOrderService.Instance.CompleteAssignStorageArea(_orderId, _assignedInputDetails);
-                PrintCurrentProductOrder printForm = new PrintCurrentProductOrder(_orderId, false, true);
-                if (printForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+               
+                if (ShowQuestion("入库成功！是否关闭窗口？") == System.Windows.Forms.DialogResult.OK)
                 {
                     DialogResult = System.Windows.Forms.DialogResult.OK;
                 }
@@ -112,7 +113,11 @@ namespace SCM_CangJi.InputOrderManage
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            DialogResult = System.Windows.Forms.DialogResult.Retry;
+            BLL.Services.InputOrderService.Instance.UpdateStatus(_orderId, InputStatus.待入库);
+            if (ShowQuestion("退回成功！是否关闭窗口？") == System.Windows.Forms.DialogResult.OK)
+            {
+                DialogResult = System.Windows.Forms.DialogResult.OK;
+            }
         }
 
         private void gridViewInputOrderDetails_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e)
@@ -136,6 +141,17 @@ namespace SCM_CangJi.InputOrderManage
         private void SetValue(DataRow row, ref InputOrderDetail detail)
         {
             detail.StorageAreaId = int.Parse(row["StorageAreaId"].ToString());
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            if (CheckAssigned())
+            {
+                PrintCurrentProductOrder printForm = new PrintCurrentProductOrder(_orderId, false, true);
+                if (printForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                }
+            }
         }
 
        

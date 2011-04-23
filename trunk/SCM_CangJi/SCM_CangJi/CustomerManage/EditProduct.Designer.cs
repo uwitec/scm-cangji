@@ -84,6 +84,8 @@
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.txtShelfLife = new DevExpress.XtraEditors.CalcEdit();
+            this.txtBrand = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl28 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCurrencyUnits.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -105,6 +107,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtProductEngName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSpec.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtShelfLife.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBrand.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // dxValidationProvider1
@@ -607,11 +610,30 @@
             this.txtShelfLife.Size = new System.Drawing.Size(170, 21);
             this.txtShelfLife.TabIndex = 8;
             // 
+            // txtBrand
+            // 
+            this.txtBrand.Location = new System.Drawing.Point(108, 385);
+            this.txtBrand.Name = "txtBrand";
+            this.txtBrand.Properties.Mask.EditMask = "n2";
+            this.txtBrand.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric;
+            this.txtBrand.Size = new System.Drawing.Size(170, 21);
+            this.txtBrand.TabIndex = 41;
+            // 
+            // labelControl28
+            // 
+            this.labelControl28.Location = new System.Drawing.Point(66, 388);
+            this.labelControl28.Name = "labelControl28";
+            this.labelControl28.Size = new System.Drawing.Size(36, 14);
+            this.labelControl28.TabIndex = 40;
+            this.labelControl28.Text = "品牌：";
+            // 
             // EditProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(652, 466);
+            this.Controls.Add(this.txtBrand);
+            this.Controls.Add(this.labelControl28);
             this.Controls.Add(this.txtProductNumber2);
             this.Controls.Add(this.labelControl27);
             this.Controls.Add(this.txtProductNumber1);
@@ -682,6 +704,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtProductEngName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSpec.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtShelfLife.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBrand.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -741,5 +764,7 @@
         private DevExpress.XtraEditors.LabelControl labelControl27;
         private DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider dxValidationProvider1;
         private DevExpress.XtraEditors.CalcEdit txtShelfLife;
+        private DevExpress.XtraEditors.TextEdit txtBrand;
+        private DevExpress.XtraEditors.LabelControl labelControl28;
     }
 }

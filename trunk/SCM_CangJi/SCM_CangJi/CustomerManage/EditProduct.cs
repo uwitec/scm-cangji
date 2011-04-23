@@ -66,6 +66,7 @@ namespace SCM_CangJi.CustomerManage
                 txtVolume.EditValue = this._product.Volume;
                 txtWeight.EditValue = this._product.Weight;
                 txtWidth.EditValue = this._product.Width;
+                txtBrand.EditValue = this._product.Brand;
                 ddlCurrencyUnits.EditValue = this._product.CurrencyUnitId;
                 ddlProductType.EditValue = this._product.ProductTypeId;
             }
@@ -113,6 +114,7 @@ namespace SCM_CangJi.CustomerManage
             this._product.CurrencyUnitId = int.Parse(ddlCurrencyUnits.EditValue.TrytoString());
             this._product.ProductTypeId = int.Parse(ddlProductType.EditValue.TrytoString());
             this._product.CompanyId = this._companyId;
+            this._product.Brand = this.txtBrand.EditValue.TrytoString();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

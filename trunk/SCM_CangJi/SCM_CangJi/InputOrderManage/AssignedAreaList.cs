@@ -40,7 +40,7 @@ namespace SCM_CangJi.InputOrderManage
             InitGrid();
             base.DoWork(sender, e);
         }
-        private void InitGrid()
+        public void InitGrid()
         {
             gridControlInputOrders.DataSource = InputOrderService.Instance.GetInputOrdersFull(Lib.InputStatus.待分配库位);
         }

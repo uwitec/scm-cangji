@@ -32,9 +32,14 @@
             this.gcInputCount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemSpinEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.txtFromWhere = new DevExpress.XtraEditors.TextEdit();
+            this.txtInvoice = new DevExpress.XtraEditors.TextEdit();
+            this.txtEnterUser = new DevExpress.XtraEditors.TextEdit();
+            this.txtCompany = new DevExpress.XtraEditors.TextEdit();
             this.gridControlInputOrerDetails = new DevExpress.XtraGrid.GridControl();
             this.gridViewInputOrderDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gcProductChName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcProductNumber1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcProductNumber2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcSpec = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -42,10 +47,6 @@
             this.gcLotsNumber = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcProductDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcProducts = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.txtFromWhere = new DevExpress.XtraEditors.TextEdit();
-            this.txtInvoice = new DevExpress.XtraEditors.TextEdit();
-            this.txtEnterUser = new DevExpress.XtraEditors.TextEdit();
-            this.txtCompany = new DevExpress.XtraEditors.TextEdit();
             this.txtPreInputDate = new DevExpress.XtraEditors.TextEdit();
             this.txtInputOrderNumber = new DevExpress.XtraEditors.TextEdit();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -59,13 +60,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControlInputOrerDetails)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridViewInputOrderDetails)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gcProducts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFromWhere.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtInvoice.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEnterUser.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCompany.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControlInputOrerDetails)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewInputOrderDetails)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcProducts)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPreInputDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtInputOrderNumber.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
@@ -80,14 +81,18 @@
             // 
             // gcInputCount
             // 
+            this.gcInputCount.AppearanceCell.Options.UseTextOptions = true;
+            this.gcInputCount.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gcInputCount.AppearanceHeader.Options.UseTextOptions = true;
+            this.gcInputCount.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.gcInputCount.Caption = "入库数量";
             this.gcInputCount.ColumnEdit = this.repositoryItemSpinEdit1;
             this.gcInputCount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gcInputCount.FieldName = "InputCount";
             this.gcInputCount.Name = "gcInputCount";
             this.gcInputCount.Visible = true;
-            this.gcInputCount.VisibleIndex = 4;
-            this.gcInputCount.Width = 85;
+            this.gcInputCount.VisibleIndex = 5;
+            this.gcInputCount.Width = 89;
             // 
             // repositoryItemSpinEdit1
             // 
@@ -102,140 +107,20 @@
             // 
             // layoutControl1
             // 
-            this.layoutControl1.Controls.Add(this.gridControlInputOrerDetails);
             this.layoutControl1.Controls.Add(this.txtFromWhere);
             this.layoutControl1.Controls.Add(this.txtInvoice);
             this.layoutControl1.Controls.Add(this.txtEnterUser);
             this.layoutControl1.Controls.Add(this.txtCompany);
+            this.layoutControl1.Controls.Add(this.gridControlInputOrerDetails);
             this.layoutControl1.Controls.Add(this.txtPreInputDate);
             this.layoutControl1.Controls.Add(this.txtInputOrderNumber);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.layoutControlGroup1;
-            this.layoutControl1.Size = new System.Drawing.Size(854, 513);
+            this.layoutControl1.Size = new System.Drawing.Size(854, 730);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
-            // 
-            // gridControlInputOrerDetails
-            // 
-            this.gridControlInputOrerDetails.Location = new System.Drawing.Point(12, 104);
-            this.gridControlInputOrerDetails.MainView = this.gridViewInputOrderDetails;
-            this.gridControlInputOrerDetails.Name = "gridControlInputOrerDetails";
-            this.gridControlInputOrerDetails.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.gcProducts,
-            this.repositoryItemSpinEdit1});
-            this.gridControlInputOrerDetails.Size = new System.Drawing.Size(830, 397);
-            this.gridControlInputOrerDetails.TabIndex = 1;
-            this.gridControlInputOrerDetails.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridViewInputOrderDetails});
-            // 
-            // gridViewInputOrderDetails
-            // 
-            this.gridViewInputOrderDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gcProductChName,
-            this.gcProductNumber1,
-            this.gcProductNumber2,
-            this.gcSpec,
-            this.gcInputCount,
-            this.gridColumn1,
-            this.gcLotsNumber,
-            this.gcProductDate});
-            styleFormatCondition1.Column = this.gcInputCount;
-            styleFormatCondition1.Condition = DevExpress.XtraGrid.FormatConditionEnum.Between;
-            styleFormatCondition1.Value1 = "1";
-            styleFormatCondition1.Value2 = "99999999";
-            this.gridViewInputOrderDetails.FormatConditions.AddRange(new DevExpress.XtraGrid.StyleFormatCondition[] {
-            styleFormatCondition1});
-            this.gridViewInputOrderDetails.GridControl = this.gridControlInputOrerDetails;
-            this.gridViewInputOrderDetails.Name = "gridViewInputOrderDetails";
-            this.gridViewInputOrderDetails.NewItemRowText = "点击添加新行";
-            this.gridViewInputOrderDetails.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
-            this.gridViewInputOrderDetails.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
-            this.gridViewInputOrderDetails.OptionsBehavior.Editable = false;
-            this.gridViewInputOrderDetails.OptionsNavigation.AutoFocusNewRow = true;
-            this.gridViewInputOrderDetails.OptionsView.ShowGroupPanel = false;
-            this.gridViewInputOrderDetails.PaintStyleName = "Web";
-            // 
-            // gcProductChName
-            // 
-            this.gcProductChName.Caption = "商品";
-            this.gcProductChName.FieldName = "ProductChName";
-            this.gcProductChName.Name = "gcProductChName";
-            this.gcProductChName.Visible = true;
-            this.gcProductChName.VisibleIndex = 0;
-            this.gcProductChName.Width = 182;
-            // 
-            // gcProductNumber1
-            // 
-            this.gcProductNumber1.Caption = "品号1";
-            this.gcProductNumber1.FieldName = "ProductNumber1";
-            this.gcProductNumber1.Name = "gcProductNumber1";
-            this.gcProductNumber1.OptionsColumn.AllowEdit = false;
-            this.gcProductNumber1.Visible = true;
-            this.gcProductNumber1.VisibleIndex = 1;
-            this.gcProductNumber1.Width = 111;
-            // 
-            // gcProductNumber2
-            // 
-            this.gcProductNumber2.Caption = "品号2";
-            this.gcProductNumber2.FieldName = "ProductNumber2";
-            this.gcProductNumber2.Name = "gcProductNumber2";
-            this.gcProductNumber2.Visible = true;
-            this.gcProductNumber2.VisibleIndex = 2;
-            this.gcProductNumber2.Width = 94;
-            // 
-            // gcSpec
-            // 
-            this.gcSpec.Caption = "规格";
-            this.gcSpec.FieldName = "Spec";
-            this.gcSpec.Name = "gcSpec";
-            this.gcSpec.Visible = true;
-            this.gcSpec.VisibleIndex = 3;
-            this.gcSpec.Width = 80;
-            // 
-            // gridColumn1
-            // 
-            this.gridColumn1.Caption = "库位";
-            this.gridColumn1.FieldName = "StorageArea";
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.OptionsColumn.AllowEdit = false;
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 5;
-            this.gridColumn1.Width = 87;
-            // 
-            // gcLotsNumber
-            // 
-            this.gcLotsNumber.Caption = "生产批号";
-            this.gcLotsNumber.FieldName = "LotsNumber";
-            this.gcLotsNumber.Name = "gcLotsNumber";
-            this.gcLotsNumber.Visible = true;
-            this.gcLotsNumber.VisibleIndex = 6;
-            this.gcLotsNumber.Width = 82;
-            // 
-            // gcProductDate
-            // 
-            this.gcProductDate.Caption = "生产日期";
-            this.gcProductDate.FieldName = "ProductDate";
-            this.gcProductDate.Name = "gcProductDate";
-            this.gcProductDate.Visible = true;
-            this.gcProductDate.VisibleIndex = 7;
-            this.gcProductDate.Width = 88;
-            // 
-            // gcProducts
-            // 
-            this.gcProducts.AutoHeight = false;
-            this.gcProducts.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.gcProducts.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ProductChName", "品名"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ProductEngName", "英文名"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ProductNumber1", "品号1"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ProductNumber2", "品号2")});
-            this.gcProducts.DisplayMember = "ProductChName";
-            this.gcProducts.Name = "gcProducts";
-            this.gcProducts.NullText = "请选择...";
-            this.gcProducts.ValueMember = "ProductId";
             // 
             // txtFromWhere
             // 
@@ -269,6 +154,138 @@
             this.txtCompany.StyleController = this.layoutControl1;
             this.txtCompany.TabIndex = 6;
             // 
+            // gridControlInputOrerDetails
+            // 
+            this.gridControlInputOrerDetails.Location = new System.Drawing.Point(12, 104);
+            this.gridControlInputOrerDetails.MainView = this.gridViewInputOrderDetails;
+            this.gridControlInputOrerDetails.Name = "gridControlInputOrerDetails";
+            this.gridControlInputOrerDetails.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.gcProducts,
+            this.repositoryItemSpinEdit1});
+            this.gridControlInputOrerDetails.Size = new System.Drawing.Size(830, 614);
+            this.gridControlInputOrerDetails.TabIndex = 1;
+            this.gridControlInputOrerDetails.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridViewInputOrderDetails});
+            // 
+            // gridViewInputOrderDetails
+            // 
+            this.gridViewInputOrderDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gcProductChName,
+            this.gridColumn2,
+            this.gcProductNumber1,
+            this.gcProductNumber2,
+            this.gcSpec,
+            this.gcInputCount,
+            this.gridColumn1,
+            this.gcLotsNumber,
+            this.gcProductDate});
+            styleFormatCondition1.Column = this.gcInputCount;
+            styleFormatCondition1.Condition = DevExpress.XtraGrid.FormatConditionEnum.Between;
+            styleFormatCondition1.Value1 = "1";
+            styleFormatCondition1.Value2 = "99999999";
+            this.gridViewInputOrderDetails.FormatConditions.AddRange(new DevExpress.XtraGrid.StyleFormatCondition[] {
+            styleFormatCondition1});
+            this.gridViewInputOrderDetails.GridControl = this.gridControlInputOrerDetails;
+            this.gridViewInputOrderDetails.Name = "gridViewInputOrderDetails";
+            this.gridViewInputOrderDetails.NewItemRowText = "点击添加新行";
+            this.gridViewInputOrderDetails.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
+            this.gridViewInputOrderDetails.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
+            this.gridViewInputOrderDetails.OptionsCustomization.AllowRowSizing = true;
+            this.gridViewInputOrderDetails.OptionsNavigation.AutoFocusNewRow = true;
+            this.gridViewInputOrderDetails.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridViewInputOrderDetails.OptionsSelection.EnableAppearanceFocusedRow = false;
+            this.gridViewInputOrderDetails.OptionsView.RowAutoHeight = true;
+            this.gridViewInputOrderDetails.OptionsView.ShowGroupPanel = false;
+            this.gridViewInputOrderDetails.PaintStyleName = "Web";
+            this.gridViewInputOrderDetails.CalcRowHeight += new DevExpress.XtraGrid.Views.Grid.RowHeightEventHandler(this.gridViewInputOrderDetails_CalcRowHeight);
+            // 
+            // gcProductChName
+            // 
+            this.gcProductChName.Caption = "商品";
+            this.gcProductChName.FieldName = "ProductChName";
+            this.gcProductChName.Name = "gcProductChName";
+            this.gcProductChName.Visible = true;
+            this.gcProductChName.VisibleIndex = 0;
+            this.gcProductChName.Width = 176;
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.Caption = "品牌";
+            this.gridColumn2.FieldName = "Brand";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 1;
+            this.gridColumn2.Width = 104;
+            // 
+            // gcProductNumber1
+            // 
+            this.gcProductNumber1.Caption = "品号1";
+            this.gcProductNumber1.FieldName = "ProductNumber1";
+            this.gcProductNumber1.Name = "gcProductNumber1";
+            this.gcProductNumber1.OptionsColumn.AllowEdit = false;
+            this.gcProductNumber1.Visible = true;
+            this.gcProductNumber1.VisibleIndex = 2;
+            this.gcProductNumber1.Width = 107;
+            // 
+            // gcProductNumber2
+            // 
+            this.gcProductNumber2.Caption = "品号2";
+            this.gcProductNumber2.FieldName = "ProductNumber2";
+            this.gcProductNumber2.Name = "gcProductNumber2";
+            this.gcProductNumber2.Visible = true;
+            this.gcProductNumber2.VisibleIndex = 3;
+            this.gcProductNumber2.Width = 90;
+            // 
+            // gcSpec
+            // 
+            this.gcSpec.Caption = "规格";
+            this.gcSpec.FieldName = "Spec";
+            this.gcSpec.Name = "gcSpec";
+            this.gcSpec.Visible = true;
+            this.gcSpec.VisibleIndex = 4;
+            this.gcSpec.Width = 52;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "库位";
+            this.gridColumn1.FieldName = "StorageArea";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.OptionsColumn.AllowEdit = false;
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 6;
+            this.gridColumn1.Width = 91;
+            // 
+            // gcLotsNumber
+            // 
+            this.gcLotsNumber.Caption = "生产批号";
+            this.gcLotsNumber.FieldName = "LotsNumber";
+            this.gcLotsNumber.Name = "gcLotsNumber";
+            this.gcLotsNumber.Visible = true;
+            this.gcLotsNumber.VisibleIndex = 7;
+            this.gcLotsNumber.Width = 106;
+            // 
+            // gcProductDate
+            // 
+            this.gcProductDate.Caption = "生产日期";
+            this.gcProductDate.FieldName = "ProductDate";
+            this.gcProductDate.Name = "gcProductDate";
+            this.gcProductDate.Width = 88;
+            // 
+            // gcProducts
+            // 
+            this.gcProducts.AutoHeight = false;
+            this.gcProducts.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.gcProducts.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ProductChName", "品名"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ProductEngName", "英文名"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ProductNumber1", "品号1"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ProductNumber2", "品号2")});
+            this.gcProducts.DisplayMember = "ProductChName";
+            this.gcProducts.Name = "gcProducts";
+            this.gcProducts.NullText = "请选择...";
+            this.gcProducts.ValueMember = "ProductId";
+            // 
             // txtPreInputDate
             // 
             this.txtPreInputDate.Location = new System.Drawing.Point(505, 12);
@@ -300,7 +317,7 @@
             this.layoutControlItem7});
             this.layoutControlGroup1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlGroup1.Name = "layoutControlGroup1";
-            this.layoutControlGroup1.Size = new System.Drawing.Size(854, 513);
+            this.layoutControlGroup1.Size = new System.Drawing.Size(854, 730);
             this.layoutControlGroup1.Spacing = new DevExpress.XtraLayout.Utils.Padding(0, 0, 0, 0);
             this.layoutControlGroup1.Text = "layoutControlGroup1";
             this.layoutControlGroup1.TextVisible = false;
@@ -371,7 +388,7 @@
             this.layoutControlItem7.CustomizationFormText = "入库明细：";
             this.layoutControlItem7.Location = new System.Drawing.Point(0, 75);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(834, 418);
+            this.layoutControlItem7.Size = new System.Drawing.Size(834, 635);
             this.layoutControlItem7.Text = "入库明细：";
             this.layoutControlItem7.TextLocation = DevExpress.Utils.Locations.Top;
             this.layoutControlItem7.TextSize = new System.Drawing.Size(72, 14);
@@ -380,7 +397,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(854, 513);
+            this.ClientSize = new System.Drawing.Size(854, 730);
             this.Controls.Add(this.layoutControl1);
             this.Name = "PrintPreOrder";
             this.Text = "入库单";
@@ -388,13 +405,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridControlInputOrerDetails)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridViewInputOrderDetails)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gcProducts)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFromWhere.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtInvoice.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEnterUser.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCompany.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControlInputOrerDetails)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewInputOrderDetails)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcProducts)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPreInputDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtInputOrderNumber.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
@@ -438,5 +455,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn gcProductDate;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
         private DevExpress.XtraGrid.Columns.GridColumn gcProductNumber2;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
     }
 }

@@ -17,14 +17,17 @@ namespace SCM_CangJi.InputOrderManage
     {
         private int _orderId;
         PrintSettingController print = null;
+        InputOrder order = null;
         public PrintPreOrder(int orderId)
             : base()
         {
             _orderId = orderId;
             InitializeComponent();
-            print = new PrintSettingController(this.layoutControl1, "入库单");
-            print.PrintHeader = "入库单";
+            print = new PrintSettingController(this.gridControlInputOrerDetails, "入库单");
+            gridViewInputOrderDetails.OptionsView.RowAutoHeight = true;
             print.OnPrinted += new Action(print_OnPrinted);
+            order = InputOrderService.Instance.GetInputOrderFullInfo(_orderId);
+            print.PrintHeader = "入库单（发票号：" + order.Invoice+")";
             InitData();
             InitDetail();
         }
@@ -37,7 +40,6 @@ namespace SCM_CangJi.InputOrderManage
      
         private void InitData()
         {
-            InputOrder order = InputOrderService.Instance.GetInputOrderFullInfo(_orderId);
             txtCompany.EditValue = order.Company.CompanyName;
             txtEnterUser.EditValue = order.EnterUser;
             txtFromWhere.EditValue = order.FromWhere;
@@ -54,6 +56,11 @@ namespace SCM_CangJi.InputOrderManage
         private void PrintPreOrder_Load(object sender, EventArgs e)
         {
             print.Preview();
+        }
+
+        private void gridViewInputOrderDetails_CalcRowHeight(object sender, DevExpress.XtraGrid.Views.Grid.RowHeightEventArgs e)
+        {
+            
         }
     }
 }

@@ -28,7 +28,7 @@ namespace SCM_CangJi.InputOrderManage
             InitializeComponent();
             print = new PrintSettingController(this.gridControl1, "现品票");
             print.PrintHeader = "现品票";
-            print.OnPrinted += new Action(print_OnPrinted);
+            //print.OnPrinted += new Action(print_OnPrinted);
             InitData();
         }
 
