@@ -42,6 +42,7 @@ namespace SCM_CangJi.DeliveryOrderManage
                 SetRowValue(ref row, item);
                 dt.Rows.Add(row);
             }
+            this.Updated = false;
             base.DoWork(sender, e);
         }
 
@@ -75,8 +76,8 @@ namespace SCM_CangJi.DeliveryOrderManage
         private void btnCompleteAssign_Click(object sender, EventArgs e)
         {
             BLL.Services.DeliveryOrderService.Instance.CreateAssignedDetails(_orderId,_assignedDeliveryDetails);
-            PickProductsOrder p = new PickProductsOrder(_orderId, false);
-            p.Show();
+            this.Updated = true;
+            ShowMessage("分配库存完成");
         }
         private void ValidateData()
         {
@@ -94,12 +95,6 @@ namespace SCM_CangJi.DeliveryOrderManage
 
             }
         }
-        private void simpleButton2_Click(object sender, EventArgs e)
-        {
-            PickProductsOrder p = new PickProductsOrder(_orderId,false);
-            p.Show();
-        }
-
         private void gridViewDeliveryOrderDetails_ValidateRow(object sender, DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs e)
         {
             DataRow row = e.Row  as DataRow;
@@ -118,7 +113,19 @@ namespace SCM_CangJi.DeliveryOrderManage
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            DialogResult = System.Windows.Forms.DialogResult.Retry;
+            DeliveryOrderService.Instance.SendBackLostStep(this._deliveryOrder.Id, this._deliveryOrder.Status);
+            DialogResult = System.Windows.Forms.DialogResult.OK;
+        }
+
+        private void btnPrintPickOrder_Click(object sender, EventArgs e)
+        {
+            if (!this.Updated)
+            {
+                ShowWarning("还未确认分配！请完成分配后再打印");
+                return;
+            }
+            PickProductsOrder p = new PickProductsOrder(_orderId, false);
+            p.Show();
         }
 
     }

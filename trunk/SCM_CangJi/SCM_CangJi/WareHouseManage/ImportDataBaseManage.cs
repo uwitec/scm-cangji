@@ -471,7 +471,8 @@ namespace SCM_CangJi.WareHouseManage
                     importform = new InputOrderManage.ImportInputDetails(_formObject, srcData, listImportData);
                     break;
                 case Constains.DeliveryOrderDetails:
-               
+                    importform = new DeliveryOrderManage.ImportDeliveryDetails(_formObject, srcData, listImportData);
+                    break;
                 default:
                    importform= new ImportDataBase(_formObject, srcData, listImportData);
  

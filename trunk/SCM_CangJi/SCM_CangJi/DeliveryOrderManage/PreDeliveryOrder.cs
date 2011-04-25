@@ -24,6 +24,10 @@ namespace SCM_CangJi.DeliveryOrderManage
         private int _companyId = 0;
         public int CompanyId
         {
+            get
+            {
+                return _companyId;
+            }
             set
             {
                 if (value > 0 && _companyId != value)
@@ -31,6 +35,13 @@ namespace SCM_CangJi.DeliveryOrderManage
                     _companyId = value;
                     InitProduct();
                 }
+            }
+        }
+        public int OrderId
+        {
+            get
+            {
+                return _orderId;
             }
         }
         DataTable _deliveryOrderDetailsDatable = null;
@@ -63,7 +74,6 @@ namespace SCM_CangJi.DeliveryOrderManage
 
             InitializeComponent();
             InitData();
-            btnImport.Visible = false;
             if (_orderId > 0)
             {
                 ddlCompanies.Enabled = false;
@@ -71,11 +81,25 @@ namespace SCM_CangJi.DeliveryOrderManage
                 {
                     btnAddDetail.Visible = false;
                     btnImport.Visible = false;
-                    btnPreCompletedAndAssign.Visible = false;
+                    btnBack.Visible = true;
+                    //btnPreCompletedAndAssign.Visible = false;
                     btnSaveAll.Visible = false;
                     btn.Visible = false;
-                    btnSaveAndClose.Visible = false;
+                    //btnSaveAndClose.Visible = false;
                     this.gridViewDeliveryOrderDetails.OptionsBehavior.Editable = false;
+                    if (this.order.Status == DeliveryStatus.已出库.ToString() || this.order.Status == DeliveryStatus.已送达.ToString())
+                    {
+                    }
+                    else
+                    {
+                        btnBack.Visible = true;
+                    }
+                    int Status = (int)Enum.Parse(typeof(DeliveryStatus), order.Status);
+                    if (Status > (int)DeliveryStatus.待分配库存)
+                    {
+                        btnPrintPickOrder.Visible = true;
+                    }
+
                     this.gridControlDeliveryOrerDetails.DoubleClick -= gridControlDeliveryOrerDetails_DoubleClick;
                     this.gridViewDeliveryOrderDetails.ShowGridMenu -= gridViewDeliveryOrderDetails_ShowGridMenu;
                 }
@@ -327,8 +351,10 @@ namespace SCM_CangJi.DeliveryOrderManage
         {
             DataRow row = gridViewDeliveryOrderDetails.GetDataRow(e.RowHandle);
             row["DeliveryOrderId"] = this.order.Id;
-            row["ProductStorageId"] = 0;
-            row["AssignCount"] = 0;
+            row["ProductNumber1"] = "";
+            row["ProductNumber2"] = "";
+            row["Spec"] = "";
+            row["Brand"] ="";
         }
 
         private void gridViewDeliveryOrderDetails_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e)
@@ -368,6 +394,7 @@ namespace SCM_CangJi.DeliveryOrderManage
         }
         private void SetRowValue(DataRow row, DeliveryOrderDetail detail)
         {
+            Product product = ProductService.Instance.GetProduct(detail.ProductId);
             row["DeliveryCount"] = detail.DeliveryCount;
             row["InputInvoice"] = detail.InputInvoice;
             row["LotsNumber"] = detail.LotsNumber;
@@ -377,26 +404,14 @@ namespace SCM_CangJi.DeliveryOrderManage
                 row["ProductDate"] = detail.ProductDate;
         }
 
-        #region Import
-        private void btnImport_Click(object sender, EventArgs e)
+        private void SetProductRow(DataRow row, int ProductId)
         {
-            //if (dxValidationProvider1.Validate())
-            //{
-            //    ImportDetails importForm = new ImportDetails(_companyId);
-            //    importForm.OnImported += new Action<IEnumerable<DeliveryOrderDetail>>(importForm_OnImported);
-            //    if (importForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-            //    {
-
-            //    }
-            //}
+            Product product = ProductService.Instance.GetProduct(ProductId);
+            row["ProductNumber1"] = product.ProductNumber1;
+            row["ProductNumber2"] = product.ProductNumber2;
+            row["Spec"] = product.Spec;
+            row["Brand"] = product.Brand;
         }
-
-        void importForm_OnImported(IEnumerable<DeliveryOrderDetail> deteail)
-        {
-
-        }
-        #endregion
-
         private void btnPreCompleted_Click(object sender, EventArgs e)
         {
             if (!this.Updated)
@@ -423,6 +438,32 @@ namespace SCM_CangJi.DeliveryOrderManage
 
         #endregion
 
+
+        #region Import
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+            if (dxValidationProvider1.Validate())
+            {
+                if (!this.Updated)
+                {
+                    ShowWarning("还未保存！请先保存");
+                    return;
+                }
+                WareHouseManage.ImportDataBaseManage importForm = new WareHouseManage.ImportDataBaseManage(this.Handle, "DeliveryOrderDetails");
+                if (importForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    _deliveryOrderDetailsDatable = null;
+                    InitOrderDetails();
+                }
+            }
+        }
+
+        void importForm_OnImported(IEnumerable<DeliveryOrderDetail> deteail)
+        {
+
+        }
+        #endregion
+
         private void btn_Click(object sender, EventArgs e)
         {
             if (!this.Updated)
@@ -442,6 +483,22 @@ namespace SCM_CangJi.DeliveryOrderManage
                 ShowMessage("预出库完成！");
                 this.Close();
             }
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            if (ShowQuestion("你确实要退回该出库单到上一状态吗？\n退回可能导致已分配数据丢失") == System.Windows.Forms.DialogResult.OK)
+            {
+                DeliveryOrderService.Instance.SendBackLostStep(order.Id, order.Status);
+                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            }
+        }
+
+        private void btnPrintPickOrder_Click(object sender, EventArgs e)
+        {
+            
+            PickProductsOrder p = new PickProductsOrder(_orderId, false);
+            p.Show();
         }
       
     }

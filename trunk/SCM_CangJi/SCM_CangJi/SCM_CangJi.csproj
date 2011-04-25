@@ -98,6 +98,8 @@
       <HintPath>..\..\..\..\..\dll\expressApp\DevExpress.XtraBars.v10.1.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="DevExpress.XtraCharts.v10.1, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c" />
+    <Reference Include="DevExpress.XtraCharts.v10.1.Extensions, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c" />
     <Reference Include="DevExpress.XtraEditors.v10.1, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\dll\expressApp\DevExpress.XtraEditors.v10.1.dll</HintPath>
@@ -116,9 +118,15 @@
     <Reference Include="DevExpress.XtraNavBar.v10.1, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
+    <Reference Include="DevExpress.XtraPivotGrid.v10.1, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c" />
+    <Reference Include="DevExpress.XtraPivotGrid.v10.1.Core, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c" />
     <Reference Include="DevExpress.XtraPrinting.v10.1, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
+    <Reference Include="DevExpress.XtraReports.v10.1, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c" />
+    <Reference Include="DevExpress.XtraReports.v10.1.Extensions, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraTreeList.v10.1, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c" />
+    <Reference Include="DevExpress.XtraVerticalGrid.v10.1, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c" />
     <Reference Include="Microsoft.VisualBasic">
       <Private>True</Private>
     </Reference>
@@ -387,11 +395,11 @@
     <Compile Include="DeliveryOrderManage\EditDeliveryDetail.Designer.cs">
       <DependentUpon>EditDeliveryDetail.cs</DependentUpon>
     </Compile>
-    <Compile Include="DeliveryOrderManage\ImportDetails.cs">
+    <Compile Include="DeliveryOrderManage\ImportDeliveryDetails.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DeliveryOrderManage\ImportDetails.Designer.cs">
-      <DependentUpon>ImportDetails.cs</DependentUpon>
+    <Compile Include="DeliveryOrderManage\ImportDeliveryDetails.Designer.cs">
+      <DependentUpon>ImportDeliveryDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="DeliveryOrderManage\PreDeliveryOrder.cs">
       <SubType>Form</SubType>
@@ -628,8 +636,8 @@
     <EmbeddedResource Include="DeliveryOrderManage\EditDeliveryDetail.resx">
       <DependentUpon>EditDeliveryDetail.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DeliveryOrderManage\ImportDetails.resx">
-      <DependentUpon>ImportDetails.cs</DependentUpon>
+    <EmbeddedResource Include="DeliveryOrderManage\ImportDeliveryDetails.resx">
+      <DependentUpon>ImportDeliveryDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DeliveryOrderManage\PreDeliveryOrder.resx">
       <DependentUpon>PreDeliveryOrder.cs</DependentUpon>

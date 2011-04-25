@@ -51,7 +51,6 @@ namespace SCM_CangJi.WareHouseManage
                 ImportDataManage();
             }
         }
-
         #region 调用方法对源数据表进行整理，整理成完整的数据表格式
         private void ImportDataManage()
         {
@@ -125,7 +124,7 @@ namespace SCM_CangJi.WareHouseManage
 
         private void btnConfrim_Click(object sender, EventArgs e)
         {
-            if (CheckData(arrangeSrcData))  
+            if (CheckData(arrangeSrcData))
             {
                 /*
                  * 转化成InputOrderManage的对象，通过它获取导入时缺少的一些关键信息，                
@@ -133,10 +132,14 @@ namespace SCM_CangJi.WareHouseManage
                  * InputOrderManage.PreInputOrder InputOrderForm = (InputOrderManage.PreInputOrder)Control.FromHandle(_formObject);
                  * */
                 //InputOrderManage.PreInputOrder InputOrderForm = (InputOrderManage.PreInputOrder)Control.FromHandle(_formObject);
-                
+
                 //写库
                 ImportToDataBase(arrangeSrcData, _importDataStruct); //arrangeSrcData是整理好的源数据表，跟GridView控件绑定，要检查也用它
                 DialogResult = System.Windows.Forms.DialogResult.OK;
+            }
+            else
+            {
+                this.btnConfrim.Enabled = false;
             }
         }
         public virtual bool CheckData(DataTable srcData)//参数修改了，将原来的DataSet类型换成了DataTable类型

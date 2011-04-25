@@ -122,6 +122,7 @@
             this.gridViewAssignDetails.Name = "gridViewAssignDetails";
             this.gridViewAssignDetails.OptionsBehavior.Editable = false;
             this.gridViewAssignDetails.OptionsBehavior.ReadOnly = true;
+            this.gridViewAssignDetails.OptionsSelection.EnableAppearanceFocusedRow = false;
             this.gridViewAssignDetails.OptionsView.ShowGroupPanel = false;
             this.gridViewAssignDetails.PaintStyleName = "Web";
             // 

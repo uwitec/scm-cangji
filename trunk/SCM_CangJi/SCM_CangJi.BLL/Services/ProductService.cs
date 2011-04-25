@@ -44,7 +44,16 @@ namespace SCM_CangJi.BLL.Services
             });
             return result;
         }
-
+        public IEnumerable<Product> GetProductsEntities(int companyId)
+        {
+            IEnumerable<Product> result = null;
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), context =>
+            {
+                result = context.Products.Where(o => o.CompanyId == companyId).ToList();
+            });
+            return result;
+        }
+    
         public bool Delete(int productId)
         {
             Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
@@ -69,7 +78,7 @@ namespace SCM_CangJi.BLL.Services
         {
           return  Using<CangJiDataDataContext,Product>(new CangJiDataDataContext(this.connectionString), db =>
             {
-                return db.Products.SingleOrDefault(o => o.CompanyId == CompanyId && o.ProductNumber1 == productNumber1);
+                return db.Products.FirstOrDefault(o => o.CompanyId == CompanyId && o.ProductNumber1 == productNumber1);
             });
         }
         public bool HasProduct(int CompanyId, string productNumber1)

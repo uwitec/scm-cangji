@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition1 = new DevExpress.XtraGrid.StyleFormatCondition();
+            DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition2 = new DevExpress.XtraGrid.StyleFormatCondition();
             this.gcDeliveryCount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemSpinEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
@@ -44,6 +44,7 @@
             this.gcInputInvoice = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcLotsNumber = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcProductDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnPrintPickOrder = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -74,6 +75,7 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.btnPrintPickOrder);
             this.panelControl1.Controls.Add(this.btnBack);
             this.panelControl1.Controls.Add(this.btnCompleteAssign);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -84,7 +86,7 @@
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(146, 30);
+            this.btnBack.Location = new System.Drawing.Point(119, 30);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(75, 23);
             this.btnBack.TabIndex = 1;
@@ -93,7 +95,7 @@
             // 
             // btnCompleteAssign
             // 
-            this.btnCompleteAssign.Location = new System.Drawing.Point(49, 30);
+            this.btnCompleteAssign.Location = new System.Drawing.Point(26, 30);
             this.btnCompleteAssign.Name = "btnCompleteAssign";
             this.btnCompleteAssign.Size = new System.Drawing.Size(75, 23);
             this.btnCompleteAssign.TabIndex = 0;
@@ -125,12 +127,12 @@
             this.gcInputInvoice,
             this.gcLotsNumber,
             this.gcProductDate});
-            styleFormatCondition1.Column = this.gcDeliveryCount;
-            styleFormatCondition1.Condition = DevExpress.XtraGrid.FormatConditionEnum.Between;
-            styleFormatCondition1.Value1 = "1";
-            styleFormatCondition1.Value2 = "99999999";
+            styleFormatCondition2.Column = this.gcDeliveryCount;
+            styleFormatCondition2.Condition = DevExpress.XtraGrid.FormatConditionEnum.Between;
+            styleFormatCondition2.Value1 = "1";
+            styleFormatCondition2.Value2 = "99999999";
             this.gridViewDeliveryOrderDetails.FormatConditions.AddRange(new DevExpress.XtraGrid.StyleFormatCondition[] {
-            styleFormatCondition1});
+            styleFormatCondition2});
             this.gridViewDeliveryOrderDetails.GridControl = this.gridControlDeliveryOrerDetails;
             this.gridViewDeliveryOrderDetails.Name = "gridViewDeliveryOrderDetails";
             this.gridViewDeliveryOrderDetails.NewItemRowText = "点击添加新行";
@@ -214,6 +216,15 @@
             this.gcProductDate.Visible = true;
             this.gcProductDate.VisibleIndex = 7;
             // 
+            // btnPrintPickOrder
+            // 
+            this.btnPrintPickOrder.Location = new System.Drawing.Point(214, 30);
+            this.btnPrintPickOrder.Name = "btnPrintPickOrder";
+            this.btnPrintPickOrder.Size = new System.Drawing.Size(75, 23);
+            this.btnPrintPickOrder.TabIndex = 11;
+            this.btnPrintPickOrder.Text = "打印拣品单";
+            this.btnPrintPickOrder.Click += new System.EventHandler(this.btnPrintPickOrder_Click);
+            // 
             // AutoAssignStorage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -250,6 +261,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gcCurrentProductNumber;
         private DevExpress.XtraGrid.Columns.GridColumn gcStorageArea;
         private DevExpress.XtraEditors.SimpleButton btnBack;
+        private DevExpress.XtraEditors.SimpleButton btnPrintPickOrder;
 
     }
 }

@@ -15,6 +15,15 @@ namespace SCM_CangJi.Lib
         public const string InputOrderDetails = "InputOrderDetails";
         public const string DeliveryOrderDetails = "DeliveryOrderDetails";
         public const string Products = "Products";
+        #region 导入的字段
+
+        public const string Filed_ProductId = "ProductId";
+        public const string Filed_DeliveryCount = "DeliveryCount";
+        public const string Filed_ProductDate = "ProductDate";
+        public const string Filed_LotsNumber = "LotsNumber";
+        public const string Filed_InputInvoice = "InputInvoice";
+
+        #endregion
     }
    public enum FormType
     {

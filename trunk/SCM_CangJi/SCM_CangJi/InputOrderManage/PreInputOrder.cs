@@ -373,7 +373,7 @@ namespace SCM_CangJi.InputOrderManage
                 row["ProductDate"] = detail.ProductDate;
         }
 
-        private static void SetProductRow(DataRow row, int ProductId)
+        private void SetProductRow(DataRow row, int ProductId)
         {
             Product product = ProductService.Instance.GetProduct(ProductId);
             row["ProductNumber1"] = product.ProductNumber1;
@@ -387,6 +387,11 @@ namespace SCM_CangJi.InputOrderManage
         {
             if (dxValidationProvider1.Validate())
             {
+                if (!this.Updated)
+                {
+                    ShowWarning("还未保存！请先保存");
+                    return;
+                }
                 WareHouseManage.ImportDataBaseManage importForm = new WareHouseManage.ImportDataBaseManage(this.Handle,"InputOrderDetails");
                 if (importForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
