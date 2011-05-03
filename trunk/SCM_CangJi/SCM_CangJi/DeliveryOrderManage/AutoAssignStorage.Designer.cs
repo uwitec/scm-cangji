@@ -28,15 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition2 = new DevExpress.XtraGrid.StyleFormatCondition();
+            DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition1 = new DevExpress.XtraGrid.StyleFormatCondition();
             this.gcDeliveryCount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemSpinEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.btnPrintPickOrder = new DevExpress.XtraEditors.SimpleButton();
             this.btnBack = new DevExpress.XtraEditors.SimpleButton();
             this.btnCompleteAssign = new DevExpress.XtraEditors.SimpleButton();
             this.gridControlDeliveryOrerDetails = new DevExpress.XtraGrid.GridControl();
             this.gridViewDeliveryOrderDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gcProductChName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcProductId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcProducts = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.gcCurrentProductNumber = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcAssignCount = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -44,7 +45,9 @@
             this.gcInputInvoice = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcLotsNumber = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcProductDate = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.btnPrintPickOrder = new DevExpress.XtraEditors.SimpleButton();
+            this.gcBrand = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcProductNumber1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcProductNumber2 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -60,7 +63,7 @@
             this.gcDeliveryCount.FieldName = "DeliveryCount";
             this.gcDeliveryCount.Name = "gcDeliveryCount";
             this.gcDeliveryCount.Visible = true;
-            this.gcDeliveryCount.VisibleIndex = 2;
+            this.gcDeliveryCount.VisibleIndex = 5;
             // 
             // repositoryItemSpinEdit1
             // 
@@ -83,6 +86,15 @@
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(622, 81);
             this.panelControl1.TabIndex = 0;
+            // 
+            // btnPrintPickOrder
+            // 
+            this.btnPrintPickOrder.Location = new System.Drawing.Point(214, 30);
+            this.btnPrintPickOrder.Name = "btnPrintPickOrder";
+            this.btnPrintPickOrder.Size = new System.Drawing.Size(75, 23);
+            this.btnPrintPickOrder.TabIndex = 11;
+            this.btnPrintPickOrder.Text = "打印拣品单";
+            this.btnPrintPickOrder.Click += new System.EventHandler(this.btnPrintPickOrder_Click);
             // 
             // btnBack
             // 
@@ -119,20 +131,23 @@
             // gridViewDeliveryOrderDetails
             // 
             this.gridViewDeliveryOrderDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gcProductChName,
+            this.gcProductId,
             this.gcCurrentProductNumber,
+            this.gcProductNumber1,
+            this.gcProductNumber2,
+            this.gcBrand,
             this.gcDeliveryCount,
             this.gcAssignCount,
             this.gcStorageArea,
             this.gcInputInvoice,
             this.gcLotsNumber,
             this.gcProductDate});
-            styleFormatCondition2.Column = this.gcDeliveryCount;
-            styleFormatCondition2.Condition = DevExpress.XtraGrid.FormatConditionEnum.Between;
-            styleFormatCondition2.Value1 = "1";
-            styleFormatCondition2.Value2 = "99999999";
+            styleFormatCondition1.Column = this.gcDeliveryCount;
+            styleFormatCondition1.Condition = DevExpress.XtraGrid.FormatConditionEnum.Between;
+            styleFormatCondition1.Value1 = "1";
+            styleFormatCondition1.Value2 = "99999999";
             this.gridViewDeliveryOrderDetails.FormatConditions.AddRange(new DevExpress.XtraGrid.StyleFormatCondition[] {
-            styleFormatCondition2});
+            styleFormatCondition1});
             this.gridViewDeliveryOrderDetails.GridControl = this.gridControlDeliveryOrerDetails;
             this.gridViewDeliveryOrderDetails.Name = "gridViewDeliveryOrderDetails";
             this.gridViewDeliveryOrderDetails.NewItemRowText = "点击添加新行";
@@ -144,14 +159,14 @@
             this.gridViewDeliveryOrderDetails.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridViewDeliveryOrderDetails_RowCellStyle);
             this.gridViewDeliveryOrderDetails.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.gridViewDeliveryOrderDetails_ValidateRow);
             // 
-            // gcProductChName
+            // gcProductId
             // 
-            this.gcProductChName.Caption = "商品";
-            this.gcProductChName.ColumnEdit = this.gcProducts;
-            this.gcProductChName.FieldName = "ProductId";
-            this.gcProductChName.Name = "gcProductChName";
-            this.gcProductChName.Visible = true;
-            this.gcProductChName.VisibleIndex = 0;
+            this.gcProductId.Caption = "商品";
+            this.gcProductId.ColumnEdit = this.gcProducts;
+            this.gcProductId.FieldName = "ProductId";
+            this.gcProductId.Name = "gcProductId";
+            this.gcProductId.Visible = true;
+            this.gcProductId.VisibleIndex = 0;
             // 
             // gcProducts
             // 
@@ -182,7 +197,7 @@
             this.gcAssignCount.FieldName = "AssignCount";
             this.gcAssignCount.Name = "gcAssignCount";
             this.gcAssignCount.Visible = true;
-            this.gcAssignCount.VisibleIndex = 3;
+            this.gcAssignCount.VisibleIndex = 6;
             // 
             // gcStorageArea
             // 
@@ -190,7 +205,7 @@
             this.gcStorageArea.FieldName = "StorageArea";
             this.gcStorageArea.Name = "gcStorageArea";
             this.gcStorageArea.Visible = true;
-            this.gcStorageArea.VisibleIndex = 4;
+            this.gcStorageArea.VisibleIndex = 7;
             // 
             // gcInputInvoice
             // 
@@ -198,7 +213,7 @@
             this.gcInputInvoice.FieldName = "InputInvoice";
             this.gcInputInvoice.Name = "gcInputInvoice";
             this.gcInputInvoice.Visible = true;
-            this.gcInputInvoice.VisibleIndex = 5;
+            this.gcInputInvoice.VisibleIndex = 8;
             // 
             // gcLotsNumber
             // 
@@ -206,7 +221,7 @@
             this.gcLotsNumber.FieldName = "LotsNumber";
             this.gcLotsNumber.Name = "gcLotsNumber";
             this.gcLotsNumber.Visible = true;
-            this.gcLotsNumber.VisibleIndex = 6;
+            this.gcLotsNumber.VisibleIndex = 9;
             // 
             // gcProductDate
             // 
@@ -214,16 +229,31 @@
             this.gcProductDate.FieldName = "ProductDate";
             this.gcProductDate.Name = "gcProductDate";
             this.gcProductDate.Visible = true;
-            this.gcProductDate.VisibleIndex = 7;
+            this.gcProductDate.VisibleIndex = 10;
             // 
-            // btnPrintPickOrder
+            // gcBrand
             // 
-            this.btnPrintPickOrder.Location = new System.Drawing.Point(214, 30);
-            this.btnPrintPickOrder.Name = "btnPrintPickOrder";
-            this.btnPrintPickOrder.Size = new System.Drawing.Size(75, 23);
-            this.btnPrintPickOrder.TabIndex = 11;
-            this.btnPrintPickOrder.Text = "打印拣品单";
-            this.btnPrintPickOrder.Click += new System.EventHandler(this.btnPrintPickOrder_Click);
+            this.gcBrand.Caption = "品牌";
+            this.gcBrand.FieldName = "Brand";
+            this.gcBrand.Name = "gcBrand";
+            this.gcBrand.Visible = true;
+            this.gcBrand.VisibleIndex = 4;
+            // 
+            // gcProductNumber1
+            // 
+            this.gcProductNumber1.Caption = "品号1";
+            this.gcProductNumber1.FieldName = "ProductNumber1";
+            this.gcProductNumber1.Name = "gcProductNumber1";
+            this.gcProductNumber1.Visible = true;
+            this.gcProductNumber1.VisibleIndex = 2;
+            // 
+            // gcProductNumber2
+            // 
+            this.gcProductNumber2.Caption = "品号2";
+            this.gcProductNumber2.FieldName = "ProductNumber2";
+            this.gcProductNumber2.Name = "gcProductNumber2";
+            this.gcProductNumber2.Visible = true;
+            this.gcProductNumber2.VisibleIndex = 3;
             // 
             // AutoAssignStorage
             // 
@@ -249,7 +279,7 @@
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraGrid.GridControl gridControlDeliveryOrerDetails;
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewDeliveryOrderDetails;
-        private DevExpress.XtraGrid.Columns.GridColumn gcProductChName;
+        private DevExpress.XtraGrid.Columns.GridColumn gcProductId;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit gcProducts;
         private DevExpress.XtraGrid.Columns.GridColumn gcDeliveryCount;
         private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEdit1;
@@ -262,6 +292,9 @@
         private DevExpress.XtraGrid.Columns.GridColumn gcStorageArea;
         private DevExpress.XtraEditors.SimpleButton btnBack;
         private DevExpress.XtraEditors.SimpleButton btnPrintPickOrder;
+        private DevExpress.XtraGrid.Columns.GridColumn gcBrand;
+        private DevExpress.XtraGrid.Columns.GridColumn gcProductNumber1;
+        private DevExpress.XtraGrid.Columns.GridColumn gcProductNumber2;
 
     }
 }

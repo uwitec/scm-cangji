@@ -10,6 +10,8 @@ using SCM_CangJi.DAL;
 using SCM_CangJi.Lib;
 using System.Threading;
 using SCM_CangJi.BLL.Services;
+using SCM_CangJi.Reports;
+using SCM_CangJi.BLL;
 namespace SCM_CangJi.DeliveryOrderManage
 {
     public partial class AutoAssignStorage : FormBase
@@ -35,7 +37,8 @@ namespace SCM_CangJi.DeliveryOrderManage
             _deliveryOrder = DeliveryOrderService.Instance.GetDeliveryOrder(_orderId);
             AutoAssign();
             InitProduct();
-            dt = DeliveryOrderService.Instance.GetAssignedDetails(_orderId);
+            dt = DeliveryOrderService.Instance.GetDeliveryOrderAssignedDetailsDataTable(_orderId);
+            dt.Columns.Add("StorageArea");
             foreach (var item in _assignedDeliveryDetails)
             {
                 DataRow row = dt.NewRow();
@@ -71,11 +74,22 @@ namespace SCM_CangJi.DeliveryOrderManage
             row["StorageArea"] = ProductStorageService.Instance.GetArea(assignedDetail.StorageAreaId);
             row["IsSucess"] = assignedDetail.IsSucess;
            // row["CurrentProductNumber"] = assignedDetail.ProductStorage.CurrentProductNumber;
+            SetProductRow(row, assignedDetail.ProductId);
         }
-
+        private void SetProductRow(DataRow row, int ProductId)
+        {
+            Product product = ProductService.Instance.GetProduct(ProductId);
+            row["ProductNumber1"] = product.ProductNumber1;
+            row["ProductChName"] = product.ProductChName;
+            row["ProductEngName"] = product.ProductEngName;
+            row["ProductNumber2"] = product.ProductNumber2;
+            row["Spec"] = product.Spec;
+            row["Brand"] = product.Brand;
+        }
         private void btnCompleteAssign_Click(object sender, EventArgs e)
         {
             BLL.Services.DeliveryOrderService.Instance.CreateAssignedDetails(_orderId,_assignedDeliveryDetails);
+            _deliveryOrder=DeliveryOrderService.Instance.GetDeliveryOrder(_orderId);
             this.Updated = true;
             ShowMessage("分配库存完成");
         }
@@ -124,8 +138,21 @@ namespace SCM_CangJi.DeliveryOrderManage
                 ShowWarning("还未确认分配！请完成分配后再打印");
                 return;
             }
-            PickProductsOrder p = new PickProductsOrder(_orderId, false);
-            p.Show();
+            PickProductsReport report = new PickProductsReport();
+            DataSet ds = new DataSet();
+            DataTable dt = DeliveryOrderService.Instance.GetDeliveryOrderAssignedDetailsDataTable(_orderId);
+            dt.Columns.Add("Area");
+            foreach (DataRow row in dt.Rows)
+            {
+                row["Area"] = ProductStorageService.Instance.GetArea(int.Parse(row["StorageAreaId"].TrytoString()));
+            }
+            DataTable dt2 = DeliveryOrderService.Instance.GetDeliveryOrderDataTable(_orderId);
+            ds.Tables.Add(dt2);
+            ds.Tables.Add(dt);
+            report.DataSource = ds;
+            report.ShowPreviewDialog();
+            //PickProductsOrder p = new PickProductsOrder(_orderId, false);
+            //p.Show();
         }
 
     }

@@ -109,6 +109,8 @@ namespace SCM_CangJi.BLL.Services
                   return reslut;
               });
         }
+       
+        
         private string GetArea(CangJiDataDataContext db, int? StorageAreaId)
         {
             if (!StorageAreaId.HasValue)
@@ -428,5 +430,63 @@ namespace SCM_CangJi.BLL.Services
                     break;
             }
         }
+        #region Report
+        public DataTable GetDeliveryOrderAssignedDetailsDataTable(int orderId)
+        {
+            DataTable reslut = null;
+
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
+            {
+                reslut = (from o in db.AssignedDeliveryOrderDetails.Where(o => o.DeliveryOrderId == orderId)
+                          select new
+                          {
+                              o.DeliveryCount,
+                              o.AssignCount,
+                              o.DeliveryOrderId,
+                              o.InputInvoice,
+                              o.Id,
+                              o.CurrentProductNumber,
+                              ProductId = o.Product.Id,
+                              o.Product.ProductChName,
+                              o.Product.ProductEngName,
+                              o.Product.Brand,
+                              o.Product.ProductNumber1,
+                              o.Product.ProductNumber2,
+                              o.Product.Spec,
+                              o.ProductDate,
+                              o.LotsNumber,
+                              o.IsSucess,
+                              o.ProductStorageId,
+                              StorageAreaId=o.StorageAreaId,
+                              //Area = o.StorageAreaId.ToString(),
+                          }).ToDataTable(db);
+            });
+            reslut.TableName = "rptDeliveryOrderAssignedDetails";
+            return reslut;
+        }
+        public DataTable GetDeliveryOrderDataTable(int orderId)
+        {
+            DataTable reslut = null;
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
+            {
+                reslut = (from o in db.DeliveryOrders.Where(o => o.Id == orderId)
+                          select new
+                          {
+                              o.Company.CompanyName,
+                              o.CompanyId,
+                              o.Id,
+                              DeliveryAddress = o.DeliverAddress.Address,
+                              o.DeliveryOrderNumber,
+                              o.Invoice,
+                              o.PreDeliveryDate,
+                              o.ReachedDate,
+                              o.Status,
+                          }).ToDataTable(db);
+            });
+            reslut.TableName = "rptDeliveryOrder";
+            return reslut;
+        }
+        #endregion
+
     }
 }

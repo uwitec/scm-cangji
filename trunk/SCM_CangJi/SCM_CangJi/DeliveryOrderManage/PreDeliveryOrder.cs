@@ -15,6 +15,7 @@ using SCM_CangJi.BLL;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using DevExpress.Utils.Menu;
 using DevExpress.XtraGrid.Views.Grid;
+using SCM_CangJi.Reports;
 namespace SCM_CangJi.DeliveryOrderManage
 {
     public partial class PreDeliveryOrder : FormBase
@@ -98,6 +99,7 @@ namespace SCM_CangJi.DeliveryOrderManage
                     if (Status > (int)DeliveryStatus.待分配库存)
                     {
                         btnPrintPickOrder.Visible = true;
+                        btnExportAssignedDetails.Visible = true;
                     }
 
                     this.gridControlDeliveryOrerDetails.DoubleClick -= gridControlDeliveryOrerDetails_DoubleClick;
@@ -496,9 +498,27 @@ namespace SCM_CangJi.DeliveryOrderManage
 
         private void btnPrintPickOrder_Click(object sender, EventArgs e)
         {
-            
-            PickProductsOrder p = new PickProductsOrder(_orderId, false);
-            p.Show();
+            PickProductsReport report = new PickProductsReport();
+            DataSet ds = new DataSet();
+            DataTable dt = DeliveryOrderService.Instance.GetDeliveryOrderAssignedDetailsDataTable(_orderId);
+            dt.Columns.Add("Area");
+            foreach (DataRow row in dt.Rows)
+            {
+                row["Area"] = ProductStorageService.Instance.GetArea(int.Parse(row["StorageAreaId"].TrytoString()));
+            }
+            DataTable dt2 = DeliveryOrderService.Instance.GetDeliveryOrderDataTable(_orderId);
+            ds.Tables.Add(dt2);
+            ds.Tables.Add(dt);
+            report.DataSource = ds;
+            report.ShowPreviewDialog();
+            //PickProductsOrder p = new PickProductsOrder(_orderId, false);
+            //p.Show();
+        }
+
+        private void btnExportAssignedDetails_Click(object sender, EventArgs e)
+        {
+            string filename = string.Format("库存分配明细_{0}.xls",lblDeliveryOrderNumber.Text);
+            this.ExportExcle(this.gridViewAssigned, filename);
         }
       
     }

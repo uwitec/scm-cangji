@@ -68,11 +68,12 @@
             this.gcLotsNumber = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcProductDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.tabAssigned = new DevExpress.XtraTab.XtraTabPage();
-            this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
-            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.gridControlAsssigned = new DevExpress.XtraGrid.GridControl();
             this.gridViewAssigned = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.btnPrintPickOrder = new DevExpress.XtraEditors.SimpleButton();
+            this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
+            this.btnExportAssignedDetails = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
@@ -90,11 +91,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDeliveryOrderDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcProducts)).BeginInit();
             this.tabAssigned.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
-            this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlAsssigned)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewAssigned)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
+            this.panelControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // gcDeliveryCount
@@ -482,19 +483,6 @@
             this.tabAssigned.Size = new System.Drawing.Size(636, 270);
             this.tabAssigned.Text = "库存分配明细";
             // 
-            // dxValidationProvider1
-            // 
-            this.dxValidationProvider1.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.Manual;
-            // 
-            // panelControl2
-            // 
-            this.panelControl2.Controls.Add(this.btnPrintPickOrder);
-            this.panelControl2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelControl2.Location = new System.Drawing.Point(0, 0);
-            this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(636, 40);
-            this.panelControl2.TabIndex = 0;
-            // 
             // gridControlAsssigned
             // 
             this.gridControlAsssigned.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -514,6 +502,16 @@
             this.gridViewAssigned.OptionsView.EnableAppearanceEvenRow = true;
             this.gridViewAssigned.OptionsView.ShowGroupPanel = false;
             // 
+            // panelControl2
+            // 
+            this.panelControl2.Controls.Add(this.btnExportAssignedDetails);
+            this.panelControl2.Controls.Add(this.btnPrintPickOrder);
+            this.panelControl2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelControl2.Location = new System.Drawing.Point(0, 0);
+            this.panelControl2.Name = "panelControl2";
+            this.panelControl2.Size = new System.Drawing.Size(636, 40);
+            this.panelControl2.TabIndex = 0;
+            // 
             // btnPrintPickOrder
             // 
             this.btnPrintPickOrder.Location = new System.Drawing.Point(10, 12);
@@ -523,6 +521,20 @@
             this.btnPrintPickOrder.Text = "打印拣品单";
             this.btnPrintPickOrder.Visible = false;
             this.btnPrintPickOrder.Click += new System.EventHandler(this.btnPrintPickOrder_Click);
+            // 
+            // dxValidationProvider1
+            // 
+            this.dxValidationProvider1.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.Manual;
+            // 
+            // btnExportAssignedDetails
+            // 
+            this.btnExportAssignedDetails.Location = new System.Drawing.Point(96, 12);
+            this.btnExportAssignedDetails.Name = "btnExportAssignedDetails";
+            this.btnExportAssignedDetails.Size = new System.Drawing.Size(103, 23);
+            this.btnExportAssignedDetails.TabIndex = 10;
+            this.btnExportAssignedDetails.Text = "导出分配明细";
+            this.btnExportAssignedDetails.Visible = false;
+            this.btnExportAssignedDetails.Click += new System.EventHandler(this.btnExportAssignedDetails_Click);
             // 
             // PreDeliveryOrder
             // 
@@ -549,11 +561,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridViewDeliveryOrderDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcProducts)).EndInit();
             this.tabAssigned.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
-            this.panelControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlAsssigned)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewAssigned)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
+            this.panelControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -600,6 +612,7 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewAssigned;
         private DevExpress.XtraEditors.PanelControl panelControl2;
         private DevExpress.XtraEditors.SimpleButton btnPrintPickOrder;
+        private DevExpress.XtraEditors.SimpleButton btnExportAssignedDetails;
 
     }
 }

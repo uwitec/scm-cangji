@@ -59,7 +59,7 @@ namespace SCM_CangJi.BLL.Services
                                   o.LotsNumber,
                                   o.Remark,
                                   o.StorageAreaId,
-                                  StorageArea = !o.StorageAreaId.HasValue ? "未分配" : y.StorageRack.Storage.仓库名称 + "--" + y.StorageRack.RackName + "--" + y.库位编号
+                                  StorageArea = !o.StorageAreaId.HasValue ? "未分配" :y.StorageRack.RackName + "--" + y.库位编号
                               };
                 reslut = deteils.ToDataTable(db);
             });
@@ -229,11 +229,12 @@ namespace SCM_CangJi.BLL.Services
                                     d.Remark,
                                     BarCode = d.Product.BarCode,
                                     Brand=d.Product.Brand,
+                                    Invoice=d.InputOrder.Invoice,
                                     ProductChName = d.Product.ProductChName,
                                     ProductEngName = d.Product.ProductEngName,
                                     ProductNumber1 = d.Product.ProductNumber1,
                                     ProductNumber2 = d.Product.ProductNumber2,
-                                    AreaNumber = y==null ? "未分配" : y.StorageRack.Storage.仓库名称 + "--" + y.StorageRack.RackName + "--" + y.库位编号,
+                                    AreaNumber = y==null ? "未分配" : y.StorageRack.RackName + "--" + y.库位编号,
                                     WareHouseName = "（" + y.StorageRack.Storage.仓库编号 + "）" + y.StorageRack.Storage.仓库名称,
                                 };
                 reslut=resultTem.ToList();

@@ -78,6 +78,9 @@
       <HintPath>..\..\..\..\..\dll\expressApp\DevExpress.BonusSkins.v10.1.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="DevExpress.Charts.v10.1.Core, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="DevExpress.Data.v10.1, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\dll\expressApp\DevExpress.Data.v10.1.dll</HintPath>
@@ -86,6 +89,9 @@
     <Reference Include="DevExpress.OfficeSkins.v10.1, Version=10.1.6.0, Culture=neutral, PublicKeyToken=95fc6c5621878f0a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\dll\expressApp\DevExpress.OfficeSkins.v10.1.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v10.1.Core, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
     <Reference Include="DevExpress.Utils.v10.1, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c, processorArchitecture=MSIL">
@@ -98,8 +104,12 @@
       <HintPath>..\..\..\..\..\dll\expressApp\DevExpress.XtraBars.v10.1.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraCharts.v10.1, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c" />
-    <Reference Include="DevExpress.XtraCharts.v10.1.Extensions, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c" />
+    <Reference Include="DevExpress.XtraCharts.v10.1, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v10.1.Extensions, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="DevExpress.XtraEditors.v10.1, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\dll\expressApp\DevExpress.XtraEditors.v10.1.dll</HintPath>
@@ -118,15 +128,30 @@
     <Reference Include="DevExpress.XtraNavBar.v10.1, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraPivotGrid.v10.1, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c" />
-    <Reference Include="DevExpress.XtraPivotGrid.v10.1.Core, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c" />
+    <Reference Include="DevExpress.XtraPivotGrid.v10.1, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraPivotGrid.v10.1.Core, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="DevExpress.XtraPrinting.v10.1, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
-    <Reference Include="DevExpress.XtraReports.v10.1, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c" />
-    <Reference Include="DevExpress.XtraReports.v10.1.Extensions, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraTreeList.v10.1, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c" />
-    <Reference Include="DevExpress.XtraVerticalGrid.v10.1, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c" />
+    <Reference Include="DevExpress.XtraReports.v10.1, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v10.1.Extensions, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraRichEdit.v10.1, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraTreeList.v10.1, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraVerticalGrid.v10.1, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic">
       <Private>True</Private>
     </Reference>
@@ -408,6 +433,21 @@
       <DependentUpon>PreDeliveryOrder.cs</DependentUpon>
     </Compile>
     <Compile Include="MyContext.cs" />
+    <Compile Include="Reports\PickProductsReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\PickProductsReport.Designer.cs">
+      <DependentUpon>PickProductsReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ReportDataSet.cs">
+      <DependentUpon>ReportDataSet.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="SplashScreenApplicationContext.cs" />
     <Compile Include="Base\EditForm.cs">
       <SubType>Form</SubType>
@@ -655,6 +695,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Reports\PickProductsReport.resx">
+      <DependentUpon>PickProductsReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SplashForm.resx">
       <DependentUpon>SplashForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -712,6 +755,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Reports\ReportDataSet.xsc">
+      <DependentUpon>ReportDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\ReportDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ReportDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reports\ReportDataSet.xss">
+      <DependentUpon>ReportDataSet.xsd</DependentUpon>
+    </None>
     <None Include="SCM_CangJi_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

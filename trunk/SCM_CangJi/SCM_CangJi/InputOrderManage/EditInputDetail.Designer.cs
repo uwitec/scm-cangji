@@ -125,7 +125,7 @@
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ProductChName", "品名"),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ProductNumber1", "品号1"),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ProductNumber2", "品号2")});
-            this.ddlProducts.Properties.DisplayMember = "ProductChName";
+            this.ddlProducts.Properties.DisplayMember = "ProductNumber1";
             this.ddlProducts.Properties.NullText = "请选择...";
             this.ddlProducts.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.ddlProducts.Properties.ValueMember = "Id";

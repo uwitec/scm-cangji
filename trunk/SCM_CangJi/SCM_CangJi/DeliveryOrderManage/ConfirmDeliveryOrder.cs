@@ -55,7 +55,7 @@ namespace SCM_CangJi.DeliveryOrderManage
         private void btnConfirm_Click(object sender, EventArgs e)
         {
 
-            int RowHandle = gridControlDeliveryOrders.FocusedView.SourceRowHandle;
+            int RowHandle = gridViewDeliveryOrders.GetFocusedDataSourceRowIndex();
             if (RowHandle >= 0)
             {
                 int orderId = (int)gridViewDeliveryOrders.GetRowCellValue(RowHandle, "Id");
@@ -116,11 +116,15 @@ namespace SCM_CangJi.DeliveryOrderManage
         {
             if (this.ShowQuestion("您确定要退回修改么？") == System.Windows.Forms.DialogResult.OK)
             {
-                int RowHandle = gridControlDeliveryOrders.FocusedView.SourceRowHandle;
+                int RowHandle = gridViewDeliveryOrders.GetFocusedDataSourceRowIndex();
+                int orderId =0;
+                if (RowHandle >= 0)
+                {
+                    orderId = (int)gridViewDeliveryOrders.GetRowCellValue(RowHandle, "Id");
 
-                int orderId = (int)gridViewDeliveryOrders.GetRowCellValue(RowHandle, "Id");
-                DeliveryOrderService.Instance.CancelAssigedDetails(orderId);
-                InitGrid();
+                    DeliveryOrderService.Instance.CancelAssigedDetails(orderId);
+                    InitGrid();
+                }
             }
         }
       
