@@ -8,6 +8,7 @@ namespace SCM_CangJi.BLL.Services
 {
     public class ProductService:BaseService<ProductService>
     {
+        public IEnumerable<Product> Products { get; set; }
         public object GetProducts(int companyId)
         {
             object result = null;
@@ -83,7 +84,12 @@ namespace SCM_CangJi.BLL.Services
         }
         public bool HasProduct(int CompanyId, string productNumber1)
         {
-            return GetProduct(CompanyId, productNumber1) != null;
+            if (Products == null)
+            {
+                Products = this.GetProductsEntities(CompanyId);
+            }
+            return Products.SingleOrDefault(o => o.ProductNumber1 == productNumber1) != null;
+            //return GetProduct(CompanyId, productNumber1) != null;
         }
         public void Update(Product product)
         {

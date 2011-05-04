@@ -248,7 +248,7 @@
             // gridColumn1
             // 
             this.gridColumn1.Caption = "库位";
-            this.gridColumn1.FieldName = "StorageArea";
+            this.gridColumn1.FieldName = "AreaNumber";
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.OptionsColumn.AllowEdit = false;
             this.gridColumn1.Visible = true;

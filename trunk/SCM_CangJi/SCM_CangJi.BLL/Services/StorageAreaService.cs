@@ -26,6 +26,22 @@ namespace SCM_CangJi.BLL.Services
             });
             return result;
         }
+        IEnumerable<StorageArea> _storageAreas = null;
+        public IEnumerable<StorageArea> StorageAreas
+        {
+            get
+            {
+                if (_storageAreas == null)
+                {
+                    Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), context =>
+                    {
+                        _storageAreas = (from a in context.StorageAreas
+                                         select a).ToList();
+                    });
+                }
+                return _storageAreas;
+            }
+        }
         public string GetArea(int? StorageAreaId)
         {
             return Using<CangJiDataDataContext, string>(new CangJiDataDataContext(this.connectionString), db =>

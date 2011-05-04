@@ -150,6 +150,7 @@ namespace SCM_CangJi.DeliveryOrderManage
             ds.Tables.Add(dt2);
             ds.Tables.Add(dt);
             report.DataSource = ds;
+            report.DataMember = "rptDeliveryOrderAssignedDetails";
             report.ShowPreviewDialog();
             //PickProductsOrder p = new PickProductsOrder(_orderId, false);
             //p.Show();

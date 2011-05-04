@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using System.Data.Linq;
+using System.Linq;
 using SCM_CangJi.Lib;
 using SCM_CangJi.BLL;
 using SCM_CangJi.WareHouseManage;
@@ -21,6 +23,8 @@ namespace SCM_CangJi.InputOrderManage
     {
         Dictionary<string, ValidateValue> validateResult;
         PreInputOrder preInputForm;
+        IEnumerable<StorageArea> StorageAreas = null;
+        IEnumerable<Product> Products = null;
         public ImportInputDetails(IntPtr formObject, DataSet data, List<ImportDataInfo> importDataStruct)
             : base(formObject, data, importDataStruct)
         {
@@ -39,6 +43,8 @@ namespace SCM_CangJi.InputOrderManage
 
         void ImportInputDetailst_Load(object sender, EventArgs e)
         {
+            Products = ProductService.Instance.GetProductsEntities(this.preInputForm.CompanyId);
+            StorageAreas = StorageAreaService.Instance.StorageAreas;
             InputDetailStyleFormatCondition cn;
             foreach (var item in _importDataStruct)
             {
@@ -99,7 +105,15 @@ namespace SCM_CangJi.InputOrderManage
                     if (datainfo.DestField == "ProductId")
                     {
 
-                        detail.ProductId = ProductService.Instance.GetProduct(preInputForm.CompanyId, item[datainfo.SrcField].TrytoString()).Id;
+                        detail.ProductId = GetProduct(item[datainfo.SrcField].TrytoString()).Id;
+                    }
+                    else if(datainfo.DestField == "StorageAreaId")
+                    {
+                        StorageArea  area= GetStorageArea(item[datainfo.SrcField].TrytoString());
+                        if (area != null)
+                        {
+                            detail.StorageAreaId = area.Id;
+                        }
                     }
                     else
                     {
@@ -111,6 +125,14 @@ namespace SCM_CangJi.InputOrderManage
             InputOrderService.Instance.CreateDetail(InputOrderDetailsAdding);
             ShowMessage("入库明细导入成功!");
             this.Updated = true;
+        }
+        private Product GetProduct(string productNumber1)
+        {
+            return this.Products.FirstOrDefault(o => o.ProductNumber1 == productNumber1);
+        }
+        public StorageArea GetStorageArea(string areaName)
+        {
+            return this.StorageAreas.SingleOrDefault(o => o.库位编号.Equals(areaName));
         }
     }
     public delegate void CheckValue(string key, ValidateValue val);
