@@ -7,7 +7,7 @@
 <DiagramLayout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ex:showrelationlabel="True" ViewPortX="0" ViewPortY="-7" xmlns:ex="urn:schemas-microsoft-com:xml-msdatasource-layout-extended" xmlns="urn:schemas-microsoft-com:xml-msdatasource-layout">
   <Shapes>
     <Shape ID="DesignTable:rptDeliveryOrder" ZOrder="2" X="27" Y="40" Height="162" Width="175" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="24" SplitterPosition="158" />
-    <Shape ID="DesignTable:rptDeliveryOrderAssignedDetails" ZOrder="1" X="353" Y="49" Height="28" Width="270" AdapterExpanded="true" DataTableExpanded="false" OldAdapterHeight="0" OldDataTableHeight="329" SplitterPosition="24" />
+    <Shape ID="DesignTable:rptDeliveryOrderAssignedDetails" ZOrder="1" X="353" Y="49" Height="333" Width="270" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="24" SplitterPosition="329" />
   </Shapes>
   <Connectors>
     <Connector ID="DesignRelation:rptDeliveryOrder_rptDeliveryOrderAssignedDetails" ZOrder="3" LineWidth="11">

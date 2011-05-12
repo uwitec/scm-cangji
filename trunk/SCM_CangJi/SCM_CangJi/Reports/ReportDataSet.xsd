@@ -45,6 +45,7 @@
               <xs:element name="BarCode" msprop:Generator_ColumnVarNameInTable="columnBarCode" msprop:Generator_ColumnPropNameInRow="BarCode" msprop:Generator_ColumnPropNameInTable="BarCodeColumn" msprop:Generator_UserColumnName="BarCode" type="xs:string" minOccurs="0" />
               <xs:element name="ProductType" msprop:Generator_ColumnVarNameInTable="columnProductType" msprop:Generator_ColumnPropNameInRow="ProductType" msprop:Generator_ColumnPropNameInTable="ProductTypeColumn" msprop:Generator_UserColumnName="ProductType" type="xs:string" minOccurs="0" />
               <xs:element name="LotsNumber" msprop:Generator_ColumnVarNameInTable="columnLotsNumber" msprop:Generator_ColumnPropNameInRow="LotsNumber" msprop:Generator_ColumnPropNameInTable="LotsNumberColumn" msprop:Generator_UserColumnName="LotsNumber" type="xs:string" minOccurs="0" />
+              <xs:element name="CustomerPo" msprop:Generator_ColumnVarNameInTable="columnCustomerPo" msprop:Generator_ColumnPropNameInRow="CustomerPo" msprop:Generator_ColumnPropNameInTable="CustomerPoColumn" msprop:Generator_UserColumnName="CustomerPo" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -61,7 +62,7 @@
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="rptDeliveryOrder_rptDeliveryOrderAssignedDetails" msdata:parent="rptDeliveryOrder" msdata:child="rptDeliveryOrderAssignedDetails" msdata:parentkey="Id" msdata:childkey="DeliveryOrderId" msprop:Generator_UserChildTable="rptDeliveryOrderAssignedDetails" msprop:Generator_ChildPropName="GetrptDeliveryOrderAssignedDetailsRows" msprop:Generator_ParentPropName="rptDeliveryOrderRow" msprop:Generator_UserRelationName="rptDeliveryOrder_rptDeliveryOrderAssignedDetails" msprop:Generator_RelationVarName="relationrptDeliveryOrder_rptDeliveryOrderAssignedDetails" msprop:Generator_UserParentTable="rptDeliveryOrder" />
+      <msdata:Relationship name="rptDeliveryOrder_rptDeliveryOrderAssignedDetails" msdata:parent="rptDeliveryOrder" msdata:child="rptDeliveryOrderAssignedDetails" msdata:parentkey="Id" msdata:childkey="DeliveryOrderId" msprop:Generator_UserChildTable="rptDeliveryOrderAssignedDetails" msprop:Generator_ChildPropName="GetrptDeliveryOrderAssignedDetailsRows" msprop:Generator_UserParentTable="rptDeliveryOrder" msprop:Generator_UserRelationName="rptDeliveryOrder_rptDeliveryOrderAssignedDetails" msprop:Generator_RelationVarName="relationrptDeliveryOrder_rptDeliveryOrderAssignedDetails" msprop:Generator_ParentPropName="rptDeliveryOrderRow" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

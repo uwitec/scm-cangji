@@ -66,17 +66,18 @@ namespace SCM_CangJi.DeliveryOrderManage
             row["InputInvoice"] = assignedDetail.InputInvoice;
             row["LotsNumber"] = assignedDetail.LotsNumber;
             row["ProductId"] = assignedDetail.ProductId;
+            row["CustomerPo"] = assignedDetail.CustomerPo;
             row["DeliveryOrderId"] = assignedDetail.DeliveryOrderId;
             if (assignedDetail.ProductDate != null)
                 row["ProductDate"] = assignedDetail.ProductDate;
-            row["ProductStorageId"] = assignedDetail.ProductStorageId;
+            row["ProductStorageId"] = assignedDetail.ProductStorageId.HasValue ?assignedDetail.ProductStorageId.Value:0;
             row["CurrentProductNumber"] = assignedDetail.CurrentProductNumber;
             row["StorageArea"] = ProductStorageService.Instance.GetArea(assignedDetail.StorageAreaId);
             row["IsSucess"] = assignedDetail.IsSucess;
            // row["CurrentProductNumber"] = assignedDetail.ProductStorage.CurrentProductNumber;
             SetProductRow(row, assignedDetail.ProductId);
         }
-        private void SetProductRow(DataRow row, int ProductId)
+        private void SetProductRow(DataRow row, int? ProductId)
         {
             Product product = ProductService.Instance.GetProduct(ProductId);
             row["ProductNumber1"] = product.ProductNumber1;
@@ -97,15 +98,15 @@ namespace SCM_CangJi.DeliveryOrderManage
         {
             foreach (var item in _assignedDeliveryDetails)
             {
-                if (item.AssignCount < 0)
+                if (item.AssignCount ==0)
                 {
                     isSucess = false;
                 }
             }
             if (!isSucess)
             {
-                ShowWarning("分配失败，可能是库存不足！请退回修改预入库单！");
-                this.btnCompleteAssign.Enabled = false;
+                ShowWarning("未完全分配，可能是库存不足！");
+                //this.btnCompleteAssign.Enabled = false;
 
             }
         }
@@ -144,7 +145,9 @@ namespace SCM_CangJi.DeliveryOrderManage
             dt.Columns.Add("Area");
             foreach (DataRow row in dt.Rows)
             {
-                row["Area"] = ProductStorageService.Instance.GetArea(int.Parse(row["StorageAreaId"].TrytoString()));
+                string ararId = row["StorageAreaId"].TrytoString();
+                row["Area"] = ProductStorageService.Instance.GetArea(string.IsNullOrEmpty(ararId) ? 0 : int.Parse(ararId));
+                //row["Area"] = ProductStorageService.Instance.GetArea(int.Parse(row["StorageAreaId"].TrytoString()));
             }
             DataTable dt2 = DeliveryOrderService.Instance.GetDeliveryOrderDataTable(_orderId);
             ds.Tables.Add(dt2);

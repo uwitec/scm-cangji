@@ -40,6 +40,10 @@ namespace SCM_CangJi.BLL.Services
             bool isSucess = true;
             foreach (var detail in groupedDetails)
             {
+                if (detail.Product.ProductNumber1 == "10101010101151")
+                {
+                    System.Diagnostics.Debug.Assert(true);
+                }
                 int index = 0;
                 
                bool AssignedCompleted= BuildDeliveryDetails(index, ref hasAssignedCount, detail, db, ref result);
@@ -56,14 +60,15 @@ namespace SCM_CangJi.BLL.Services
                         //库存不足，缺失数量显示
                         result.Add(new AssignedDeliveryOrderDetail()
                         {
-                            AssignCount = -(detail.DeliveryCount - hasAssignedCount),
+                            AssignCount = 0,//-(detail.DeliveryCount - hasAssignedCount),
                             DeliveryOrderId = detail.DeliveryOrderId,
                             DeliveryCount = detail.DeliveryCount,
                             InputInvoice = detail.InputInvoice,
                             LotsNumber = detail.LotsNumber,
                             ProductDate = detail.ProductDate,
                             ProductId = detail.ProductId,
-                            ProductStorageId = 0,
+                            CustomerPo=detail.CustomerPo,
+                            //ProductStorageId = null,
                             //StorageAreaId = "无",
                             CurrentProductNumber = "",
                             IsSucess=false
@@ -92,7 +97,7 @@ namespace SCM_CangJi.BLL.Services
             foreach (var item in productStorages)
             {
                 //还需数量大于已分配数量时，继续分配
-                int remainAssignCount = detail.DeliveryCount - perhasAssignedCount;
+                int remainAssignCount = detail.DeliveryCount - hasAssignedCount;
                 if (remainAssignCount > 0)
                 {
                     //该条可用库存数量足够
@@ -108,7 +113,8 @@ namespace SCM_CangJi.BLL.Services
                             ProductDate = item.ProductDate,
                             ProductId = detail.ProductId,
                             ProductStorageId = item.Id,
-                            StorageAreaId=item.AreaId,
+                            StorageAreaId = item.AreaId,
+                            CustomerPo = detail.CustomerPo,
                             CurrentProductNumber=item.CurrentProductNumber
                         });
                         hasAssignedCount += remainAssignCount;
@@ -118,9 +124,9 @@ namespace SCM_CangJi.BLL.Services
                     }
                     else//该条库存数量不足
                     {
-                        result.Add(new AssignedDeliveryOrderDetail()
+                        AssignedDeliveryOrderDetail assignDetail=new AssignedDeliveryOrderDetail()
                         {
-                             AssignCount=perhasAssignedCount==0?(item.UsableCount-hasAssignedCount):item.UsableCount,
+                             AssignCount=hasAssignedCount==0?(item.UsableCount-hasAssignedCount):item.UsableCount,
                              DeliveryOrderId=detail.DeliveryOrderId,
                              DeliveryCount=detail.DeliveryCount,
                              InputInvoice=detail.InputInvoice,
@@ -129,10 +135,12 @@ namespace SCM_CangJi.BLL.Services
                              ProductId=detail.ProductId,
                              ProductStorageId=item.Id,
                              StorageAreaId=item.AreaId,
-                            CurrentProductNumber=item.CurrentProductNumber
-                        });
-                        perhasAssignedCount += (item.UsableCount );
-                        hasAssignedCount += (item.UsableCount );
+                             CustomerPo = detail.CustomerPo,
+                             CurrentProductNumber = item.CurrentProductNumber
+                        };
+                        result.Add(assignDetail);
+                        perhasAssignedCount += assignDetail.AssignCount;// (item.UsableCount );
+                        hasAssignedCount += assignDetail.AssignCount;//(item.UsableCount );
                         continue;
                     }
                 }
@@ -143,10 +151,10 @@ namespace SCM_CangJi.BLL.Services
                 }
                
             }
-            if (productStorages.Count() > 0)
+            if (productStorages.Count() > 0 && AssignedCompleted==false)
             {
                 index++;
-                BuildDeliveryDetails(index, ref hasAssignedCount, detail, db, ref result);
+                AssignedCompleted=BuildDeliveryDetails(index, ref hasAssignedCount, detail, db, ref result);
             }
             return AssignedCompleted;
         }
@@ -165,6 +173,7 @@ namespace SCM_CangJi.BLL.Services
                               品号 = ps.Product.ProductNumber1,
                               条形码 = ps.Product.BarCode,
                               现品号 = ps.CurrentProductNumber,
+                              入库发票号=ps.InputOrderDetail.InputOrder.Invoice,
                               当前库存数 = ps.CurrentCount,
                               实际可用数量 = ps.UsableCount,
                               库位 = ps.StorageArea.StorageRack.RackName + "--" + ps.StorageArea.库位编号
@@ -181,8 +190,14 @@ namespace SCM_CangJi.BLL.Services
             Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 var ps = db.StorageAreas.SingleOrDefault(o => o.Id == areaId);
-
-                result = ps.StorageRack.RackName + "--" + ps.库位编号;
+                if (ps == null)
+                {
+                    result = "未分配";
+                }
+                else
+                {
+                    result = ps.StorageRack.RackName + "--" + ps.库位编号;
+                }
             });
             return result;
         }

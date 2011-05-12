@@ -40,14 +40,15 @@
             this.gcProductId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcProducts = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.gcCurrentProductNumber = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcProductNumber1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcProductNumber2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcBrand = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcAssignCount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcStorageArea = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcInputInvoice = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcLotsNumber = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcProductDate = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcBrand = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcProductNumber1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gcProductNumber2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcCustomerPo = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -140,6 +141,7 @@
             this.gcAssignCount,
             this.gcStorageArea,
             this.gcInputInvoice,
+            this.gcCustomerPo,
             this.gcLotsNumber,
             this.gcProductDate});
             styleFormatCondition1.Column = this.gcDeliveryCount;
@@ -191,6 +193,30 @@
             this.gcCurrentProductNumber.Visible = true;
             this.gcCurrentProductNumber.VisibleIndex = 1;
             // 
+            // gcProductNumber1
+            // 
+            this.gcProductNumber1.Caption = "品号1";
+            this.gcProductNumber1.FieldName = "ProductNumber1";
+            this.gcProductNumber1.Name = "gcProductNumber1";
+            this.gcProductNumber1.Visible = true;
+            this.gcProductNumber1.VisibleIndex = 2;
+            // 
+            // gcProductNumber2
+            // 
+            this.gcProductNumber2.Caption = "品号2";
+            this.gcProductNumber2.FieldName = "ProductNumber2";
+            this.gcProductNumber2.Name = "gcProductNumber2";
+            this.gcProductNumber2.Visible = true;
+            this.gcProductNumber2.VisibleIndex = 3;
+            // 
+            // gcBrand
+            // 
+            this.gcBrand.Caption = "品牌";
+            this.gcBrand.FieldName = "Brand";
+            this.gcBrand.Name = "gcBrand";
+            this.gcBrand.Visible = true;
+            this.gcBrand.VisibleIndex = 4;
+            // 
             // gcAssignCount
             // 
             this.gcAssignCount.Caption = "分配数量";
@@ -221,7 +247,7 @@
             this.gcLotsNumber.FieldName = "LotsNumber";
             this.gcLotsNumber.Name = "gcLotsNumber";
             this.gcLotsNumber.Visible = true;
-            this.gcLotsNumber.VisibleIndex = 9;
+            this.gcLotsNumber.VisibleIndex = 10;
             // 
             // gcProductDate
             // 
@@ -229,31 +255,15 @@
             this.gcProductDate.FieldName = "ProductDate";
             this.gcProductDate.Name = "gcProductDate";
             this.gcProductDate.Visible = true;
-            this.gcProductDate.VisibleIndex = 10;
+            this.gcProductDate.VisibleIndex = 11;
             // 
-            // gcBrand
+            // gcCustomerPo
             // 
-            this.gcBrand.Caption = "品牌";
-            this.gcBrand.FieldName = "Brand";
-            this.gcBrand.Name = "gcBrand";
-            this.gcBrand.Visible = true;
-            this.gcBrand.VisibleIndex = 4;
-            // 
-            // gcProductNumber1
-            // 
-            this.gcProductNumber1.Caption = "品号1";
-            this.gcProductNumber1.FieldName = "ProductNumber1";
-            this.gcProductNumber1.Name = "gcProductNumber1";
-            this.gcProductNumber1.Visible = true;
-            this.gcProductNumber1.VisibleIndex = 2;
-            // 
-            // gcProductNumber2
-            // 
-            this.gcProductNumber2.Caption = "品号2";
-            this.gcProductNumber2.FieldName = "ProductNumber2";
-            this.gcProductNumber2.Name = "gcProductNumber2";
-            this.gcProductNumber2.Visible = true;
-            this.gcProductNumber2.VisibleIndex = 3;
+            this.gcCustomerPo.Caption = "客户PO";
+            this.gcCustomerPo.FieldName = "CustomerPo";
+            this.gcCustomerPo.Name = "gcCustomerPo";
+            this.gcCustomerPo.Visible = true;
+            this.gcCustomerPo.VisibleIndex = 9;
             // 
             // AutoAssignStorage
             // 
@@ -295,6 +305,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gcBrand;
         private DevExpress.XtraGrid.Columns.GridColumn gcProductNumber1;
         private DevExpress.XtraGrid.Columns.GridColumn gcProductNumber2;
+        private DevExpress.XtraGrid.Columns.GridColumn gcCustomerPo;
 
     }
 }

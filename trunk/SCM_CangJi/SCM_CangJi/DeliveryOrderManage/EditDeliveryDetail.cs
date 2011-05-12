@@ -53,6 +53,7 @@ namespace SCM_CangJi.DeliveryOrderManage
                 txtInputInvoice.EditValue = deliveryOrderDetail.InputInvoice;
                 txtLotsNumber.EditValue = deliveryOrderDetail.LotsNumber;
                 txtProductDate.EditValue = deliveryOrderDetail.ProductDate;
+                txtCustomerPo.EditValue = deliveryOrderDetail.CustomerPo;
             }
         }
 
@@ -82,6 +83,7 @@ namespace SCM_CangJi.DeliveryOrderManage
             deliveryOrderDetail.DeliveryCount = int.Parse(txtDeliveryCount.EditValue.TrytoString());
             deliveryOrderDetail.InputInvoice = txtInputInvoice.EditValue.TrytoString();
             deliveryOrderDetail.LotsNumber = txtLotsNumber.EditValue.TrytoString();
+            deliveryOrderDetail.CustomerPo = txtCustomerPo.EditValue.TrytoString();
             deliveryOrderDetail.ProductId = int.Parse(ddlProducts.EditValue.TrytoString());
             if (txtProductDate.EditValue != null)
                 deliveryOrderDetail.ProductDate = DateTime.Parse(txtProductDate.EditValue.TrytoString());

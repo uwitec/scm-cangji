@@ -66,8 +66,12 @@ namespace SCM_CangJi.BLL.Services
             return true;
         }
 
-        public Product GetProduct(int productId)
+        public Product GetProduct(int? productId)
         {
+            if (!productId.HasValue)
+            {
+                return new Product();
+            }
             Product product = null;
             Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {

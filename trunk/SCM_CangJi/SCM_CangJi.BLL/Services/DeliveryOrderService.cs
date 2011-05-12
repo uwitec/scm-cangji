@@ -103,6 +103,7 @@ namespace SCM_CangJi.BLL.Services
                                 分配数量 = c.AssignCount,
                                 生产日期 = c.ProductDate,
                                 入库发票号 = c.InputInvoice,
+                                客户PO = c.CustomerPo,
                                 批号 = c.LotsNumber,
                                 库位 = GetArea(db, c.StorageAreaId)
                             }).ToList();
@@ -118,8 +119,9 @@ namespace SCM_CangJi.BLL.Services
             string result = null;
 
             var ps = db.StorageAreas.SingleOrDefault(o => o.Id == StorageAreaId);
-
-            result = ps.StorageRack.Storage.仓库名称 + "--" + ps.StorageRack.RackName + "--" + ps.库位编号;
+            if(ps==null)
+                return "未分配";
+            result = ps.StorageRack.RackName + "--" + ps.库位编号;
             return result; ;
         }
 
@@ -142,7 +144,8 @@ namespace SCM_CangJi.BLL.Services
                                 o.Product.ProductNumber2,
                                 o.Product.Spec,
                                 o.ProductDate,
-                                o.LotsNumber
+                                o.LotsNumber,
+                                o.CustomerPo,
                             }).ToDataTable(db);
             }); ;
             return reslut;
@@ -205,6 +208,7 @@ namespace SCM_CangJi.BLL.Services
                             orderdetail.InputInvoice = item.InputInvoice;
                             orderdetail.LotsNumber = item.LotsNumber;
                             orderdetail.ProductStorageId = item.ProductStorageId;
+                            orderdetail.CustomerPo = item.CustomerPo;
                         }
                         else
                         {
@@ -216,6 +220,7 @@ namespace SCM_CangJi.BLL.Services
                             orderdetail.LotsNumber = item.LotsNumber;
                             orderdetail.ProductStorageId = item.ProductStorageId;
                             orderdetail.DeliveryOrderId = item.DeliveryOrderId;
+                            orderdetail.CustomerPo = item.CustomerPo;
                             db.DeliveryOrderDetails.InsertOnSubmit(orderdetail);
                         }
                     }
@@ -350,11 +355,13 @@ namespace SCM_CangJi.BLL.Services
                         =>
                         {
                             var storage = db.ProductStorages.SingleOrDefault(o => o.Id == groupDetails.Key);
-                            foreach (var item in groupDetails)
+                            if (storage != null)
                             {
-                                storage.UsableCount -= item.AssignCount;
+                                foreach (var item in groupDetails)
+                                {
+                                    storage.UsableCount -= item.AssignCount;
+                                }
                             }
-                            
                         });
                 var or = db.DeliveryOrders.SingleOrDefault(o => o.Id == orderId);
                 or.Status = Lib.DeliveryStatus.已分配库存.ToString();
@@ -380,7 +387,10 @@ namespace SCM_CangJi.BLL.Services
                 or.Status =DeliveryStatus.已发货.ToString();
                 foreach (var item in or.AssignedDeliveryOrderDetails)
                 {
-                    item.ProductStorage.CurrentCount = item.ProductStorage.UsableCount;
+                    if (item.AssignCount > 0)
+                    {
+                        item.ProductStorage.CurrentCount = item.ProductStorage.UsableCount;
+                    }
                 }
                 db.SubmitChanges();
             });
@@ -405,7 +415,11 @@ namespace SCM_CangJi.BLL.Services
                 or.Status = DeliveryStatus.待出库.ToString();
                 foreach (var item in or.AssignedDeliveryOrderDetails)
                 {
-                    item.ProductStorage.UsableCount += item.AssignCount;
+                    if (item.ProductStorage != null)
+                    {
+                        item.ProductStorage.UsableCount += item.AssignCount;
+                    }
+
                 }
                 db.AssignedDeliveryOrderDetails.DeleteAllOnSubmit(or.AssignedDeliveryOrderDetails);
                 db.SubmitChanges();
@@ -457,6 +471,7 @@ namespace SCM_CangJi.BLL.Services
                               o.LotsNumber,
                               o.IsSucess,
                               o.ProductStorageId,
+                              o.CustomerPo,
                               StorageAreaId=o.StorageAreaId,
                               //Area = o.StorageAreaId.ToString(),
                           }).ToDataTable(db);

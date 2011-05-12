@@ -697,6 +697,8 @@ namespace SCM_CangJi.Reports {
             
             private global::System.Data.DataColumn columnLotsNumber;
             
+            private global::System.Data.DataColumn columnCustomerPo;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public rptDeliveryOrderAssignedDetailsDataTable() {
@@ -868,6 +870,14 @@ namespace SCM_CangJi.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn CustomerPoColumn {
+                get {
+                    return this.columnCustomerPo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -920,7 +930,8 @@ namespace SCM_CangJi.Reports {
                         string Spec, 
                         string BarCode, 
                         string ProductType, 
-                        string LotsNumber) {
+                        string LotsNumber, 
+                        string CustomerPo) {
                 rptDeliveryOrderAssignedDetailsRow rowrptDeliveryOrderAssignedDetailsRow = ((rptDeliveryOrderAssignedDetailsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         @__Id,
@@ -939,7 +950,8 @@ namespace SCM_CangJi.Reports {
                         Spec,
                         BarCode,
                         ProductType,
-                        LotsNumber};
+                        LotsNumber,
+                        CustomerPo};
                 if ((parentrptDeliveryOrderRowByrptDeliveryOrder_rptDeliveryOrderAssignedDetails != null)) {
                     columnValuesArray[1] = parentrptDeliveryOrderRowByrptDeliveryOrder_rptDeliveryOrderAssignedDetails[0];
                 }
@@ -982,6 +994,7 @@ namespace SCM_CangJi.Reports {
                 this.columnBarCode = base.Columns["BarCode"];
                 this.columnProductType = base.Columns["ProductType"];
                 this.columnLotsNumber = base.Columns["LotsNumber"];
+                this.columnCustomerPo = base.Columns["CustomerPo"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1023,6 +1036,8 @@ namespace SCM_CangJi.Reports {
                 base.Columns.Add(this.columnProductType);
                 this.columnLotsNumber = new global::System.Data.DataColumn("LotsNumber", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnLotsNumber);
+                this.columnCustomerPo = new global::System.Data.DataColumn("CustomerPo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCustomerPo);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this._column_Id}, false));
                 this._column_Id.Unique = true;
@@ -1662,6 +1677,23 @@ namespace SCM_CangJi.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string CustomerPo {
+                get {
+                    try {
+                        return ((string)(this[this.tablerptDeliveryOrderAssignedDetails.CustomerPoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CustomerPo\' in table \'rptDeliveryOrderAssignedDetails\' is D" +
+                                "BNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablerptDeliveryOrderAssignedDetails.CustomerPoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public rptDeliveryOrderRow rptDeliveryOrderRow {
                 get {
                     return ((rptDeliveryOrderRow)(this.GetParentRow(this.Table.ParentRelations["rptDeliveryOrder_rptDeliveryOrderAssignedDetails"])));
@@ -1873,6 +1905,18 @@ namespace SCM_CangJi.Reports {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetLotsNumberNull() {
                 this[this.tablerptDeliveryOrderAssignedDetails.LotsNumberColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsCustomerPoNull() {
+                return this.IsNull(this.tablerptDeliveryOrderAssignedDetails.CustomerPoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetCustomerPoNull() {
+                this[this.tablerptDeliveryOrderAssignedDetails.CustomerPoColumn] = global::System.Convert.DBNull;
             }
         }
         

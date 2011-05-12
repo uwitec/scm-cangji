@@ -60,6 +60,7 @@ namespace SCM_CangJi.DeliveryOrderManage
             {
                 int orderId = (int)gridViewDeliveryOrders.GetRowCellValue(RowHandle, "Id");
                 DeliveryOrderService.Instance.ConfirmOutput(orderId);
+                ShowMessage("出库已确认！");
                 InitGrid();
             }
         }

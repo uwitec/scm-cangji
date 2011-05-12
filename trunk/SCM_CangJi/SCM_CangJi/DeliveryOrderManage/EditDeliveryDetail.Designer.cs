@@ -44,6 +44,8 @@
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            this.txtCustomerPo = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDeliveryCount.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlProducts.Properties)).BeginInit();
@@ -51,6 +53,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtProductDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLotsNumber.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtInputInvoice.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCustomerPo.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // dxValidationProvider1
@@ -102,7 +105,7 @@
             this.btnCancel.Location = new System.Drawing.Point(305, 178);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 7;
+            this.btnCancel.TabIndex = 8;
             this.btnCancel.Text = "取消";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -111,7 +114,7 @@
             this.btnSave.Location = new System.Drawing.Point(195, 178);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 6;
+            this.btnSave.TabIndex = 7;
             this.btnSave.Text = "增加";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -181,6 +184,21 @@
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "出库商品：";
             // 
+            // labelControl6
+            // 
+            this.labelControl6.Location = new System.Drawing.Point(305, 131);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(52, 14);
+            this.labelControl6.TabIndex = 5;
+            this.labelControl6.Text = "客户PO：";
+            // 
+            // txtCustomerPo
+            // 
+            this.txtCustomerPo.Location = new System.Drawing.Point(373, 129);
+            this.txtCustomerPo.Name = "txtCustomerPo";
+            this.txtCustomerPo.Size = new System.Drawing.Size(168, 21);
+            this.txtCustomerPo.TabIndex = 6;
+            // 
             // EditDeliveryDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -190,6 +208,8 @@
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.txtProductDate);
             this.Controls.Add(this.labelControl5);
+            this.Controls.Add(this.txtCustomerPo);
+            this.Controls.Add(this.labelControl6);
             this.Controls.Add(this.txtLotsNumber);
             this.Controls.Add(this.labelControl4);
             this.Controls.Add(this.txtInputInvoice);
@@ -207,6 +227,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtProductDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLotsNumber.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtInputInvoice.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCustomerPo.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -227,5 +248,7 @@
         private DevExpress.XtraEditors.SimpleButton btnSave;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
         private DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider dxValidationProvider1;
+        private DevExpress.XtraEditors.LabelControl labelControl6;
+        private DevExpress.XtraEditors.TextEdit txtCustomerPo;
     }
 }

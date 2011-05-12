@@ -392,13 +392,15 @@ namespace SCM_CangJi.DeliveryOrderManage
             if (row["ProductDate"] != null && !string.IsNullOrEmpty(row["ProductDate"].ToString()))
                 detail.ProductDate = DateTime.Parse(row["ProductDate"].ToString());
             detail.ProductId = int.Parse(row["ProductId"].ToString());
-            detail.ProductStorageId = 0; 
+            detail.ProductStorageId = 0;
+            detail.CustomerPo = row["CustomerPo"].TrytoString();
         }
         private void SetRowValue(DataRow row, DeliveryOrderDetail detail)
         {
             Product product = ProductService.Instance.GetProduct(detail.ProductId);
             row["DeliveryCount"] = detail.DeliveryCount;
             row["InputInvoice"] = detail.InputInvoice;
+            row["CustomerPo"] = detail.CustomerPo;
             row["LotsNumber"] = detail.LotsNumber;
             row["ProductId"] = detail.ProductId;
             row["Id"] = detail.Id;
@@ -504,7 +506,8 @@ namespace SCM_CangJi.DeliveryOrderManage
             dt.Columns.Add("Area");
             foreach (DataRow row in dt.Rows)
             {
-                row["Area"] = ProductStorageService.Instance.GetArea(int.Parse(row["StorageAreaId"].TrytoString()));
+                string ararId=row["StorageAreaId"].TrytoString();
+                row["Area"] = ProductStorageService.Instance.GetArea(string.IsNullOrEmpty(ararId)?0:int.Parse(ararId));
             }
             DataTable dt2 = DeliveryOrderService.Instance.GetDeliveryOrderDataTable(_orderId);
             ds.Tables.Add(dt2);
