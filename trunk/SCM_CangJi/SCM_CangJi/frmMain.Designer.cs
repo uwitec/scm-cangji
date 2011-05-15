@@ -101,6 +101,7 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.imageList3 = new System.Windows.Forms.ImageList(this.components);
             this.StoragePanel = new System.Windows.Forms.Panel();
+            this.navProductInOutHistory = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.MDIManage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
@@ -417,7 +418,8 @@
             this.Systemlog,
             this.AssignStorageArea,
             this.navDeliveryOrders,
-            this.nvaInputOrders});
+            this.nvaInputOrders,
+            this.navProductInOutHistory});
             this.navBarControl1.Location = new System.Drawing.Point(0, 54);
             this.navBarControl1.Margin = new System.Windows.Forms.Padding(0);
             this.navBarControl1.Name = "navBarControl1";
@@ -444,6 +446,7 @@
             new DevExpress.XtraNavBar.NavBarItemLink(this.AssignStorage),
             new DevExpress.XtraNavBar.NavBarItemLink(this.OutWareHouseConfirm),
             new DevExpress.XtraNavBar.NavBarItemLink(this.StorageInfo),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navProductInOutHistory),
             new DevExpress.XtraNavBar.NavBarItemLink(this.CheckStorage),
             new DevExpress.XtraNavBar.NavBarItemLink(this.StorageChange),
             new DevExpress.XtraNavBar.NavBarItemLink(this.ChangeCancle),
@@ -684,6 +687,12 @@
             this.StorageView.Text = "StorageManageView";
             this.StorageView.Visible = false;
             // 
+            // navProductInOutHistory
+            // 
+            this.navProductInOutHistory.Caption = "商品出入库历史";
+            this.navProductInOutHistory.Name = "navProductInOutHistory";
+            this.navProductInOutHistory.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navProductInOutHistory_LinkClicked);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -775,6 +784,7 @@
         private DevExpress.XtraBars.BarMdiChildrenListItem barMdiChildrenListItem1;
         private DevExpress.XtraNavBar.NavBarItem nvaInputOrders;
         private DevExpress.XtraBars.BarButtonItem barButtonItem8;
+        private DevExpress.XtraNavBar.NavBarItem navProductInOutHistory;
 
     }
 }

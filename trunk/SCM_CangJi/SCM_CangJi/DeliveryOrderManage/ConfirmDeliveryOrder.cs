@@ -69,7 +69,7 @@ namespace SCM_CangJi.DeliveryOrderManage
         public void InitGrid()
         {
             gridControlDeliveryOrders.DataSource = DeliveryOrderService.Instance.GetDeliveryOrdersView(Lib.DeliveryStatus.已分配库存);
-            ShowMasterDetailRows();
+           // ShowMasterDetailRows();
         }
 
         private void ShowMasterDetailRows()

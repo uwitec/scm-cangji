@@ -5,6 +5,8 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using System.Data.Linq;
+using System.Linq;
 using DevExpress.XtraEditors;
 using SCM_CangJi.WareHouseManage;
 using SCM_CangJi.Lib;
@@ -25,6 +27,7 @@ namespace SCM_CangJi.CustomerManage
     {
         Dictionary<string, ValidateValue> validateResult;
         CompanyList companyForm;
+        IEnumerable<Product> AllProducts;
         public ProductImport(IntPtr formObject, DataSet data, List<ImportDataInfo> importDataStruct)
             : base(formObject, data, importDataStruct)
         {
@@ -44,6 +47,7 @@ namespace SCM_CangJi.CustomerManage
         void ProductImport_Load(object sender, EventArgs e)
         {
             ProductStyleFormatCondition cn;
+            AllProducts = ProductService.Instance.GetProductsEntities(companyForm.CompanyId); 
             foreach (var item in _importDataStruct)
             {
                 //cn = new ProductStyleFormatCondition(this, companyForm.CompanyId);
@@ -158,6 +162,10 @@ namespace SCM_CangJi.CustomerManage
             List<Product> productListAdding = new List<Product>();
             foreach (DataRow item in arrangeSrcData.Rows)
             {
+                if (this.AllProducts.FirstOrDefault(o => o.ProductNumber1 == item[dataStruct.First(d=>d.DestField=="ProductNumber1").SrcField].TrytoString()) != null)
+                {
+                    continue;   
+                }
                 Product p = new Product();
                 p.CompanyId = companyForm.CompanyId;
                 foreach (ImportDataInfo datainfo in dataStruct)
@@ -178,7 +186,9 @@ namespace SCM_CangJi.CustomerManage
             ShowMessage("商品导入成功!");
             this.Updated = true;
         }
+       
     }
+
     public delegate void CheckValue(string key, ValidateValue val);
     public class ProductStyleFormatCondition : StyleFormatCondition
     {

@@ -16,7 +16,7 @@ namespace SCM_CangJi.BLL.Services
             object reslut = null;
             Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
-                reslut = (from o in db.InputOrders.Where(o => status==InputStatus.all|| o.Status == status.ToString())
+                reslut = (from o in db.InputOrders.Where(o => status==InputStatus.all|| o.Status == status.ToString()).OrderByDescending(o=>o.PreInputDate)
                           select new
                           {
                               o.Company.CompanyName,
@@ -407,6 +407,40 @@ namespace SCM_CangJi.BLL.Services
             {
             }
             return result;
+        }
+
+        public object GetInputDetailsBy(string productCurrentNuber, string ProductNumber1)
+        {
+            object reslut = null;
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
+            {
+                var rel = from s in db.ProductStorages
+                          join c in db.InputOrderDetails
+                          on s.InputDetailId equals c.ID
+                          where c.InputOrder.Status== InputStatus.已入库.ToString()
+                          && (productCurrentNuber==""|| c.CurrentProductNumber == productCurrentNuber)
+                          &&(ProductNumber1==""||c.Product.ProductNumber1==ProductNumber1)
+                          orderby s.EntryDate descending
+                          select new
+                          {
+                              现品票=s.CurrentProductNumber,
+                              品号1 = c.Product.ProductNumber1,
+                              品号2 = c.Product.ProductNumber2,
+                              规格 = c.Product.Spec,
+                              中文品名 = c.Product.ProductChName,
+                              英文品名 = c.Product.ProductEngName,
+                              入库数量 = c.InputCount,
+                              入库时间=s.EntryDate,
+                              //库位 = GetArea(c, db),
+                              生产日期 = c.ProductDate,
+                              批号 = c.LotsNumber,
+                              入库发票=c.InputOrder.Invoice,
+                              实际库存=s.CurrentCount,
+                              可用库存=s.UsableCount,
+                          };
+                reslut =rel.ToList();
+            });
+            return reslut;
         }
     }
 }

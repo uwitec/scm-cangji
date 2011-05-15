@@ -12,6 +12,7 @@ using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using DevExpress.XtraGrid.Views.Grid;
 using SCM_CangJi.BLL;
 using SCM_CangJi.Lib;
+using DevExpress.Utils.Menu;
 
 namespace SCM_CangJi.WareHouseManage
 {
@@ -642,6 +643,7 @@ namespace SCM_CangJi.WareHouseManage
                 gridTab = new DevExpress.XtraGrid.GridControl();
                 gridTab.DoubleClick += new System.EventHandler(gridDoubleClick);
                 gridView = new DevExpress.XtraGrid.Views.Grid.GridView();
+                gridView.ShowGridMenu += new GridMenuEventHandler(gridView_ShowGridMenu);
                 gridTab.MainView = gridView;
                 gridView.OptionsBehavior.Editable = false;
                 gridView.GridControl = gridTab;
@@ -654,7 +656,8 @@ namespace SCM_CangJi.WareHouseManage
                 + "RackName as 货架名称, (select TypeName from RackType where RackTypeID=id) as 货架类型,"
                 + "(select AreaType from RackArea where RackAreaID=id) as 存储区域,Remark as 备注, "
                 + "(select [仓库编号] from Storages where StorageID=id) as 仓库名称,"
-                + "(select id from Storages where StorageID=id) as 仓库自动编号"
+                + "(select id from Storages where StorageID=id) as 仓库自动编号,"
+                + "(case IsLocked when 1 then 'true' else 'false' end) as 是否锁定"
                 + " from StorageRacks where StorageID=" + id.ToString();
             da = dataConn.Query(sql);
 
@@ -666,6 +669,42 @@ namespace SCM_CangJi.WareHouseManage
             }
 
             gridTab.DataSource = da.Tables[0];            
+        }
+        int rowhandle = -1;
+        void gridView_ShowGridMenu(object sender, GridMenuEventArgs e)
+        {
+            if (e.MenuType == GridMenuType.Row)
+            {
+                rowhandle = -1;
+                // Delete existing menu items, if any.
+                e.Menu.Items.Clear();
+                rowhandle = e.HitInfo.RowHandle;
+                int id = (int)gridView.GetRowCellValue(rowhandle, "货架自动编号");
+                SCM_CangJi.DAL.StorageRack rack = SCM_CangJi.BLL.Services.StorageAreaService.Instance.GetStorageRack(id);
+                if (rack != null)
+                {
+                    if (!rack.IsLocked)
+                    {
+                        DXMenuItem menuItemLock = new DXMenuItem("锁定", (s, en) =>
+                        {
+                            SCM_CangJi.BLL.Services.StorageAreaService.Instance.Lock(id, true);
+                            ShowXtraGridView(listStorageInfo[clickPos].id);
+                        });
+                        e.Menu.Items.Add(menuItemLock);
+                    }
+                    else
+                    {
+                        DXMenuItem menuItemUnLock = new DXMenuItem("解锁", (s, en) =>
+                        {
+                            SCM_CangJi.BLL.Services.StorageAreaService.Instance.Lock(id, false);
+                            ShowXtraGridView(listStorageInfo[clickPos].id);
+                        });
+                        e.Menu.Items.Add(menuItemUnLock);
+                    }
+
+                }
+
+            } 
         }
         private void gridDoubleClick(object sender, EventArgs e)
         {

@@ -10,6 +10,7 @@ using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.Utils.Menu;
 using SCM_CangJi.BLL.Services;
+using SCM_CangJi.DAL;
 
 namespace SCM_CangJi.CustomerManage
 {
@@ -273,6 +274,12 @@ namespace SCM_CangJi.CustomerManage
                 InitProduct(this.CompanyId);
             }
         }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            Company company = CompanyService.Instance.GetCompany(this.CompanyId);
+            this.ExportExcle(this.gridViewProduct, company.CompanyName + "_商品表.xls");
+        }
         #endregion
 
         #region 送货地址
@@ -342,6 +349,8 @@ namespace SCM_CangJi.CustomerManage
 
         }
         #endregion
+
+      
 
       
     }

@@ -182,7 +182,7 @@
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(60, 14);
             this.labelControl1.TabIndex = 0;
-            this.labelControl1.Text = "出库商品：";
+            this.labelControl1.Text = "出库品号：";
             // 
             // labelControl6
             // 

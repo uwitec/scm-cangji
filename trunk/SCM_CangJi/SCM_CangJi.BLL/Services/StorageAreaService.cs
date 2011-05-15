@@ -56,5 +56,24 @@ namespace SCM_CangJi.BLL.Services
                  return result; ;
              });
         }
+
+        public StorageRack GetStorageRack(int id)
+        {
+            return Using<CangJiDataDataContext, StorageRack>(new CangJiDataDataContext(this.connectionString), context =>
+            {
+                var rack = context.StorageRacks.SingleOrDefault(o => o.id == id);
+                return rack;
+            });
+        }
+
+        public void Lock(int id, bool islock)
+        {
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), context =>
+            {
+                var rack = context.StorageRacks.SingleOrDefault(o => o.id == id);
+                rack.IsLocked = islock;
+                context.SubmitChanges();
+            });
+        }
     }
 }

@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule3 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.txtProductDate = new DevExpress.XtraEditors.DateEdit();
@@ -85,7 +85,7 @@
             // 
             // labelControl5
             // 
-            this.labelControl5.Location = new System.Drawing.Point(49, 103);
+            this.labelControl5.Location = new System.Drawing.Point(51, 103);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(60, 14);
             this.labelControl5.TabIndex = 19;
@@ -109,11 +109,11 @@
             this.txtInputCount.Properties.Mask.EditMask = "n0";
             this.txtInputCount.Size = new System.Drawing.Size(168, 21);
             this.txtInputCount.TabIndex = 2;
-            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.Between;
-            conditionValidationRule1.ErrorText = "出库数量必须大于0";
-            conditionValidationRule1.Value1 = 1;
-            conditionValidationRule1.Value2 = 99999999;
-            this.dxValidationProvider1.SetValidationRule(this.txtInputCount, conditionValidationRule1);
+            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.Between;
+            conditionValidationRule3.ErrorText = "出库数量必须大于0";
+            conditionValidationRule3.Value1 = 1;
+            conditionValidationRule3.Value2 = 99999999;
+            this.dxValidationProvider1.SetValidationRule(this.txtInputCount, conditionValidationRule3);
             // 
             // ddlProducts
             // 
@@ -131,9 +131,9 @@
             this.ddlProducts.Properties.ValueMember = "Id";
             this.ddlProducts.Size = new System.Drawing.Size(170, 21);
             this.ddlProducts.TabIndex = 1;
-            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule2.ErrorText = "不能为空";
-            this.dxValidationProvider1.SetValidationRule(this.ddlProducts, conditionValidationRule2);
+            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule1.ErrorText = "不能为空";
+            this.dxValidationProvider1.SetValidationRule(this.ddlProducts, conditionValidationRule1);
             // 
             // txtLotsNumber
             // 
@@ -159,7 +159,7 @@
             // 
             // labelControl3
             // 
-            this.labelControl3.Location = new System.Drawing.Point(49, 142);
+            this.labelControl3.Location = new System.Drawing.Point(73, 142);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(36, 14);
             this.labelControl3.TabIndex = 14;
@@ -175,11 +175,11 @@
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(51, 51);
+            this.labelControl1.Location = new System.Drawing.Point(39, 51);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(60, 14);
+            this.labelControl1.Size = new System.Drawing.Size(72, 14);
             this.labelControl1.TabIndex = 11;
-            this.labelControl1.Text = "入库商品：";
+            this.labelControl1.Text = "入库商品号：";
             // 
             // EditInputDetail
             // 

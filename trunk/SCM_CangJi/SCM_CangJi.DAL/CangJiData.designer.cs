@@ -81,9 +81,6 @@ namespace SCM_CangJi.DAL
     partial void InsertRackType(RackType instance);
     partial void UpdateRackType(RackType instance);
     partial void DeleteRackType(RackType instance);
-    partial void InsertStorageRack(StorageRack instance);
-    partial void UpdateStorageRack(StorageRack instance);
-    partial void DeleteStorageRack(StorageRack instance);
     partial void InsertStorage(Storage instance);
     partial void UpdateStorage(Storage instance);
     partial void DeleteStorage(Storage instance);
@@ -105,6 +102,9 @@ namespace SCM_CangJi.DAL
     partial void InsertDeliveryOrderDetail(DeliveryOrderDetail instance);
     partial void UpdateDeliveryOrderDetail(DeliveryOrderDetail instance);
     partial void DeleteDeliveryOrderDetail(DeliveryOrderDetail instance);
+    partial void InsertStorageRack(StorageRack instance);
+    partial void UpdateStorageRack(StorageRack instance);
+    partial void DeleteStorageRack(StorageRack instance);
     #endregion
 		
 		public CangJiDataDataContext() : 
@@ -281,14 +281,6 @@ namespace SCM_CangJi.DAL
 			}
 		}
 		
-		public System.Data.Linq.Table<StorageRack> StorageRacks
-		{
-			get
-			{
-				return this.GetTable<StorageRack>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Storage> Storages
 		{
 			get
@@ -350,6 +342,14 @@ namespace SCM_CangJi.DAL
 			get
 			{
 				return this.GetTable<DeliveryOrderDetail>();
+			}
+		}
+		
+		public System.Data.Linq.Table<StorageRack> StorageRacks
+		{
+			get
+			{
+				return this.GetTable<StorageRack>();
 			}
 		}
 	}
@@ -4945,363 +4945,6 @@ namespace SCM_CangJi.DAL
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.StorageRacks")]
-	public partial class StorageRack : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id;
-		
-		private string _RackName;
-		
-		private int _RackTypeID;
-		
-		private int _RackAreaID;
-		
-		private int _Row;
-		
-		private string _Remark;
-		
-		private int _StorageID;
-		
-		private EntitySet<StorageArea> _StorageAreas;
-		
-		private EntityRef<RackArea> _RackArea;
-		
-		private EntityRef<RackType> _RackType;
-		
-		private EntityRef<Storage> _Storage;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void OnRackNameChanging(string value);
-    partial void OnRackNameChanged();
-    partial void OnRackTypeIDChanging(int value);
-    partial void OnRackTypeIDChanged();
-    partial void OnRackAreaIDChanging(int value);
-    partial void OnRackAreaIDChanged();
-    partial void OnRowChanging(int value);
-    partial void OnRowChanged();
-    partial void OnRemarkChanging(string value);
-    partial void OnRemarkChanged();
-    partial void OnStorageIDChanging(int value);
-    partial void OnStorageIDChanged();
-    #endregion
-		
-		public StorageRack()
-		{
-			this._StorageAreas = new EntitySet<StorageArea>(new Action<StorageArea>(this.attach_StorageAreas), new Action<StorageArea>(this.detach_StorageAreas));
-			this._RackArea = default(EntityRef<RackArea>);
-			this._RackType = default(EntityRef<RackType>);
-			this._Storage = default(EntityRef<Storage>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RackName", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string RackName
-		{
-			get
-			{
-				return this._RackName;
-			}
-			set
-			{
-				if ((this._RackName != value))
-				{
-					this.OnRackNameChanging(value);
-					this.SendPropertyChanging();
-					this._RackName = value;
-					this.SendPropertyChanged("RackName");
-					this.OnRackNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RackTypeID", DbType="Int NOT NULL")]
-		public int RackTypeID
-		{
-			get
-			{
-				return this._RackTypeID;
-			}
-			set
-			{
-				if ((this._RackTypeID != value))
-				{
-					if (this._RackType.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnRackTypeIDChanging(value);
-					this.SendPropertyChanging();
-					this._RackTypeID = value;
-					this.SendPropertyChanged("RackTypeID");
-					this.OnRackTypeIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RackAreaID", DbType="Int NOT NULL")]
-		public int RackAreaID
-		{
-			get
-			{
-				return this._RackAreaID;
-			}
-			set
-			{
-				if ((this._RackAreaID != value))
-				{
-					if (this._RackArea.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnRackAreaIDChanging(value);
-					this.SendPropertyChanging();
-					this._RackAreaID = value;
-					this.SendPropertyChanged("RackAreaID");
-					this.OnRackAreaIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Row", DbType="Int NOT NULL")]
-		public int Row
-		{
-			get
-			{
-				return this._Row;
-			}
-			set
-			{
-				if ((this._Row != value))
-				{
-					this.OnRowChanging(value);
-					this.SendPropertyChanging();
-					this._Row = value;
-					this.SendPropertyChanged("Row");
-					this.OnRowChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Remark", DbType="NVarChar(255)")]
-		public string Remark
-		{
-			get
-			{
-				return this._Remark;
-			}
-			set
-			{
-				if ((this._Remark != value))
-				{
-					this.OnRemarkChanging(value);
-					this.SendPropertyChanging();
-					this._Remark = value;
-					this.SendPropertyChanged("Remark");
-					this.OnRemarkChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StorageID", DbType="Int NOT NULL")]
-		public int StorageID
-		{
-			get
-			{
-				return this._StorageID;
-			}
-			set
-			{
-				if ((this._StorageID != value))
-				{
-					if (this._Storage.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnStorageIDChanging(value);
-					this.SendPropertyChanging();
-					this._StorageID = value;
-					this.SendPropertyChanged("StorageID");
-					this.OnStorageIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StorageRack_StorageArea", Storage="_StorageAreas", ThisKey="id", OtherKey="StorageRackId")]
-		public EntitySet<StorageArea> StorageAreas
-		{
-			get
-			{
-				return this._StorageAreas;
-			}
-			set
-			{
-				this._StorageAreas.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RackArea_StorageRack", Storage="_RackArea", ThisKey="RackAreaID", OtherKey="id", IsForeignKey=true)]
-		public RackArea RackArea
-		{
-			get
-			{
-				return this._RackArea.Entity;
-			}
-			set
-			{
-				RackArea previousValue = this._RackArea.Entity;
-				if (((previousValue != value) 
-							|| (this._RackArea.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._RackArea.Entity = null;
-						previousValue.StorageRacks.Remove(this);
-					}
-					this._RackArea.Entity = value;
-					if ((value != null))
-					{
-						value.StorageRacks.Add(this);
-						this._RackAreaID = value.id;
-					}
-					else
-					{
-						this._RackAreaID = default(int);
-					}
-					this.SendPropertyChanged("RackArea");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RackType_StorageRack", Storage="_RackType", ThisKey="RackTypeID", OtherKey="id", IsForeignKey=true)]
-		public RackType RackType
-		{
-			get
-			{
-				return this._RackType.Entity;
-			}
-			set
-			{
-				RackType previousValue = this._RackType.Entity;
-				if (((previousValue != value) 
-							|| (this._RackType.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._RackType.Entity = null;
-						previousValue.StorageRacks.Remove(this);
-					}
-					this._RackType.Entity = value;
-					if ((value != null))
-					{
-						value.StorageRacks.Add(this);
-						this._RackTypeID = value.id;
-					}
-					else
-					{
-						this._RackTypeID = default(int);
-					}
-					this.SendPropertyChanged("RackType");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Storage_StorageRack", Storage="_Storage", ThisKey="StorageID", OtherKey="Id", IsForeignKey=true)]
-		public Storage Storage
-		{
-			get
-			{
-				return this._Storage.Entity;
-			}
-			set
-			{
-				Storage previousValue = this._Storage.Entity;
-				if (((previousValue != value) 
-							|| (this._Storage.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Storage.Entity = null;
-						previousValue.StorageRacks.Remove(this);
-					}
-					this._Storage.Entity = value;
-					if ((value != null))
-					{
-						value.StorageRacks.Add(this);
-						this._StorageID = value.Id;
-					}
-					else
-					{
-						this._StorageID = default(int);
-					}
-					this.SendPropertyChanged("Storage");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_StorageAreas(StorageArea entity)
-		{
-			this.SendPropertyChanging();
-			entity.StorageRack = this;
-		}
-		
-		private void detach_StorageAreas(StorageArea entity)
-		{
-			this.SendPropertyChanging();
-			entity.StorageRack = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Storages")]
 	public partial class Storage : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -8815,6 +8458,387 @@ namespace SCM_CangJi.DAL
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.StorageRacks")]
+	public partial class StorageRack : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _RackName;
+		
+		private int _RackTypeID;
+		
+		private int _RackAreaID;
+		
+		private int _Row;
+		
+		private string _Remark;
+		
+		private int _StorageID;
+		
+		private bool _IsLocked;
+		
+		private EntitySet<StorageArea> _StorageAreas;
+		
+		private EntityRef<RackArea> _RackArea;
+		
+		private EntityRef<RackType> _RackType;
+		
+		private EntityRef<Storage> _Storage;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnRackNameChanging(string value);
+    partial void OnRackNameChanged();
+    partial void OnRackTypeIDChanging(int value);
+    partial void OnRackTypeIDChanged();
+    partial void OnRackAreaIDChanging(int value);
+    partial void OnRackAreaIDChanged();
+    partial void OnRowChanging(int value);
+    partial void OnRowChanged();
+    partial void OnRemarkChanging(string value);
+    partial void OnRemarkChanged();
+    partial void OnStorageIDChanging(int value);
+    partial void OnStorageIDChanged();
+    partial void OnIsLockedChanging(bool value);
+    partial void OnIsLockedChanged();
+    #endregion
+		
+		public StorageRack()
+		{
+			this._StorageAreas = new EntitySet<StorageArea>(new Action<StorageArea>(this.attach_StorageAreas), new Action<StorageArea>(this.detach_StorageAreas));
+			this._RackArea = default(EntityRef<RackArea>);
+			this._RackType = default(EntityRef<RackType>);
+			this._Storage = default(EntityRef<Storage>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RackName", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string RackName
+		{
+			get
+			{
+				return this._RackName;
+			}
+			set
+			{
+				if ((this._RackName != value))
+				{
+					this.OnRackNameChanging(value);
+					this.SendPropertyChanging();
+					this._RackName = value;
+					this.SendPropertyChanged("RackName");
+					this.OnRackNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RackTypeID", DbType="Int NOT NULL")]
+		public int RackTypeID
+		{
+			get
+			{
+				return this._RackTypeID;
+			}
+			set
+			{
+				if ((this._RackTypeID != value))
+				{
+					if (this._RackType.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnRackTypeIDChanging(value);
+					this.SendPropertyChanging();
+					this._RackTypeID = value;
+					this.SendPropertyChanged("RackTypeID");
+					this.OnRackTypeIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RackAreaID", DbType="Int NOT NULL")]
+		public int RackAreaID
+		{
+			get
+			{
+				return this._RackAreaID;
+			}
+			set
+			{
+				if ((this._RackAreaID != value))
+				{
+					if (this._RackArea.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnRackAreaIDChanging(value);
+					this.SendPropertyChanging();
+					this._RackAreaID = value;
+					this.SendPropertyChanged("RackAreaID");
+					this.OnRackAreaIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Row", DbType="Int NOT NULL")]
+		public int Row
+		{
+			get
+			{
+				return this._Row;
+			}
+			set
+			{
+				if ((this._Row != value))
+				{
+					this.OnRowChanging(value);
+					this.SendPropertyChanging();
+					this._Row = value;
+					this.SendPropertyChanged("Row");
+					this.OnRowChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Remark", DbType="NVarChar(255)")]
+		public string Remark
+		{
+			get
+			{
+				return this._Remark;
+			}
+			set
+			{
+				if ((this._Remark != value))
+				{
+					this.OnRemarkChanging(value);
+					this.SendPropertyChanging();
+					this._Remark = value;
+					this.SendPropertyChanged("Remark");
+					this.OnRemarkChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StorageID", DbType="Int NOT NULL")]
+		public int StorageID
+		{
+			get
+			{
+				return this._StorageID;
+			}
+			set
+			{
+				if ((this._StorageID != value))
+				{
+					if (this._Storage.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnStorageIDChanging(value);
+					this.SendPropertyChanging();
+					this._StorageID = value;
+					this.SendPropertyChanged("StorageID");
+					this.OnStorageIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsLocked", DbType="Bit NOT NULL")]
+		public bool IsLocked
+		{
+			get
+			{
+				return this._IsLocked;
+			}
+			set
+			{
+				if ((this._IsLocked != value))
+				{
+					this.OnIsLockedChanging(value);
+					this.SendPropertyChanging();
+					this._IsLocked = value;
+					this.SendPropertyChanged("IsLocked");
+					this.OnIsLockedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="StorageRack_StorageArea", Storage="_StorageAreas", ThisKey="id", OtherKey="StorageRackId")]
+		public EntitySet<StorageArea> StorageAreas
+		{
+			get
+			{
+				return this._StorageAreas;
+			}
+			set
+			{
+				this._StorageAreas.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RackArea_StorageRack", Storage="_RackArea", ThisKey="RackAreaID", OtherKey="id", IsForeignKey=true)]
+		public RackArea RackArea
+		{
+			get
+			{
+				return this._RackArea.Entity;
+			}
+			set
+			{
+				RackArea previousValue = this._RackArea.Entity;
+				if (((previousValue != value) 
+							|| (this._RackArea.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._RackArea.Entity = null;
+						previousValue.StorageRacks.Remove(this);
+					}
+					this._RackArea.Entity = value;
+					if ((value != null))
+					{
+						value.StorageRacks.Add(this);
+						this._RackAreaID = value.id;
+					}
+					else
+					{
+						this._RackAreaID = default(int);
+					}
+					this.SendPropertyChanged("RackArea");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RackType_StorageRack", Storage="_RackType", ThisKey="RackTypeID", OtherKey="id", IsForeignKey=true)]
+		public RackType RackType
+		{
+			get
+			{
+				return this._RackType.Entity;
+			}
+			set
+			{
+				RackType previousValue = this._RackType.Entity;
+				if (((previousValue != value) 
+							|| (this._RackType.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._RackType.Entity = null;
+						previousValue.StorageRacks.Remove(this);
+					}
+					this._RackType.Entity = value;
+					if ((value != null))
+					{
+						value.StorageRacks.Add(this);
+						this._RackTypeID = value.id;
+					}
+					else
+					{
+						this._RackTypeID = default(int);
+					}
+					this.SendPropertyChanged("RackType");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Storage_StorageRack", Storage="_Storage", ThisKey="StorageID", OtherKey="Id", IsForeignKey=true)]
+		public Storage Storage
+		{
+			get
+			{
+				return this._Storage.Entity;
+			}
+			set
+			{
+				Storage previousValue = this._Storage.Entity;
+				if (((previousValue != value) 
+							|| (this._Storage.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Storage.Entity = null;
+						previousValue.StorageRacks.Remove(this);
+					}
+					this._Storage.Entity = value;
+					if ((value != null))
+					{
+						value.StorageRacks.Add(this);
+						this._StorageID = value.Id;
+					}
+					else
+					{
+						this._StorageID = default(int);
+					}
+					this.SendPropertyChanged("Storage");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_StorageAreas(StorageArea entity)
+		{
+			this.SendPropertyChanging();
+			entity.StorageRack = this;
+		}
+		
+		private void detach_StorageAreas(StorageArea entity)
+		{
+			this.SendPropertyChanging();
+			entity.StorageRack = null;
 		}
 	}
 }

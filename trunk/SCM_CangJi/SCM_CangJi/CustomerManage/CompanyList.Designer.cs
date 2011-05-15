@@ -56,6 +56,7 @@
             this.gridViewProduct = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcBrand = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -84,7 +85,7 @@
             this.gridColumn21 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
             this.btnCreateDeliverAddress = new DevExpress.XtraEditors.SimpleButton();
-            this.gcBrand = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnExport = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlCompany)).BeginInit();
@@ -405,6 +406,14 @@
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 1;
             // 
+            // gcBrand
+            // 
+            this.gcBrand.Caption = "品牌";
+            this.gcBrand.FieldName = "Brand";
+            this.gcBrand.Name = "gcBrand";
+            this.gcBrand.Visible = true;
+            this.gcBrand.VisibleIndex = 2;
+            // 
             // gridColumn4
             // 
             this.gridColumn4.Caption = "品号1";
@@ -536,6 +545,7 @@
             // 
             // panelControl3
             // 
+            this.panelControl3.Controls.Add(this.btnExport);
             this.panelControl3.Controls.Add(this.btnImportProduct);
             this.panelControl3.Controls.Add(this.btnCreateProduct);
             this.panelControl3.Dock = System.Windows.Forms.DockStyle.Top;
@@ -644,13 +654,14 @@
             this.btnCreateDeliverAddress.Text = "新建地址";
             this.btnCreateDeliverAddress.Click += new System.EventHandler(this.btnCreateDeliverAddress_Click);
             // 
-            // gcBrand
+            // btnExport
             // 
-            this.gcBrand.Caption = "品牌";
-            this.gcBrand.FieldName = "Brand";
-            this.gcBrand.Name = "gcBrand";
-            this.gcBrand.Visible = true;
-            this.gcBrand.VisibleIndex = 2;
+            this.btnExport.Location = new System.Drawing.Point(219, 25);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(75, 23);
+            this.btnExport.TabIndex = 2;
+            this.btnExport.Text = "导出商品";
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // CompanyList
             // 
@@ -751,6 +762,7 @@
         private DevExpress.XtraEditors.SimpleButton btnCreateDeliverAddress;
         private DevExpress.XtraEditors.SimpleButton btnImportProduct;
         private DevExpress.XtraGrid.Columns.GridColumn gcBrand;
+        private DevExpress.XtraEditors.SimpleButton btnExport;
 
     }
 }

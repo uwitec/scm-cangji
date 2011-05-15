@@ -90,7 +90,9 @@ namespace SCM_CangJi.BLL.Services
         /// <param name="result"></param>
         private bool BuildDeliveryDetails(int index, ref int hasAssignedCount, DeliveryOrderDetail detail, CangJiDataDataContext db, ref List<AssignedDeliveryOrderDetail> result)
         {
-            var productStorages = db.ProductStorages.Where(o => o.ProductId == detail.ProductId&&o.UsableCount>0).OrderBy(o => o.EntryDate).Skip(10 * index).Take(10);
+            var productStorages = db.ProductStorages.Where(o => o.ProductId == detail.ProductId && o.UsableCount > 0
+                && o.StorageArea.StorageRack.IsLocked == false)
+                .OrderBy(o => o.EntryDate).Skip(10 * index).Take(10);
             bool AssignedCompleted =false;
             int perhasAssignedCount = 0;
             //还需要的分配数量

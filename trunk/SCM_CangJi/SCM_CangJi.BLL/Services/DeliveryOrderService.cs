@@ -16,7 +16,7 @@ namespace SCM_CangJi.BLL.Services
             object reslut = null;
             Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
-                reslut = (from o in db.DeliveryOrders.Where(o => status==DeliveryStatus.all||o.Status == status.ToString())
+                reslut = (from o in db.DeliveryOrders.Where(o => status==DeliveryStatus.all||o.Status == status.ToString()).OrderByDescending(o=>o.PreDeliveryDate)
                           select new
                           {
                               o.Company.CompanyName,
@@ -503,5 +503,39 @@ namespace SCM_CangJi.BLL.Services
         }
         #endregion
 
+
+        public object GetDeliveryDetailsBy(string ProdcutCurrentNumber, string ProductNumber1)
+        {
+            return Using<CangJiDataDataContext, object>(new CangJiDataDataContext(this.connectionString), db =>
+             {
+                 object reslut = null;
+                 reslut = (from s in db.ProductStorages
+                           join c in db.AssignedDeliveryOrderDetails
+                           on s.Id equals c.StorageAreaId
+                           where (c.DeliveryOrder.Status == DeliveryStatus.已出库.ToString() || c.DeliveryOrder.Status == DeliveryStatus.已分配库存.ToString()
+                           || c.DeliveryOrder.Status == DeliveryStatus.已发货.ToString() || c.DeliveryOrder.Status == DeliveryStatus.已送达.ToString())
+                           && (ProdcutCurrentNumber == "" || c.CurrentProductNumber == ProdcutCurrentNumber)
+                            && (ProductNumber1 == "" || c.Product.ProductNumber1 == ProductNumber1)
+                           select new
+                           {
+                               品号1 = c.Product.ProductNumber1,
+                               品号2 = c.Product.ProductNumber2,
+                               品牌 = c.Product.Brand,
+                               中文品名 = c.Product.ProductChName,
+                               英文品名 = c.Product.ProductEngName,
+                               规格 = c.Product.Spec,
+                               现品票号 = c.CurrentProductNumber,
+                               出库数量 = c.DeliveryCount,
+                               分配数量 = c.AssignCount,
+                               出库日期=c.DeliveryOrder.PreDeliveryDate,
+                               生产日期 = c.ProductDate,
+                               出库发票号 = c.DeliveryOrder.Invoice,
+                               入库发票号 = c.InputInvoice,
+                               客户PO = c.CustomerPo,
+                               批号 = c.LotsNumber,
+                           }).ToList();
+                 return reslut;
+             });
+        }
     }
 }

@@ -202,7 +202,12 @@ namespace SCM_CangJi
         {
             this.SetFocus(ProductStorageList.Instance);
 
-        } 
+        }
+
+        private void navProductInOutHistory_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            this.SetFocus(InAndOutHistory.Instance);
+        }
         #endregion
 
         #region meicunzhi 仓库
@@ -263,6 +268,8 @@ namespace SCM_CangJi
             }
         } 
         #endregion
+
+        
 
         
 

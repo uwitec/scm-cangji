@@ -227,21 +227,6 @@
       <Association Name="RackType_StorageRack" Member="StorageRacks" ThisKey="id" OtherKey="RackTypeID" Type="StorageRack" />
     </Type>
   </Table>
-  <Table Name="dbo.StorageRacks" Member="StorageRacks">
-    <Type Name="StorageRack">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="RackName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="RackTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="RackAreaID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Row" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Remark" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="StorageID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="StorageRack_StorageArea" Member="StorageAreas" ThisKey="id" OtherKey="StorageRackId" Type="StorageArea" />
-      <Association Name="RackArea_StorageRack" Member="RackArea" ThisKey="RackAreaID" OtherKey="id" Type="RackArea" IsForeignKey="true" />
-      <Association Name="RackType_StorageRack" Member="RackType" ThisKey="RackTypeID" OtherKey="id" Type="RackType" IsForeignKey="true" />
-      <Association Name="Storage_StorageRack" Member="Storage" ThisKey="StorageID" OtherKey="Id" Type="Storage" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Storages" Member="Storages">
     <Type Name="Storage">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -397,6 +382,22 @@
       <Association Name="DeliveryOrder_DeliveryOrderDetail" Member="DeliveryOrder" ThisKey="DeliveryOrderId" OtherKey="Id" Type="DeliveryOrder" IsForeignKey="true" />
       <Association Name="Product_DeliveryOrderDetail" Member="Product" ThisKey="ProductId" OtherKey="Id" Type="Product" IsForeignKey="true" />
       <Association Name="ProductStorage_DeliveryOrderDetail" Member="ProductStorage" ThisKey="ProductStorageId" OtherKey="Id" Type="ProductStorage" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StorageRacks" Member="StorageRacks">
+    <Type Name="StorageRack">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RackName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="RackTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RackAreaID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Row" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Remark" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="StorageID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IsLocked" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="StorageRack_StorageArea" Member="StorageAreas" ThisKey="id" OtherKey="StorageRackId" Type="StorageArea" />
+      <Association Name="RackArea_StorageRack" Member="RackArea" ThisKey="RackAreaID" OtherKey="id" Type="RackArea" IsForeignKey="true" />
+      <Association Name="RackType_StorageRack" Member="RackType" ThisKey="RackTypeID" OtherKey="id" Type="RackType" IsForeignKey="true" />
+      <Association Name="Storage_StorageRack" Member="Storage" ThisKey="StorageID" OtherKey="Id" Type="Storage" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
