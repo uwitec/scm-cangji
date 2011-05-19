@@ -106,7 +106,7 @@ namespace SCM_CangJi
        }
        protected virtual void DoWork(object sender, DoWorkEventArgs e)
         {
-            System.Threading.Thread.Sleep(100);
+            //System.Threading.Thread.Sleep(100);
         }
         void FormBase_FormClosing(object sender, FormClosingEventArgs e)
         {

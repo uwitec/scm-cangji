@@ -78,6 +78,7 @@
             this.AssignStorage = new DevExpress.XtraNavBar.NavBarItem();
             this.OutWareHouseConfirm = new DevExpress.XtraNavBar.NavBarItem();
             this.StorageInfo = new DevExpress.XtraNavBar.NavBarItem();
+            this.navProductInOutHistory = new DevExpress.XtraNavBar.NavBarItem();
             this.CheckStorage = new DevExpress.XtraNavBar.NavBarItem();
             this.StorageChange = new DevExpress.XtraNavBar.NavBarItem();
             this.ChangeCancle = new DevExpress.XtraNavBar.NavBarItem();
@@ -101,17 +102,10 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.imageList3 = new System.Windows.Forms.ImageList(this.components);
             this.StoragePanel = new System.Windows.Forms.Panel();
-            this.navProductInOutHistory = new DevExpress.XtraNavBar.NavBarItem();
             ((System.ComponentModel.ISupportInitialize)(this.MDIManage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navBarControl1)).BeginInit();
             this.SuspendLayout();
-
-            #region meicunzhi
-            StoragePanel = new System.Windows.Forms.Panel();
-            StoragePanel.Visible = false;
-            StorageView = new SCM_CangJi.WareHouseManage.StorageManageView(StoragePanel);
-            #endregion
             // 
             // MDIManage
             // 
@@ -447,7 +441,6 @@
             new DevExpress.XtraNavBar.NavBarItemLink(this.OutWareHouseConfirm),
             new DevExpress.XtraNavBar.NavBarItemLink(this.StorageInfo),
             new DevExpress.XtraNavBar.NavBarItemLink(this.navProductInOutHistory),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.CheckStorage),
             new DevExpress.XtraNavBar.NavBarItemLink(this.StorageChange),
             new DevExpress.XtraNavBar.NavBarItemLink(this.ChangeCancle),
             new DevExpress.XtraNavBar.NavBarItemLink(this.ChangeConfirm)});
@@ -507,6 +500,12 @@
             this.StorageInfo.Name = "StorageInfo";
             this.StorageInfo.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.StorageInfo_LinkClicked);
             // 
+            // navProductInOutHistory
+            // 
+            this.navProductInOutHistory.Caption = "商品出入库历史";
+            this.navProductInOutHistory.Name = "navProductInOutHistory";
+            this.navProductInOutHistory.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navProductInOutHistory_LinkClicked);
+            // 
             // CheckStorage
             // 
             this.CheckStorage.Caption = "盘库";
@@ -516,16 +515,19 @@
             // 
             this.StorageChange.Caption = "库存变更";
             this.StorageChange.Name = "StorageChange";
+            this.StorageChange.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.StorageChange_LinkClicked);
             // 
             // ChangeCancle
             // 
             this.ChangeCancle.Caption = "变更取消";
             this.ChangeCancle.Name = "ChangeCancle";
+            this.ChangeCancle.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.ChangeCancle_LinkClicked);
             // 
             // ChangeConfirm
             // 
             this.ChangeConfirm.Caption = "变更确认";
             this.ChangeConfirm.Name = "ChangeConfirm";
+            this.ChangeConfirm.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.ChangeConfirm_LinkClicked);
             // 
             // UserManagerGroup
             // 
@@ -674,24 +676,6 @@
             this.StoragePanel.Size = new System.Drawing.Size(200, 100);
             this.StoragePanel.TabIndex = 0;
             this.StoragePanel.Visible = false;
-            // 
-            // StorageView
-            // 
-            this.StorageView.AutoSize = true;
-            this.StorageView.ClientSize = new System.Drawing.Size(332, 55);
-            this.StorageView.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.StorageView.Location = new System.Drawing.Point(0, 150);
-            this.StorageView.MaximizeBox = false;
-            this.StorageView.MinimizeBox = false;
-            this.StorageView.Name = "StorageView";
-            this.StorageView.Text = "StorageManageView";
-            this.StorageView.Visible = false;
-            // 
-            // navProductInOutHistory
-            // 
-            this.navProductInOutHistory.Caption = "商品出入库历史";
-            this.navProductInOutHistory.Name = "navProductInOutHistory";
-            this.navProductInOutHistory.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navProductInOutHistory_LinkClicked);
             // 
             // frmMain
             // 

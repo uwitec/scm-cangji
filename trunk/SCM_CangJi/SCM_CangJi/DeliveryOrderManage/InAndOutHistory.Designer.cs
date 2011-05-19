@@ -219,7 +219,7 @@
             this.Controls.Add(this.xtraTabControl1);
             this.Controls.Add(this.panelControl1);
             this.Name = "InAndOutHistory";
-            this.Text = "InAndOutHistory";
+            this.Text = "出入库历史查询";
             this.Load += new System.EventHandler(this.InAndOutHistory_Load);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);

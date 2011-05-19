@@ -29,18 +29,21 @@
         private void InitializeComponent()
         {
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.btnExportExcle = new DevExpress.XtraEditors.SimpleButton();
             this.btnRefresh = new DevExpress.XtraEditors.SimpleButton();
             this.gridControlProductStorages = new DevExpress.XtraGrid.GridControl();
             this.gridViewProductStorages = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.btnExportExcle = new DevExpress.XtraEditors.SimpleButton();
+            this.radioGroup1 = new DevExpress.XtraEditors.RadioGroup();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlProductStorages)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewProductStorages)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radioGroup1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.radioGroup1);
             this.panelControl1.Controls.Add(this.btnExportExcle);
             this.panelControl1.Controls.Add(this.btnRefresh);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -48,6 +51,15 @@
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(632, 47);
             this.panelControl1.TabIndex = 1;
+            // 
+            // btnExportExcle
+            // 
+            this.btnExportExcle.Location = new System.Drawing.Point(102, 12);
+            this.btnExportExcle.Name = "btnExportExcle";
+            this.btnExportExcle.Size = new System.Drawing.Size(75, 23);
+            this.btnExportExcle.TabIndex = 3;
+            this.btnExportExcle.Text = "导出";
+            this.btnExportExcle.Click += new System.EventHandler(this.btnExportExcle_Click);
             // 
             // btnRefresh
             // 
@@ -75,14 +87,17 @@
             this.gridViewProductStorages.Name = "gridViewProductStorages";
             this.gridViewProductStorages.OptionsView.EnableAppearanceEvenRow = true;
             // 
-            // btnExportExcle
+            // radioGroup1
             // 
-            this.btnExportExcle.Location = new System.Drawing.Point(102, 12);
-            this.btnExportExcle.Name = "btnExportExcle";
-            this.btnExportExcle.Size = new System.Drawing.Size(75, 23);
-            this.btnExportExcle.TabIndex = 3;
-            this.btnExportExcle.Text = "导出";
-            this.btnExportExcle.Click += new System.EventHandler(this.btnExportExcle_Click);
+            this.radioGroup1.EditValue = 2;
+            this.radioGroup1.Location = new System.Drawing.Point(201, 6);
+            this.radioGroup1.Name = "radioGroup1";
+            this.radioGroup1.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.RadioGroupItem[] {
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(1, "全部"),
+            new DevExpress.XtraEditors.Controls.RadioGroupItem(2, "库存大于0")});
+            this.radioGroup1.Size = new System.Drawing.Size(201, 35);
+            this.radioGroup1.TabIndex = 4;
+            this.radioGroup1.SelectedIndexChanged += new System.EventHandler(this.radioGroup1_SelectedIndexChanged);
             // 
             // ProductStorageList
             // 
@@ -98,6 +113,7 @@
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlProductStorages)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewProductStorages)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radioGroup1.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -109,5 +125,6 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewProductStorages;
         private DevExpress.XtraEditors.SimpleButton btnRefresh;
         private DevExpress.XtraEditors.SimpleButton btnExportExcle;
+        private DevExpress.XtraEditors.RadioGroup radioGroup1;
     }
 }

@@ -127,8 +127,8 @@
       <Association Name="Company_ImportProfile" Member="ImportProfiles" ThisKey="Id" OtherKey="CompanyId" Type="ImportProfile" />
       <Association Name="Company_InputOrder" Member="InputOrders" ThisKey="Id" OtherKey="CompanyId" Type="InputOrder" />
       <Association Name="Company_InputOrderDetail" Member="InputOrderDetails" ThisKey="Id" OtherKey="CompanyId" Type="InputOrderDetail" />
-      <Association Name="Company_ProductStorage" Member="ProductStorages" ThisKey="Id" OtherKey="CompanyId" Type="ProductStorage" />
       <Association Name="Company_Product" Member="Products" ThisKey="Id" OtherKey="CompanyId" Type="Product" />
+      <Association Name="Company_ProductStorage" Member="ProductStorages" ThisKey="Id" OtherKey="CompanyId" Type="ProductStorage" />
     </Type>
   </Table>
   <Table Name="dbo.DeliverAddresses" Member="DeliverAddresses">
@@ -210,6 +210,7 @@
       <Column Name="备注" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="StorageRackId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="StorageArea_ProductStorage" Member="ProductStorages" ThisKey="Id" OtherKey="AreaId" Type="ProductStorage" />
+      <Association Name="StorageArea_ProductStorageChange" Member="ProductStorageChanges" ThisKey="Id" OtherKey="AreaId" Type="ProductStorageChange" />
       <Association Name="StorageRack_StorageArea" Member="StorageRack" ThisKey="StorageRackId" OtherKey="id" Type="StorageRack" IsForeignKey="true" />
     </Type>
   </Table>
@@ -271,32 +272,6 @@
       <Association Name="Product_InputOrderDetail" Member="Product" ThisKey="ProductId" OtherKey="Id" Type="Product" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.ProductStorages" Member="ProductStorages">
-    <Type Name="ProductStorage">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="CompanyId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="InputDetailId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ProductId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="CurrentProductNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="EntryDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="OriginalCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="CurrentCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="UsableCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="AreaId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Memo" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
-      <Column Name="ProductDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="LotsNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="UpdateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="UpdateUser" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
-      <Column Name="EntryUser" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
-      <Association Name="ProductStorage_AssignedDeliveryOrderDetail" Member="AssignedDeliveryOrderDetails" ThisKey="Id" OtherKey="ProductStorageId" Type="AssignedDeliveryOrderDetail" />
-      <Association Name="ProductStorage_DeliveryOrderDetail" Member="DeliveryOrderDetails" ThisKey="Id" OtherKey="ProductStorageId" Type="DeliveryOrderDetail" />
-      <Association Name="Company_ProductStorage" Member="Company" ThisKey="CompanyId" OtherKey="Id" Type="Company" IsForeignKey="true" />
-      <Association Name="InputOrderDetail_ProductStorage" Member="InputOrderDetail" ThisKey="InputDetailId" OtherKey="ID" Type="InputOrderDetail" IsForeignKey="true" />
-      <Association Name="StorageArea_ProductStorage" Member="StorageArea" ThisKey="AreaId" OtherKey="Id" Type="StorageArea" IsForeignKey="true" />
-      <Association Name="Product_ProductStorage" Member="Product" ThisKey="ProductId" OtherKey="Id" Type="Product" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.VewAssingedDeliveryOrderDetails" Member="VewAssingedDeliveryOrderDetails">
     <Type Name="VewAssingedDeliveryOrderDetail">
       <Column Name="AssignCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -339,9 +314,9 @@
       <Column Name="UnitPrice" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
       <Column Name="CurrencyUnitId" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Product_InputOrderDetail" Member="InputOrderDetails" ThisKey="Id" OtherKey="ProductId" Type="InputOrderDetail" />
-      <Association Name="Product_ProductStorage" Member="ProductStorages" ThisKey="Id" OtherKey="ProductId" Type="ProductStorage" />
       <Association Name="Product_AssignedDeliveryOrderDetail" Member="AssignedDeliveryOrderDetails" ThisKey="Id" OtherKey="ProductId" Type="AssignedDeliveryOrderDetail" />
       <Association Name="Product_DeliveryOrderDetail" Member="DeliveryOrderDetails" ThisKey="Id" OtherKey="ProductId" Type="DeliveryOrderDetail" />
+      <Association Name="Product_ProductStorage" Member="ProductStorages" ThisKey="Id" OtherKey="ProductId" Type="ProductStorage" />
       <Association Name="CurrencyUnit_Product" Member="CurrencyUnit" ThisKey="CurrencyUnitId" OtherKey="Id" Type="CurrencyUnit" IsForeignKey="true" />
       <Association Name="ProductType_Product" Member="ProductType" ThisKey="ProductTypeId" OtherKey="Id" Type="ProductType" IsForeignKey="true" />
       <Association Name="Company_Product" Member="Company" ThisKey="CompanyId" OtherKey="Id" Type="Company" IsForeignKey="true" />
@@ -398,6 +373,58 @@
       <Association Name="RackArea_StorageRack" Member="RackArea" ThisKey="RackAreaID" OtherKey="id" Type="RackArea" IsForeignKey="true" />
       <Association Name="RackType_StorageRack" Member="RackType" ThisKey="RackTypeID" OtherKey="id" Type="RackType" IsForeignKey="true" />
       <Association Name="Storage_StorageRack" Member="Storage" ThisKey="StorageID" OtherKey="Id" Type="Storage" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ProductStorages" Member="ProductStorages">
+    <Type Name="ProductStorage">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CompanyId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="InputDetailId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProductId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CurrentProductNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="EntryDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="OriginalCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CurrentCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UsableCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AreaId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Memo" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="ProductDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LotsNumber" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="UpdateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="UpdateUser" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="EntryUser" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="ProductStorage_AssignedDeliveryOrderDetail" Member="AssignedDeliveryOrderDetails" ThisKey="Id" OtherKey="ProductStorageId" Type="AssignedDeliveryOrderDetail" />
+      <Association Name="ProductStorage_DeliveryOrderDetail" Member="DeliveryOrderDetails" ThisKey="Id" OtherKey="ProductStorageId" Type="DeliveryOrderDetail" />
+      <Association Name="ProductStorage_ProductStorageChange" Member="ProductStorageChanges" ThisKey="Id" OtherKey="ProductStorageID" Type="ProductStorageChange" />
+      <Association Name="Company_ProductStorage" Member="Company" ThisKey="CompanyId" OtherKey="Id" Type="Company" IsForeignKey="true" />
+      <Association Name="InputOrderDetail_ProductStorage" Member="InputOrderDetail" ThisKey="InputDetailId" OtherKey="ID" Type="InputOrderDetail" IsForeignKey="true" />
+      <Association Name="Product_ProductStorage" Member="Product" ThisKey="ProductId" OtherKey="Id" Type="Product" IsForeignKey="true" />
+      <Association Name="StorageArea_ProductStorage" Member="StorageArea" ThisKey="AreaId" OtherKey="Id" Type="StorageArea" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ProductStorageChanges" Member="ProductStorageChanges">
+    <Type Name="ProductStorageChange">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProductStorageID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="OriginalCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="OriginalCount_Org" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CurrentCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CurrentCount_Org" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UsableCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UsableCount_Org" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AreaId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AreaId_Org" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EntryDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EntryDate_Org" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LotsNumber" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LotsNumber_Org" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ProductDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ProductDate_Org" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdateDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="ProductStorage_ProductStorageChange" Member="ProductStorage" ThisKey="ProductStorageID" OtherKey="Id" Type="ProductStorage" IsForeignKey="true" />
+      <Association Name="StorageArea_ProductStorageChange" Member="StorageArea" ThisKey="AreaId" OtherKey="Id" Type="StorageArea" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

@@ -37,11 +37,34 @@ namespace SCM_CangJi
         public frmMain()
         {
             InitializeComponent();
+            InitStoragePanel();
             InitSkin();
             InitMenu();
             InitStatusBar();
             this.Icon = SCM_CangJi.Properties.Resources.favicon;
         }
+
+        #region meicunzhi
+        private void InitStoragePanel()
+        {
+            StoragePanel = new System.Windows.Forms.Panel();
+            StoragePanel.Visible = false;
+            StorageView = new SCM_CangJi.WareHouseManage.StorageManageView(StoragePanel);
+
+            // 
+            // StorageView
+            // 
+            this.StorageView.AutoSize = true;
+            this.StorageView.ClientSize = new System.Drawing.Size(332, 55);
+            this.StorageView.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.StorageView.Location = new System.Drawing.Point(0, 150);
+            this.StorageView.MaximizeBox = false;
+            this.StorageView.MinimizeBox = false;
+            this.StorageView.Name = "StorageView";
+            this.StorageView.Text = "StorageManageView";
+            this.StorageView.Visible = false;
+        }
+        #endregion
 
         private void InitStatusBar()
         {
@@ -208,6 +231,22 @@ namespace SCM_CangJi
         {
             this.SetFocus(InAndOutHistory.Instance);
         }
+
+        private void StorageChange_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            this.SetFocus(StorageManage.StorageChange.Instance);
+        }
+        private void ChangeCancle_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            this.SetFocus(StorageManage.StorageChangeCancle.Instance);
+
+        }
+
+        private void ChangeConfirm_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            this.SetFocus(StorageManage.StorageChangeConfirm.Instance);
+
+        }
         #endregion
 
         #region meicunzhi 仓库
@@ -268,6 +307,10 @@ namespace SCM_CangJi
             }
         } 
         #endregion
+
+       
+
+      
 
         
 

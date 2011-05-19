@@ -44,7 +44,7 @@ namespace SCM_CangJi.DeliveryOrderManage
 
         private void InitGrid()
         {
-            gridControlProductStorages.DataSource = ProductStorageService.Instance.GetCurrentStorages();
+            gridControlProductStorages.DataSource = ProductStorageService.Instance.GetCurrentStorages(radioGroup1.EditValue.Equals(1));
         }
         private void ProductStorageList_Load(object sender, EventArgs e)
         {
@@ -58,6 +58,16 @@ namespace SCM_CangJi.DeliveryOrderManage
         private void btnExportExcle_Click(object sender, EventArgs e)
         {
             ExportExcle(this.gridViewProductStorages, "库存表.xls");
+        }
+
+        private void chkInclude0_CheckedChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void radioGroup1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            InitGrid();
         }
     }
 }

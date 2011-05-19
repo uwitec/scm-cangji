@@ -68,4 +68,14 @@ namespace SCM_CangJi.Lib
    {
        Used=1,
    }
+   public enum StoreStatus
+   {
+       Avilable=1,
+       Changing=2,
+   }
+   public enum ChangeStatus
+   {
+       Changing = 1,
+       Changed = 2,
+   }
 }
