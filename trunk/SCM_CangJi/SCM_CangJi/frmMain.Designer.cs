@@ -55,6 +55,7 @@
             this.barButtonItem6 = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.statusbar_Userinfo = new DevExpress.XtraBars.BarStaticItem();
+            this.barWorning1 = new DevExpress.XtraBars.BarStaticItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -67,6 +68,10 @@
             this.barSubItem7 = new DevExpress.XtraBars.BarSubItem();
             this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem7 = new DevExpress.XtraBars.BarButtonItem();
+            this.barListItem1 = new DevExpress.XtraBars.BarListItem();
+            this.barToolbarsListItem1 = new DevExpress.XtraBars.BarToolbarsListItem();
+            this.barLargeButtonItem1 = new DevExpress.XtraBars.BarLargeButtonItem();
+            this.barCheckItem1 = new DevExpress.XtraBars.BarCheckItem();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
             this.StorageManageGroup = new DevExpress.XtraNavBar.NavBarGroup();
             this.PreIntowarehouse = new DevExpress.XtraNavBar.NavBarItem();
@@ -79,7 +84,6 @@
             this.OutWareHouseConfirm = new DevExpress.XtraNavBar.NavBarItem();
             this.StorageInfo = new DevExpress.XtraNavBar.NavBarItem();
             this.navProductInOutHistory = new DevExpress.XtraNavBar.NavBarItem();
-            this.CheckStorage = new DevExpress.XtraNavBar.NavBarItem();
             this.StorageChange = new DevExpress.XtraNavBar.NavBarItem();
             this.ChangeCancle = new DevExpress.XtraNavBar.NavBarItem();
             this.ChangeConfirm = new DevExpress.XtraNavBar.NavBarItem();
@@ -97,6 +101,7 @@
             this.Systemlog = new DevExpress.XtraNavBar.NavBarItem();
             this.Address = new DevExpress.XtraNavBar.NavBarItem();
             this.ContactInfo = new DevExpress.XtraNavBar.NavBarItem();
+            this.CheckStorage = new DevExpress.XtraNavBar.NavBarItem();
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.splitterControl1 = new DevExpress.XtraEditors.SplitterControl();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
@@ -148,9 +153,14 @@
             this.showWindows,
             this.statusbar_Userinfo,
             this.barMdiChildrenListItem1,
-            this.barButtonItem8});
+            this.barButtonItem8,
+            this.barListItem1,
+            this.barToolbarsListItem1,
+            this.barLargeButtonItem1,
+            this.barCheckItem1,
+            this.barWorning1});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 24;
+            this.barManager1.MaxItemId = 29;
             this.barManager1.StatusBar = this.bar3;
             // 
             // barskins
@@ -292,7 +302,8 @@
             this.bar3.DockRow = 0;
             this.bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
             this.bar3.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.statusbar_Userinfo)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.statusbar_Userinfo),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Caption, this.barWorning1, "库存警告：{0}")});
             this.bar3.OptionsBar.AllowQuickCustomization = false;
             this.bar3.OptionsBar.DrawDragBorder = false;
             this.bar3.OptionsBar.UseWholeRow = true;
@@ -303,6 +314,15 @@
             this.statusbar_Userinfo.Id = 21;
             this.statusbar_Userinfo.Name = "statusbar_Userinfo";
             this.statusbar_Userinfo.TextAlignment = System.Drawing.StringAlignment.Near;
+            // 
+            // barWorning1
+            // 
+            this.barWorning1.Appearance.ForeColor = System.Drawing.Color.DarkRed;
+            this.barWorning1.Appearance.Options.UseForeColor = true;
+            this.barWorning1.Id = 28;
+            this.barWorning1.Name = "barWorning1";
+            this.barWorning1.TextAlignment = System.Drawing.StringAlignment.Near;
+            this.barWorning1.ItemDoubleClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barWorning1_ItemDoubleClick);
             // 
             // barDockControlTop
             // 
@@ -377,6 +397,30 @@
             this.barButtonItem7.Caption = "barButtonItem7";
             this.barButtonItem7.Id = 17;
             this.barButtonItem7.Name = "barButtonItem7";
+            // 
+            // barListItem1
+            // 
+            this.barListItem1.Caption = "1";
+            this.barListItem1.Id = 24;
+            this.barListItem1.Name = "barListItem1";
+            // 
+            // barToolbarsListItem1
+            // 
+            this.barToolbarsListItem1.Caption = "1";
+            this.barToolbarsListItem1.Id = 25;
+            this.barToolbarsListItem1.Name = "barToolbarsListItem1";
+            // 
+            // barLargeButtonItem1
+            // 
+            this.barLargeButtonItem1.Caption = "2";
+            this.barLargeButtonItem1.Id = 26;
+            this.barLargeButtonItem1.Name = "barLargeButtonItem1";
+            // 
+            // barCheckItem1
+            // 
+            this.barCheckItem1.Caption = "3";
+            this.barCheckItem1.Id = 27;
+            this.barCheckItem1.Name = "barCheckItem1";
             // 
             // navBarControl1
             // 
@@ -506,11 +550,6 @@
             this.navProductInOutHistory.Name = "navProductInOutHistory";
             this.navProductInOutHistory.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navProductInOutHistory_LinkClicked);
             // 
-            // CheckStorage
-            // 
-            this.CheckStorage.Caption = "盘库";
-            this.CheckStorage.Name = "CheckStorage";
-            // 
             // StorageChange
             // 
             this.StorageChange.Caption = "库存变更";
@@ -619,6 +658,11 @@
             // 
             this.ContactInfo.Caption = "联系人";
             this.ContactInfo.Name = "ContactInfo";
+            // 
+            // CheckStorage
+            // 
+            this.CheckStorage.Caption = "盘库";
+            this.CheckStorage.Name = "CheckStorage";
             // 
             // imageList2
             // 
@@ -769,6 +813,11 @@
         private DevExpress.XtraNavBar.NavBarItem nvaInputOrders;
         private DevExpress.XtraBars.BarButtonItem barButtonItem8;
         private DevExpress.XtraNavBar.NavBarItem navProductInOutHistory;
+        private DevExpress.XtraBars.BarStaticItem barWorning1;
+        private DevExpress.XtraBars.BarListItem barListItem1;
+        private DevExpress.XtraBars.BarToolbarsListItem barToolbarsListItem1;
+        private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItem1;
+        private DevExpress.XtraBars.BarCheckItem barCheckItem1;
 
     }
 }

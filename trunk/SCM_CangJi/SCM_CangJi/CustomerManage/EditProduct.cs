@@ -108,11 +108,21 @@ namespace SCM_CangJi.CustomerManage
             {
                 this._product.UnitPrice = decimal.Parse(txtUnitPrice.EditValue.TrytoString());
             }
-            this._product.Volume = int.Parse(txtVolume.EditValue.TrytoString());
-            this._product.Weight = int.Parse(txtWeight.EditValue.TrytoString());
-            this._product.Width = int.Parse(txtWidth.EditValue.TrytoString());
-            this._product.CurrencyUnitId = int.Parse(ddlCurrencyUnits.EditValue.TrytoString());
-            this._product.ProductTypeId = int.Parse(ddlProductType.EditValue.TrytoString());
+            int Volume = 0;
+            int Weight = 0;
+            int Width = 0;
+            int CurrencyUnitId = 0;
+            int ProductTypeId = 0;
+            int.TryParse(txtVolume.EditValue.TrytoString(), out Volume);
+            this._product.Volume = Volume;
+            int.TryParse(txtWeight.EditValue.TrytoString(),out Weight);
+            this._product.Weight = Weight;
+            int.TryParse(txtWidth.EditValue.TrytoString(), out Width);
+            this._product.Width = Width;
+            int.TryParse(ddlCurrencyUnits.EditValue.TrytoString(), out CurrencyUnitId);
+            this._product.CurrencyUnitId =CurrencyUnitId ;
+            int.TryParse(ddlProductType.EditValue.TrytoString(), out ProductTypeId);
+            this._product.ProductTypeId = ProductTypeId;
             this._product.CompanyId = this._companyId;
             this._product.Brand = this.txtBrand.EditValue.TrytoString();
         }

@@ -512,6 +512,12 @@
     <Compile Include="StorageManage\StorageChangeConfirm.Designer.cs">
       <DependentUpon>StorageChangeConfirm.cs</DependentUpon>
     </Compile>
+    <Compile Include="StorageManage\StorageWorning.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StorageManage\StorageWorning.Designer.cs">
+      <DependentUpon>StorageWorning.cs</DependentUpon>
+    </Compile>
     <Compile Include="WareHouseManage\ButtonEx.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -739,6 +745,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="StorageManage\StorageChangeConfirm.resx">
       <DependentUpon>StorageChangeConfirm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StorageManage\StorageWorning.resx">
+      <DependentUpon>StorageWorning.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WareHouseManage\ButtonEx.resx">
       <DependentUpon>ButtonEx.cs</DependentUpon>

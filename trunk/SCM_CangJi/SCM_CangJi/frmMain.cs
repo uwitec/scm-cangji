@@ -69,6 +69,11 @@ namespace SCM_CangJi
         private void InitStatusBar()
         {
             statusbar_Userinfo.Caption =string.Format("欢迎您：{0}",SecurityContext.Current.CurrentyUser.UserName);
+            int woringCount = BLL.Services.ProductStorageService.Instance.GetProductStorageWoringCount();
+            if (woringCount > 0)
+            {
+                barWorning1.Caption = string.Format("库存警告：有{0}条库存快到期", woringCount);
+            }
         }
 
         private void InitMenu()
@@ -307,6 +312,11 @@ namespace SCM_CangJi
             }
         } 
         #endregion
+
+        private void barWorning1_ItemDoubleClick(object sender, ItemClickEventArgs e)
+        {
+            (new StorageManage.StorageWorning()).ShowDialog();
+        }
 
        
 

@@ -92,8 +92,18 @@ namespace SCM_CangJi.BLL.Services
         /// <param name="result"></param>
         private bool BuildDeliveryDetails(int index, ref int hasAssignedCount, DeliveryOrderDetail detail, CangJiDataDataContext db, ref List<AssignedDeliveryOrderDetail> result)
         {
-            var productStorages = db.ProductStorages.Where(o => o.ProductId == detail.ProductId && o.UsableCount > 0
-                && o.StorageArea.StorageRack.IsLocked == false)
+            var condition = ConditionBuilder.True<ProductStorage>();
+            condition = condition.And(o => o.ProductId == detail.ProductId && o.UsableCount > 0
+                && o.StorageArea.StorageRack.IsLocked == false);
+            if (!string.IsNullOrWhiteSpace(detail.InputInvoice))
+            {
+                condition = condition.And(o => o.InputOrderDetail.InputOrder.Invoice == detail.InputInvoice);
+            }
+            if (!string.IsNullOrWhiteSpace(detail.LotsNumber))
+            {
+                condition = condition.And(o => o.LotsNumber.Trim() == detail.LotsNumber);
+            }
+            var productStorages = db.ProductStorages.Where(condition)
                 .OrderBy(o => o.EntryDate).Skip(10 * index).Take(10);
             bool AssignedCompleted = false;
             int perhasAssignedCount = 0;
@@ -213,7 +223,46 @@ namespace SCM_CangJi.BLL.Services
                 }
             });
             return result;
-        } 
+        }
+
+        public int GetProductStorageWoringCount()
+        {
+            return Using<CangJiDataDataContext,int>(new CangJiDataDataContext(this.connectionString), db =>
+            {
+                var products = db.ProductStorages.Where(o => o.ProductDate.HasValue
+                    && o.Product.PreWorningDays > 0
+                    && DateTime.Now.Date.AddDays(o.Product.PreWorningDays) > o.ProductDate.Value.Date
+                    && o.Status == (int)StoreStatus.Avilable
+                    && o.CurrentCount > 0);
+                return products.Count();
+            });
+        }
+        public object GetProductStorageWoring()
+        {
+            return Using<CangJiDataDataContext, object>(new CangJiDataDataContext(this.connectionString), db =>
+            {
+                object products = (from ps in db.ProductStorages.Where(o => o.ProductDate.HasValue
+                    &&o.Product.PreWorningDays>0
+                    &&DateTime.Now.Date.AddDays(o.Product.PreWorningDays)>o.ProductDate.Value.Date
+                    &&o.Status==(int)StoreStatus.Avilable
+                    &&o.CurrentCount>0)
+                    select new
+                          {
+                              公司名 = ps.Company.CompanyName,
+                              品名 = ps.Product.ProductChName,
+                              品号 = ps.Product.ProductNumber1,
+                              条形码 = ps.Product.BarCode,
+                              现品号 = ps.CurrentProductNumber,
+                              入库发票号 = ps.InputOrderDetail.InputOrder.Invoice,
+                              当前库存数 = ps.CurrentCount,
+                              实际可用数量 = ps.UsableCount,
+                              生产日期=ps.ProductDate,
+                              到期天数=(ps.ProductDate.Value.Date-DateTime.Now.Date).Days,
+                              库位 = ps.StorageArea.StorageRack.RackName + "--" + ps.StorageArea.库位编号
+                          }).ToList();
+                return products;
+            });
+        }
         #endregion
 
         #region 库存变更
