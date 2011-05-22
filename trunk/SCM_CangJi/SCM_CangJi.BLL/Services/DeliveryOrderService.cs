@@ -9,14 +9,14 @@ using SCM_CangJi.DAL;
 using SCM_CangJi.Lib;
 namespace SCM_CangJi.BLL.Services
 {
-    public class DeliveryOrderService:BaseService<DeliveryOrderService>
+    public class DeliveryOrderService : BaseService<DeliveryOrderService>
     {
         public object GetDeliveryOrders(DeliveryStatus status)
         {
             object reslut = null;
             Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
-                reslut = (from o in db.DeliveryOrders.Where(o => status==DeliveryStatus.all||o.Status == status.ToString()).OrderByDescending(o=>o.PreDeliveryDate)
+                reslut = (from o in db.DeliveryOrders.Where(o => status == DeliveryStatus.all || o.Status == status.ToString()).OrderByDescending(o => o.PreDeliveryDate)
                           select new
                           {
                               o.Company.CompanyName,
@@ -59,7 +59,7 @@ namespace SCM_CangJi.BLL.Services
                                            英文品名 = c.Product.ProductEngName,
                                            规格 = c.Product.Spec,
                                            出库数量 = c.DeliveryCount,
-                                           生产日期 = c.ProductDate,
+                                           到期日期 = c.ProductDate,
                                            入库发票号 = c.InputInvoice,
                                            批号 = c.LotsNumber,
                                        }).ToList(),
@@ -74,10 +74,10 @@ namespace SCM_CangJi.BLL.Services
                                             规格 = c.Product.Spec,
                                             出库数量 = c.DeliveryCount,
                                             分配数量 = c.AssignCount,
-                                            生产日期 = c.ProductDate,
+                                            到期日期 = c.ProductDate,
                                             入库发票号 = c.InputInvoice,
                                             批号 = c.LotsNumber,
-                                            库位=GetArea(db,c.StorageAreaId)
+                                            库位 = GetArea(db, c.StorageAreaId)
                                         }).ToList(),
                           }).ToList();
             });
@@ -101,7 +101,7 @@ namespace SCM_CangJi.BLL.Services
                                 现品票号 = c.CurrentProductNumber,
                                 出库数量 = c.DeliveryCount,
                                 分配数量 = c.AssignCount,
-                                生产日期 = c.ProductDate,
+                                到期日期 = c.ProductDate,
                                 入库发票号 = c.InputInvoice,
                                 客户PO = c.CustomerPo,
                                 批号 = c.LotsNumber,
@@ -110,8 +110,8 @@ namespace SCM_CangJi.BLL.Services
                   return reslut;
               });
         }
-       
-        
+
+
         private string GetArea(CangJiDataDataContext db, int? StorageAreaId)
         {
             if (!StorageAreaId.HasValue)
@@ -119,13 +119,13 @@ namespace SCM_CangJi.BLL.Services
             string result = null;
 
             var ps = db.StorageAreas.SingleOrDefault(o => o.Id == StorageAreaId);
-            if(ps==null)
+            if (ps == null)
                 return "未分配";
             result = ps.StorageRack.RackName + "--" + ps.库位编号;
             return result; ;
         }
 
-       
+
         public DataTable GetDeliveryOrderDetailsDataTable(int orderId)
         {
             DataTable reslut = null;
@@ -138,7 +138,7 @@ namespace SCM_CangJi.BLL.Services
                                 o.DeliveryOrderId,
                                 o.InputInvoice,
                                 o.Id,
-                                ProductId=o.Product.Id,
+                                ProductId = o.Product.Id,
                                 o.Product.Brand,
                                 o.Product.ProductNumber1,
                                 o.Product.ProductNumber2,
@@ -146,6 +146,7 @@ namespace SCM_CangJi.BLL.Services
                                 o.ProductDate,
                                 o.LotsNumber,
                                 o.CustomerPo,
+                                o.CurrentProductNumber,
                             }).ToDataTable(db);
             }); ;
             return reslut;
@@ -176,7 +177,7 @@ namespace SCM_CangJi.BLL.Services
             {
                 reslut = db.DeliveryOrders.SingleOrDefault(o => o.Id == orderId);
                 reslut.DeliveryOrderDetails.Load();
-                int id= reslut.Company.Id;
+                int id = reslut.Company.Id;
                 id = reslut.DeliverAddress.Id;
                 reslut.AssignedDeliveryOrderDetails.Load();
             });
@@ -209,6 +210,7 @@ namespace SCM_CangJi.BLL.Services
                             orderdetail.LotsNumber = item.LotsNumber;
                             orderdetail.ProductStorageId = item.ProductStorageId;
                             orderdetail.CustomerPo = item.CustomerPo;
+                            orderdetail.CurrentProductNumber = item.CurrentProductNumber;
                         }
                         else
                         {
@@ -221,6 +223,7 @@ namespace SCM_CangJi.BLL.Services
                             orderdetail.ProductStorageId = item.ProductStorageId;
                             orderdetail.DeliveryOrderId = item.DeliveryOrderId;
                             orderdetail.CustomerPo = item.CustomerPo;
+                            orderdetail.CurrentProductNumber = item.CurrentProductNumber;
                             db.DeliveryOrderDetails.InsertOnSubmit(orderdetail);
                         }
                     }
@@ -229,7 +232,7 @@ namespace SCM_CangJi.BLL.Services
                 db.SubmitChanges();
             });
         }
-        
+
 
         public void Create(DeliveryOrder deliveryOrder)
         {
@@ -247,7 +250,7 @@ namespace SCM_CangJi.BLL.Services
             Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
              {
                  var order = db.DeliveryOrders.SingleOrDefault(o => o.Id == orderId);
-                 DeliveryStatus status=(DeliveryStatus)Enum.Parse(typeof(DeliveryStatus), order.Status);
+                 DeliveryStatus status = (DeliveryStatus)Enum.Parse(typeof(DeliveryStatus), order.Status);
                  switch (status)
                  {
                      case DeliveryStatus.已出库:
@@ -256,7 +259,7 @@ namespace SCM_CangJi.BLL.Services
                      case DeliveryStatus.已分配库存:
                      case DeliveryStatus.已送达:
                          reslut = false;
-                         m = string.Format("删除失败！【0】单据不能删除",status.ToString());
+                         m = string.Format("删除失败！【0】单据不能删除", status.ToString());
                          break;
                      case DeliveryStatus.待出库:
                      case DeliveryStatus.作废:
@@ -265,7 +268,7 @@ namespace SCM_CangJi.BLL.Services
                          db.SubmitChanges();
                          break;
                  }
-                 
+
              });
             message = m;
             return reslut;
@@ -368,7 +371,7 @@ namespace SCM_CangJi.BLL.Services
                 db.SubmitChanges();
             });
         }
-      
+
         public void UpdateStatus(int orderId, DeliveryStatus deliveryStatus)
         {
             Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
@@ -384,7 +387,7 @@ namespace SCM_CangJi.BLL.Services
             Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 var or = db.DeliveryOrders.SingleOrDefault(o => o.Id == orderId);
-                or.Status =DeliveryStatus.已发货.ToString();
+                or.Status = DeliveryStatus.已发货.ToString();
                 foreach (var item in or.AssignedDeliveryOrderDetails)
                 {
                     if (item.AssignCount > 0)
@@ -472,7 +475,7 @@ namespace SCM_CangJi.BLL.Services
                               o.IsSucess,
                               o.ProductStorageId,
                               o.CustomerPo,
-                              StorageAreaId=o.StorageAreaId,
+                              StorageAreaId = o.StorageAreaId,
                               //Area = o.StorageAreaId.ToString(),
                           }).ToDataTable(db);
             });
@@ -527,8 +530,8 @@ namespace SCM_CangJi.BLL.Services
                                现品票号 = c.CurrentProductNumber,
                                出库数量 = c.DeliveryCount,
                                分配数量 = c.AssignCount,
-                               出库日期=c.DeliveryOrder.PreDeliveryDate,
-                               生产日期 = c.ProductDate,
+                               出库日期 = c.DeliveryOrder.PreDeliveryDate,
+                               到期日期 = c.ProductDate,
                                出库发票号 = c.DeliveryOrder.Invoice,
                                入库发票号 = c.InputInvoice,
                                客户PO = c.CustomerPo,

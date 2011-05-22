@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition2 = new DevExpress.XtraGrid.StyleFormatCondition();
-            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule3 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraGrid.StyleFormatCondition styleFormatCondition1 = new DevExpress.XtraGrid.StyleFormatCondition();
             DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule1 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
+            DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule conditionValidationRule2 = new DevExpress.XtraEditors.DXErrorProvider.ConditionValidationRule();
             this.gcInputCount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemSpinEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
             this.btnPreComplete = new DevExpress.XtraEditors.SimpleButton();
@@ -150,12 +150,12 @@
             this.gcLotsNumber,
             this.gcProductDate,
             this.gcInputInvoice});
-            styleFormatCondition2.Column = this.gcInputCount;
-            styleFormatCondition2.Condition = DevExpress.XtraGrid.FormatConditionEnum.Between;
-            styleFormatCondition2.Value1 = "1";
-            styleFormatCondition2.Value2 = "99999999";
+            styleFormatCondition1.Column = this.gcInputCount;
+            styleFormatCondition1.Condition = DevExpress.XtraGrid.FormatConditionEnum.Between;
+            styleFormatCondition1.Value1 = "1";
+            styleFormatCondition1.Value2 = "99999999";
             this.gridViewInputOrderDetails.FormatConditions.AddRange(new DevExpress.XtraGrid.StyleFormatCondition[] {
-            styleFormatCondition2});
+            styleFormatCondition1});
             this.gridViewInputOrderDetails.GridControl = this.gridControlInputOrerDetails;
             this.gridViewInputOrderDetails.Name = "gridViewInputOrderDetails";
             this.gridViewInputOrderDetails.NewItemRowText = "点击添加新行";
@@ -223,7 +223,7 @@
             // 
             // gcProductDate
             // 
-            this.gcProductDate.Caption = "生产日期";
+            this.gcProductDate.Caption = "到期日期";
             this.gcProductDate.FieldName = "ProductDate";
             this.gcProductDate.Name = "gcProductDate";
             this.gcProductDate.Visible = true;
@@ -290,9 +290,9 @@
             this.ddlCompanies.Properties.ValueMember = "Id";
             this.ddlCompanies.Size = new System.Drawing.Size(171, 21);
             this.ddlCompanies.TabIndex = 2;
-            conditionValidationRule3.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule3.ErrorText = "不能为空";
-            this.dxValidationProvider1.SetValidationRule(this.ddlCompanies, conditionValidationRule3);
+            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule1.ErrorText = "不能为空";
+            this.dxValidationProvider1.SetValidationRule(this.ddlCompanies, conditionValidationRule1);
             this.ddlCompanies.EditValueChanged += new System.EventHandler(this.ddlCompanies_EditValueChanged);
             // 
             // lblPreInputDate
@@ -395,9 +395,9 @@
             this.txtFromWhere.Name = "txtFromWhere";
             this.txtFromWhere.Size = new System.Drawing.Size(175, 21);
             this.txtFromWhere.TabIndex = 4;
-            conditionValidationRule1.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
-            conditionValidationRule1.ErrorText = "发货地不能为空!";
-            this.dxValidationProvider1.SetValidationRule(this.txtFromWhere, conditionValidationRule1);
+            conditionValidationRule2.ConditionOperator = DevExpress.XtraEditors.DXErrorProvider.ConditionOperator.IsNotBlank;
+            conditionValidationRule2.ErrorText = "发货地不能为空!";
+            this.dxValidationProvider1.SetValidationRule(this.txtFromWhere, conditionValidationRule2);
             // 
             // lblEnterUser
             // 

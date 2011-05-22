@@ -120,10 +120,16 @@ ProductStorageService.Instance.GetCurrentStoragesDT(true);
             int.TryParse(gridViewProductStorages.GetRowCellValue(intRowHandle, "AreaId").TrytoString(), out areaId);
             int Id = 0;
             int.TryParse(gridViewProductStorages.GetRowCellValue(intRowHandle, "Id").TrytoString(), out Id);
-            SetUpatingStorage(Id,currentCount, useableCount, areaId);
+            string productDate = gridViewProductStorages.GetRowCellValue(intRowHandle, "ProductDate").TrytoString();
+            DateTime? date = null;
+            if(!string.IsNullOrWhiteSpace(productDate))
+            {
+                date = DateTime.Parse(productDate);
+            }
+            SetUpatingStorage(Id,currentCount, useableCount, areaId,date);
         }
 
-        private void SetUpatingStorage(int id,int currentCount, int useableCount, int areaId)
+        private void SetUpatingStorage(int id,int currentCount, int useableCount, int areaId,DateTime? productDate)
         {
             if (id > 0)
             {
@@ -138,6 +144,7 @@ ProductStorageService.Instance.GetCurrentStoragesDT(true);
                 psc.CurrentCount = currentCount;
                 psc.UsableCount = useableCount;
                 psc.AreaId = areaId;
+                psc.ProductDate = productDate;
                 if (isNew)
                 {
                     this.ProductStorageChangingList.Add(psc);

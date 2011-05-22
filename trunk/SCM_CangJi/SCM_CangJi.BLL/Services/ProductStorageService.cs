@@ -103,6 +103,15 @@ namespace SCM_CangJi.BLL.Services
             {
                 condition = condition.And(o => o.LotsNumber.Trim() == detail.LotsNumber);
             }
+            if (!string.IsNullOrWhiteSpace(detail.CurrentProductNumber))
+            {
+                condition = condition.And(o => o.CurrentProductNumber == detail.CurrentProductNumber);
+            }
+            if (detail.ProductDate.HasValue)
+            {
+                //到期日期之前的货物
+                condition = condition.And(o => o.ProductDate.HasValue && o.ProductDate.Value.Date <= detail.ProductDate.Value.Date);
+            }
             var productStorages = db.ProductStorages.Where(condition)
                 .OrderBy(o => o.EntryDate).Skip(10 * index).Take(10);
             bool AssignedCompleted = false;
@@ -242,24 +251,24 @@ namespace SCM_CangJi.BLL.Services
             return Using<CangJiDataDataContext, object>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 object products = (from ps in db.ProductStorages.Where(o => o.ProductDate.HasValue
-                    &&o.Product.PreWorningDays>0
-                    &&DateTime.Now.Date.AddDays(o.Product.PreWorningDays)>o.ProductDate.Value.Date
-                    &&o.Status==(int)StoreStatus.Avilable
-                    &&o.CurrentCount>0)
-                    select new
-                          {
-                              公司名 = ps.Company.CompanyName,
-                              品名 = ps.Product.ProductChName,
-                              品号 = ps.Product.ProductNumber1,
-                              条形码 = ps.Product.BarCode,
-                              现品号 = ps.CurrentProductNumber,
-                              入库发票号 = ps.InputOrderDetail.InputOrder.Invoice,
-                              当前库存数 = ps.CurrentCount,
-                              实际可用数量 = ps.UsableCount,
-                              生产日期=ps.ProductDate,
-                              到期天数=(ps.ProductDate.Value.Date-DateTime.Now.Date).Days,
-                              库位 = ps.StorageArea.StorageRack.RackName + "--" + ps.StorageArea.库位编号
-                          }).ToList();
+                    && o.Product.PreWorningDays > 0
+                    && DateTime.Now.Date.AddDays(o.Product.PreWorningDays) > o.ProductDate.Value.Date
+                    && o.Status == (int)StoreStatus.Avilable
+                    && o.CurrentCount > 0)
+                                   select new
+                                         {
+                                             公司名 = ps.Company.CompanyName,
+                                             品名 = ps.Product.ProductChName,
+                                             品号 = ps.Product.ProductNumber1,
+                                             条形码 = ps.Product.BarCode,
+                                             现品号 = ps.CurrentProductNumber,
+                                             入库发票号 = ps.InputOrderDetail.InputOrder.Invoice,
+                                             当前库存数 = ps.CurrentCount,
+                                             实际可用数量 = ps.UsableCount,
+                                             到期日期 = ps.ProductDate,
+                                             到期天数 = (ps.ProductDate.Value.Date - DateTime.Now.Date).Days,
+                                             库位 = ps.StorageArea.StorageRack.RackName + "--" + ps.StorageArea.库位编号
+                                         }).ToList();
                 return products;
             });
         }
@@ -290,6 +299,7 @@ namespace SCM_CangJi.BLL.Services
                               CurrentProductNumber = ps.CurrentProductNumber,
                               Invoice = ps.InputOrderDetail.InputOrder.Invoice,
                               CurrentCount = ps.CurrentCount,
+                              ps.ProductDate,
                               UsableCount = ps.UsableCount,
                               AreaId = ps.AreaId
                           }).ToDataTable(db);
@@ -318,6 +328,8 @@ namespace SCM_CangJi.BLL.Services
                               当前库存_原始 = psc.CurrentCount_Org,
                               可用库存_修改 = psc.UsableCount,
                               可用库存_原始 = psc.UsableCount_Org,
+                              到期日期_修改=psc.ProductDate,
+                              到期日期_原始=psc.ProductDate_Org,
                               原库位 = psc.ProductStorage.StorageArea.StorageRack.RackName + "--" + psc.ProductStorage.StorageArea.库位编号,
                               修改库位 = psc.StorageArea.StorageRack.RackName + "--" + psc.StorageArea.库位编号
                           }).ToDataTable(db);
@@ -345,7 +357,7 @@ namespace SCM_CangJi.BLL.Services
                        psc.LotsNumber_Org = ps.LotsNumber;
                        psc.OriginalCount = ps.OriginalCount;
                        psc.OriginalCount_Org = ps.OriginalCount;
-                       psc.ProductDate = ps.ProductDate;
+                       psc.ProductDate = item.ProductDate;
                        psc.ProductDate_Org = ps.ProductDate;
                        psc.ProductStorageID = ps.Id;
                        psc.UpdateDate = DateTime.Now;
@@ -373,6 +385,7 @@ namespace SCM_CangJi.BLL.Services
                        changing.ProductStorage.AreaId = changing.AreaId;
                        changing.ProductStorage.CurrentCount = changing.CurrentCount;
                        changing.ProductStorage.UsableCount = changing.UsableCount;
+                       changing.ProductStorage.ProductDate = changing.ProductDate;
                        changing.Status = (int)ChangeStatus.Changed;
                    }
                }
@@ -393,6 +406,7 @@ namespace SCM_CangJi.BLL.Services
                         changing.ProductStorage.UsableCount = changing.UsableCount_Org;
                         changing.Status = (int)ChangeStatus.Changed;
                         changing.ProductStorage.Status = (int)StoreStatus.Avilable;
+                        changing.ProductStorage.ProductDate = changing.ProductDate_Org;
 
                     }
                 }

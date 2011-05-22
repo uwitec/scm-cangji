@@ -57,12 +57,16 @@ namespace SCM_CangJi.StorageManage
             this.gcUsableCount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcStorageArea = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridStorageArea = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.gcProductDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemDateEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemDateEdit();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlProductStorages)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewProductStorages)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridStorageArea)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.VistaTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -101,7 +105,8 @@ namespace SCM_CangJi.StorageManage
             this.gridControlProductStorages.MainView = this.gridViewProductStorages;
             this.gridControlProductStorages.Name = "gridControlProductStorages";
             this.gridControlProductStorages.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.gridStorageArea});
+            this.gridStorageArea,
+            this.repositoryItemDateEdit1});
             this.gridControlProductStorages.Size = new System.Drawing.Size(859, 412);
             this.gridControlProductStorages.TabIndex = 3;
             this.gridControlProductStorages.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -118,7 +123,8 @@ namespace SCM_CangJi.StorageManage
             this.gcInvoice,
             this.gcCurrentCount,
             this.gcUsableCount,
-            this.gcStorageArea});
+            this.gcStorageArea,
+            this.gcProductDate});
             this.gridViewProductStorages.GridControl = this.gridControlProductStorages;
             this.gridViewProductStorages.Name = "gridViewProductStorages";
             this.gridViewProductStorages.OptionsView.EnableAppearanceEvenRow = true;
@@ -201,7 +207,7 @@ namespace SCM_CangJi.StorageManage
             this.gcStorageArea.FieldName = "AreaId";
             this.gcStorageArea.Name = "gcStorageArea";
             this.gcStorageArea.Visible = true;
-            this.gcStorageArea.VisibleIndex = 8;
+            this.gcStorageArea.VisibleIndex = 9;
             // 
             // gridStorageArea
             // 
@@ -215,6 +221,24 @@ namespace SCM_CangJi.StorageManage
             this.gridStorageArea.DisplayMember = "库位编号";
             this.gridStorageArea.Name = "gridStorageArea";
             this.gridStorageArea.ValueMember = "Id";
+            // 
+            // gcProductDate
+            // 
+            this.gcProductDate.Caption = "到期日期";
+            this.gcProductDate.ColumnEdit = this.repositoryItemDateEdit1;
+            this.gcProductDate.FieldName = "ProductDate";
+            this.gcProductDate.Name = "gcProductDate";
+            this.gcProductDate.Visible = true;
+            this.gcProductDate.VisibleIndex = 8;
+            // 
+            // repositoryItemDateEdit1
+            // 
+            this.repositoryItemDateEdit1.AutoHeight = false;
+            this.repositoryItemDateEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemDateEdit1.Name = "repositoryItemDateEdit1";
+            this.repositoryItemDateEdit1.VistaTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
             // 
             // StorageChange
             // 
@@ -231,6 +255,8 @@ namespace SCM_CangJi.StorageManage
             ((System.ComponentModel.ISupportInitialize)(this.gridControlProductStorages)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewProductStorages)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridStorageArea)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1.VistaTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemDateEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
 
@@ -254,5 +280,7 @@ namespace SCM_CangJi.StorageManage
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit gridStorageArea;
         private DevExpress.XtraEditors.SimpleButton btnSave;
         private DevExpress.XtraEditors.SimpleButton btnRefresh;
+        private DevExpress.XtraGrid.Columns.GridColumn gcProductDate;
+        private DevExpress.XtraEditors.Repository.RepositoryItemDateEdit repositoryItemDateEdit1;
     }
 }

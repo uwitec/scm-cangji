@@ -23,6 +23,7 @@ namespace SCM_CangJi.Lib
         public const string Filed_LotsNumber = "LotsNumber";
         public const string Filed_CustomerPo = "CustomerPo";
         public const string Filed_InputInvoice = "InputInvoice";
+        public const string Filed_CurrentProductNumber = "CurrentProductNumber";
 
         #endregion
     }

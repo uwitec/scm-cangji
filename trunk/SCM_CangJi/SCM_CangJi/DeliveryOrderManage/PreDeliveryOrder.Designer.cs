@@ -64,7 +64,9 @@
             this.gcBrand = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcProductNumber1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcProductNumber2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcCurrentProductNumber = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcInputInvoice = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcCustomerPo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcLotsNumber = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcProductDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.tabAssigned = new DevExpress.XtraTab.XtraTabPage();
@@ -74,7 +76,6 @@
             this.btnExportAssignedDetails = new DevExpress.XtraEditors.SimpleButton();
             this.btnPrintPickOrder = new DevExpress.XtraEditors.SimpleButton();
             this.dxValidationProvider1 = new DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider(this.components);
-            this.gcCustomerPo = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
@@ -384,6 +385,7 @@
             this.gcProductNumber1,
             this.gcProductNumber2,
             this.gcDeliveryCount,
+            this.gcCurrentProductNumber,
             this.gcInputInvoice,
             this.gcCustomerPo,
             this.gcLotsNumber,
@@ -453,13 +455,29 @@
             this.gcProductNumber2.Visible = true;
             this.gcProductNumber2.VisibleIndex = 3;
             // 
+            // gcCurrentProductNumber
+            // 
+            this.gcCurrentProductNumber.Caption = "现品票号";
+            this.gcCurrentProductNumber.FieldName = "CurrentProductNumber";
+            this.gcCurrentProductNumber.Name = "gcCurrentProductNumber";
+            this.gcCurrentProductNumber.Visible = true;
+            this.gcCurrentProductNumber.VisibleIndex = 5;
+            // 
             // gcInputInvoice
             // 
             this.gcInputInvoice.Caption = "入库发票号";
             this.gcInputInvoice.FieldName = "InputInvoice";
             this.gcInputInvoice.Name = "gcInputInvoice";
             this.gcInputInvoice.Visible = true;
-            this.gcInputInvoice.VisibleIndex = 5;
+            this.gcInputInvoice.VisibleIndex = 6;
+            // 
+            // gcCustomerPo
+            // 
+            this.gcCustomerPo.Caption = "客户PO";
+            this.gcCustomerPo.FieldName = "CustomerPo";
+            this.gcCustomerPo.Name = "gcCustomerPo";
+            this.gcCustomerPo.Visible = true;
+            this.gcCustomerPo.VisibleIndex = 7;
             // 
             // gcLotsNumber
             // 
@@ -467,15 +485,15 @@
             this.gcLotsNumber.FieldName = "LotsNumber";
             this.gcLotsNumber.Name = "gcLotsNumber";
             this.gcLotsNumber.Visible = true;
-            this.gcLotsNumber.VisibleIndex = 7;
+            this.gcLotsNumber.VisibleIndex = 8;
             // 
             // gcProductDate
             // 
-            this.gcProductDate.Caption = "生产日期";
+            this.gcProductDate.Caption = "到期日期";
             this.gcProductDate.FieldName = "ProductDate";
             this.gcProductDate.Name = "gcProductDate";
             this.gcProductDate.Visible = true;
-            this.gcProductDate.VisibleIndex = 8;
+            this.gcProductDate.VisibleIndex = 9;
             // 
             // tabAssigned
             // 
@@ -537,14 +555,6 @@
             // dxValidationProvider1
             // 
             this.dxValidationProvider1.ValidationMode = DevExpress.XtraEditors.DXErrorProvider.ValidationMode.Manual;
-            // 
-            // gcCustomerPo
-            // 
-            this.gcCustomerPo.Caption = "客户PO";
-            this.gcCustomerPo.FieldName = "CustomerPo";
-            this.gcCustomerPo.Name = "gcCustomerPo";
-            this.gcCustomerPo.Visible = true;
-            this.gcCustomerPo.VisibleIndex = 6;
             // 
             // PreDeliveryOrder
             // 
@@ -624,6 +634,7 @@
         private DevExpress.XtraEditors.SimpleButton btnPrintPickOrder;
         private DevExpress.XtraEditors.SimpleButton btnExportAssignedDetails;
         private DevExpress.XtraGrid.Columns.GridColumn gcCustomerPo;
+        private DevExpress.XtraGrid.Columns.GridColumn gcCurrentProductNumber;
 
     }
 }

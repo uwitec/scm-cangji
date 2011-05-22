@@ -393,6 +393,7 @@ namespace SCM_CangJi.DeliveryOrderManage
                 detail.ProductDate = DateTime.Parse(row["ProductDate"].ToString());
             detail.ProductId = int.Parse(row["ProductId"].ToString());
             detail.ProductStorageId = 0;
+            detail.CurrentProductNumber = row["CurrentProductNumber"].TrytoString();
             detail.CustomerPo = row["CustomerPo"].TrytoString();
         }
         private void SetRowValue(DataRow row, DeliveryOrderDetail detail)
@@ -403,6 +404,7 @@ namespace SCM_CangJi.DeliveryOrderManage
             row["CustomerPo"] = detail.CustomerPo;
             row["LotsNumber"] = detail.LotsNumber;
             row["ProductId"] = detail.ProductId;
+            row["CurrentProductNumber"] = detail.CurrentProductNumber;
             row["Id"] = detail.Id;
             if (detail.ProductDate != null)
                 row["ProductDate"] = detail.ProductDate;

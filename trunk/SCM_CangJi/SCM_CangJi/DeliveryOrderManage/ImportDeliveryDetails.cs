@@ -97,6 +97,10 @@ namespace SCM_CangJi.DeliveryOrderManage
                     {
                         detail.CustomerPo = row[datainfo.SrcField].TrytoString();
                     }
+                    else if (Constains.Filed_CurrentProductNumber == datainfo.DestField)
+                    {
+                        detail.CurrentProductNumber = row[datainfo.SrcField].TrytoString();
+                    }
                     else if (Constains.Filed_ProductDate == datainfo.DestField)
                     {
                         DateTime ProductDate = DateTime.MinValue;

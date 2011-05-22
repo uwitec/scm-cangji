@@ -46,6 +46,8 @@
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.txtCustomerPo = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
+            this.txtCurrentProductNumber = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.dxValidationProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDeliveryCount.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlProducts.Properties)).BeginInit();
@@ -54,6 +56,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtLotsNumber.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtInputInvoice.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCustomerPo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCurrentProductNumber.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // dxValidationProvider1
@@ -102,19 +105,19 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(305, 178);
+            this.btnCancel.Location = new System.Drawing.Point(305, 203);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 8;
+            this.btnCancel.TabIndex = 9;
             this.btnCancel.Text = "取消";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(195, 178);
+            this.btnSave.Location = new System.Drawing.Point(195, 203);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 7;
+            this.btnSave.TabIndex = 8;
             this.btnSave.Text = "增加";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -136,7 +139,7 @@
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(60, 14);
             this.labelControl5.TabIndex = 7;
-            this.labelControl5.Text = "生产日期：";
+            this.labelControl5.Text = "到期日期：";
             // 
             // txtLotsNumber
             // 
@@ -199,6 +202,21 @@
             this.txtCustomerPo.Size = new System.Drawing.Size(168, 21);
             this.txtCustomerPo.TabIndex = 6;
             // 
+            // labelControl7
+            // 
+            this.labelControl7.Location = new System.Drawing.Point(32, 174);
+            this.labelControl7.Name = "labelControl7";
+            this.labelControl7.Size = new System.Drawing.Size(60, 14);
+            this.labelControl7.TabIndex = 7;
+            this.labelControl7.Text = "现品票号：";
+            // 
+            // txtCurrentProductNumber
+            // 
+            this.txtCurrentProductNumber.Location = new System.Drawing.Point(100, 171);
+            this.txtCurrentProductNumber.Name = "txtCurrentProductNumber";
+            this.txtCurrentProductNumber.Size = new System.Drawing.Size(168, 21);
+            this.txtCurrentProductNumber.TabIndex = 7;
+            // 
             // EditDeliveryDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -206,8 +224,10 @@
             this.ClientSize = new System.Drawing.Size(590, 252);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.labelControl7);
             this.Controls.Add(this.txtProductDate);
             this.Controls.Add(this.labelControl5);
+            this.Controls.Add(this.txtCurrentProductNumber);
             this.Controls.Add(this.txtCustomerPo);
             this.Controls.Add(this.labelControl6);
             this.Controls.Add(this.txtLotsNumber);
@@ -228,6 +248,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtLotsNumber.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtInputInvoice.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCustomerPo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCurrentProductNumber.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -250,5 +271,7 @@
         private DevExpress.XtraEditors.DXErrorProvider.DXValidationProvider dxValidationProvider1;
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.TextEdit txtCustomerPo;
+        private DevExpress.XtraEditors.LabelControl labelControl7;
+        private DevExpress.XtraEditors.TextEdit txtCurrentProductNumber;
     }
 }
