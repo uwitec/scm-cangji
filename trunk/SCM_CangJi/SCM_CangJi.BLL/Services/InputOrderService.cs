@@ -396,6 +396,7 @@ namespace SCM_CangJi.BLL.Services
                         ps.UpdateDate =DateTime.Now;
                         ps.UpdateUser = Security.SecurityContext.Current.CurrentyUser.UserName;
                         ps.UsableCount = inputDetail.InputCount;
+                        ps.Status = (int)StoreStatus.Avilable;
                         db.ProductStorages.InsertOnSubmit(ps);
                     }
 

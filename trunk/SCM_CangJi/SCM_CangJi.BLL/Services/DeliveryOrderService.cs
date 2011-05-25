@@ -360,6 +360,10 @@ namespace SCM_CangJi.BLL.Services
                             var storage = db.ProductStorages.SingleOrDefault(o => o.Id == groupDetails.Key);
                             if (storage != null)
                             {
+                                if (storage.Product.ProductNumber1 == "10108020100587")
+                                {
+                                    System.Diagnostics.Debug.Assert(true);
+                                }
                                 foreach (var item in groupDetails)
                                 {
                                     storage.UsableCount -= item.AssignCount;

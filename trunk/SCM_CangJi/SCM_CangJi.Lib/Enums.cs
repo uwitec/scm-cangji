@@ -10,6 +10,16 @@ namespace SCM_CangJi.Lib
          public string Message;
          public bool ValidateReslut;
     }
+    public class NameValue<TKey,TValue>
+    {
+        public NameValue(TKey k, TValue v)
+        {
+            key = k;
+            value = v;
+        }
+        public TKey key;
+        public TValue value;
+    }
     public class Constains
     {
         public const string InputOrderDetails = "InputOrderDetails";

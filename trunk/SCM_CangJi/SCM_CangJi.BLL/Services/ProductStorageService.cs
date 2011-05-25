@@ -6,10 +6,26 @@ using System.Data;
 using SCM_CangJi.DAL;
 using System.Data.Linq;
 using SCM_CangJi.Lib;
+using System.Collections;
 namespace SCM_CangJi.BLL.Services
 {
     public class ProductStorageService:BaseService<ProductStorageService>
     {
+        public List<NameValue<int,int>> _hasAssignedProductStorage;
+        /// <summary>
+        /// key productStorageId value assignedCount
+        /// </summary>
+        public List<NameValue<int, int>> HasAssignedProductStorage
+        {
+            get
+            {
+                if (_hasAssignedProductStorage == null)
+                {
+                    _hasAssignedProductStorage = new List<NameValue<int, int>>();
+                }
+                return _hasAssignedProductStorage;
+            }
+        }
         public object GetProducStorages(int companyId)
         {
             throw new NotImplementedException();
@@ -38,15 +54,15 @@ namespace SCM_CangJi.BLL.Services
         private bool BuildDeliveryDetails(IGrouping<int, DeliveryOrderDetail> groupedDetails, CangJiDataDataContext db, ref List<AssignedDeliveryOrderDetail> result)
         {
             //已分配的数量
-            int hasAssignedCount = 0;
             bool isSucess = true;
             foreach (var detail in groupedDetails)
             {
-                if (detail.Product.ProductNumber1 == "10101010101151")
+                if (detail.Product.ProductNumber1 == "10108020100587")
                 {
                     System.Diagnostics.Debug.Assert(true);
                 }
                 int index = 0;
+                int hasAssignedCount = 0;
 
                 bool AssignedCompleted = BuildDeliveryDetails(index, ref hasAssignedCount, detail, db, ref result);
                 //已分配的数量
@@ -77,7 +93,6 @@ namespace SCM_CangJi.BLL.Services
                         });
                     }
                 }
-                hasAssignedCount = 0;
             }
             return isSucess;
 
@@ -119,14 +134,18 @@ namespace SCM_CangJi.BLL.Services
             //还需要的分配数量
             foreach (var item in productStorages)
             {
+                //如果该条库存已经分配完毕
+                int assingedCountPerPS=GetAssignedCountByProductStorageId(item.Id);
+                if (item.UsableCount <= assingedCountPerPS)
+                    continue;
                 //还需数量大于已分配数量时，继续分配
                 int remainAssignCount = detail.DeliveryCount - hasAssignedCount;
                 if (remainAssignCount > 0)
                 {
                     //该条可用库存数量足够
-                    if (item.UsableCount >= remainAssignCount)
+                    if (item.UsableCount - assingedCountPerPS >= remainAssignCount)
                     {
-                        result.Add(new AssignedDeliveryOrderDetail()
+                        AssignedDeliveryOrderDetail assignDetail = new AssignedDeliveryOrderDetail()
                         {
                             AssignCount = remainAssignCount,
                             DeliveryOrderId = detail.DeliveryOrderId,
@@ -139,17 +158,19 @@ namespace SCM_CangJi.BLL.Services
                             StorageAreaId = item.AreaId,
                             CustomerPo = detail.CustomerPo,
                             CurrentProductNumber = item.CurrentProductNumber
-                        });
+                        };
+                        result.Add(assignDetail);
                         hasAssignedCount += remainAssignCount;
                         perhasAssignedCount += remainAssignCount;
                         AssignedCompleted = true;
+                        HasAssignedProductStorage.Add(new NameValue<int,int>(item.Id, assignDetail.AssignCount));
                         break;
                     }
                     else//该条库存数量不足
                     {
                         AssignedDeliveryOrderDetail assignDetail = new AssignedDeliveryOrderDetail()
                         {
-                            AssignCount = hasAssignedCount == 0 ? (item.UsableCount - hasAssignedCount) : item.UsableCount,
+                            AssignCount = assingedCountPerPS == 0 ? item.UsableCount : item.UsableCount - assingedCountPerPS,
                             DeliveryOrderId = detail.DeliveryOrderId,
                             DeliveryCount = detail.DeliveryCount,
                             InputInvoice = detail.InputInvoice,
@@ -161,9 +182,11 @@ namespace SCM_CangJi.BLL.Services
                             CustomerPo = detail.CustomerPo,
                             CurrentProductNumber = item.CurrentProductNumber
                         };
+                        
                         result.Add(assignDetail);
                         perhasAssignedCount += assignDetail.AssignCount;// (item.UsableCount );
                         hasAssignedCount += assignDetail.AssignCount;//(item.UsableCount );
+                        HasAssignedProductStorage.Add(new NameValue<int, int>(item.Id, assignDetail.AssignCount));
                         continue;
                     }
                 }
@@ -177,9 +200,18 @@ namespace SCM_CangJi.BLL.Services
             if (productStorages.Count() > 0 && AssignedCompleted == false)
             {
                 index++;
-                AssignedCompleted = BuildDeliveryDetails(index, ref hasAssignedCount, detail, db, ref result);
+                AssignedCompleted = BuildDeliveryDetails(index,ref hasAssignedCount, detail, db, ref result);
             }
             return AssignedCompleted;
+        }
+
+        private int GetAssignedCountByProductStorageId(int ProductStorageId)
+        {
+            if (this.HasAssignedProductStorage.FirstOrDefault(o=>o.key==ProductStorageId)!=null)
+            {
+                return this.HasAssignedProductStorage.Where(o => o.key == ProductStorageId).Sum(o => o.value);
+            }
+            return 0;
         }
 
         #endregion
