@@ -8,13 +8,16 @@ using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using System.Xml.Serialization;
-
+using log4net;
+using SCM_CangJi.BLL.Security;
+using SCM_CangJi.BLL;
 namespace SCM_CangJi.Account
 {
     public partial class LogOn : FormBase
     {
         public LogOn()
         {
+            this.myLog = MyLogManager.GetLogger(this.GetType());
             InitializeComponent();
         }
 
@@ -26,9 +29,11 @@ namespace SCM_CangJi.Account
                 {
                    //UpdateDB();
                     this.DialogResult = DialogResult.OK;
+                    myLog.Info("登录成功");
                 }
                 else
                 {
+                    myLog.Info(string.Format("{0}登录失败", SecurityContext.Current.CurrentyUser.UserName));
                     DevExpress.XtraEditors.XtraMessageBox.Show("登录失败！用户或者密码错误！");
                 }
             }

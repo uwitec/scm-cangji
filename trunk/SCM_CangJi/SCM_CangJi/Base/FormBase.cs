@@ -13,7 +13,8 @@ using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using DevExpress.XtraGrid.Menu;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.Utils.Menu;
-
+using log4net;
+using SCM_CangJi.BLL;
 namespace SCM_CangJi
 {
     /// <summary>
@@ -21,7 +22,7 @@ namespace SCM_CangJi
     /// </summary>
     public partial class FormBase : XtraForm
     {
-        
+        public IMyLog myLog = null;
         public MembershipUser User
         {
             get

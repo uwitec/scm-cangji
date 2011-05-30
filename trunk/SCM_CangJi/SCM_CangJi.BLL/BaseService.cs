@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.Linq;
-
+using log4net;
 namespace SCM_CangJi.BLL
 {
     public abstract class BaseService<TDAL>
          where TDAL : class, new()
     {
+        private ILog log = LogManager.GetLogger(typeof(TDAL));
         private static readonly Lazy<TDAL> _instance = new Lazy<TDAL>(() => new TDAL());
-
         public static TDAL Instance
         {
             get
@@ -26,9 +26,10 @@ namespace SCM_CangJi.BLL
             {
                 action(context);
             }
-            catch
+            catch(Exception e)
             {
-                throw;
+                log.Error("程序发生了异常", e);
+                throw e;
             }
             finally
             {
@@ -48,9 +49,10 @@ namespace SCM_CangJi.BLL
                 TResult result = action(context);
                 return result;
             }
-            catch
+            catch(Exception e)
             {
-                throw;
+                log.Error("程序发生了异常", e);
+                throw e;
             }
             finally
             {

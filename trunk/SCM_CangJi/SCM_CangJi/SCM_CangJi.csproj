@@ -152,6 +152,9 @@
     <Reference Include="DevExpress.XtraVerticalGrid.v10.1, Version=10.1.6.0, Culture=neutral, PublicKeyToken=c23bc1f5fb9e2a1c">
       <Private>True</Private>
     </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\..\..\..\dll\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic">
       <Private>True</Private>
     </Reference>
@@ -786,6 +789,10 @@
       <DependentUpon>TabStorageManage.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Log4net.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\app.manifest" />

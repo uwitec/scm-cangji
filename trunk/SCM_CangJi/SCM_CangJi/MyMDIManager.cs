@@ -69,7 +69,7 @@ namespace SCM_CangJi
             if (SelectedPage == FixedPage)
                 return;
             base.DoDragDrop();
-            CheckFixedPage();
+            //CheckFixedPage();
         }
 
         private void CheckFixedPage()

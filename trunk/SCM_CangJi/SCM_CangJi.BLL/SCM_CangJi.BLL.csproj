@@ -50,6 +50,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\dll\expressApp\DevExpress.XtraGrid.v10.1.dll</HintPath>
     </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\..\..\..\dll\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
@@ -70,6 +73,8 @@
     <Compile Include="DataHandler.cs" />
     <Compile Include="DeliveryOrderAndDetails.cs" />
     <Compile Include="Extentions.cs" />
+    <Compile Include="Log\MyLog.cs" />
+    <Compile Include="Log\MyLogManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\SecurityContext.cs" />
     <Compile Include="Security\SecurityUser.cs" />
