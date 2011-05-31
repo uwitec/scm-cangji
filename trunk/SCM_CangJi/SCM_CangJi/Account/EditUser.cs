@@ -21,6 +21,7 @@ namespace SCM_CangJi.Account
         }
         public EditUser(Guid userID)
         {
+            this.myLog = SCM_CangJi.BLL.MyLogManager.GetLogger(this.GetType());
             InitializeComponent();
             _userID = userID;
 
@@ -71,6 +72,7 @@ namespace SCM_CangJi.Account
             else
             {
                 Roles.AddUsersToRole(new string[] { txtUserName.EditValue.ToString() }, ddlRoles.SelectedItem.ToString());
+                myLog.Info(string.Format("{0}成功，角色{1}", this.Text, ddlRoles.SelectedText));
                 DialogResult = System.Windows.Forms.DialogResult.OK;
             }
         }

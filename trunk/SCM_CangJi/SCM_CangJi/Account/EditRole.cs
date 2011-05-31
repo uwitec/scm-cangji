@@ -18,6 +18,7 @@ namespace SCM_CangJi.Account
         }
         public EditRole(Guid roleID)
         {
+            this.myLog = SCM_CangJi.BLL.MyLogManager.GetLogger(this.GetType());
             _roleID = roleID;
             InitializeComponent();
             if (_roleID == Guid.Empty)
@@ -35,8 +36,10 @@ namespace SCM_CangJi.Account
         {
             if(_roleID==Guid.Empty)
             SCM_CangJi.BLL.Services.AccountService.Instance.CreateRole(txtRoleName.EditValue.ToString());
+            myLog.Info(this.Text + "成功");
             DialogResult = System.Windows.Forms.DialogResult.OK;
         }
+
 
         private void btnSave_Click(object sender, EventArgs e)
         {

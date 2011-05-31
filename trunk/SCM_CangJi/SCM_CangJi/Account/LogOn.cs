@@ -29,6 +29,7 @@ namespace SCM_CangJi.Account
                 {
                    //UpdateDB();
                     this.DialogResult = DialogResult.OK;
+                    //记录日志
                     myLog.Info("登录成功");
                 }
                 else

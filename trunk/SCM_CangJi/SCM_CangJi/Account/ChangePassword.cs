@@ -13,6 +13,7 @@ namespace SCM_CangJi.Account
     {
         public ChangePassword()
         {
+            this.myLog = SCM_CangJi.BLL.MyLogManager.GetLogger(this.GetType());
             InitializeComponent();
             this.OnSaveAndClose += new Action(ChangePassword_OnSaveAndClose);
         }
@@ -21,6 +22,7 @@ namespace SCM_CangJi.Account
         {
             if (SCM_CangJi.BLL.Services.AccountService.Instance.ChangePassword(txtUserName.Text, txtOldPassword.Text, txtNewPassword1.Text))
             {
+                myLog.Info("修改密码成功");
                 DevExpress.XtraEditors.XtraMessageBox.Show("密码修改成功！");
                 DialogResult = DialogResult.OK;
             }
