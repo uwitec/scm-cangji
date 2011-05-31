@@ -42,7 +42,7 @@ namespace SCM_CangJi.BLL
             {
                 LoggingEvent loggingEvent = new LoggingEvent(
                     ThisDeclaringType, Logger.Repository,
-                    Logger.Name, Level.Info, message, exception);
+                    Logger.Name, Level.Error, message, exception);
                 loggingEvent.Properties["UserName"] = Security.SecurityContext.Current.CurrentyUser.UserName;
                 string strHostName = Dns.GetHostName(); //得到本机的主机名
                 loggingEvent.Properties["MachineName"] = strHostName;

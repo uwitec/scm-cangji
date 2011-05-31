@@ -29,6 +29,7 @@ namespace SCM_CangJi.CustomerManage
             this._productId = productId;
             InitializeComponent();
             InitProductType();
+            this.myLog = SCM_CangJi.BLL.MyLogManager.GetLogger(this.GetType());
             InitCurrencyUnit();
             InitData();
         }
@@ -87,6 +88,7 @@ namespace SCM_CangJi.CustomerManage
                 ProductService.Instance.Create(_product);
 
             }
+            myLog.Info(string.Format("保存商品{0}成功", _product.ProductNumber1));
             DialogResult = System.Windows.Forms.DialogResult.OK;
         }
 

@@ -31,6 +31,7 @@ namespace SCM_CangJi.CustomerManage
         public ProductImport(IntPtr formObject, DataSet data, List<ImportDataInfo> importDataStruct)
             : base(formObject, data, importDataStruct)
         {
+            this.myLog = SCM_CangJi.BLL.MyLogManager.GetLogger(this.GetType());
             InitializeComponent();
             this.Text = "商品信息导入";
           
@@ -183,6 +184,8 @@ namespace SCM_CangJi.CustomerManage
                 productListAdding.Add(p);
             }
             ProductService.Instance.Create(productListAdding);
+            myLog.Info("商品导入成功");
+
             ShowMessage("商品导入成功!");
             this.Updated = true;
         }

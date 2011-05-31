@@ -26,6 +26,7 @@ namespace SCM_CangJi.CustomerManage
         {
             this._contactId = contactId;
             _campanyId = companyId;
+            this.myLog = SCM_CangJi.BLL.MyLogManager.GetLogger(this.GetType());
             InitializeComponent();
             InitData();
             
@@ -73,6 +74,7 @@ namespace SCM_CangJi.CustomerManage
                     contact.IsActived = true;
                     BLL.Services.ContactService.Instance.Insert(contact);
                 }
+                myLog.Info(string.Format("编辑联系人-{0}成功", contact.Name));
                 DialogResult = System.Windows.Forms.DialogResult.OK;
             }
         }

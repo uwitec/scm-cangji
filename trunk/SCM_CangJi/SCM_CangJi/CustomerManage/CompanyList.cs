@@ -35,6 +35,7 @@ namespace SCM_CangJi.CustomerManage
 
         private CompanyList()
         {
+            this.myLog = SCM_CangJi.BLL.MyLogManager.GetLogger(this.GetType());
             InitializeComponent();
             InitCompanyGrid();
         }
@@ -128,8 +129,10 @@ namespace SCM_CangJi.CustomerManage
             if (XtraMessageBox.Show("确实要删除？", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.OK)
             {
                 int companyid = (int)gridViewCompany.GetRowCellValue(companyrowhandle, "Id");
+                object name = gridViewCompany.GetRowCellValue(companyrowhandle, "CompanyName");
                 if (BLL.Services.CompanyService.Instance.Delete(companyid))
                 {
+                    myLog.Info(string.Format("删除公司：{0}", name));
                     gridViewCompany.DeleteSelectedRows();
                 }
             }
@@ -162,8 +165,10 @@ namespace SCM_CangJi.CustomerManage
                         if (XtraMessageBox.Show("确实要删除？", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.OK)
                         {
                             int contaciId = (int)gridViewContacts.GetRowCellValue(contactrowhandle, "Id");
+                            object name = gridViewContacts.GetRowCellValue(contactrowhandle, "Name");
                             if (BLL.Services.ContactService.Instance.Delete(contaciId))
                             {
+                                myLog.Info(string.Format("删除联系人：{0}", name));
                                 gridViewContacts.DeleteSelectedRows();
                             }
                         }
@@ -242,8 +247,10 @@ namespace SCM_CangJi.CustomerManage
                     if (XtraMessageBox.Show("确实要删除？", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.OK)
                     {
                         int productId = (int)gridViewProduct.GetRowCellValue(productrowhandle, "Id");
+                        object ProductNumber1 = gridViewProduct.GetRowCellValue(productrowhandle, "ProductNumber1");
                         if (BLL.Services.ProductService.Instance.Delete(productId))
                         {
+                            myLog.Info(string.Format("删除商品：{0}", ProductNumber1));
                             gridViewProduct.DeleteSelectedRows();
                         }
                     }
@@ -322,8 +329,10 @@ namespace SCM_CangJi.CustomerManage
                     if (XtraMessageBox.Show("确实要删除？", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.OK)
                     {
                         int addressId = (int)gridViewDeliverAddress.GetRowCellValue(productrowhandle, "Id");
+                        object address = gridViewDeliverAddress.GetRowCellValue(productrowhandle, "Address");
                         if (BLL.Services.DeliverAddressService.Instance.Delete(addressId))
                         {
+                            this.myLog.Info(string.Format("删除送货地址:{0}", address));
                             gridViewDeliverAddress.DeleteSelectedRows();
                         }
                     }

@@ -25,6 +25,7 @@ namespace SCM_CangJi.CustomerManage
             _companyId = companyId;
             InitializeComponent();
             InitCompanyType();
+            this.myLog = SCM_CangJi.BLL.MyLogManager.GetLogger(this.GetType());
             InitData();
         }
 
@@ -74,6 +75,7 @@ namespace SCM_CangJi.CustomerManage
                     company.CompanyType = (int)((CompanyType)Enum.Parse(typeof(CompanyType), ddlCompanyType.EditValue.ToString()));
                     CompanyService.Instance.Create(company);
                 }
+                myLog.Info(string.Format("{0}-{1}成功",this.Text, company.CompanyName));
                 DialogResult = System.Windows.Forms.DialogResult.OK;
             }
         }

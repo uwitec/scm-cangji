@@ -30,6 +30,7 @@ namespace SCM_CangJi.CustomerManage
             this._companyId = CompanyId;
             this._addressId = addressId;
             this.deliverAddress = BLL.Services.DeliverAddressService.Instance.GetAddress(addressId);
+            this.myLog = SCM_CangJi.BLL.MyLogManager.GetLogger(this.GetType());
             InitializeComponent();
             InitData();
         }
@@ -60,6 +61,7 @@ namespace SCM_CangJi.CustomerManage
                 DeliverAddressService.Instance.Create(deliverAddress);
 
             }
+            myLog.Info(string.Format("保存送货地址{0}成功", deliverAddress.Address));
             DialogResult = System.Windows.Forms.DialogResult.OK;
         }
 

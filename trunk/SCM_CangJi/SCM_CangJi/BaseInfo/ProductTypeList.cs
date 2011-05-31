@@ -33,6 +33,7 @@ namespace SCM_CangJi.BaseInfo
         public ProductTypeList()
             : base()
         {
+            this.myLog = MyLogManager.GetLogger(this.GetType());
             InitializeComponent();
             InitData();
         }
@@ -47,6 +48,7 @@ namespace SCM_CangJi.BaseInfo
             if (dxValidationProvider1.Validate())
             {
                 BLL.Services.ProductTypeService.Instance.Create(new DAL.ProductType() { Name = txtProductTypeName.EditValue.TrytoString() });
+                myLog.Info("添加了一个商品类型，" + txtProductTypeName.EditValue.TrytoString());
                 txtProductTypeName.EditValue = string.Empty;
                 InitData();
             }
@@ -73,10 +75,13 @@ namespace SCM_CangJi.BaseInfo
 
                 DXMenuItem menuItemDelete = new DXMenuItem("删除", (s, en) =>
                 {
-                    if (ShowQuestion("该动作将会删除相关明细列表，确实要删除吗?") == System.Windows.Forms.DialogResult.OK)
+                    if (ShowQuestion("确实要删除吗?") == System.Windows.Forms.DialogResult.OK)
                     {
                         int orderId = (int)gridViewProductTypes.GetRowCellValue(orderrowhandle, "Id");
+                        object name = gridViewProductTypes.GetRowCellValue(orderrowhandle, "类型名称");
                         BLL.Services.ProductTypeService.Instance.Delete(orderId);
+                     
+                        myLog.Info(string.Format("删除了一个商品类型，{0}", name));
                         InitData();
 
                     }

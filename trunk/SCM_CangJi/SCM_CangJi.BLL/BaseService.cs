@@ -9,7 +9,7 @@ namespace SCM_CangJi.BLL
     public abstract class BaseService<TDAL>
          where TDAL : class, new()
     {
-        private ILog log = LogManager.GetLogger(typeof(TDAL));
+        private IMyLog log = MyLogManager.GetLogger(typeof(TDAL));
         private static readonly Lazy<TDAL> _instance = new Lazy<TDAL>(() => new TDAL());
         public static TDAL Instance
         {
@@ -28,8 +28,7 @@ namespace SCM_CangJi.BLL
             }
             catch(Exception e)
             {
-                log.Error("程序发生了异常", e);
-                throw e;
+                log.Error(string.Format("程序发生了异常:{0},{1}", e.Message, e.StackTrace));
             }
             finally
             {
