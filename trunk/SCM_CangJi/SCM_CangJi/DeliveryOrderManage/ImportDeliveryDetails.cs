@@ -35,6 +35,7 @@ namespace SCM_CangJi.DeliveryOrderManage
             preDeliveryForm = Control.FromHandle(_formObject) as PreDeliveryOrder;
             this.Updated = false;
             validateResult = new Dictionary<string, ValidateValue>();
+            this.myLog = SCM_CangJi.BLL.MyLogManager.GetLogger(this.GetType());
             this.Load += new EventHandler(ImportDeliveryDetailst_Load);
         }
 
@@ -127,6 +128,7 @@ namespace SCM_CangJi.DeliveryOrderManage
         {
             
             DeliveryOrderService.Instance.CreateDetail(DeliveryOrderDetailsAdding);
+            this.myLog.Info("出库明细导入成功");
             ShowMessage("出库明细导入成功!");
             this.Updated = true;
         }

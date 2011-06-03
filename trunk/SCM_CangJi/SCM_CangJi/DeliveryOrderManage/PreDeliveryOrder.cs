@@ -73,6 +73,7 @@ namespace SCM_CangJi.DeliveryOrderManage
         {
             _orderId = orderId;
 
+            this.myLog = SCM_CangJi.BLL.MyLogManager.GetLogger(this.GetType());
             InitializeComponent();
             InitData();
             if (_orderId > 0)
@@ -485,6 +486,7 @@ namespace SCM_CangJi.DeliveryOrderManage
             {
                 this.order.Status = DeliveryStatus.待分配库存.ToString();
                 DeliveryOrderService.Instance.Update(order);
+                this.myLog.Info(string.Format("出库单{0}完成预出库", order.DeliveryOrderNumber));
                 DialogResult = System.Windows.Forms.DialogResult.OK;
                 ShowMessage("预出库完成！");
                 this.Close();
@@ -496,6 +498,7 @@ namespace SCM_CangJi.DeliveryOrderManage
             if (ShowQuestion("你确实要退回该出库单到上一状态吗？\n退回可能导致已分配数据丢失") == System.Windows.Forms.DialogResult.OK)
             {
                 DeliveryOrderService.Instance.SendBackLostStep(order.Id, order.Status);
+                this.myLog.Info(string.Format("出库单{0}被退回", order.DeliveryOrderNumber));
                 this.DialogResult = System.Windows.Forms.DialogResult.OK;
             }
         }

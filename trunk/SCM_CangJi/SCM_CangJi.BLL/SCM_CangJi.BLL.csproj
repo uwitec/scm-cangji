@@ -86,6 +86,7 @@
     <Compile Include="Services\DeliveryOrderService.cs" />
     <Compile Include="Services\ImportProfileService.cs" />
     <Compile Include="Services\InputOrderService.cs" />
+    <Compile Include="Services\LogServices.cs" />
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\ProductStorageService.cs" />
     <Compile Include="Services\ProductTypeService.cs" />

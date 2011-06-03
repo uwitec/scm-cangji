@@ -35,6 +35,7 @@ namespace SCM_CangJi.DeliveryOrderManage
         private ConfirmDeliveryOrder()
         {
             InitializeComponent();
+            this.myLog = SCM_CangJi.BLL.MyLogManager.GetLogger(this.GetType());
             ProgressStart();
         }
         protected override void DoWork(object sender, DoWorkEventArgs e)
@@ -59,7 +60,9 @@ namespace SCM_CangJi.DeliveryOrderManage
             if (RowHandle >= 0)
             {
                 int orderId = (int)gridViewDeliveryOrders.GetRowCellValue(RowHandle, "Id");
+                object deliveryNumber = gridViewDeliveryOrders.GetRowCellValue(RowHandle, "DeliveryOrderNumber");
                 DeliveryOrderService.Instance.ConfirmOutput(orderId);
+                this.myLog.Info(string.Format("出库单{0}已确认出库", deliveryNumber));
                 ShowMessage("出库已确认！");
                 InitGrid();
             }
@@ -124,6 +127,8 @@ namespace SCM_CangJi.DeliveryOrderManage
                     orderId = (int)gridViewDeliveryOrders.GetRowCellValue(RowHandle, "Id");
 
                     DeliveryOrderService.Instance.CancelAssigedDetails(orderId);
+                    object deliveryNumber = gridViewDeliveryOrders.GetRowCellValue(RowHandle, "DeliveryOrderNumber");
+                    this.myLog.Info(string.Format("出库单{0}已确认出库", deliveryNumber));
                     InitGrid();
                 }
             }

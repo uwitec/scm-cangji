@@ -368,6 +368,12 @@
     <Compile Include="InputOrderManage\PrintPreOrder.Designer.cs">
       <DependentUpon>PrintPreOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="LogList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LogList.Designer.cs">
+      <DependentUpon>LogList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Print\PrintSettingController.cs" />
     <Compile Include="ProgressForm.cs">
       <SubType>Form</SubType>
@@ -684,6 +690,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InputOrderManage\PrintPreOrder.resx">
       <DependentUpon>PrintPreOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LogList.resx">
+      <DependentUpon>LogList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProgressForm.resx">
       <DependentUpon>ProgressForm.cs</DependentUpon>

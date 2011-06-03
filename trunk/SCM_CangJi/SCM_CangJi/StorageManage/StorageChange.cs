@@ -83,6 +83,7 @@ namespace SCM_CangJi.StorageManage
         }
         private void StorageChange_Load(object sender, EventArgs e)
         {
+            this.myLog = SCM_CangJi.BLL.MyLogManager.GetLogger(this.GetType());
         }
         private void InitGrid()
         {
@@ -134,7 +135,7 @@ ProductStorageService.Instance.GetCurrentStoragesDT(true);
             if (id > 0)
             {
                 bool isNew=false;
-                ProductStorageChange psc = this.ProductStorageChangingList.SingleOrDefault();
+                ProductStorageChange psc = this.ProductStorageChangingList.SingleOrDefault(o => o.ProductStorageID == id);
                 if (psc == null)
                 {
                     isNew=true;
@@ -155,6 +156,18 @@ ProductStorageService.Instance.GetCurrentStoragesDT(true);
         private void btnSave_Click(object sender, EventArgs e)
         {
             ProductStorageService.Instance.UpdateProductStorages(this.ProductStorageChangingList);
+            StringBuilder sb=new StringBuilder();
+            if (this.ProductStorageChangingList.Count > 0)
+            {
+                sb.Append("编号为");
+                foreach (var item in ProductStorageChangingList)
+                {
+                    sb.AppendFormat("{0},", item.ProductStorageID);
+                }
+                sb.Append("的商品库存被更改");
+                this.myLog.Info(sb.ToString());
+            }
+            this.ProductStorageChangingList.Clear();
             this.Updated = true;
             InitGrid();
         }

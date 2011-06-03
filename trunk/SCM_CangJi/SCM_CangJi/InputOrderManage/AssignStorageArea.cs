@@ -24,6 +24,7 @@ namespace SCM_CangJi.InputOrderManage
             : base()
         {
             _orderId = orderId;
+            this.myLog = SCM_CangJi.BLL.MyLogManager.GetLogger(this.GetType());
             InitializeComponent();
             this.ProgressStart();
         }
@@ -56,6 +57,7 @@ namespace SCM_CangJi.InputOrderManage
                 InputOrderService.Instance.CompleteAssignStorageArea(_orderId, _assignedInputDetails);
                 this.Updated = true;
                 BLL.Services.InputOrderService.Instance.UpdateStatus(_orderId, InputStatus.已分配库位);
+                this.myLog.Info(string.Format("入库单{0}完成分配库位", _inputOrder.InputOrderNumber));
                 ShowMessage("完成分配！");
                 //if (ShowQuestion("已完成库位分配！是否关闭窗口？") == System.Windows.Forms.DialogResult.OK)
                 //{
@@ -114,6 +116,7 @@ namespace SCM_CangJi.InputOrderManage
         private void btnBack_Click(object sender, EventArgs e)
         {
             BLL.Services.InputOrderService.Instance.UpdateStatus(_orderId, InputStatus.待入库);
+            this.myLog.Info(string.Format("入库单{0}被退回", _inputOrder.InputOrderNumber));
             if (ShowQuestion("退回成功！是否关闭窗口？") == System.Windows.Forms.DialogResult.OK)
             {
                 DialogResult = System.Windows.Forms.DialogResult.OK;

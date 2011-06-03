@@ -24,6 +24,7 @@ namespace SCM_CangJi.DeliveryOrderManage
         public AutoAssignStorage(int orderId)
             : base()
         {
+            this.myLog = SCM_CangJi.BLL.MyLogManager.GetLogger(this.GetType());
             _orderId = orderId;
             InitializeComponent();
             this.ProgressStart();
@@ -92,6 +93,7 @@ namespace SCM_CangJi.DeliveryOrderManage
             BLL.Services.DeliveryOrderService.Instance.CreateAssignedDetails(_orderId,_assignedDeliveryDetails);
             _deliveryOrder=DeliveryOrderService.Instance.GetDeliveryOrder(_orderId);
             this.Updated = true;
+            this.myLog.Info(string.Format("出库单{0}分配库存完成！", _deliveryOrder.DeliveryOrderNumber));
             ShowMessage("分配库存完成");
         }
         private void ValidateData()
@@ -129,6 +131,7 @@ namespace SCM_CangJi.DeliveryOrderManage
         private void btnBack_Click(object sender, EventArgs e)
         {
             DeliveryOrderService.Instance.SendBackLostStep(this._deliveryOrder.Id, this._deliveryOrder.Status);
+            this.myLog.Info(string.Format("出库单{0}被退回！", _deliveryOrder.DeliveryOrderNumber));
             DialogResult = System.Windows.Forms.DialogResult.OK;
         }
 

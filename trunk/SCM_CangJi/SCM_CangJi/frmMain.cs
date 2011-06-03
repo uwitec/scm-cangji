@@ -254,6 +254,14 @@ namespace SCM_CangJi
         }
         #endregion
 
+        #region 日志
+
+        private void Systemlog_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            this.SetFocus(LogList.Instance);
+        }
+        #endregion
+
         #region meicunzhi 仓库
         private void WareHouseInfo_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
@@ -317,6 +325,8 @@ namespace SCM_CangJi
         {
             (new StorageManage.StorageWorning()).ShowDialog();
         }
+
+     
 
        
 

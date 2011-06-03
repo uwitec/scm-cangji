@@ -33,6 +33,7 @@ namespace SCM_CangJi.DeliveryOrderManage
         public AssigningProducts()
         {
             InitializeComponent();
+            this.myLog = SCM_CangJi.BLL.MyLogManager.GetLogger(this.GetType());
             ProgressStart();
         }
         protected override void DoWork(object sender, DoWorkEventArgs e)
@@ -96,6 +97,7 @@ namespace SCM_CangJi.DeliveryOrderManage
                 if (ShowQuestion(string.Format("确实要打回预出库订单：{0},进行修改预分配吗？", deliveryNumber)) == System.Windows.Forms.DialogResult.OK)
                 {
                     BLL.Services.DeliveryOrderService.Instance.UpdateStatus(orderId,DeliveryStatus.待出库);
+                    this.myLog.Info(string.Format("出库单{0}被退回！", deliveryNumber));
                     InitGrid();
                 }
             }

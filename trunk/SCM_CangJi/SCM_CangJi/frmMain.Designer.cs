@@ -73,6 +73,8 @@
             this.barLargeButtonItem1 = new DevExpress.XtraBars.BarLargeButtonItem();
             this.barCheckItem1 = new DevExpress.XtraBars.BarCheckItem();
             this.navBarControl1 = new DevExpress.XtraNavBar.NavBarControl();
+            this.logQuery = new DevExpress.XtraNavBar.NavBarGroup();
+            this.Systemlog = new DevExpress.XtraNavBar.NavBarItem();
             this.StorageManageGroup = new DevExpress.XtraNavBar.NavBarGroup();
             this.PreIntowarehouse = new DevExpress.XtraNavBar.NavBarItem();
             this.nvaInputOrders = new DevExpress.XtraNavBar.NavBarItem();
@@ -97,8 +99,6 @@
             this.BaseInfo = new DevExpress.XtraNavBar.NavBarGroup();
             this.ProjectCategory = new DevExpress.XtraNavBar.NavBarItem();
             this.Unit = new DevExpress.XtraNavBar.NavBarItem();
-            this.logQuery = new DevExpress.XtraNavBar.NavBarGroup();
-            this.Systemlog = new DevExpress.XtraNavBar.NavBarItem();
             this.Address = new DevExpress.XtraNavBar.NavBarItem();
             this.ContactInfo = new DevExpress.XtraNavBar.NavBarItem();
             this.CheckStorage = new DevExpress.XtraNavBar.NavBarItem();
@@ -470,6 +470,19 @@
             this.navBarControl1.Text = "navBarControl1";
             this.navBarControl1.View = new DevExpress.XtraNavBar.ViewInfo.SkinNavigationPaneViewInfoRegistrator();
             // 
+            // logQuery
+            // 
+            this.logQuery.Caption = "日志查询";
+            this.logQuery.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
+            new DevExpress.XtraNavBar.NavBarItemLink(this.Systemlog)});
+            this.logQuery.Name = "logQuery";
+            // 
+            // Systemlog
+            // 
+            this.Systemlog.Caption = "系统日志";
+            this.Systemlog.Name = "Systemlog";
+            this.Systemlog.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.Systemlog_LinkClicked);
+            // 
             // StorageManageGroup
             // 
             this.StorageManageGroup.Caption = "库存管理";
@@ -636,18 +649,6 @@
             // 
             this.Unit.Caption = "货币单位";
             this.Unit.Name = "Unit";
-            // 
-            // logQuery
-            // 
-            this.logQuery.Caption = "日志查询";
-            this.logQuery.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
-            new DevExpress.XtraNavBar.NavBarItemLink(this.Systemlog)});
-            this.logQuery.Name = "logQuery";
-            // 
-            // Systemlog
-            // 
-            this.Systemlog.Caption = "系统日志";
-            this.Systemlog.Name = "Systemlog";
             // 
             // Address
             // 

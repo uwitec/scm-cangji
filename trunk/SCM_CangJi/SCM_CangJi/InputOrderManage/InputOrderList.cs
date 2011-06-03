@@ -36,6 +36,7 @@ namespace SCM_CangJi.InputOrderManage
         public InputOrderList()
         {
             InitializeComponent();
+            this.myLog = SCM_CangJi.BLL.MyLogManager.GetLogger(this.GetType());
             ProgressStart();
         }
         protected override void DoWork(object sender, DoWorkEventArgs e)
@@ -102,9 +103,11 @@ namespace SCM_CangJi.InputOrderManage
                         if (XtraMessageBox.Show("该动作将会删除相关明细列表，确实要删除吗？", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.OK)
                         {
                             int orderId = (int)gridViewInputOrders.GetRowCellValue(orderrowhandle, "ID");
+                            object inputNumber = gridViewInputOrders.GetRowCellValue(orderrowhandle, "InputOrderNumber");
                             string message = "";
                             if (InputOrderService.Instance.Delete(orderId, out message))
                             {
+                                this.myLog.Info(string.Format("入库单{0}被删除", inputNumber));
                                 gridViewInputOrders.DeleteSelectedRows();
                             }
                             else

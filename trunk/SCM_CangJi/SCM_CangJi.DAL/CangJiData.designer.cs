@@ -108,6 +108,9 @@ namespace SCM_CangJi.DAL
     partial void InsertDeliveryOrderDetail(DeliveryOrderDetail instance);
     partial void UpdateDeliveryOrderDetail(DeliveryOrderDetail instance);
     partial void DeleteDeliveryOrderDetail(DeliveryOrderDetail instance);
+    partial void InsertLogDetail(LogDetail instance);
+    partial void UpdateLogDetail(LogDetail instance);
+    partial void DeleteLogDetail(LogDetail instance);
     #endregion
 		
 		public CangJiDataDataContext() : 
@@ -361,6 +364,14 @@ namespace SCM_CangJi.DAL
 			get
 			{
 				return this.GetTable<DeliveryOrderDetail>();
+			}
+		}
+		
+		public System.Data.Linq.Table<LogDetail> LogDetails
+		{
+			get
+			{
+				return this.GetTable<LogDetail>();
 			}
 		}
 	}
@@ -9484,6 +9495,260 @@ namespace SCM_CangJi.DAL
 						this._ProductStorageId = default(int);
 					}
 					this.SendPropertyChanged("ProductStorage");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.LogDetails")]
+	public partial class LogDetail : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private System.DateTime _LogDate;
+		
+		private string _Thread;
+		
+		private string _Level;
+		
+		private string _Logger;
+		
+		private string _Message;
+		
+		private string _UserName;
+		
+		private string _MachineName;
+		
+		private string _ClientIP;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnLogDateChanging(System.DateTime value);
+    partial void OnLogDateChanged();
+    partial void OnThreadChanging(string value);
+    partial void OnThreadChanged();
+    partial void OnLevelChanging(string value);
+    partial void OnLevelChanged();
+    partial void OnLoggerChanging(string value);
+    partial void OnLoggerChanged();
+    partial void OnMessageChanging(string value);
+    partial void OnMessageChanged();
+    partial void OnUserNameChanging(string value);
+    partial void OnUserNameChanged();
+    partial void OnMachineNameChanging(string value);
+    partial void OnMachineNameChanged();
+    partial void OnClientIPChanging(string value);
+    partial void OnClientIPChanged();
+    #endregion
+		
+		public LogDetail()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LogDate", DbType="DateTime NOT NULL")]
+		public System.DateTime LogDate
+		{
+			get
+			{
+				return this._LogDate;
+			}
+			set
+			{
+				if ((this._LogDate != value))
+				{
+					this.OnLogDateChanging(value);
+					this.SendPropertyChanging();
+					this._LogDate = value;
+					this.SendPropertyChanged("LogDate");
+					this.OnLogDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Thread", DbType="NVarChar(300) NOT NULL", CanBeNull=false)]
+		public string Thread
+		{
+			get
+			{
+				return this._Thread;
+			}
+			set
+			{
+				if ((this._Thread != value))
+				{
+					this.OnThreadChanging(value);
+					this.SendPropertyChanging();
+					this._Thread = value;
+					this.SendPropertyChanged("Thread");
+					this.OnThreadChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Level]", Storage="_Level", DbType="NVarChar(300) NOT NULL", CanBeNull=false)]
+		public string Level
+		{
+			get
+			{
+				return this._Level;
+			}
+			set
+			{
+				if ((this._Level != value))
+				{
+					this.OnLevelChanging(value);
+					this.SendPropertyChanging();
+					this._Level = value;
+					this.SendPropertyChanged("Level");
+					this.OnLevelChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Logger", DbType="NVarChar(300) NOT NULL", CanBeNull=false)]
+		public string Logger
+		{
+			get
+			{
+				return this._Logger;
+			}
+			set
+			{
+				if ((this._Logger != value))
+				{
+					this.OnLoggerChanging(value);
+					this.SendPropertyChanging();
+					this._Logger = value;
+					this.SendPropertyChanged("Logger");
+					this.OnLoggerChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Message", DbType="NVarChar(4000) NOT NULL", CanBeNull=false)]
+		public string Message
+		{
+			get
+			{
+				return this._Message;
+			}
+			set
+			{
+				if ((this._Message != value))
+				{
+					this.OnMessageChanging(value);
+					this.SendPropertyChanging();
+					this._Message = value;
+					this.SendPropertyChanged("Message");
+					this.OnMessageChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string UserName
+		{
+			get
+			{
+				return this._UserName;
+			}
+			set
+			{
+				if ((this._UserName != value))
+				{
+					this.OnUserNameChanging(value);
+					this.SendPropertyChanging();
+					this._UserName = value;
+					this.SendPropertyChanged("UserName");
+					this.OnUserNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MachineName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string MachineName
+		{
+			get
+			{
+				return this._MachineName;
+			}
+			set
+			{
+				if ((this._MachineName != value))
+				{
+					this.OnMachineNameChanging(value);
+					this.SendPropertyChanging();
+					this._MachineName = value;
+					this.SendPropertyChanged("MachineName");
+					this.OnMachineNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ClientIP", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string ClientIP
+		{
+			get
+			{
+				return this._ClientIP;
+			}
+			set
+			{
+				if ((this._ClientIP != value))
+				{
+					this.OnClientIPChanging(value);
+					this.SendPropertyChanging();
+					this._ClientIP = value;
+					this.SendPropertyChanged("ClientIP");
+					this.OnClientIPChanged();
 				}
 			}
 		}

@@ -516,9 +516,9 @@ namespace SCM_CangJi.BLL.Services
             return Using<CangJiDataDataContext, object>(new CangJiDataDataContext(this.connectionString), db =>
              {
                  object reslut = null;
-                 reslut = (from s in db.ProductStorages
+                 var re=from s in db.ProductStorages
                            join c in db.AssignedDeliveryOrderDetails
-                           on s.Id equals c.StorageAreaId
+                           on s.ProductId equals c.ProductId
                            where (c.DeliveryOrder.Status == DeliveryStatus.已出库.ToString() || c.DeliveryOrder.Status == DeliveryStatus.已分配库存.ToString()
                            || c.DeliveryOrder.Status == DeliveryStatus.已发货.ToString() || c.DeliveryOrder.Status == DeliveryStatus.已送达.ToString())
                            && (ProdcutCurrentNumber == "" || c.CurrentProductNumber == ProdcutCurrentNumber)
@@ -540,7 +540,8 @@ namespace SCM_CangJi.BLL.Services
                                入库发票号 = c.InputInvoice,
                                客户PO = c.CustomerPo,
                                批号 = c.LotsNumber,
-                           }).ToList();
+                           };
+                 reslut = re.ToList();
                  return reslut;
              });
         }

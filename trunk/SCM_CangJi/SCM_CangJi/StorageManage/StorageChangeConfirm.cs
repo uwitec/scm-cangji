@@ -50,6 +50,7 @@ namespace SCM_CangJi.StorageManage
         {
             InitializeComponent();
 
+            this.myLog = SCM_CangJi.BLL.MyLogManager.GetLogger(this.GetType());
             base.DoWork(sender, e);
             InitGrid();
 
@@ -84,7 +85,8 @@ namespace SCM_CangJi.StorageManage
                }
            }
            ProductStorageService.Instance.ConfirmProductStorageChange(changingIds);
-           ShowMessage("变更确认成功！");
+           this.myLog.Info(string.Format("编号为{0}的商品库存更改被【确认】", string.Join(",", changingIds.ToArray())));
+           ShowMessage("变更确认成功！"); 
            InitGrid();
         }
 

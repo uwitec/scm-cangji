@@ -36,6 +36,7 @@ namespace SCM_CangJi.DeliveryOrderManage
         public DeliveryOrderList()
         {
             InitializeComponent();
+            this.myLog = SCM_CangJi.BLL.MyLogManager.GetLogger(this.GetType());
             ProgressStart();
         }
         protected override void DoWork(object sender, DoWorkEventArgs e)
@@ -104,12 +105,15 @@ namespace SCM_CangJi.DeliveryOrderManage
                         {
                             int orderId = (int)gridViewDeliveryOrders.GetRowCellValue(orderrowhandle, "Id");
                             string message = "";
+                            object deliveryNumber = gridViewDeliveryOrders.GetRowCellValue(orderrowhandle, "DeliveryOrderNumber");
                             if (DeliveryOrderService.Instance.Delete(orderId, out message))
                             {
+                                this.myLog.Info(string.Format("删除出库单{0}",deliveryNumber));
                                 gridViewDeliveryOrders.DeleteSelectedRows();
                             }
                             else
                             {
+                                this.myLog.Info(message);
                                 ShowMessage(message);
                             }
                         }

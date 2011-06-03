@@ -34,6 +34,7 @@ namespace SCM_CangJi.InputOrderManage
         {
             InitializeComponent();
             this.ProgressStart();
+            this.myLog = SCM_CangJi.BLL.MyLogManager.GetLogger(this.GetType());
         }
         protected override void DoWork(object sender, DoWorkEventArgs e)
         {
@@ -96,6 +97,7 @@ namespace SCM_CangJi.InputOrderManage
                 if (ShowQuestion(string.Format("确实要打回入库单：{0},进行修改吗？", inputNumber)) == System.Windows.Forms.DialogResult.OK)
                 {
                     BLL.Services.InputOrderService.Instance.UpdateStatus(orderId, InputStatus.待入库);
+                    this.myLog.Info(string.Format("入库单{0}被退回", inputNumber));
                     InitGrid();
                 }
             }

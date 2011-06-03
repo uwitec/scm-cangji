@@ -23,6 +23,7 @@ namespace SCM_CangJi.InputOrderManage
     {
         Dictionary<string, ValidateValue> validateResult;
         PreInputOrder preInputForm;
+        InputOrder inputOrder;
         IEnumerable<StorageArea> StorageAreas = null;
         IEnumerable<Product> Products = null;
         public ImportInputDetails(IntPtr formObject, DataSet data, List<ImportDataInfo> importDataStruct)
@@ -30,6 +31,7 @@ namespace SCM_CangJi.InputOrderManage
         {
             InitializeComponent();
             this.Text = "商品信息导入";
+            this.myLog = SCM_CangJi.BLL.MyLogManager.GetLogger(this.GetType());
 
             preInputForm = Control.FromHandle(_formObject) as PreInputOrder;
             this.Updated = false;
@@ -45,6 +47,7 @@ namespace SCM_CangJi.InputOrderManage
         {
             Products = ProductService.Instance.GetProductsEntities(this.preInputForm.CompanyId);
             StorageAreas = StorageAreaService.Instance.StorageAreas;
+            inputOrder = InputOrderService.Instance.GetInputOrder(preInputForm.OrderId);
             InputDetailStyleFormatCondition cn;
             foreach (var item in _importDataStruct)
             {
@@ -123,6 +126,7 @@ namespace SCM_CangJi.InputOrderManage
                 InputOrderDetailsAdding.Add(detail);
             }
             InputOrderService.Instance.CreateDetail(InputOrderDetailsAdding);
+            this.myLog.Info(string.Format("入库单{0}入库明细导入成功", inputOrder.InputOrderNumber));
             ShowMessage("入库明细导入成功!");
             this.Updated = true;
         }

@@ -81,6 +81,7 @@ namespace SCM_CangJi.InputOrderManage
         {
             _orderId = orderId;
 
+            this.myLog = SCM_CangJi.BLL.MyLogManager.GetLogger(this.GetType());
             InitializeComponent();
             InitData();
             if (_orderId > 0)
@@ -456,6 +457,7 @@ namespace SCM_CangJi.InputOrderManage
                 this.order.Status = InputStatus.待分配库位.ToString();
                 InputOrderService.Instance.Update(order);
                 DialogResult = System.Windows.Forms.DialogResult.OK;
+                this.myLog.Info(string.Format("入库单{0}完成预入库", order.InputOrderNumber));
                 ShowMessage("完成预入库！");
                 this.Close();
             }
@@ -484,6 +486,7 @@ namespace SCM_CangJi.InputOrderManage
         private void btnBack_Click(object sender, EventArgs e)
         {
             InputOrderService.Instance.UpdateStatus(order.ID, InputStatus.待入库);
+            this.myLog.Info(string.Format("入库单{0}已被退回",order.InputOrderNumber));
             ShowMessage("已退回到待入库状态");
             DialogResult = System.Windows.Forms.DialogResult.OK;
         }
