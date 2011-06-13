@@ -16,10 +16,20 @@ using SCM_CangJi.CustomerManage;
 using SCM_CangJi.DeliveryOrderManage;
 using SCM_CangJi.WareHouseManage;
 using SCM_CangJi.BaseInfo;
+using SCM_CangJi.BLL.Services;
+using SCM_CangJi.DAL;
+using DevExpress.XtraNavBar;
 namespace SCM_CangJi
 {
     public partial class frmMain : XtraForm
     {
+        public DevExpress.XtraNavBar.NavBarControl LeftMenu
+        {
+            get
+            {
+                return this.navBarControl1;
+            }
+        }
         private void SetFocus(FormBase form)
         {
             #region meicunzhi
@@ -78,7 +88,17 @@ namespace SCM_CangJi
 
         private void InitMenu()
         {
+            IEnumerable<string> pers = AccountService.Instance.GetPermisstionsByUser(SecurityContext.Current.CurrentyUser.UserName).Select(o=>o.MenuName).Distinct();
+            List<string> indexs = new List<string>();
           
+            foreach (NavBarItem baritem in LeftMenu.Items)
+            {
+                baritem.Visible = pers.Contains(baritem.Name);
+            }
+            foreach (NavBarGroup group in LeftMenu.Groups)
+            {
+                group.Visible = group.VisibleItemLinks.Count > 0;
+            }
         }
 
         void changepasswordItem_ItemClick(object sender, ItemClickEventArgs e)
@@ -170,7 +190,12 @@ namespace SCM_CangJi
         private void RolesManage_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
         {
             this.SetFocus(RoleList.Instance);
-        } 
+        }
+        private void navSetPermisstion_LinkClicked(object sender, DevExpress.XtraNavBar.NavBarLinkEventArgs e)
+        {
+            this.SetFocus(PermisstionManage.Instance);
+
+        }
         #endregion
 
         #region 基本信息
@@ -325,6 +350,8 @@ namespace SCM_CangJi
         {
             (new StorageManage.StorageWorning()).ShowDialog();
         }
+
+       
 
      
 

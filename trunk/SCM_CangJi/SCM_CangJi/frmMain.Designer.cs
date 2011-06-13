@@ -92,6 +92,7 @@
             this.UserManagerGroup = new DevExpress.XtraNavBar.NavBarGroup();
             this.RolesManage = new DevExpress.XtraNavBar.NavBarItem();
             this.UsersManage = new DevExpress.XtraNavBar.NavBarItem();
+            this.navSetPermisstion = new DevExpress.XtraNavBar.NavBarItem();
             this.CustomerManage = new DevExpress.XtraNavBar.NavBarGroup();
             this.CompanyInfo = new DevExpress.XtraNavBar.NavBarItem();
             this.WareHouseManage = new DevExpress.XtraNavBar.NavBarGroup();
@@ -99,9 +100,6 @@
             this.BaseInfo = new DevExpress.XtraNavBar.NavBarGroup();
             this.ProjectCategory = new DevExpress.XtraNavBar.NavBarItem();
             this.Unit = new DevExpress.XtraNavBar.NavBarItem();
-            this.Address = new DevExpress.XtraNavBar.NavBarItem();
-            this.ContactInfo = new DevExpress.XtraNavBar.NavBarItem();
-            this.CheckStorage = new DevExpress.XtraNavBar.NavBarItem();
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.splitterControl1 = new DevExpress.XtraEditors.SplitterControl();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
@@ -440,12 +438,9 @@
             this.PreIntowarehouse,
             this.CompanyInfo,
             this.WareHouseInfo,
-            this.Address,
-            this.ContactInfo,
             this.Unit,
             this.ProjectCategory,
             this.IntoWareHouseConfirm,
-            this.CheckStorage,
             this.StorageChange,
             this.PreOutWoreHouse,
             this.AssignStorage,
@@ -457,7 +452,8 @@
             this.AssignStorageArea,
             this.navDeliveryOrders,
             this.nvaInputOrders,
-            this.navProductInOutHistory});
+            this.navProductInOutHistory,
+            this.navSetPermisstion});
             this.navBarControl1.Location = new System.Drawing.Point(0, 54);
             this.navBarControl1.Margin = new System.Windows.Forms.Padding(0);
             this.navBarControl1.Name = "navBarControl1";
@@ -586,23 +582,27 @@
             this.UserManagerGroup.Caption = "用户管理";
             this.UserManagerGroup.ItemLinks.AddRange(new DevExpress.XtraNavBar.NavBarItemLink[] {
             new DevExpress.XtraNavBar.NavBarItemLink(this.RolesManage),
-            new DevExpress.XtraNavBar.NavBarItemLink(this.UsersManage)});
+            new DevExpress.XtraNavBar.NavBarItemLink(this.UsersManage),
+            new DevExpress.XtraNavBar.NavBarItemLink(this.navSetPermisstion)});
             this.UserManagerGroup.Name = "UserManagerGroup";
             // 
             // RolesManage
             // 
-            this.RolesManage.Caption = "角色";
-            this.RolesManage.LargeImageIndex = 2;
+            this.RolesManage.Caption = "角色管理";
             this.RolesManage.Name = "RolesManage";
-            this.RolesManage.SmallImageIndex = 1;
             this.RolesManage.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.RolesManage_LinkClicked);
             // 
             // UsersManage
             // 
-            this.UsersManage.Caption = "用户";
+            this.UsersManage.Caption = "用户管理";
             this.UsersManage.Name = "UsersManage";
-            this.UsersManage.SmallImageIndex = 1;
             this.UsersManage.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.UsersManage_LinkClicked);
+            // 
+            // navSetPermisstion
+            // 
+            this.navSetPermisstion.Caption = "权限设置";
+            this.navSetPermisstion.Name = "navSetPermisstion";
+            this.navSetPermisstion.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.navSetPermisstion_LinkClicked);
             // 
             // CustomerManage
             // 
@@ -627,7 +627,7 @@
             // 
             // WareHouseInfo
             // 
-            this.WareHouseInfo.Caption = "仓库";
+            this.WareHouseInfo.Caption = "仓库维护";
             this.WareHouseInfo.Name = "WareHouseInfo";
             this.WareHouseInfo.LinkClicked += new DevExpress.XtraNavBar.NavBarLinkEventHandler(this.WareHouseInfo_LinkClicked);
             // 
@@ -649,21 +649,6 @@
             // 
             this.Unit.Caption = "货币单位";
             this.Unit.Name = "Unit";
-            // 
-            // Address
-            // 
-            this.Address.Caption = "送货地址信息";
-            this.Address.Name = "Address";
-            // 
-            // ContactInfo
-            // 
-            this.ContactInfo.Caption = "联系人";
-            this.ContactInfo.Name = "ContactInfo";
-            // 
-            // CheckStorage
-            // 
-            this.CheckStorage.Caption = "盘库";
-            this.CheckStorage.Name = "CheckStorage";
             // 
             // imageList2
             // 
@@ -795,12 +780,9 @@
         private DevExpress.XtraNavBar.NavBarItem CompanyInfo;
         private DevExpress.XtraNavBar.NavBarGroup WareHouseManage;
         private DevExpress.XtraNavBar.NavBarItem WareHouseInfo;
-        private DevExpress.XtraNavBar.NavBarItem Address;
-        private DevExpress.XtraNavBar.NavBarItem ContactInfo;
         private DevExpress.XtraNavBar.NavBarItem IntoWareHouseConfirm;
         private DevExpress.XtraNavBar.NavBarItem PreOutWoreHouse;
         private DevExpress.XtraNavBar.NavBarItem AssignStorage;
-        private DevExpress.XtraNavBar.NavBarItem CheckStorage;
         private DevExpress.XtraNavBar.NavBarItem StorageChange;
         private DevExpress.XtraNavBar.NavBarItem OutWareHouseConfirm;
         private DevExpress.XtraNavBar.NavBarItem StorageInfo;
@@ -819,6 +801,7 @@
         private DevExpress.XtraBars.BarToolbarsListItem barToolbarsListItem1;
         private DevExpress.XtraBars.BarLargeButtonItem barLargeButtonItem1;
         private DevExpress.XtraBars.BarCheckItem barCheckItem1;
+        private DevExpress.XtraNavBar.NavBarItem navSetPermisstion;
 
     }
 }

@@ -253,6 +253,12 @@
     <Compile Include="Account\LogOn.Designer.cs">
       <DependentUpon>LogOn.cs</DependentUpon>
     </Compile>
+    <Compile Include="Account\PermisstionManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Account\PermisstionManage.Designer.cs">
+      <DependentUpon>PermisstionManage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Account\RoleList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -627,6 +633,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Account\LogOn.resx">
       <DependentUpon>LogOn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Account\PermisstionManage.resx">
+      <DependentUpon>PermisstionManage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Account\RoleList.resx">
       <DependentUpon>RoleList.cs</DependentUpon>

@@ -34,7 +34,7 @@ namespace SCM_CangJi.Account
                 }
                 else
                 {
-                    myLog.Info(string.Format("{0}登录失败", SecurityContext.Current.CurrentyUser.UserName));
+                    myLog.Info(string.Format("{0}登录失败", txtUserName.EditValue.ToString()));
                     DevExpress.XtraEditors.XtraMessageBox.Show("登录失败！用户或者密码错误！");
                 }
             }

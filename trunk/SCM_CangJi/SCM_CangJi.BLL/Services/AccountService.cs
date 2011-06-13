@@ -117,9 +117,9 @@ namespace SCM_CangJi.BLL.Services
 
         public string[] GetAllRoles()
         {
-           return Roles.GetAllRoles();
+            return Roles.GetAllRoles();
         }
-
+      
         public object GetRoles()
         {
             object result = null;
@@ -162,6 +162,43 @@ namespace SCM_CangJi.BLL.Services
         public void CreateRole(string roleName)
         {
             Roles.CreateRole(roleName);
+        }
+        public void AddPermissions(string[] menuName, Guid roleId)
+        {
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
+            {
+                var oldps = db.MenuPermisstions.Where(o => o.RoleId == roleId);
+                db.MenuPermisstions.DeleteAllOnSubmit(oldps);
+                foreach (var menu in menuName)
+                {
+                    MenuPermisstion p = new MenuPermisstion() { MenuName = menu, RoleId = roleId };
+                    db.MenuPermisstions.InsertOnSubmit(p);
+                }
+                db.SubmitChanges();
+            });
+        }
+        public IEnumerable<MenuPermisstion> GetPermisstions(Guid roleId)
+        {
+            return Using<CangJiDataDataContext, IEnumerable<MenuPermisstion>>(new CangJiDataDataContext(this.connectionString), db =>
+            {
+                var reslut = db.MenuPermisstions.Where(o => o.RoleId == roleId);
+                return reslut.ToList();
+            });
+        }
+        public IEnumerable<MenuPermisstion> GetPermisstionsByUser(string userName)
+        {
+            return Using<CangJiDataDataContext, IEnumerable<MenuPermisstion>>(new CangJiDataDataContext(this.connectionString), db =>
+            {
+                var reslut = from p in db.MenuPermisstions
+                             join r in db.aspnet_UsersInRoles
+                             on p.RoleId equals r.RoleId
+                             join u in db.aspnet_Users
+                            on r.UserId equals u.UserId
+                             where u.UserName.Equals(userName)
+                             select p;
+
+                return reslut.ToList();
+            });
         }
     }
 

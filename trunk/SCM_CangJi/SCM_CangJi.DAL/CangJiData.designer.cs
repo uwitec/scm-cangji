@@ -111,6 +111,9 @@ namespace SCM_CangJi.DAL
     partial void InsertLogDetail(LogDetail instance);
     partial void UpdateLogDetail(LogDetail instance);
     partial void DeleteLogDetail(LogDetail instance);
+    partial void InsertMenuPermisstion(MenuPermisstion instance);
+    partial void UpdateMenuPermisstion(MenuPermisstion instance);
+    partial void DeleteMenuPermisstion(MenuPermisstion instance);
     #endregion
 		
 		public CangJiDataDataContext() : 
@@ -372,6 +375,14 @@ namespace SCM_CangJi.DAL
 			get
 			{
 				return this.GetTable<LogDetail>();
+			}
+		}
+		
+		public System.Data.Linq.Table<MenuPermisstion> MenuPermisstions
+		{
+			get
+			{
+				return this.GetTable<MenuPermisstion>();
 			}
 		}
 	}
@@ -901,6 +912,8 @@ namespace SCM_CangJi.DAL
 		
 		private EntitySet<aspnet_UsersInRole> _aspnet_UsersInRoles;
 		
+		private EntitySet<MenuPermisstion> _MenuPermisstions;
+		
 		private EntityRef<aspnet_Application> _aspnet_Application;
 		
     #region Extensibility Method Definitions
@@ -922,6 +935,7 @@ namespace SCM_CangJi.DAL
 		public aspnet_Role()
 		{
 			this._aspnet_UsersInRoles = new EntitySet<aspnet_UsersInRole>(new Action<aspnet_UsersInRole>(this.attach_aspnet_UsersInRoles), new Action<aspnet_UsersInRole>(this.detach_aspnet_UsersInRoles));
+			this._MenuPermisstions = new EntitySet<MenuPermisstion>(new Action<MenuPermisstion>(this.attach_MenuPermisstions), new Action<MenuPermisstion>(this.detach_MenuPermisstions));
 			this._aspnet_Application = default(EntityRef<aspnet_Application>);
 			OnCreated();
 		}
@@ -1043,6 +1057,19 @@ namespace SCM_CangJi.DAL
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="aspnet_Role_MenuPermisstion", Storage="_MenuPermisstions", ThisKey="RoleId", OtherKey="RoleId")]
+		public EntitySet<MenuPermisstion> MenuPermisstions
+		{
+			get
+			{
+				return this._MenuPermisstions;
+			}
+			set
+			{
+				this._MenuPermisstions.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="aspnet_Application_aspnet_Role", Storage="_aspnet_Application", ThisKey="ApplicationId", OtherKey="ApplicationId", IsForeignKey=true)]
 		public aspnet_Application aspnet_Application
 		{
@@ -1104,6 +1131,18 @@ namespace SCM_CangJi.DAL
 		}
 		
 		private void detach_aspnet_UsersInRoles(aspnet_UsersInRole entity)
+		{
+			this.SendPropertyChanging();
+			entity.aspnet_Role = null;
+		}
+		
+		private void attach_MenuPermisstions(MenuPermisstion entity)
+		{
+			this.SendPropertyChanging();
+			entity.aspnet_Role = this;
+		}
+		
+		private void detach_MenuPermisstions(MenuPermisstion entity)
 		{
 			this.SendPropertyChanging();
 			entity.aspnet_Role = null;
@@ -9749,6 +9788,157 @@ namespace SCM_CangJi.DAL
 					this._ClientIP = value;
 					this.SendPropertyChanged("ClientIP");
 					this.OnClientIPChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MenuPermisstions")]
+	public partial class MenuPermisstion : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Guid _RoleId;
+		
+		private string _MenuName;
+		
+		private EntityRef<aspnet_Role> _aspnet_Role;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnRoleIdChanging(System.Guid value);
+    partial void OnRoleIdChanged();
+    partial void OnMenuNameChanging(string value);
+    partial void OnMenuNameChanged();
+    #endregion
+		
+		public MenuPermisstion()
+		{
+			this._aspnet_Role = default(EntityRef<aspnet_Role>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleId", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid RoleId
+		{
+			get
+			{
+				return this._RoleId;
+			}
+			set
+			{
+				if ((this._RoleId != value))
+				{
+					if (this._aspnet_Role.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnRoleIdChanging(value);
+					this.SendPropertyChanging();
+					this._RoleId = value;
+					this.SendPropertyChanged("RoleId");
+					this.OnRoleIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MenuName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string MenuName
+		{
+			get
+			{
+				return this._MenuName;
+			}
+			set
+			{
+				if ((this._MenuName != value))
+				{
+					this.OnMenuNameChanging(value);
+					this.SendPropertyChanging();
+					this._MenuName = value;
+					this.SendPropertyChanged("MenuName");
+					this.OnMenuNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="aspnet_Role_MenuPermisstion", Storage="_aspnet_Role", ThisKey="RoleId", OtherKey="RoleId", IsForeignKey=true)]
+		public aspnet_Role aspnet_Role
+		{
+			get
+			{
+				return this._aspnet_Role.Entity;
+			}
+			set
+			{
+				aspnet_Role previousValue = this._aspnet_Role.Entity;
+				if (((previousValue != value) 
+							|| (this._aspnet_Role.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._aspnet_Role.Entity = null;
+						previousValue.MenuPermisstions.Remove(this);
+					}
+					this._aspnet_Role.Entity = value;
+					if ((value != null))
+					{
+						value.MenuPermisstions.Add(this);
+						this._RoleId = value.RoleId;
+					}
+					else
+					{
+						this._RoleId = default(System.Guid);
+					}
+					this.SendPropertyChanged("aspnet_Role");
 				}
 			}
 		}

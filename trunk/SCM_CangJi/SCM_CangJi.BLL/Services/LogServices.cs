@@ -44,7 +44,7 @@ namespace SCM_CangJi.BLL.Services
                 {
                     condition = condition.And(o => o.UserName.Contains(userName));
                 }
-                result = (from log in context.LogDetails.Where(condition)
+                result = (from log in context.LogDetails.Where(condition).OrderByDescending(o=>o.LogDate).Take(100)
                           select new
                           {
                               客户端IP = log.ClientIP,
