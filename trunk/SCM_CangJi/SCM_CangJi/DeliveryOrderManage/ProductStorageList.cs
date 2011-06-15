@@ -8,6 +8,9 @@ using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using SCM_CangJi.BLL.Services;
+using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.Utils.Menu;
+using SCM_CangJi.StorageManage;
 namespace SCM_CangJi.DeliveryOrderManage
 {
     public partial class ProductStorageList : FormBase
@@ -44,7 +47,8 @@ namespace SCM_CangJi.DeliveryOrderManage
 
         private void InitGrid()
         {
-            gridControlProductStorages.DataSource = ProductStorageService.Instance.GetCurrentStorages(radioGroup1.EditValue.Equals(1));
+            bindingSource1.DataSource=ProductStorageService.Instance.GetCurrentStorages(radioGroup1.EditValue.Equals(1));
+            gridControlProductStorages.DataSource = bindingSource1;
         }
         private void ProductStorageList_Load(object sender, EventArgs e)
         {
@@ -68,6 +72,28 @@ namespace SCM_CangJi.DeliveryOrderManage
         private void radioGroup1_SelectedIndexChanged(object sender, EventArgs e)
         {
             InitGrid();
+        }
+        int rowhandle = -1;
+        private void gridViewProductStorages_ShowGridMenu(object sender, DevExpress.XtraGrid.Views.Grid.GridMenuEventArgs e)
+        {
+            if (e.MenuType == GridMenuType.Row)
+            {
+                rowhandle = -1;
+                // Delete existing menu items, if any.
+                e.Menu.Items.Clear();
+                DXMenuItem menuItemSplit = new DXMenuItem("移库", (s, en) =>
+                {
+                    int strorageId = (int)gridViewProductStorages.GetRowCellValue(rowhandle, "Id");
+
+                    StorageSplitSetting editform = new StorageSplitSetting(bindingSource1.Current, strorageId);
+                    if (editform.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                    {
+                        InitGrid();
+                    }
+                });
+                e.Menu.Items.Add(menuItemSplit);
+                rowhandle = e.HitInfo.RowHandle;
+            }
         }
     }
 }

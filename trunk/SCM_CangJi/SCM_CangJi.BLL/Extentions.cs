@@ -70,6 +70,13 @@ namespace SCM_CangJi.BLL
             }
 
         }
+
+        public static object GetValue(this object item,string propertyName)
+        {
+            PropertyDescriptorCollection pdc = TypeDescriptor.GetProperties(item);
+            PropertyDescriptor property = pdc.Find(propertyName, true);
+            return property.GetValue(item);
+        }
     }
 
     public class ProductImportInfo : IDataErrorInfo

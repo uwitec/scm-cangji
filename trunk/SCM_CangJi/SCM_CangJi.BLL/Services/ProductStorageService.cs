@@ -232,6 +232,7 @@ namespace SCM_CangJi.BLL.Services
                           orderby ps.EntryDate ascending
                           select new
                           {
+                              ps.Id,
                               公司名 = ps.Company.CompanyName,
                               品名 = ps.Product.ProductChName,
                               品号 = ps.Product.ProductNumber1,
@@ -448,6 +449,41 @@ namespace SCM_CangJi.BLL.Services
         }
         #endregion
 
-       
+
+
+        public void Split(int splitCount, int productStorageId, int toAreaId)
+        {
+            Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
+            {
+                var oldps=db.ProductStorages.SingleOrDefault(o=>o.Id==productStorageId);
+                if(oldps!=null)
+                {
+                    ProductStorage newPs = new ProductStorage();
+                    newPs.AreaId = toAreaId;
+                    newPs.CompanyId = oldps.CompanyId;
+                    newPs.CurrentCount = splitCount;
+                    newPs.CurrentProductNumber = CommonService.Instance.GetOrderNumber(OrderType.CurrentProductOrder);
+                    newPs.EntryDate = oldps.EntryDate;
+                    newPs.EntryUser = oldps.EntryUser;
+                    newPs.InputDetailId = oldps.InputDetailId;
+                    newPs.LotsNumber = oldps.LotsNumber;
+                    newPs.Memo = oldps.Memo;
+                    newPs.OriginalCount = splitCount;
+                    newPs.ProductDate = oldps.ProductDate;
+                    newPs.ProductId = oldps.ProductId;
+                    newPs.Status = 1;
+                    oldps.Status = 1;
+                    newPs.UpdateDate = oldps.UpdateDate = DateTime.Now;
+                    newPs.UpdateUser = oldps.UpdateUser = Security.SecurityContext.Current.CurrentyUser.UserName;
+                    newPs.UsableCount = splitCount;
+                    oldps.CurrentCount -= splitCount;
+                    oldps.UsableCount -= splitCount;
+                    db.ProductStorages.InsertOnSubmit(newPs);
+
+                }
+                db.SubmitChanges();
+
+            });
+        }
     }
 }

@@ -541,7 +541,7 @@ namespace SCM_CangJi.BLL.Services
                                客户PO = c.CustomerPo,
                                批号 = c.LotsNumber,
                            };
-                 reslut = re.ToList();
+                 reslut = re.Distinct().ToList();
                  return reslut;
              });
         }
