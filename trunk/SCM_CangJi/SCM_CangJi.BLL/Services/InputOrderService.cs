@@ -361,7 +361,7 @@ namespace SCM_CangJi.BLL.Services
 
             var ps = db.StorageAreas.SingleOrDefault(o => o.Id == c.StorageAreaId);
 
-            result = ps.StorageRack.Storage.仓库名称 + "--" + ps.StorageRack.RackName + "--" + ps.库位编号;
+            result = ps.StorageRack.RackName + "--" + ps.库位编号;
             return result; ;
         }
 
@@ -432,7 +432,7 @@ namespace SCM_CangJi.BLL.Services
                               英文品名 = c.Product.ProductEngName,
                               入库数量 = c.InputCount,
                               入库时间 = s.EntryDate,
-                              //库位 = GetArea(c, db),
+                              库位 = GetArea(c, db),
                               到期日期 = c.ProductDate,
                               批号 = c.LotsNumber,
                               入库发票 = c.InputOrder.Invoice,

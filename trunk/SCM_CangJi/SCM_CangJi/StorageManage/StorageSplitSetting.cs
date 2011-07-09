@@ -59,15 +59,21 @@ namespace SCM_CangJi.StorageManage
             {
                 if (ShowQuestion("确实要确认移动吗")== System.Windows.Forms.DialogResult.OK)
                 {
-
-                    ProductStorageService.Instance.Split(int.Parse(txtSplitCount.EditValue.ToString()), _productStorageId, int.Parse(ddlStorageArea.EditValue.TrytoString()));
-                    this.myLog.Info(string.Format("库存ID:{0}，商品号：{1},被移动【{2}】件到库位：{3}",
-                        _productStorageId,
-                        ProductStrorage.GetValue("品号"),
-                        txtSplitCount.EditValue,
-                        ddlStorageArea.Text));
-                    ShowMessage("移库成功!");
+                    string message = "";
+                    if (ProductStorageService.Instance.Split(int.Parse(txtSplitCount.EditValue.ToString()), _productStorageId, int.Parse(ddlStorageArea.EditValue.TrytoString()), out message))
+                    {
+                        this.myLog.Info(string.Format("库存ID:{0}，商品号：{1},被移动【{2}】件到库位：{3}",
+                            _productStorageId,
+                            ProductStrorage.GetValue("品号"),
+                            txtSplitCount.EditValue,
+                            ddlStorageArea.Text));
+                        ShowMessage("移库成功!");
                     DialogResult = System.Windows.Forms.DialogResult.OK;
+                    }
+                    else
+                    {
+                        ShowMessage(string.Format("移库失败,{0}", message));
+                    }
                 }
             }
         }

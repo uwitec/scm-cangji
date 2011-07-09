@@ -20,10 +20,9 @@ namespace SCM_CangJi.Account
 
         void ChangePassword_OnSaveAndClose()
         {
-            if (SCM_CangJi.BLL.Services.AccountService.Instance.ChangePassword(txtUserName.Text, txtOldPassword.Text, txtNewPassword1.Text))
+            if (SCM_CangJi.BLL.Services.AccountService.Instance.ChangePassword(txtUserName.Text, txtNewPassword1.Text))
             {
-                myLog.Info("修改密码成功");
-                DevExpress.XtraEditors.XtraMessageBox.Show("密码修改成功！");
+                myLog.Info(string.Format("给用户{0}修改密码成功",txtUserName.Text));
                 DialogResult = DialogResult.OK;
             }
             else

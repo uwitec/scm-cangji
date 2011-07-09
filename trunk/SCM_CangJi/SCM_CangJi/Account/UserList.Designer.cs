@@ -113,6 +113,7 @@
             this.gridViewUsers.OptionsBehavior.Editable = false;
             this.gridViewUsers.OptionsView.ShowAutoFilterRow = true;
             this.gridViewUsers.OptionsView.ShowGroupPanel = false;
+            this.gridViewUsers.ShowGridMenu += new DevExpress.XtraGrid.Views.Grid.GridMenuEventHandler(this.gridViewUsers_ShowGridMenu);
             // 
             // gridColumn1
             // 

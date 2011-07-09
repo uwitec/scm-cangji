@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.Utils.Menu;
+using SCM_CangJi.BLL.Services;
 
 namespace SCM_CangJi.Account
 {
@@ -60,6 +63,28 @@ namespace SCM_CangJi.Account
             if (ChangePassword.GetInstance().ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 XtraMessageBox.Show("修改密码成功！");
+            }
+        }
+        int orderrowhandle = -1;
+        private void gridViewUsers_ShowGridMenu(object sender, DevExpress.XtraGrid.Views.Grid.GridMenuEventArgs e)
+        {
+            if (e.MenuType == GridMenuType.Row)
+            {
+                orderrowhandle = -1;
+                // Delete existing menu items, if any.
+                e.Menu.Items.Clear();
+
+                DXMenuItem menuItemDelete = new DXMenuItem("删除", (s, en) =>
+                      {
+                          if (XtraMessageBox.Show("该动作将会删除相关明细列表，确实要删除吗？", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.OK)
+                          {
+                              string userName = gridViewUsers.GetRowCellValue(e.HitInfo.RowHandle, "UserName").ToString();
+                              //AccountService.Instance.DeleteUser(userName);
+                          }
+                      });
+                e.Menu.Items.Add(menuItemDelete);
+
+                orderrowhandle = e.HitInfo.RowHandle;
             }
         }
 

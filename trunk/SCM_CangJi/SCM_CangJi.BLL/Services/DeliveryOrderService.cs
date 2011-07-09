@@ -536,6 +536,7 @@ namespace SCM_CangJi.BLL.Services
                                分配数量 = c.AssignCount,
                                出库日期 = c.DeliveryOrder.PreDeliveryDate,
                                到期日期 = c.ProductDate,
+                               //库位 = GetArea(db,s.AreaId),
                                出库发票号 = c.DeliveryOrder.Invoice,
                                入库发票号 = c.InputInvoice,
                                客户PO = c.CustomerPo,
@@ -545,5 +546,6 @@ namespace SCM_CangJi.BLL.Services
                  return reslut;
              });
         }
+      
     }
 }

@@ -86,6 +86,28 @@ namespace SCM_CangJi.BLL.Services
                 return false;
             }
         }
+        public bool ChangePassword(string userName, string newPassword)
+        {
+            if (String.IsNullOrEmpty(userName)) throw new ArgumentException("Value cannot be null or empty.", "userName");
+            if (String.IsNullOrEmpty(newPassword)) throw new ArgumentException("Value cannot be null or empty.", "newPassword");
+
+            // The underlying ChangePassword() will throw an exception rather
+            // than return false in certain failure scenarios.
+            try
+            {
+                MembershipUser currentUser = _provider.GetUser(userName, true /* userIsOnline */);
+                string oldpassword = currentUser.ResetPassword();
+                return currentUser.ChangePassword(oldpassword, newPassword);
+            }
+            catch (ArgumentException)
+            {
+                return false;
+            }
+            catch (MembershipPasswordException)
+            {
+                return false;
+            }
+        }
         public object GetUsers()
         {
             object result=null;

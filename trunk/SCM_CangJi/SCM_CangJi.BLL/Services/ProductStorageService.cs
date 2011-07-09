@@ -451,39 +451,48 @@ namespace SCM_CangJi.BLL.Services
 
 
 
-        public void Split(int splitCount, int productStorageId, int toAreaId)
+        public bool Split(int splitCount, int productStorageId, int toAreaId,out string message)
         {
+            bool result = true;
             Using<CangJiDataDataContext>(new CangJiDataDataContext(this.connectionString), db =>
             {
                 var oldps=db.ProductStorages.SingleOrDefault(o=>o.Id==productStorageId);
                 if(oldps!=null)
                 {
-                    ProductStorage newPs = new ProductStorage();
-                    newPs.AreaId = toAreaId;
-                    newPs.CompanyId = oldps.CompanyId;
-                    newPs.CurrentCount = splitCount;
-                    newPs.CurrentProductNumber = CommonService.Instance.GetOrderNumber(OrderType.CurrentProductOrder);
-                    newPs.EntryDate = oldps.EntryDate;
-                    newPs.EntryUser = oldps.EntryUser;
-                    newPs.InputDetailId = oldps.InputDetailId;
-                    newPs.LotsNumber = oldps.LotsNumber;
-                    newPs.Memo = oldps.Memo;
-                    newPs.OriginalCount = splitCount;
-                    newPs.ProductDate = oldps.ProductDate;
-                    newPs.ProductId = oldps.ProductId;
-                    newPs.Status = 1;
-                    oldps.Status = 1;
-                    newPs.UpdateDate = oldps.UpdateDate = DateTime.Now;
-                    newPs.UpdateUser = oldps.UpdateUser = Security.SecurityContext.Current.CurrentyUser.UserName;
-                    newPs.UsableCount = splitCount;
-                    oldps.CurrentCount -= splitCount;
-                    oldps.UsableCount -= splitCount;
-                    db.ProductStorages.InsertOnSubmit(newPs);
+                    if (splitCount > oldps.CurrentCount)
+                    {
+                        result = false;
+                    }
+                    else
+                    {
+                        ProductStorage newPs = new ProductStorage();
+                        newPs.AreaId = toAreaId;
+                        newPs.CompanyId = oldps.CompanyId;
+                        newPs.CurrentCount = splitCount;
+                        newPs.CurrentProductNumber = CommonService.Instance.GetOrderNumber(OrderType.CurrentProductOrder);
+                        newPs.EntryDate = oldps.EntryDate;
+                        newPs.EntryUser = oldps.EntryUser;
+                        newPs.InputDetailId = oldps.InputDetailId;
+                        newPs.LotsNumber = oldps.LotsNumber;
+                        newPs.Memo = oldps.Memo;
+                        newPs.OriginalCount = splitCount;
+                        newPs.ProductDate = oldps.ProductDate;
+                        newPs.ProductId = oldps.ProductId;
+                        newPs.Status = 1;
+                        oldps.Status = 1;
+                        newPs.UpdateDate = oldps.UpdateDate = DateTime.Now;
+                        newPs.UpdateUser = oldps.UpdateUser = Security.SecurityContext.Current.CurrentyUser.UserName;
+                        newPs.UsableCount = splitCount;
+                        oldps.CurrentCount -= splitCount;
+                        oldps.UsableCount -= splitCount;
+                        db.ProductStorages.InsertOnSubmit(newPs);
+                    }
 
                 }
                 db.SubmitChanges();
-
             });
+            message = result ? "" : "移动数量不能大于可用库存数量";
+            return result;
         }
     }
 }
